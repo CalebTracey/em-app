@@ -1,0 +1,26 @@
+.demo-infinite-container {
+    height: 300px;
+    padding: 8px 24px;
+    overflow: auto;
+    border: 1px solid #e8e8e8;
+    border-radius: 4px;
+  }
+  .demo-loading-container {
+    position: absolute;
+    bottom: 40px;
+    width: 100%;
+    text-align: center;
+  }
+  [data-theme="dark"] .demo-infinite-container {
+    border: 1px solid #303030;
+  }
+  
+  .team-badge .ant-badge-count {
+    color: #999;
+    background-color: #fff;
+    box-shadow: 0 0 0 1px #d9d9d9 inset;
+  }
+  [data-theme="dark"] .team-badge .ant-badge-count {
+    background-color: #141414;
+    box-shadow: 0 0 0 1px #434343 inset;
+  }
