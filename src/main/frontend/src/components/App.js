@@ -77,9 +77,9 @@ const App = () => {
         setCollapsed(!collapsed);
     };
 
-    if (!token) {
-        return <Login setToken={setToken} />
-    }
+    // if (!token) {
+    //     return <Login setToken={setToken} />
+    // }
 
     return (
         isLoading ? <div>Loading...</div> :
