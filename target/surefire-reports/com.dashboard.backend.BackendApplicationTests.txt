@@ -1,10 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.dashboard.backend.BackendApplicationTests
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 2.091 s <<< FAILURE! - in com.dashboard.backend.BackendApplicationTests
-contextLoads  Time elapsed: 0.001 s  <<< ERROR!
-java.lang.IllegalStateException: Failed to load ApplicationContext
-Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: Invocation of init method failed; nested exception is javax.persistence.PersistenceException: [PersistenceUnit: default] Unable to build Hibernate SessionFactory; nested exception is java.lang.RuntimeException: Driver org.postgresql.Driver claims to not accept jdbcUrl, jdbc:hsqldb:mem:f421fced-d603-4327-9445-361aa99e3da3
-Caused by: javax.persistence.PersistenceException: [PersistenceUnit: default] Unable to build Hibernate SessionFactory; nested exception is java.lang.RuntimeException: Driver org.postgresql.Driver claims to not accept jdbcUrl, jdbc:hsqldb:mem:f421fced-d603-4327-9445-361aa99e3da3
-Caused by: java.lang.RuntimeException: Driver org.postgresql.Driver claims to not accept jdbcUrl, jdbc:hsqldb:mem:f421fced-d603-4327-9445-361aa99e3da3
-
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 4.01 s - in com.dashboard.backend.BackendApplicationTests

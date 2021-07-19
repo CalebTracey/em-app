@@ -6,13 +6,12 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
+
 public class EmployeeService {
 
     private EmployeeRepository employeeRepository;
     private DataBase dataBase;
 
-    @Autowired
     public EmployeeService(EmployeeRepository employeeRepository, DataBase dataBase) {
         this.employeeRepository = employeeRepository;
         this.dataBase = dataBase;
