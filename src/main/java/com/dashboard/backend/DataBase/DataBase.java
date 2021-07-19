@@ -23,7 +23,7 @@ public class DataBase {
     private DataSource dataSource;
 
     public static void main(String[] args) throws Exception {
-        GenericXmlApplicationContext ctx = new GenericXmlApplicationContext("classpath:applicationContext.xml");
+        GenericXmlApplicationContext ctx = new GenericXmlApplicationContext("classpath:com/dashboard/backend/resources/applicationContext.xml");
     }
 
     @PostConstruct
