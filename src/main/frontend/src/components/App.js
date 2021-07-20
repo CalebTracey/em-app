@@ -10,6 +10,7 @@ import {
     UserOutlined,
     HomeOutlined,
     TeamOutlined,
+    PlusOutlined
 } from '@ant-design/icons';
 
 import Login from '../login/Login';
@@ -23,6 +24,7 @@ const TeamPage = lazy(() => import('../containers/TeamPage'));
 const Dashboard = lazy(() => import('./Dashboard'));
 const Preferences = lazy(() => import('./Preferences'));
 const CreateTeam = lazy(() => import('./team/CreateTeam'));
+const AddEmployee = lazy(() => import('./employee/AddEmployee'));
 
 const { Header, Content, Sider } = Layout;
 const { SubMenu } = Menu;
@@ -92,11 +94,15 @@ const App = () => {
                             <div>Home</div>
                             <NavLink to="/" />
                         </Menu.Item>
-                        <SubMenu key="sub1" icon={<UserOutlined />} title="Employees">
+                        <SubMenu key="sub1" icon={<UserOutlined />} title="Employees">  
+                        <Menu.Item key="create-team" icon={<PlusOutlined />}>
+                            Add Employee
+                            <NavLink to={'/addemployee'} />
+                        </Menu.Item>
                             <EmployeeList key="employee-list" setSelectedEmployee={setSelectedEmployee} />
                         </SubMenu>
                         <SubMenu key="sub2" icon={<TeamOutlined />} title="Teams">
-                            <Menu.Item key="create-team" >
+                            <Menu.Item key="create-team" icon={<PlusOutlined />}>
                                 Create Team
                                 <NavLink to={'/createteam'} />
                             </Menu.Item>
@@ -141,6 +147,7 @@ const App = () => {
                                 <Route exact path="/" component={Dashboard} />
                                 <Route exact path="/dashboard" component={Dashboard} />
                                 <Route exact path="/preferences" component={Preferences} />
+                                <Route exact path="/addemployee" component={AddEmployee} />
                                 <Route exact path="/createteam" component={CreateTeam} />
                                 {!selectedEmployee ? <Route path="/employee/:employeeUrl" component={Dashboard} /> :
                                     <Route path="/employee/:employeeUrl"

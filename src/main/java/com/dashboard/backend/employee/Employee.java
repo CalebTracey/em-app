@@ -23,7 +23,6 @@ public class Employee {
             strategy = GenerationType.SEQUENCE,
             generator = "employee_sequence"
     )
-
     private Long employeeId;
 
     private String firstName;

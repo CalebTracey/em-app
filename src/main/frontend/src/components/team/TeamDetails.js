@@ -37,32 +37,46 @@ const TeamDetails = ({
                             showDeleteTeamConfirm={showDeleteTeamConfirm} />
                     ]}>
                 </PageHeader>
-                <TeamTasks team={team} />
-                <div className="demo-infinite-container">
-                    <InfiniteScroll
-                        initialLoad={false}
-                        pageStart={0}
-                        loadMore={handleInfiniteOnLoad}
-                        hasMore={!loading && hasMore}
-                        useWindow={false}
-                    >
-                        <Header style={{ background: "rgb(250, 250, 250)", padding: "0px" }}>
-                            <div style={{ fontWeight: "bold" }}>
-                                {"Team Members "} <Badge className="team-badge" count={nodeMapLength} />
-                            </div>
-                        </Header>
-                        <TeamDetailList
-                            setNodeMapLength={setNodeMapLength}
-                            key={team.id}
-                            team={team}
-                            setShowModal={setShowModal}
-                            handleRemoveTeamMember={handleRemoveTeamMember}
-                            handlePopCancel={handlePopCancel}
-                            onRemove={onRemove}
-                            show={show}
-                        />
-                    </InfiniteScroll>
-                </div>
+                <Space direction="vertical">
+                    <div className="demo-infinite-container" style={{ height: "fit-content" }} >
+                        <InfiniteScroll
+
+                            initialLoad={false}
+                            pageStart={0}
+                            loadMore={handleInfiniteOnLoad}
+                            hasMore={!loading && hasMore}
+                            useWindow={false}
+                        >
+                            <TeamTasks team={team} />
+                        </InfiniteScroll>
+                    </div>
+                    <div className="demo-infinite-container">
+                        <InfiniteScroll
+                            initialLoad={false}
+                            pageStart={0}
+                            loadMore={handleInfiniteOnLoad}
+                            hasMore={!loading && hasMore}
+                            useWindow={false}
+                        >
+                            <Header style={{ background: "rgb(250, 250, 250)", padding: "0px" }}>
+                                <div style={{ fontWeight: "bold" }}>
+                                    {"Team Members "} <Badge className="team-badge" count={nodeMapLength} />
+                                </div>
+                            </Header>
+                            <TeamDetailList
+                                setNodeMapLength={setNodeMapLength}
+                                key={team.id}
+                                team={team}
+                                setShowModal={setShowModal}
+                                handleRemoveTeamMember={handleRemoveTeamMember}
+                                handlePopCancel={handlePopCancel}
+                                onRemove={onRemove}
+                                show={show}
+                            />
+                        </InfiniteScroll>
+
+                    </div>
+                </Space>
             </div>
     );
 };

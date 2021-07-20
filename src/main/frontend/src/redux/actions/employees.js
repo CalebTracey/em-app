@@ -1,4 +1,4 @@
-import { EMPLOYEES_FETCHED }from './types';
+import { EMPLOYEES_FETCHED, EMPLOYEE_ADDED } from './types';
 
 const employeeData = (employees) => {
     return {
@@ -7,4 +7,11 @@ const employeeData = (employees) => {
     }
 }
 
-export const employees = {employeeData}
+const employeeAdded = (employee) => {
+    return {
+        type: EMPLOYEE_ADDED,
+        payload: employee
+    }
+}
+
+export const employees = { employeeData, employeeAdded }

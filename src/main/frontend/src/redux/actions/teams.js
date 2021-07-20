@@ -1,9 +1,8 @@
 import {
     TEAMS_FETCHED,
     TEAM_SELECTED,
-    TEAM_UPDATED,
+    TEAM_MEMBER_REMOVED,
     TEAM_DELETED,
-    TASKS_FETCHED,
 } from './types';
 
 const teamData = (teams) => {
@@ -15,7 +14,7 @@ const teamData = (teams) => {
 
 const teamMemberDeleted = (updatedTeam) => {
     return {
-        type: TEAM_UPDATED,
+        type: TEAM_MEMBER_REMOVED,
         payload: updatedTeam
     }
 }

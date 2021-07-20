@@ -13,8 +13,9 @@ import java.util.stream.Collectors;
 
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
 
+@CrossOrigin("*")
 @RestController
-@RequestMapping(path= "api/v1/employees")
+@RequestMapping(path = "api/v1/employees")
 public class EmployeeController {
 
     private final EmployeeService employeeService;
@@ -45,11 +46,6 @@ public class EmployeeController {
         return assembler.toModel(employee);
     }
 
-//    @PostMapping(value = "/upload")
-//    public ResponseEntity<Employee> addEmployee(Employee employee) {
-//        employeeService.addEmployee(employee);
-//        return ResponseEntity.ok(employee);
-//    }
     @PostMapping("/upload")
     ResponseEntity<?> newEmployee(@RequestBody Employee newEmployee) {
 
@@ -60,15 +56,32 @@ public class EmployeeController {
                 .body(entityModel);
     }
 
-    @DeleteMapping(path = "{employeeId}")
-    public void deleteEmployee(@PathVariable("employeeId") Long employeeId){
-        employeeService.deleteEmployee(employeeId);
+    @DeleteMapping("/{employeeId}")
+    ResponseEntity<?> deleteEmployee(@PathVariable Long employeeId) {
+
+        repository.deleteById(employeeId);
+
+        return ResponseEntity.noContent().build();
     }
 
-    @PutMapping(path ="{employeeId}")
-    public void updateEmployee(@PathVariable("employeeId") Long employeeId,
-                               @RequestParam(required = false) String name,
-                               @RequestParam(required = false) String email) {
-        employeeService.updateEmployee(employeeId, name, email);
+    @PutMapping("{employeeId}")
+    ResponseEntity<?> replaceEmployee(@RequestBody Employee newEmployee, @PathVariable Long employeeId) {
+
+        Employee updatedEmployee = repository.findById(employeeId)
+                .map(employee -> {
+                    employee.setName(newEmployee.getName());
+                    employee.setJobTitle(newEmployee.getJobTitle());
+                    return repository.save(employee);
+                }) //
+                .orElseGet(() -> {
+                    newEmployee.setEmployeeId(employeeId);
+                    return repository.save(newEmployee);
+                });
+
+        EntityModel<Employee> entityModel = assembler.toModel(updatedEmployee);
+
+        return ResponseEntity //
+                .created(entityModel.getRequiredLink(IanaLinkRelations.SELF).toUri()) //
+                .body(entityModel);
     }
 }

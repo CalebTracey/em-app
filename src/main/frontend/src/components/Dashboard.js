@@ -8,6 +8,7 @@ const Dashboard = () => {
         <div>
             <div>Dashboard1234</div>
             <div>{company.companyName}</div>
+            {/* <div><AddEmployee/></div> */}
         </div>
     );
 };

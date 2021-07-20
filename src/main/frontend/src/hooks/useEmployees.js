@@ -58,8 +58,8 @@ const useEmployees = () => {
                     [taskData.slice(0, tasksHalfLength),
                     taskData.slice(tasksHalfLength, taskData.length)];
                 //console.log()
-                var teamOne = 
-                ({ teamName: 'Team One', id: 0, key: 1, team: one, tasks: taskOne });
+                var teamOne =
+                    ({ teamName: 'Team One', id: 0, key: 1, team: one, tasks: taskOne });
                 var teamTwo = ({ teamName: 'Team Two', id: 1, key: 2, team: two, tasks: taskTwo });
                 const teamsArray = []
                 teamsArray.splice(0, 0, teamOne)

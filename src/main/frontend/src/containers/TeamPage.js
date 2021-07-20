@@ -50,10 +50,6 @@ const TeamPage = ({ teams, teamKey }) => {
     const handleTaskOk = () => {
         setModalText('The modal will be closed after two seconds');
         setConfirmLoading(true);
-        setTimeout(() => {
-            setVisible(false);
-            setConfirmLoading(false);
-        }, 2000);
     };
 
     const handleTaskCancel = () => {

@@ -1,6 +1,6 @@
 import {
     TEAMS_FETCHED,
-    TEAM_UPDATED,
+    TEAM_MEMBER_REMOVED,
     TEAM_SELECTED,
     TEAM_DELETED,
 } from '../actions/types'
@@ -17,7 +17,7 @@ const teamsReducer = (state = initialState, action) => {
                 ...state,
                 teamData: action.payload
             };
-        case TEAM_UPDATED:
+        case TEAM_MEMBER_REMOVED:
             const teamId = action.payload.id
             const index = state.teamData.findIndex(({ id }) => id === teamId);
             return {
