@@ -3,14 +3,16 @@ package com.dashboard.backend.employee;
 import lombok.*;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Objects;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
 @Entity
-@Table
+@Table(name = "EMPLOYEES")
 public class Employee {
+
 
     @Id
     @SequenceGenerator(
@@ -23,34 +25,29 @@ public class Employee {
             generator = "employee_sequence"
     )
 
-    @Column(name = "id")
-    private Long id;
 
-    @Column(name = "firstname")
+
+    private Long employeeId;
     private String firstName;
-
-    @Column(name = "lastname")
     private String lastName;
-
-    @Column(name = "email")
     private String email;
-
-    @Column(name = "jobTitle")
     private String jobTitle;
-
-    @Column(name = "phoneNumber")
     private String phoneNumber;
-
-    @Column(name = "address")
     private String address;
 
     public Employee(
             String firstName,
             String lastName,
-            String jobTitle) {
-            this.firstName = firstName;
-            this.lastName = lastName;
-            this.jobTitle = jobTitle;
+            String email,
+            String jobTitle,
+            String phoneNumber,
+            String address) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.jobTitle = jobTitle;
+        this.phoneNumber = phoneNumber;
+        this.address = address;
     }
 
     @Override
@@ -58,13 +55,13 @@ public class Employee {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Employee employee = (Employee) o;
-        return id.equals(employee.id) &&
+        return employeeId.equals(employee.employeeId) &&
                 firstName.equals(employee.firstName) &&
                 lastName.equals(employee.lastName);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, firstName, lastName);
+        return Objects.hash(employeeId, firstName, lastName);
     }
 }
