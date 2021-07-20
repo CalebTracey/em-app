@@ -212,3 +212,5 @@ thumb
 sketch
 
 # End of https://www.toptal.com/developers/gitignore/api/jetbrains,java,react,jetbrains+all.env
+
+target/backend-0.0.1-SNAPSHOT.jar*
