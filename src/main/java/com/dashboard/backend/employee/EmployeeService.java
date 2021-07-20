@@ -22,13 +22,16 @@ public class EmployeeService {
         return employeeRepository.findAll();
     }
 
-    public void addEmployee(Employee employee) {
+    public Employee addEmployee(Employee employee) {
+        ifEmployeeNull(employee);
         employeeRepository.save(employee);
+
+        return employee;
     }
+
 
     public void deleteEmployee(Long employeeId) {
         boolean exists = employeeRepository.existsById(employeeId);
-
         if(!exists){
             throw new IllegalStateException("No employee with id :" + employeeId);
         }
@@ -51,5 +54,17 @@ public class EmployeeService {
         }
         employee.setEmail(email);
 
+    }
+
+    private void ifEmployeeNull(Employee employee) {
+        if (employee == null) {
+            throw new ArrayStoreException("Failed to add " +
+                    employee.getFirstName() + " to the database.");
+        }
+    }
+
+    public Employee findEmployeeById(Long id) {
+        return employeeRepository.findById(id)
+                .orElseThrow(() -> new EmployeeNotFoundException(id));
     }
 }
