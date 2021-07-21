@@ -6,6 +6,7 @@ import { createBrowserHistory } from "history";
 import './index.css';
 import App from './components/App';
 import store from './redux/store'
+import { ConfigProvider } from 'antd';
 
 const history = createBrowserHistory();
 

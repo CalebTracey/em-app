@@ -33,13 +33,10 @@ const AddEmployee = () => {
             data: data
         };
         await axios(config)
-            .then(function (res) {
+            .then(res => {
                 res.data["key"] = res.data.employeeId * 123456789000;
                 dispatch(allActions.employees.employeeAdded(res.data));
-
-                //console.log(res.data);
-            })
-            .catch(function (error) {
+            }).catch(function (error) {
                 console.log(error);
             });
     };

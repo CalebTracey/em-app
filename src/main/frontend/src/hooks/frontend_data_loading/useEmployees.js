@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import faker from 'faker'
-import allActions from "../redux/actions/index";
-import useTasks from './useTasks';
+import allActions from "../../redux/actions/index";
+import useTasks from '../useTasks';
 
 const useEmployees = () => {
-    faker.seed(1234)
+    // faker
     const dataLoaded = useSelector(state => state.dataLoad);
     const employeeState = useSelector(state => state.employees.employeeData);
     const teamsState = useSelector(state => state.teams.teamData);
@@ -43,7 +43,7 @@ const useEmployees = () => {
                 }
                 ));
                 generatedList.sort((a, b) => (a.lastName > b.lastName) ? 1 : ((b.lastName > a.lastName) ? -1 : 0))
-                console.log(generatedList)
+                console.log(JSON.stringify(generatedList))
                 dispatch(allActions.employees.employeeData(generatedList));
                 setEmployeesLoaded(true);
             }

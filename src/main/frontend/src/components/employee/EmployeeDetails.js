@@ -1,12 +1,16 @@
 import React from 'react';
+import { useParams } from 'react-router-dom';
 import { Descriptions, Avatar, Typography } from 'antd';
 import 'antd/dist/antd.css';
+import useEmployee from '../../hooks/useEmployee';
+
 
 const { Title } = Typography;
 
-const EmployeeDetails = ({ employee }) => {
-    //let { employeeUrl } = useParams();
-    // const [employee] = useEmployee({ employeeUrl});
+const EmployeeDetails = () => {
+
+    let { employeeUrl } = useParams();
+    const [employee] = useEmployee({ employeeUrl});
 
     return (
         !employee ? <div>Loading...</div> :

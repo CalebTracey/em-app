@@ -1,11 +1,6 @@
 package com.dashboard.backend.employee;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
 import javax.persistence.*;
-import java.io.IOException;
-import java.util.Map;
 import java.util.Objects;
 
 
@@ -32,10 +27,20 @@ public class Employee {
     private String phoneNumber;
     private String address;
 
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
+
+    private String avatar;
+
     public Employee() {
     }
 
-    public Employee(Long employeeId, String firstName, String lastName, String email, String jobTitle, String phoneNumber, String address) {
+    public Employee(Long employeeId, String firstName, String lastName, String email, String jobTitle, String phoneNumber, String address, String avatar) {
         this.employeeId = employeeId;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -43,6 +48,7 @@ public class Employee {
         this.jobTitle = jobTitle;
         this.phoneNumber = phoneNumber;
         this.address = address;
+        this.avatar = avatar;
     }
 
     public Employee(
@@ -51,13 +57,14 @@ public class Employee {
             String email,
             String jobTitle,
             String phoneNumber,
-            String address) {
+            String address, String avatar) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.jobTitle = jobTitle;
         this.phoneNumber = phoneNumber;
         this.address = address;
+        this.avatar = avatar;
     }
 
     public Long getEmployeeId() {

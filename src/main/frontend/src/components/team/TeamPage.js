@@ -6,9 +6,9 @@ import {
 } from '@ant-design/icons';
 import 'antd/dist/antd.css';
 
-import allActions from '../redux/actions/index';
-import TeamDetails from '../components/team/TeamDetails';
-import TeamDeletedPage from '../components/team/TeamDeletedPage';
+import allActions from '../../redux/actions/index';
+import TeamDetails from './TeamDetails';
+import TeamDeletedPage from './TeamDeletedPage';
 
 const { Title } = Typography;
 const { confirm } = Modal;

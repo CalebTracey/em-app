@@ -40,7 +40,6 @@ const TeamDetails = ({
                 <Space direction="vertical">
                     <div className="demo-infinite-container" style={{ height: "fit-content" }} >
                         <InfiniteScroll
-
                             initialLoad={false}
                             pageStart={0}
                             loadMore={handleInfiniteOnLoad}
