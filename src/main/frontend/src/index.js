@@ -4,9 +4,8 @@ import { Provider } from 'react-redux'
 import { Router, Route } from 'react-router-dom';
 import { createBrowserHistory } from "history";
 import './index.css';
-import App from './components/App';
+import App from './App';
 import store from './redux/store'
-import { ConfigProvider } from 'antd';
 
 const history = createBrowserHistory();
 

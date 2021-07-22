@@ -57,7 +57,7 @@ const TeamTaskList = ({ tasks }) => {
             columns={columns}
             dataSource={taskNameUpper}
             size="middle"
-            />
+        />
     );
 }
 export default TeamTaskList;

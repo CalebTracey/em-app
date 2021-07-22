@@ -7,6 +7,7 @@ import 'antd/dist/antd.css';
 import useFetchMyApi from '../hooks/useFetchMyApi';
 import EmployeeList from '../components/employee/EmployeeList';
 import allActions from '../redux/actions/index';
+import { Menu } from 'antd';
 
 
 const Employees = (props) => {
@@ -56,7 +57,7 @@ const Employees = (props) => {
 
     return (
         isLoading ? "Loading..." :
-             <EmployeeList key="employee-list" isLoading={isLoading}/>               
+             <EmployeeList key="employee-list" isLoading={isLoading}/>
 
     );
 };

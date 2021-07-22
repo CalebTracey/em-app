@@ -10,8 +10,8 @@ const { RangePicker } = DatePicker;
 const CreateTask = () => {
     const teams = useSelector(state => state.teams.teamData);
     const [taskTitle, setTaskTitle] = useState('');
-    const [children, setChildren] = useState([]);
-    const [selected, setSelected] = useState([]);
+    // const [children, setChildren] = useState([]);
+    // const [selected, setSelected] = useState([]);
     const dispatch = useDispatch();
 
     const onChange = (value, dateString) => {

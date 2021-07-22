@@ -1,24 +1,39 @@
 package com.dashboard.backend.employee;
 
+import com.dashboard.backend.team.Team;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.lang.NonNull;
+
+import javax.annotation.Nonnull;
 import javax.persistence.*;
+import java.time.LocalDate;
+import java.time.Period;
+import java.util.List;
 import java.util.Objects;
 
-
 @Entity
-@Table()
+@ConfigurationProperties(prefix = "employee")
+@Table(name = "EMPLOYEES")
 public class Employee {
 
     @Id
-    @SequenceGenerator(
-            name="employee_sequence",
-            sequenceName="employee_sequence",
-            allocationSize = 1
-    )
+
     @GeneratedValue(
             strategy = GenerationType.SEQUENCE,
-            generator = "employee_sequence"
+            generator = "employees_sequence"
     )
-    private Long employeeId;
+    @SequenceGenerator(
+            name = "employees_sequence",
+            sequenceName = "employees_sequence",
+            allocationSize = 1
+    )
+    private Long id;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="team_id", nullable = false)
+    private Team team;
 
     private String firstName;
     private String lastName;
@@ -26,22 +41,29 @@ public class Employee {
     private String jobTitle;
     private String phoneNumber;
     private String address;
-
-    public String getAvatar() {
-        return avatar;
-    }
-
-    public void setAvatar(String avatar) {
-        this.avatar = avatar;
-    }
-
     private String avatar;
+    private LocalDate dob;
+    @Transient
+    private String name;
+    private Integer age;
 
-    public Employee() {
+    public Employee() { }
+
+    public Employee(Long id) {
+        this.id = id;
     }
 
-    public Employee(Long employeeId, String firstName, String lastName, String email, String jobTitle, String phoneNumber, String address, String avatar) {
-        this.employeeId = employeeId;
+    public Employee(
+            Long id,
+            String firstName,
+            String lastName,
+            String email,
+            String jobTitle,
+            String phoneNumber,
+            String address,
+            String avatar,
+            LocalDate dob) {
+        this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -49,6 +71,7 @@ public class Employee {
         this.phoneNumber = phoneNumber;
         this.address = address;
         this.avatar = avatar;
+        this.dob = dob;
     }
 
     public Employee(
@@ -57,7 +80,9 @@ public class Employee {
             String email,
             String jobTitle,
             String phoneNumber,
-            String address, String avatar) {
+            String address,
+            String avatar,
+            LocalDate dob) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -65,14 +90,15 @@ public class Employee {
         this.phoneNumber = phoneNumber;
         this.address = address;
         this.avatar = avatar;
+        this.dob = dob;
     }
 
-    public Long getEmployeeId() {
-        return employeeId;
+    public Long getId() {
+        return id;
     }
 
-    public void setEmployeeId(Long employeeId) {
-        this.employeeId = employeeId;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getFirstName() {
@@ -127,54 +153,37 @@ public class Employee {
         return this.firstName + " " + this.lastName;
     }
 
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
+
+    public LocalDate getDob() {
+        return dob;
+    }
+
+    public void setDob(LocalDate dob) {
+        this.dob = dob;
+    }
+
+    public Integer getAge() {
+        return Period.between(dob, LocalDate.now()).getYears();
+    }
+
+    public Team getTeam() {
+        return team;
+    }
+
     public void setName(String name) {
-        String[] parts = name.split(" ");
-        this.firstName = parts[0];
-        this.lastName = parts[1];
-    }
-//
-//    public String getEmployeeAttributeJSON() {
-//        return employeeAttributeJSON;
-//    }
-//
-//    public void setEmployeeAttributeJSON(String employeeAttributeJSON) {
-//        this.employeeAttributeJSON = employeeAttributeJSON;
-//    }
-//
-//    @Convert(converter = JsonConverter.class)
-//    private Map<String, Object> employeeAttributes;
-//
-//    public Map<String, Object> getEmployeeAttributes() {
-//        return employeeAttributes;
-//    }
-//
-//    public void setEmployeeAttributes(Map<String, Object> employeeAttributes) {
-//        this.employeeAttributes = employeeAttributes;
-//    }
-//
-//    private static final ObjectMapper objectMapper = new ObjectMapper();
-//
-//    public void serializeEmployeeAttributes() throws JsonProcessingException {
-//        this.employeeAttributeJSON = objectMapper.writeValueAsString(employeeAttributes);
-//    }
-//
-//    public void deserializeEmployeeAttributes() throws JsonProcessingException {
-//        this.employeeAttributes = objectMapper.readValue(employeeAttributeJSON, Map.class);
-//    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Employee employee = (Employee) o;
-        return employeeId.equals(employee.employeeId) &&
-                firstName.equals(employee.firstName) &&
-                lastName.equals(employee.lastName);
+        this.name = name;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(employeeId, firstName, lastName);
+    public void setAge(Integer age) {
+        this.age = age;
     }
+
 
 }

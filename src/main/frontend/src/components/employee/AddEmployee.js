@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import 'antd/dist/antd.css';
-import { Form, Input, Button, Card } from 'antd';
+import { Form, Input, Button, Card, Upload, message } from 'antd';
 import axios from 'axios';
 import allActions from '../../redux/actions/index';
-// import useApiPost from '../../hooks/useApiPost';
+import NewEmployeeAvatar from './NewEmployeeAvatar';
+import api from '../../api';
 
 const AddEmployee = () => {
     const [firstName, setFirstName] = useState(null);
@@ -13,34 +14,34 @@ const AddEmployee = () => {
     const [jobTitle, setJobTitle] = useState(null);
     const [phoneNumber, setPhoneNumber] = useState(null);
     const [address, setAddress] = useState(null);
+    const [avatar, setAvatar] = useState(null);
+    const [imageUrl, setImageUrl] = useState(false);
+
+    
     const dispatch = useDispatch();
 
-    const onFinish = async () => {
-        const data = JSON.stringify({
-            'firstName': firstName,
-            'lastName': lastName,
-            'email': email,
-            'jobTitle': jobTitle,
-            'phoneNumber': phoneNumber,
-            'address': address
-        });
-        const config = {
-            method: 'post',
-            url: 'http://localhost:8080/api/v1/employees/upload',
-            headers: {
-                "Content-Type": "application/json"
-            },
-            data: data
-        };
-        await axios(config)
-            .then(res => {
-                res.data["key"] = res.data.employeeId * 123456789000;
-                dispatch(allActions.employees.employeeAdded(res.data));
-            }).catch(function (error) {
-                console.log(error);
-            });
-    };
+    const data = JSON.stringify({
+        'firstName': firstName,
+        'lastName': lastName,
+        'email': email,
+        'jobTitle': jobTitle,
+        'phoneNumber': phoneNumber,
+        'address': address,
+        'avatar': avatar
+    });
 
+    // const handleAvatarUpload = ({ file }) => setFile(file);
+
+    
+
+    const onFinish = async () => {
+        await api.post('api/v1/employees/upload', data 
+        ).then(res => {
+            dispatch(allActions.employees.employeeAdded(res.data));
+        }).catch(function (error) {
+            console.log(error);
+        });
+    }
     const onFinishFailed = (errorInfo) => {
         console.log('Failed:', errorInfo);
     };
@@ -51,9 +52,12 @@ const AddEmployee = () => {
                 <Form
                     layout="vertical"
                     requiredMark={true}
-                    onFinish={onFinish}
-                    onFinishFailed={onFinishFailed}
+                // onFinish={onFinish}
+                // onFinishFailed={onFinishFailed}
                 >
+                        {/* <NewEmployeeAvatar 
+                        /> */}
+
                     <Form.Item label="First name" required tooltip="This is a required field">
                         <Input
                             placeholder="First name"
@@ -85,7 +89,9 @@ const AddEmployee = () => {
                             onChange={(event) => setAddress(event.target.value)} />
                     </Form.Item>
                     <Form.Item>
-                        <Button type="primary" htmlType="submit">Submit
+                        <Button type="primary" htmlType="submit"
+                            onClick={onFinish}>
+                            Submit
                     </Button>
                     </Form.Item>
                 </Form>

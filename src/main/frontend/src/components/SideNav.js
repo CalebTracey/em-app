@@ -23,14 +23,11 @@ const SideNav = ({ collapsed }) => {
                     <NavLink key="home-nav" to="/" />
                 </Menu.Item>
                 <SubMenu key="sub1" icon={<UserOutlined />} title="Employees"
-                ><div><Employees /></div>
-                    {/* <NavLink to={'/employees'} /> */}
-                    {/* onTitleClick={navToEmployees} */}
-                    <Menu.Item key="add-employee" icon={<PlusOutlined />}>
+                ><Menu.Item key="add-employee" icon={<PlusOutlined />}>
                         Add Employee
-                        <NavLink key="employeeaddnav" to={'/addemployee'} />
+                <NavLink key="employeeaddnav" to={'/addemployee'} />
                     </Menu.Item>
-                    {/* <NavLink to={'/employees'} /> */}
+                    <Employees />
                 </SubMenu>
                 <SubMenu key="sub2" icon={<TeamOutlined />} title="Teams">
                     <Menu.Item key="create-team" icon={<PlusOutlined />}>

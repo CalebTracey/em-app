@@ -2,20 +2,25 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { Menu } from 'antd';
 import 'antd/dist/antd.css';
-import EmployeeListItem from './EmployeeListItem';
+import { Link } from 'react-router-dom';
+import { UserOutlined } from '@ant-design/icons';
 
-
-const EmployeeList = ({isLoading}) => {
+const EmployeeList = ({ isLoading }) => {
     const employees = useSelector(state => state.employees.employeeData)
     const listNode = employees.map((employee) => {
         return (
-            <EmployeeListItem key={employee.employeeId} employee={employee} />
+            <Menu.Item
+                key={employee.employeeId}
+                icon={<UserOutlined />}
+                style={{ cursor: 'pointer' }}>
+                {`${employee.lastName}, ${employee.firstName}`}
+                <Link to={`/employee/${employee.employeeId}`} />
+            </Menu.Item>
         )
     });
     return (
         isLoading ? "Loading..." :
-            <Menu.ItemGroup key="group1" children={listNode} />
-            
+            <Menu.ItemGroup children={listNode} />
     )
 }
 

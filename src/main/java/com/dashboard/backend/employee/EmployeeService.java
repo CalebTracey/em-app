@@ -1,5 +1,6 @@
 package com.dashboard.backend.employee;
 
+import com.dashboard.backend.team.TeamRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -7,19 +8,38 @@ import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.Set;
 
-@Service
+//@Service
 public class EmployeeService {
 
+//    @Autowired
     private final EmployeeRepository employeeRepository;
 
-    @Autowired
-    public EmployeeService(EmployeeRepository employeeRepository) {
+//    private final TeamRepository teamRepository;
+
+    public EmployeeService(
+            EmployeeRepository employeeRepository) {
+
         this.employeeRepository = employeeRepository;
     }
 
-    public List<Employee> getEmployees(){
+    public List<Employee> findAll(){
+
         return employeeRepository.findAll();
+    }
+
+    public Employee findById(Long id) {
+        return employeeRepository.findById(id)
+                .orElseThrow(() -> new EmployeeNotFoundException(id));
+    }
+
+    public Employee findByTeamId(Long id) {
+        return employeeRepository.findByTeamId(id);
+    }
+
+    public Employee save(Employee newEmployee) {
+        return employeeRepository.save(newEmployee);
     }
 
     public Employee addEmployee(Employee employee) {
@@ -28,7 +48,6 @@ public class EmployeeService {
 
         return employee;
     }
-
 
     public void deleteEmployee(Long employeeId) {
         boolean exists = employeeRepository.existsById(employeeId);
@@ -63,8 +82,6 @@ public class EmployeeService {
         }
     }
 
-    public Employee findEmployeeById(Long id) {
-        return employeeRepository.findById(id)
-                .orElseThrow(() -> new EmployeeNotFoundException(id));
-    }
+
+
 }

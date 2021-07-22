@@ -28,7 +28,12 @@ const useEmployees = () => {
             }
 
             if (!employeesLoaded) {
-                const arr = new Array(30).fill();
+                const arr = new Array(50).fill();
+                const max = Math.floor(3);
+                const min = Math.ceil(1)
+                const randomTeamNum = () => {
+                    return Math.floor(Math.random() * (max - min) + min);
+                } 
                 const generatedList = arr.map(() =>
                 ({
                     firstName: faker.name.firstName(),
@@ -36,9 +41,11 @@ const useEmployees = () => {
                     job: faker.name.jobTitle(),
                     address: faker.address.streetAddress(),
                     phoneNum: faker.phone.phoneNumberFormat(),
-                    key: Math.floor(Math.random() * 1234567890000),
+                    // key: Math.floor(Math.random() * 1234567890000),
                     photo: faker.image.avatar(),
                     email: faker.internet.exampleEmail(),
+                    teamNum: randomTeamNum(),
+                    dob: faker.date.between(new Date("1980", "1", "1"), new Date("2000", "1", "1"))
 
                 }
                 ));
