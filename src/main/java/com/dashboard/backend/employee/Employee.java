@@ -1,6 +1,8 @@
 package com.dashboard.backend.employee;
 
 import com.dashboard.backend.team.Team;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 
@@ -9,6 +11,7 @@ import java.io.Serial;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -30,10 +33,6 @@ public class Employee {
     )
     protected Long id;
 
-    @Column(unique = true)
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID uuid;
-
     private String firstName;
     private String lastName;
     private String email;
@@ -43,12 +42,21 @@ public class Employee {
     private String avatar;
     private LocalDate dob;
 
+//    @Column(unique = true)
+//    @GeneratedValue(strategy = GenerationType.AUTO)
+//    private UUID uuid;
+
     @Transient
     private String name;
+    @Transient
     private Integer age;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "team_id", nullable = true)
+    @JoinColumn(
+            name = "team_id",
+            nullable = true,
+            referencedColumnName = "id")
+    @JsonBackReference
     private Team team;
 
     public Employee() { }
@@ -150,8 +158,8 @@ public class Employee {
         return this.firstName + " " + this.lastName;
     }
 
-    public String getAvatar() {
-        return avatar;
+    public Optional<String> getAvatar() {
+        return Optional.ofNullable(avatar);
     }
 
     public void setAvatar(String avatar) {
@@ -166,13 +174,16 @@ public class Employee {
         this.dob = dob;
     }
 
-    public Integer getAge() {
-        return Period.between(LocalDate.from(dob), LocalDate.now()).getYears();
+    @Temporal(TemporalType.TIMESTAMP)
+    public Optional<Integer> getAge() {
+        Integer age = null;
+        if (this.dob != null) {
+            age = Period.between(this.dob, LocalDate.now()).getYears();
+        }
+        return Optional.ofNullable(age);
     }
 
-    public Team getTeam() {
-        return team;
-    }
+    public Team getTeam() { return team; }
 
     public void setName(String name) {
         this.name = name;
@@ -181,13 +192,49 @@ public class Employee {
     public void setAge(Integer age) {
         this.age = age;
     }
-
-    public UUID getUuid() {
-        return uuid;
-    }
+//
+//    public UUID getUuid() {
+//        return uuid;
+//    }
 
     public void setTeam(Team team) {
         this.team = team;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Employee employee = (Employee) o;
+        return id.equals(employee.id) &&
+                firstName.equals(employee.firstName) &&
+                lastName.equals(employee.lastName) &&
+                email.equals(employee.email) &&
+                jobTitle.equals(employee.jobTitle) &&
+                phoneNumber.equals(employee.phoneNumber) &&
+                address.equals(employee.address) &&
+                avatar.equals(employee.avatar) &&
+                dob.equals(employee.dob) &&
+                name.equals(employee.name) &&
+                age.equals(employee.age) &&
+                team.equals(employee.team);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(
+                id,
+                firstName,
+                lastName,
+                email,
+                jobTitle,
+                phoneNumber,
+                address,
+                avatar,
+                dob,
+                name,
+                age,
+                team
+        );
+    }
 }

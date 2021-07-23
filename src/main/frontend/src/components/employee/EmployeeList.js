@@ -6,7 +6,6 @@ import { UserOutlined } from '@ant-design/icons';
 
 const EmployeeList = ({ clickHandler, employees }) => {
 
-    console.log(employees)
     const listNode = employees.map((employee) => {
         return (
             <Menu.Item
@@ -21,10 +20,7 @@ const EmployeeList = ({ clickHandler, employees }) => {
         )
     });
     return (
-        <div>
             <Menu.ItemGroup children={listNode} />
-
-        </div>
         
 
     )

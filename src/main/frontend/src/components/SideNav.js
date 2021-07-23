@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense, useState } from 'react';
 import 'antd/dist/antd.css';
 import { Layout, Menu } from 'antd';
 import { NavLink } from 'react-router-dom';
@@ -14,6 +14,15 @@ const { Sider } = Layout;
 const { SubMenu } = Menu;
 
 const SideNav = ({ collapsed }) => {
+    const [employeeState, setEmployeeState] = useState(null);
+
+    const employees = () => {
+        return (
+        <Suspense fallback="Loading...">
+            <Employees />
+        </Suspense>
+        )
+    }
     return (
         <Sider trigger={null} collapsible collapsed={collapsed} style={{
             overflow: 'auto',
@@ -42,15 +51,17 @@ const SideNav = ({ collapsed }) => {
                     key="sub1"
                     icon={<UserOutlined />}
                     title="Employees"
-                ><Menu.Item
-                    key="add-employee"
-                    icon={<PlusOutlined />}>
+                    onTitleClick={() => setEmployeeState(employees)}
+                >
+                    <Menu.Item
+                        key="add-employee"
+                        icon={<PlusOutlined />}>
                         Add Employee
                 <NavLink
                             key="employeeaddnav"
                             to={'/addemployee'} />
                     </Menu.Item>
-                    <Employees />
+                    {employeeState}
                 </SubMenu>
                 <SubMenu
                     key="sub2"

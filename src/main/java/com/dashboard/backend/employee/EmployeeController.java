@@ -95,7 +95,7 @@ public class EmployeeController {
                     employee.setJobTitle(newEmployee.getJobTitle());
                     employee.setEmail(newEmployee.getEmail());
                     employee.setAddress(newEmployee.getAddress());
-                    employee.setAvatar(newEmployee.getAvatar());
+                    employee.setAvatar(String.valueOf(newEmployee.getAvatar()));
                     return employeeService.save(newEmployee);
                     //return repository.save(employee);
                 })

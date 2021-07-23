@@ -1,6 +1,7 @@
 package com.dashboard.backend.team;
 
 import com.dashboard.backend.employee.Employee;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 
@@ -30,7 +31,8 @@ public class Team {
     @Column(unique = true)
     private String teamName;
 
-    @OneToMany(mappedBy = "team")
+    @OneToMany(mappedBy = "team", cascade = CascadeType.ALL)
+    @JsonManagedReference
     private Set<Employee> employees;
 
     public Team() { }

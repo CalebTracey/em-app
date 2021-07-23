@@ -1,31 +1,43 @@
 package com.dashboard.backend.employee;
 
 import com.dashboard.backend.team.Team;
-import com.dashboard.backend.team.TeamRepository;
+import com.dashboard.backend.team.TeamModelAssembler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
+import org.springframework.hateoas.EntityModel;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
-import java.util.Set;
 
 @Service
 public class EmployeeService {
 
 
     private final EmployeeRepository employeeRepository;
+    private final TeamModelAssembler teamAssembler;
 
     @Autowired
     public EmployeeService(
-            EmployeeRepository employeeRepository) {
+            EmployeeRepository employeeRepository,
+            TeamModelAssembler teamAssembler) {
         this.employeeRepository = employeeRepository;
+        this.teamAssembler = teamAssembler;
     }
 
     public List<Employee> findAll() {
-        return employeeRepository.findAll();
+//        List<Employee> allEmployees =
+                return employeeRepository.findAll();
+//        allEmployees.stream().map(employee -> {
+//            if (employee.getTeam() != null) {
+//                EntityModel<Team> teamModel =
+//                        teamAssembler.toModel(employee.getTeam());
+//                employee.setTeam();
+//            }
+//        })
+
     }
 
     public Employee findById(Long id) {

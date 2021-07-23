@@ -1,38 +1,39 @@
-import React, { useState, useEffect, useRef, Suspense, lazy } from 'react';
+import React, { useState, useEffect, Suspense, lazy } from 'react';
 import { ErrorBoundry } from 'react-error-boundary';
-import useAxios from '../hooks/useAxios';
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import 'antd/dist/antd.css';
 import allActions from '../redux/actions/index';
+import api from '../api';
 
 // const EmployeeListContainer = lazy(() => import('../components/employee/EmployeeListContainer'));
 import EmployeeList from '../components/employee/EmployeeList';
 
 const Employees = () => {
+    const employees = useSelector(state => state.employees.employeeData);
     const dispatch = useDispatch();
     const [isLoading, setIsLoading] = useState(true);
-
-
-    const { response, loading, error } = useAxios({
-        method: 'get',
-        url: 'api/v1/employees',
-        headers: JSON.stringify({ accept: '*/*' }),
-        body: null
-    });
-
-    const [data, setData] = useState([]);
+    const [data, setData] = useState(null);
 
     useEffect(() => {
-        if (response !== null) {
-            console.log(response)
-            const sort = response.sort((a, b) =>
-                (a.lastName > b.lastName) ? 1 :
-                    ((b.lastName > a.lastName) ? -1 : 0));
-            dispatch(allActions.employees.employeeData(sort));
-            setIsLoading(false)
-            setData(sort);
+        const getEmployees = async () => {
+            if (employees.length === 0 && data === null) {
+                setIsLoading(true);
+                await api.get('api/v1/employees', null
+                ).then(res => {
+                    const sorted =
+                        res.data._embedded.employeeList.sort((a, b) =>
+                            (a.lastName > b.lastName) ? 1 :
+                                ((b.lastName > a.lastName) ? -1 : 0));
+                    setData(sorted)
+                    dispatch(allActions.employees.employeeAdded(res.data));
+                }).catch(function (error) {
+                    console.log(error);
+                });
+                setIsLoading(false)
+            }
         }
-    }, [response, dispatch]);
+        getEmployees();
+    }, [employees, dispatch, data])
 
     const clickHandler = (employee) => {
         if (employee !== null) {
@@ -40,14 +41,13 @@ const Employees = () => {
         }
     }
 
-    console.log(data)
     return (
-        loading ? "Loading..." :
+        isLoading ? "Loading..." :
             <EmployeeList
                 key="employee-list"
                 clickHandler={clickHandler}
                 employees={data}
-            /> 
+            />
     );
 };
 
