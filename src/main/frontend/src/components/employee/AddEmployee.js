@@ -30,12 +30,8 @@ const AddEmployee = () => {
         'avatar': avatar
     });
 
-    // const handleAvatarUpload = ({ file }) => setFile(file);
-
-    
-
     const onFinish = async () => {
-        await api.post('api/v1/employees/upload', data 
+        await api.post('api/v1/employees', data 
         ).then(res => {
             dispatch(allActions.employees.employeeAdded(res.data));
         }).catch(function (error) {

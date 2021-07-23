@@ -15,22 +15,50 @@ const { SubMenu } = Menu;
 
 const SideNav = ({ collapsed }) => {
     return (
-        <Sider trigger={null} collapsible collapsed={collapsed}>
+        <Sider trigger={null} collapsible collapsed={collapsed} style={{
+            overflow: 'auto',
+            height: '100vh',
+            position: 'fixed',
+            left: '0px',
+            flex: '0 0 200px',
+            maxWidth: '200px',
+            minWidth: '200px',
+            width: '200px'
+
+        }}>
             <div className="logo" />
-            <Menu theme="dark" mode="inline" >
-                <Menu.Item key="home" icon={<HomeOutlined />}>
+            <Menu
+                theme="dark"
+                mode="inline" >
+                <Menu.Item
+                    key="home"
+                    icon={<HomeOutlined />}>
                     <div>Home</div>
-                    <NavLink key="home-nav" to="/" />
+                    <NavLink
+                        key="home-nav"
+                        to="/" />
                 </Menu.Item>
-                <SubMenu key="sub1" icon={<UserOutlined />} title="Employees"
-                ><Menu.Item key="add-employee" icon={<PlusOutlined />}>
+                <SubMenu
+                    key="sub1"
+                    icon={<UserOutlined />}
+                    title="Employees"
+                ><Menu.Item
+                    key="add-employee"
+                    icon={<PlusOutlined />}>
                         Add Employee
-                <NavLink key="employeeaddnav" to={'/addemployee'} />
+                <NavLink
+                            key="employeeaddnav"
+                            to={'/addemployee'} />
                     </Menu.Item>
                     <Employees />
                 </SubMenu>
-                <SubMenu key="sub2" icon={<TeamOutlined />} title="Teams">
-                    <Menu.Item key="create-team" icon={<PlusOutlined />}>
+                <SubMenu
+                    key="sub2"
+                    icon={<TeamOutlined />}
+                    title="Teams">
+                    <Menu.Item
+                        key="create-team"
+                        icon={<PlusOutlined />}>
                         Create Team
                         <NavLink to={'/createteam'} />
                     </Menu.Item>

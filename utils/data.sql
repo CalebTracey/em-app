@@ -1,6 +1,6 @@
-insert into employee ( first_name, last_name, job_title, address, phone_number, avatar, email, dob) values
+insert into employees ( id ,first_name, last_name, job_title, address, phone_number, avatar, email, dob) values
 
-  (
+  ( nextval('employee_sequence'),  
     'Madge',
     'Bauch',
     'International Intranet Administrator',
@@ -10,7 +10,7 @@ insert into employee ( first_name, last_name, job_title, address, phone_number, 
     'Ladarius_Tremblay17@example.com',
     '1989-01-01T08:03:52.449Z'
   ),
-  (
+  ( nextval('employee_sequence'),
     'Kyleigh',
     'Bauch',
     'Legacy Operations Agent',
@@ -20,7 +20,7 @@ insert into employee ( first_name, last_name, job_title, address, phone_number, 
     'Riley_Frami@example.net',
     '1981-12-24T09:58:31.644Z'
   ),
-  (
+  ( nextval('employee_sequence'),
     'Kaylah',
     'Bayer',
     'Corporate Metrics Developer',
@@ -31,7 +31,7 @@ insert into employee ( first_name, last_name, job_title, address, phone_number, 
 
     '1997-03-08T14:24:44.433Z'
   ),
-  (
+  ( nextval('employee_sequence'),
     'Wellington',
     'Bechtelar',
     'Dynamic Interactions Assistant',
@@ -42,7 +42,7 @@ insert into employee ( first_name, last_name, job_title, address, phone_number, 
 
     '1983-06-10T13:34:03.654Z'
   ),
-  (
+  ( nextval('employee_sequence'),
     'Sean',
     'Bernier',
     'Product Group Facilitator',
@@ -53,7 +53,7 @@ insert into employee ( first_name, last_name, job_title, address, phone_number, 
 
     '1980-11-15T06:51:03.939Z'
   ),
-  (
+  ( nextval('employee_sequence'),
     'Wava',
     'Borer',
     'Chief Paradigm Planner',
@@ -64,7 +64,7 @@ insert into employee ( first_name, last_name, job_title, address, phone_number, 
 
     '1997-08-31T04:05:55.159Z'
   ),
-  (
+  ( nextval('employee_sequence'),
     'Korey',
     'Boyle',
     'Regional Applications Orchestrator',
@@ -75,7 +75,7 @@ insert into employee ( first_name, last_name, job_title, address, phone_number, 
 
     '1987-05-17T19:26:14.741Z'
   ),
-  (
+  ( nextval('employee_sequence'),
     'Robin',
     'Cassin',
     'Forward Branding Specialist',
@@ -86,7 +86,7 @@ insert into employee ( first_name, last_name, job_title, address, phone_number, 
 
     '1985-08-16T02:25:41.798Z'
   ),
-  (
+  ( nextval('employee_sequence'),
     'Alia',
     'Collins',
     'International Metrics Developer',
@@ -97,7 +97,7 @@ insert into employee ( first_name, last_name, job_title, address, phone_number, 
 
     '1986-05-27T07:30:29.738Z'
   ),
-  (
+  ( nextval('employee_sequence'),
     'Jamarcus',
     'Corwin',
     'Investor Directives Coordinator',
@@ -108,7 +108,7 @@ insert into employee ( first_name, last_name, job_title, address, phone_number, 
 
     '1982-04-20T08:46:10.312Z'
   ),
-  (
+  ( nextval('employee_sequence'),
     'Carolyn',
     'Crist',
     'Chief Directives Supervisor',
@@ -119,7 +119,7 @@ insert into employee ( first_name, last_name, job_title, address, phone_number, 
 
     '1996-11-18T15:57:59.870Z'
   ),
-  (
+  ( nextval('employee_sequence'),
     'Floy',
     'Cummings',
     'International Quality Representative',
@@ -130,7 +130,7 @@ insert into employee ( first_name, last_name, job_title, address, phone_number, 
 
     '1993-12-03T12:30:25.574Z'
   ),
-  (
+  ( nextval('employee_sequence'),
     'Leanne',
     'Cummings',
     'National Operations Assistant',
@@ -141,7 +141,7 @@ insert into employee ( first_name, last_name, job_title, address, phone_number, 
 
     '1994-06-12T06:14:53.041Z'
   ),
-  (
+  ( nextval('employee_sequence'),
     'Penelope',
     'Emmerich',
     'Corporate Markets Strategist',
@@ -152,7 +152,7 @@ insert into employee ( first_name, last_name, job_title, address, phone_number, 
 
     '1997-02-09T13:38:10.510Z'
   ),
-  (
+  ( nextval('employee_sequence'),
     'Naomie',
     'Feil',
     'International Research Coordinator',
@@ -163,7 +163,7 @@ insert into employee ( first_name, last_name, job_title, address, phone_number, 
 
     '1980-11-19T05:49:29.883Z'
   ),
-  (
+  ( nextval('employee_sequence'),
     'Joel',
     'Frami',
     'Product Quality Manager',
@@ -174,7 +174,7 @@ insert into employee ( first_name, last_name, job_title, address, phone_number, 
 
     '1992-07-09T06:21:45.190Z'
   ),
-  (
+  ( nextval('employee_sequence'),
     'Mitchell',
     'Harber',
     'Chief Intranet Architect',
@@ -185,7 +185,7 @@ insert into employee ( first_name, last_name, job_title, address, phone_number, 
 
     '1988-11-12T21:47:37.829Z'
   ),
-  (
+  ( nextval('employee_sequence'),
     'Willa',
     'Heaney',
     'Senior Branding Producer',
@@ -196,7 +196,7 @@ insert into employee ( first_name, last_name, job_title, address, phone_number, 
 
     '1995-04-03T05:02:26.364Z'
   ),
-  (
+  ( nextval('employee_sequence'),
     'Claudine',
     'Heathcote',
     'Regional Metrics Architect',
@@ -207,7 +207,7 @@ insert into employee ( first_name, last_name, job_title, address, phone_number, 
 
     '1997-12-20T23:22:21.006Z'
   ),
-  (
+  ( nextval('employee_sequence'),
     'Tiara',
     'Heidenreich',
     'Regional Response Architect',
@@ -218,7 +218,7 @@ insert into employee ( first_name, last_name, job_title, address, phone_number, 
 
     '1988-11-18T20:18:44.976Z'
   ),
-  (
+  ( nextval('employee_sequence'),
     'Georgette',
     'Hills',
     'Forward Research Architect',
@@ -229,7 +229,7 @@ insert into employee ( first_name, last_name, job_title, address, phone_number, 
 
     '1991-10-30T11:53:24.019Z'
   ),
-  (
+  ( nextval('employee_sequence'),
     'Denis',
     'Hodkiewicz',
     'International Branding Coordinator',
@@ -240,7 +240,7 @@ insert into employee ( first_name, last_name, job_title, address, phone_number, 
 
     '1996-08-11T22:00:58.819Z'
   ),
-  (
+  ( nextval('employee_sequence'),
     'Briana',
     'Kilback',
     'Forward Integration Developer',
@@ -251,7 +251,7 @@ insert into employee ( first_name, last_name, job_title, address, phone_number, 
 
     '1991-09-15T23:55:45.621Z'
   ),
-  (
+  ( nextval('employee_sequence'),
     'August',
     'Koss',
     'Corporate Solutions Manager',
@@ -262,7 +262,7 @@ insert into employee ( first_name, last_name, job_title, address, phone_number, 
 
     '1988-09-25T08:47:04.674Z'
   ),
-  (
+  ( nextval('employee_sequence'),
     'Rod',
     'Lesch',
     'Dynamic Security Director',
@@ -273,7 +273,7 @@ insert into employee ( first_name, last_name, job_title, address, phone_number, 
 
     '1981-11-07T00:46:48.027Z'
   ),
-  (
+  ( nextval('employee_sequence'),
     'Iliana',
     'Marks',
     'Lead Applications Representative',
@@ -284,7 +284,7 @@ insert into employee ( first_name, last_name, job_title, address, phone_number, 
 
     '1985-05-16T22:36:58.898Z'
   ),
-  (
+  ( nextval('employee_sequence'),
     'Selina',
     'Nicolas',
     'Future Functionality Developer',
@@ -295,7 +295,7 @@ insert into employee ( first_name, last_name, job_title, address, phone_number, 
 
     '1981-04-28T13:25:24.655Z'
   ),
-  (
+  ( nextval('employee_sequence'),
     'Dorcas',
     'Nikolaus',
     'Senior Paradigm Developer',
@@ -306,7 +306,7 @@ insert into employee ( first_name, last_name, job_title, address, phone_number, 
 
     '1983-08-08T00:35:47.485Z'
   ),
-  (
+  ( nextval('employee_sequence'),
     'Merle',
     'Oberbrunner',
     'Human Intranet Liaison',
@@ -317,7 +317,7 @@ insert into employee ( first_name, last_name, job_title, address, phone_number, 
 
     '1981-05-02T19:08:13.325Z'
   ),
-  (
+  ( nextval('employee_sequence'),
     'Tatyana',
     'Olson',
     'Lead Research Agent',
@@ -328,7 +328,7 @@ insert into employee ( first_name, last_name, job_title, address, phone_number, 
 
     '1998-11-26T01:37:39.922Z'
   ),
-  (
+  ( nextval('employee_sequence'),
     'Armani',
     'Paucek',
     'Investor Factors Planner',
@@ -339,7 +339,7 @@ insert into employee ( first_name, last_name, job_title, address, phone_number, 
 
     '1991-12-15T05:20:55.616Z'
   ),
-  (
+  ( nextval('employee_sequence'),
     'Kiel',
     'Purdy',
     'Principal Usability Orchestrator',
@@ -350,7 +350,7 @@ insert into employee ( first_name, last_name, job_title, address, phone_number, 
 
     '1987-04-20T02:26:53.141Z'
   ),
-  (
+  ( nextval('employee_sequence'),
     'Blanca',
     'Purdy',
     'Lead Quality Supervisor',
@@ -361,7 +361,7 @@ insert into employee ( first_name, last_name, job_title, address, phone_number, 
 
     '1983-12-27T09:49:43.787Z'
   ),
-  (
+  ( nextval('employee_sequence'),
     'Davion',
     'Quigley',
     'Legacy Applications Liaison',
@@ -372,7 +372,7 @@ insert into employee ( first_name, last_name, job_title, address, phone_number, 
 
     '1993-02-11T23:19:23.318Z'
   ),
-  (
+  ( nextval('employee_sequence'),
     'Rachel',
     'Raynor',
     'Chief Applications Coordinator',
@@ -383,7 +383,7 @@ insert into employee ( first_name, last_name, job_title, address, phone_number, 
 
     '1992-01-05T15:53:19.151Z'
   ),
-  (
+  ( nextval('employee_sequence'),
     'Johnathon',
     'Reinger',
     'Global Data Agent',
@@ -394,7 +394,7 @@ insert into employee ( first_name, last_name, job_title, address, phone_number, 
 
     '1995-04-12T06:25:35.689Z'
   ),
-  (
+  ( nextval('employee_sequence'),
     'Angeline',
     'Rosenbaum',
     'Corporate Marketing Manager',
@@ -405,7 +405,7 @@ insert into employee ( first_name, last_name, job_title, address, phone_number, 
 
     '1981-11-28T21:52:49.538Z'
   ),
-  (
+  ( nextval('employee_sequence'),
     'Georgette',
     'Ruecker',
     'Dynamic Operations Engineer',
@@ -416,7 +416,7 @@ insert into employee ( first_name, last_name, job_title, address, phone_number, 
 
     '1989-07-19T01:36:34.719Z'
   ),
-  (
+  ( nextval('employee_sequence'),
     'Rodger',
     'Runte',
     'Regional Factors Specialist',
@@ -427,7 +427,7 @@ insert into employee ( first_name, last_name, job_title, address, phone_number, 
 
     '1999-08-13T01:57:20.428Z'
   ),
-  (
+  ( nextval('employee_sequence'),
     'Favian',
     'Schamberger',
     'Forward Markets Executive',
@@ -438,7 +438,7 @@ insert into employee ( first_name, last_name, job_title, address, phone_number, 
 
     '1981-01-25T19:42:13.309Z'
   ),
-  (
+  ( nextval('employee_sequence'),
     'Ike',
     'Schultz',
     'Investor Division Orchestrator',
@@ -449,7 +449,7 @@ insert into employee ( first_name, last_name, job_title, address, phone_number, 
 
     '1992-02-22T08:17:19.272Z'
   ),
-  (
+  ( nextval('employee_sequence'),
     'Frederik',
     'Sipes',
     'Direct Identity Officer',
@@ -460,7 +460,7 @@ insert into employee ( first_name, last_name, job_title, address, phone_number, 
 
     '1989-05-27T11:21:10.567Z'
   ),
-  (
+  ( nextval('employee_sequence'),
     'Eliane',
     'Sipes',
     'Central Program Representative',
@@ -471,7 +471,7 @@ insert into employee ( first_name, last_name, job_title, address, phone_number, 
 
     '1992-04-17T18:49:07.787Z'
   ),
-  (
+  ( nextval('employee_sequence'),
     'Emil',
     'Spinka',
     'Internal Directives Supervisor',
@@ -482,7 +482,7 @@ insert into employee ( first_name, last_name, job_title, address, phone_number, 
 
     '1993-03-10T07:46:39.702Z'
   ),
-  (
+  ( nextval('employee_sequence'),
     'Seamus',
     'Stehr',
     'Direct Mobility Strategist',
@@ -493,7 +493,7 @@ insert into employee ( first_name, last_name, job_title, address, phone_number, 
 
     '1994-03-12T16:36:12.310Z'
   ),
-  (
+  ( nextval('employee_sequence'),
     'Angelo',
     'Swift',
     'Dynamic Integration Designer',
@@ -504,7 +504,7 @@ insert into employee ( first_name, last_name, job_title, address, phone_number, 
 
     '1995-07-24T19:33:58.225Z'
   ),
-  (
+  ( nextval('employee_sequence'),
     'Felicita',
     'Treutel',
     'Legacy Program Executive',
@@ -515,7 +515,7 @@ insert into employee ( first_name, last_name, job_title, address, phone_number, 
 
     '1991-03-03T21:25:49.542Z'
   ),
-  (
+  ( nextval('employee_sequence'),
     'Vena',
     'Von',
     'Senior Quality Planner',
@@ -526,7 +526,7 @@ insert into employee ( first_name, last_name, job_title, address, phone_number, 
 
     '1999-11-14T07:01:08.133Z'
   ),
-  (
+  ( nextval('employee_sequence'),
     'Christy',
     'Windler',
     'Customer Applications Analyst',
@@ -537,7 +537,7 @@ insert into employee ( first_name, last_name, job_title, address, phone_number, 
 
     '1980-10-20T17:10:30.841Z'
   ),
-  (
+  ( nextval('employee_sequence'),
     'Verlie',
     'Wintheiser',
     'Central Branding Representative',

@@ -2,38 +2,37 @@ package com.dashboard.backend.employee;
 
 import com.dashboard.backend.team.Team;
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.lang.NonNull;
 
-import javax.annotation.Nonnull;
 import javax.persistence.*;
+import java.io.Serial;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.List;
-import java.util.Objects;
+import java.util.Optional;
+import java.util.UUID;
 
 @Entity
-@ConfigurationProperties(prefix = "employee")
+@Configuration
 @Table(name = "EMPLOYEES")
 public class Employee {
 
     @Id
-
+    @Serial
     @GeneratedValue(
             strategy = GenerationType.SEQUENCE,
-            generator = "employees_sequence"
+            generator = "employee_sequence"
     )
     @SequenceGenerator(
-            name = "employees_sequence",
-            sequenceName = "employees_sequence",
+            name = "employee_sequence",
+            sequenceName = "employee_sequence",
             allocationSize = 1
     )
-    private Long id;
+    protected Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="team_id", nullable = false)
-    private Team team;
+    @Column(unique = true)
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private UUID uuid;
 
     private String firstName;
     private String lastName;
@@ -43,18 +42,18 @@ public class Employee {
     private String address;
     private String avatar;
     private LocalDate dob;
+
     @Transient
     private String name;
     private Integer age;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "team_id", nullable = true)
+    private Team team;
+
     public Employee() { }
 
-    public Employee(Long id) {
-        this.id = id;
-    }
-
     public Employee(
-            Long id,
             String firstName,
             String lastName,
             String email,
@@ -62,8 +61,8 @@ public class Employee {
             String phoneNumber,
             String address,
             String avatar,
-            LocalDate dob) {
-        this.id = id;
+            LocalDate dob
+            ) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -82,7 +81,8 @@ public class Employee {
             String phoneNumber,
             String address,
             String avatar,
-            LocalDate dob) {
+            LocalDate dob,
+            Team team) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -91,14 +91,11 @@ public class Employee {
         this.address = address;
         this.avatar = avatar;
         this.dob = dob;
+        this.team = team;
     }
 
     public Long getId() {
         return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getFirstName() {
@@ -170,7 +167,7 @@ public class Employee {
     }
 
     public Integer getAge() {
-        return Period.between(dob, LocalDate.now()).getYears();
+        return Period.between(LocalDate.from(dob), LocalDate.now()).getYears();
     }
 
     public Team getTeam() {
@@ -185,5 +182,12 @@ public class Employee {
         this.age = age;
     }
 
+    public UUID getUuid() {
+        return uuid;
+    }
+
+    public void setTeam(Team team) {
+        this.team = team;
+    }
 
 }

@@ -1,7 +1,12 @@
-import { EMPLOYEES_FETCHED, EMPLOYEE_ADDED } from '../actions/types'
+import {
+    EMPLOYEES_FETCHED,
+    EMPLOYEE_ADDED,
+    EMPLOYEE_SELECTED
+} from '../actions/types'
 
 const initialState = {
-    employeeData: {}
+    employeeData: {},
+    employeeSelected: {}
 };
 
 const employeesReducer = (state = initialState, action) => {
@@ -11,18 +16,19 @@ const employeesReducer = (state = initialState, action) => {
                 ...state,
                 employeeData: action.payload
             };
-            case EMPLOYEE_ADDED:
-            //const employeeId = action.payload.id
-            // const index = state.teamData.findIndex(({ id }) => id === employeeId);
+        case EMPLOYEE_ADDED:
             return {
                 ...state,
                 employeeData: [...state.employeeData, action.payload]
             };
+        case EMPLOYEE_SELECTED:
+            return {
+                ...state,
+                employeeSelected: action.payload,
+            }
         default:
             return state;
     }
 };
 
 export default employeesReducer;
-
-//employeeData: [...state.employeeData, action.payload]

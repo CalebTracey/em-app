@@ -1,6 +1,5 @@
 package com.dashboard.backend.team;
 
-import com.dashboard.backend.team.TeamNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;

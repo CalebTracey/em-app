@@ -9,29 +9,33 @@ import faker from 'faker'
 const { Title } = Typography;
 
 const EmployeeDetails = () => {
+    const employeeSelected = useSelector(state => state.employees.employeeSelected);
     const employees = useSelector(state => state.employees.employeeData);
-    const [isLoading, setIsLoading] = useState(true);
     const [employee, setEmployee] = useState({});
     const { id } = useParams();
 
     useEffect(() => {
-        const findEmployee = async () => {
-            const response = await employees.find(({ employeeId }) =>
-                employeeId === parseInt(id));
-            // const { employee } = await response;
-            setEmployee(response);
-            setIsLoading(false);
+        const checkEmployee = async () => {
+            if (employeeSelected === undefined) {
+                const response = await employees.find(({
+                    employeeId }) => employeeId === parseInt(id));
+                setEmployee(response);
+            } else {
+                setEmployee(employeeSelected);
+                return;
+            }
         }
-        findEmployee();
-    }, [employees, id]);
+        checkEmployee();
+    }, [employeeSelected, employees, id]);
 
     useEffect(() => {
         if (employee.avatar === null) {
             employee.avatar = faker.image.avatar();
         }
     }, [employee])
+
+    console.log(employee)
     return (
-        isLoading ? <div>Loading...</div> :
             <div key={employee.employeeId}>
                 <div key={employee.employeeId} style={{ position: "sticky", top: "20px", size: "medium" }}>
                     <div><Title level={3}>{`${employee.firstName} ${employee.lastName}`}</Title></div>

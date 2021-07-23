@@ -1,11 +1,11 @@
 package com.dashboard.backend.team;
 
 import com.dashboard.backend.employee.Employee;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.List;
+import java.io.Serial;
 import java.util.Objects;
 import java.util.Set;
 
@@ -15,44 +15,37 @@ import java.util.Set;
 public class Team {
 
     @Id
+    @Serial
     @GeneratedValue(
             strategy = GenerationType.SEQUENCE,
-            generator = "teams_sequence"
+            generator = "team_sequence"
     )
     @SequenceGenerator(
-            name = "teams_sequence",
-            sequenceName = "teams_sequence",
+            name = "team_sequence",
+            sequenceName = "team_sequence",
             allocationSize = 1
     )
-    private Long id;
+    protected Long id;
 
+    @Column(unique = true)
     private String teamName;
 
-    @OneToMany(
-            cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY,
-            mappedBy = "team"
-    )
-    private Set<Employee> employees = new HashSet<>();
+    @OneToMany(mappedBy = "team")
+    private Set<Employee> employees;
 
-    public Team() {
-    }
+    public Team() { }
 
     public Team(String teamName) {
         this.teamName = teamName;
     }
 
-    public Team(Long id, String teamName) {
-        this.id = id;
+    public Team(String teamName, Set<Employee> employees) {
         this.teamName = teamName;
+        this.employees = employees;
     }
 
     public Long getId() {
         return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getTeamName() {
@@ -69,14 +62,14 @@ public class Team {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, employees);
+        return Objects.hash(id);
     }
 
     @Override
     public String toString() {
         return "Team{" +
                 "id=" + id +
-                ", members=" + employees +
+                ", members=" +
                 '}';
     }
 }

@@ -1,50 +1,49 @@
 package com.dashboard.backend;
 
+import com.dashboard.backend.employee.EmployeeService;
+import com.dashboard.backend.team.Team;
+import com.dashboard.backend.team.TeamService;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.web.context.WebApplicationContext;
-import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
+@EnableAutoConfiguration
+@ComponentScan
 public class BackendApplication {
 
-		public static void main(String[] args) {
-			SpringApplication.run(BackendApplication.class, args);
-		}
 
-		protected WebApplicationContext createServletApplicationContext() {
-			AnnotationConfigWebApplicationContext normalWebAppContext
-					= new AnnotationConfigWebApplicationContext();
-			normalWebAppContext.register(AppConfig.class);
-			return normalWebAppContext;
-		}
+    public static void main(String[] args) {
+        SpringApplication.run(BackendApplication.class, args);
 
-		protected String[] getServletMappings() {
-			return new String[]{"/api/*"};
-		}
+    }
 
-		protected String getServletName() {
-			return "normal-dispatcher";
-		}
-	}
+//    @Bean
+//    public CommandLineRunner mappingDemo(TeamService teamService
+//                                         EmployeeService employeeService) {
+//        return args -> {
+
+//            Team one = new Team(Team One);
+//            teamService.save(one);
+//            Team two = new Team(Team Two);
+//            teamService.save(two);
+//            Team three = new Team(Team Three);
+//            teamService.save(three);
+//            Team four = new Team(Team Four);
+//            teamService.save(four);
+        };
+
+
+//        }
 
 //
-//	@Override
-//	protected WebApplicationContext createServletApplicationContext() {
-//		AnnotationConfigWebApplicationContext secureWebAppContext
-//				= new AnnotationConfigWebApplicationContext();
-//		secureWebAppContext.register(SecureWebAppConfig.class);
-//		return secureWebAppContext;
-//	}
-//
-//	@Override
-//	protected String[] getServletMappings() {
-//		return new String[] { "/s/api/*" };
-//	}
-//
-//	@Override
-//	protected String getServletName() {
-//		return "secure-dispatcher";
-//	}
+//    @PostConstruct
+//    public void populateContext() {
+//        // all references to servletContext go here including the
+//        // bit where we call the appropriate setters in beanThing
+//    }
+
 

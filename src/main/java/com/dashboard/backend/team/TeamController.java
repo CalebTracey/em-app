@@ -1,11 +1,11 @@
 package com.dashboard.backend.team;
 
 import com.dashboard.backend.employee.Employee;
-import com.dashboard.backend.employee.EmployeeController;
-import com.dashboard.backend.employee.EmployeeModelAssembler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.CollectionModel;
+import org.springframework.hateoas.IanaLinkRelations;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,16 +20,13 @@ public class TeamController {
 
     private TeamService teamService;
     private TeamModelAssembler assembler;
-    private EmployeeModelAssembler employeeAssembler;
 
     @Autowired
     public TeamController(
             TeamService teamService,
-            TeamModelAssembler assembler,
-            EmployeeModelAssembler employeeAssembler) {
+            TeamModelAssembler assembler) {
         this.teamService = teamService;
         this.assembler = assembler;
-        this.employeeAssembler = employeeAssembler;
     }
 
     @GetMapping({"teams"})
@@ -45,6 +42,16 @@ public class TeamController {
     public EntityModel<Team> one(@PathVariable Long id){
         Team team = teamService.findById(id);
         return assembler.toModel(team);
+    }
+
+    @PostMapping("teams")
+    ResponseEntity<?> newTeam(@RequestBody Team newTeam) {
+        EntityModel<Team> entityModel =
+                assembler.toModel(teamService.save(newTeam));
+        return ResponseEntity
+                .created(entityModel.
+                        getRequiredLink(IanaLinkRelations.SELF)
+                        .toUri()).body(entityModel);
     }
 
 //    @GetMapping("/members/{id}")

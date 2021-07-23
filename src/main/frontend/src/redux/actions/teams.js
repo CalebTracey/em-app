@@ -32,4 +32,9 @@ const teamDeleted = (teamId) => {
         payload: teamId,
     }
 }
-export const teams = { teamData, teamMemberDeleted, teamDeleted, teamSelected }
+export const teams = {
+    teamData,
+    teamMemberDeleted,
+    teamDeleted,
+    teamSelected
+}

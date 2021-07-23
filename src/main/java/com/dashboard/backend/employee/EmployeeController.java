@@ -1,8 +1,10 @@
 package com.dashboard.backend.employee;
 
 
+import com.dashboard.backend.team.Team;
 import com.dashboard.backend.team.TeamService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.IanaLinkRelations;
@@ -23,30 +25,28 @@ public class EmployeeController {
     private final EmployeeService employeeService;
     private final EmployeeModelAssembler assembler;
     private final EmployeeRepository repository;
-    private final TeamService teamService;
 
     @Autowired
     public EmployeeController(
             EmployeeService employeeService,
             EmployeeModelAssembler assembler,
-            EmployeeRepository repository, TeamService teamService) {
+            EmployeeRepository repository) {
 
         this.employeeService = employeeService;
         this.assembler = assembler;
         this.repository = repository;
-        this.teamService = teamService;
     }
 
     @GetMapping("employees")
     public CollectionModel<EntityModel<Employee>> all() {
         List<EntityModel<Employee>> employees =
                 employeeService.findAll().stream()
-                .map(assembler::toModel)
-                .collect(Collectors.toList());
+                        .map(assembler::toModel)
+                        .collect(Collectors.toList());
 
         return CollectionModel.of(employees, linkTo(
-                        methodOn(EmployeeController.class)
-                                .all()).withSelfRel());
+                methodOn(EmployeeController.class)
+                        .all()).withSelfRel());
     }
 
     @GetMapping("employees/{employeeId}")
@@ -55,10 +55,18 @@ public class EmployeeController {
         return assembler.toModel(employee);
     }
 
-    @GetMapping("teams/{teamId}/employees")
-    public EntityModel<Employee> getByTeamId(@PathVariable(value = "teamId") Long teamId) {
-        Employee employee = employeeService.findByTeamId(teamId);
-        return assembler.toModel(employee);
+    @GetMapping("teams/{id}/employees")
+    public CollectionModel<EntityModel<Employee>> getByTeamId(
+            @PathVariable(value = "id") Team team, Sort sort) {
+
+        List<EntityModel<Employee>> employees =
+                employeeService.findByTeam(team, sort)
+                .stream().map(assembler::toModel)
+                .collect(Collectors.toList());
+
+        return CollectionModel.of(employees, linkTo(
+                methodOn(EmployeeController.class)
+                        .all()).withSelfRel());
     }
 
     @PostMapping("employees")
@@ -86,14 +94,12 @@ public class EmployeeController {
                     employee.setName(newEmployee.getName());
                     employee.setJobTitle(newEmployee.getJobTitle());
                     employee.setEmail(newEmployee.getEmail());
-                    employee.setId(newEmployee.getId());
                     employee.setAddress(newEmployee.getAddress());
                     employee.setAvatar(newEmployee.getAvatar());
                     return employeeService.save(newEmployee);
                     //return repository.save(employee);
                 })
                 .orElseGet(() -> {
-                    newEmployee.setId(id);
                     return employeeService.save(newEmployee);
                     //return repository.save(newEmployee);
                 });

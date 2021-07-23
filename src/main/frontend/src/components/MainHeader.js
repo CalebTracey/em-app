@@ -15,15 +15,32 @@ const MainHeader = ({
     company,
     toggle }) => {
     return (
-        <Header className="site-layout-background" style={{ padding: 0, background: '#f0f0f0' }}>
-            <div style={{ display: 'flex', alignSelf: 'center' }}>
-                <div style={{ paddingLeft: '10px' }}>
-                    {createElement(collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
+        <Header
+            className="site-layout-background"
+            style={{
+                padding: 0,
+                background: '#f0f0f0'
+            }}>
+            <div style={{
+                display: 'flex',
+                alignSelf: 'center'
+            }}>
+                <div style={{
+                    paddingLeft: '10px'
+                }}>
+                    {createElement(
+                        collapsed ?
+                            MenuUnfoldOutlined :
+                            MenuFoldOutlined, {
                         className: 'trigger',
                         onClick: (event) => toggle(event),
                     })}
                 </div>
-                <div style={{ flex: '7 3', textAlign: 'center', lineHeight: '0' }}>
+                <div style={{
+                    flex: '7 3',
+                    textAlign: 'center',
+                    lineHeight: '0'
+                }}>
                     <Title>{`${company.companyName} ${company.companySuffix}`}</Title>
                     <i>{`"${company.catchPhrase}"`}</i>
                 </div>

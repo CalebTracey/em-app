@@ -1,12 +1,13 @@
 package com.dashboard.backend.team;
 
-import java.util.function.Supplier;
-
 public class TeamNotFoundException extends RuntimeException {
 
-    TeamNotFoundException(Long teamId) {
+    TeamNotFoundException(String name) {
+        super ("Could not find : "+ name);
+    }
 
-        super ("Could not find Team : "+ teamId);
+    TeamNotFoundException(Long id) {
+        super ("Could not find : "+ id);
     }
 
 }
