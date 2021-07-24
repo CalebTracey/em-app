@@ -1,39 +1,35 @@
 import { useState, useEffect } from 'react';
-import axios from 'axios';
+import { useSelector, useDispatch } from "react-redux";
+import allActions from '../redux/actions/index';
+import axios from 'axios'
+import api from '../api';
 
 axios.defaults.baseURL = 'http://localhost:8080/';
 
-const useAxios = ({ url, method, body = null, headers = null }) => {
-  const [response, setResponse] = useState(null);
-  const [error, setError] = useState('');
-  const [loading, setloading] = useState(true);
+export const useAxios = (axiosParams) => {
+  // const teams = useSelector(state => state.teams.teamData);
+  // const dispatch = useDispatch();
+  const [data, setData] = useState(null);
 
-  useEffect(() => {
-    if (response === null) {
-      const fetchData = () => {
-        axios[method](url, JSON.parse(headers), JSON.parse(body))
-          .then((res) => {
-            console.log(res.data._embedded)
-            // const data = JSON.parse(res.data);
-            setResponse(res.data);
-          })
-          .catch((err) => {
-            setError(err);
-          })
-          .finally(() => {
-            setloading(false);
-          });
-
-      };
-      fetchData();
+  // useEffect(() => {
+  const getTeams = async () => {
+    if (data === null) {
+      await axios.request(axiosParams)
+        .then(res => {
+          setData(res.data._embedded);
+        }).catch(function (error) {
+          console.log(error);
+        });
     }
+    console.log(data)
 
+    // }
+  }
+  useEffect(() => {
+    getTeams(axiosParams);
+  }, []);
 
-    // fetchData();
-  }, [method, url, body, headers]);
+  // }, [])
 
-
-  return { response, error, loading };
+  return data;
 };
-
-export default useAxios;

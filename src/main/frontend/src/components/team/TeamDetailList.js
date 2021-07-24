@@ -30,9 +30,9 @@ const TeamDetailList = ({
         const updatedTeam = {
             teamName: teamFrom.teamName,
             id: teamFrom.id,
-            key: teamFrom.key,
+            // key: teamFrom.key,
             team: filter,
-            tasks: teamFrom.tasks,
+            // tasks: teamFrom.tasks,
         };
         dispatch(allActions.teams.teamMemberDeleted(updatedTeam));
         setMapState(updatedTeam.team)

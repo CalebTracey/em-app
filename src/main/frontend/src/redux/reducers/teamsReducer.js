@@ -3,10 +3,11 @@ import {
     TEAM_MEMBER_REMOVED,
     TEAM_SELECTED,
     TEAM_DELETED,
+    TEAM_ADDED
 } from '../actions/types'
 
 const initialState = {
-    teamData: {},
+    teamData: [],
     teamSelected: {},
 };
 
@@ -16,6 +17,11 @@ const teamsReducer = (state = initialState, action) => {
             return {
                 ...state,
                 teamData: action.payload
+            };
+            case TEAM_ADDED:
+            return {
+                ...state,
+                teamData: [...state.teamData, action.payload] 
             };
         case TEAM_MEMBER_REMOVED:
             const teamId = action.payload.id

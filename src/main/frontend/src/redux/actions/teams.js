@@ -3,12 +3,20 @@ import {
     TEAM_SELECTED,
     TEAM_MEMBER_REMOVED,
     TEAM_DELETED,
+    TEAM_ADDED
 } from './types';
 
 const teamData = (teams) => {
     return {
         type: TEAMS_FETCHED,
         payload: teams,
+    }
+}
+
+const teamAdded = (employee) => {
+    return {
+        type: TEAM_ADDED,
+        payload: employee
     }
 }
 
@@ -36,5 +44,6 @@ export const teams = {
     teamData,
     teamMemberDeleted,
     teamDeleted,
-    teamSelected
+    teamSelected,
+    teamAdded
 }

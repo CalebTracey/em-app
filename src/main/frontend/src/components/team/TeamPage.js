@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Typography, Modal } from 'antd';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
 import {
     ExclamationCircleOutlined,
 } from '@ant-design/icons';
@@ -9,11 +10,15 @@ import 'antd/dist/antd.css';
 import allActions from '../../redux/actions/index';
 import TeamDetails from './TeamDetails';
 import TeamDeletedPage from './TeamDeletedPage';
+import useTeams from '../../hooks/useTeams';
 
-const { Title } = Typography;
+// const { Title } = Typography;
 const { confirm } = Modal;
 
-const TeamPage = ({ teams, teamKey }) => {
+const TeamPage = () => {
+    const selectedTeam = useSelector(state => state.teams.teamSelected);
+    const teams = useSelector(state => state.teams.teamData);
+    const { teamId } = useParams();
     const [, setShowModal] = useState(0);
     const [, setVisible] = useState(false);
     const [loading, setLoading] = useState(false);
@@ -23,9 +28,11 @@ const TeamPage = ({ teams, teamKey }) => {
     const [data, setData] = useState([]);
     const [confirmLoading, setConfirmLoading] = useState(false);
     const [modalText, setModalText] = useState('Content of the modal');
-
     const dispatch = useDispatch();
-    const index = teams.findIndex(({ key }) => key === teamKey);
+
+    useTeams();
+
+    const index = teams.findIndex(({ id }) => id === teamId);
     const team = teams[index];
 
     const showDeleteTeamConfirm = () => {
@@ -67,10 +74,10 @@ const TeamPage = ({ teams, teamKey }) => {
         }
     }
     return (
-        teamDeleted ?
+        teamDeleted ? 
             <TeamDeletedPage teamName={teamDeletedName} /> :
             <TeamDetails
-                team={team}
+                team={selectedTeam}
                 showDeleteTeamConfirm={showDeleteTeamConfirm}
                 handleInfiniteOnLoad={handleInfiniteOnLoad}
                 loading={loading}

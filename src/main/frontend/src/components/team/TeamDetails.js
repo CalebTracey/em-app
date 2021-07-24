@@ -39,7 +39,7 @@ const TeamDetails = ({
                 </PageHeader>
                 <Space direction="vertical">
                     <div className="demo-infinite-container" style={{ height: "fit-content" }} >
-                        <InfiniteScroll
+                        {/* <InfiniteScroll
                             initialLoad={false}
                             pageStart={0}
                             loadMore={handleInfiniteOnLoad}
@@ -47,7 +47,7 @@ const TeamDetails = ({
                             useWindow={false}
                         >
                             <TeamTasks team={team} />
-                        </InfiniteScroll>
+                        </InfiniteScroll> */}
                     </div>
                     <div className="demo-infinite-container">
                         <InfiniteScroll

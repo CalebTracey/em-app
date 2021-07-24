@@ -19,7 +19,7 @@ const employeesReducer = (state = initialState, action) => {
         case EMPLOYEE_ADDED:
             return {
                 ...state,
-                employeeData: [...state.employeeData, action.payload]
+                employeeData: [...state.employeeData, action.payload] 
             };
         case EMPLOYEE_SELECTED:
             return {

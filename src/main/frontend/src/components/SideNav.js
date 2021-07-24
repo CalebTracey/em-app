@@ -1,6 +1,6 @@
-import React, { Suspense, useState } from 'react';
+import React, { Suspense, useEffect, useState } from 'react';
 import 'antd/dist/antd.css';
-import { Layout, Menu } from 'antd';
+import { Layout, Menu, Spin } from 'antd';
 import { NavLink } from 'react-router-dom';
 import {
     UserOutlined,
@@ -9,32 +9,49 @@ import {
     PlusOutlined
 } from '@ant-design/icons';
 import Employees from '../containers/Employees';
+import Teams from '../containers/Teams';
 
 const { Sider } = Layout;
 const { SubMenu } = Menu;
 
 const SideNav = ({ collapsed }) => {
     const [employeeState, setEmployeeState] = useState(null);
+    const [teamState, setTeamState] = useState(null);
+    const [position, setPosition] = useState("unset");
 
     const employees = () => {
         return (
-        <Suspense fallback="Loading...">
-            <Employees />
-        </Suspense>
+            <Suspense fallback={
+                <div><Spin /></div>}>
+                <Employees />
+            </Suspense>
+        )
+    }
+
+    const teams = () => {
+        return (
+            <Suspense fallback={
+                <div><Spin /></div>}>
+                <Teams />
+            </Suspense>
         )
     }
     return (
-        <Sider trigger={null} collapsible collapsed={collapsed} style={{
-            overflow: 'auto',
-            height: '100vh',
-            position: 'fixed',
-            left: '0px',
-            flex: '0 0 200px',
-            maxWidth: '200px',
-            minWidth: '200px',
-            width: '200px'
+        <Sider
+            trigger={null}
+            collapsible
+            collapsed={collapsed}
+            style={{
+                // position: ""
+                overflow: "auto",
+                position: "fixed",
+                height: '100vh',
+                flex: '0 0 200px',
+                maxWidth: '200px',
+                minWidth: '200px',
+                width: '200px'
 
-        }}>
+            }}>
             <div className="logo" />
             <Menu
                 theme="dark"
@@ -58,21 +75,25 @@ const SideNav = ({ collapsed }) => {
                         icon={<PlusOutlined />}>
                         Add Employee
                 <NavLink
-                            key="employeeaddnav"
+                            key="employee-add-nav"
                             to={'/addemployee'} />
                     </Menu.Item>
                     {employeeState}
+
                 </SubMenu>
                 <SubMenu
                     key="sub2"
                     icon={<TeamOutlined />}
-                    title="Teams">
+                    title="Teams"
+                    onTitleClick={() => setTeamState(teams)}
+                >
                     <Menu.Item
                         key="create-team"
                         icon={<PlusOutlined />}>
                         Create Team
                         <NavLink to={'/createteam'} />
                     </Menu.Item>
+                    {teamState}
                 </SubMenu>
             </Menu>
         </Sider>

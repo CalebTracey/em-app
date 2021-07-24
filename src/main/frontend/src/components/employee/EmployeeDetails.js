@@ -1,57 +1,45 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { Descriptions, Avatar, Typography } from 'antd';
+import { Skeleton } from 'antd';
 import 'antd/dist/antd.css';
-import faker from 'faker'
-// import useEmployee from '../../hooks/useEmployee';
-
-const { Title } = Typography;
+import useEmployees from '../../hooks/useEmployees';
+import EmployeeDetailsCard from './EmployeeDetailsCard'
 
 const EmployeeDetails = () => {
-    const employeeSelected = useSelector(state => state.employees.employeeSelected);
     const employees = useSelector(state => state.employees.employeeData);
+    const employeeSelected = useSelector(state => state.employees.employeeSelected);
     const [employee, setEmployee] = useState({});
-    const { id } = useParams();
+    const { employeeId } = useParams();
+    const [isLoading, setIsLoading] = useState(true);
+
+    useEmployees();
+
 
     useEffect(() => {
-        const checkEmployee = async () => {
-            if (employeeSelected === undefined) {
-                const response = await employees.find(({
-                    employeeId }) => employeeId === parseInt(id));
-                setEmployee(response);
-            } else {
+        const checkEmployee = () => {
+            if (employeeSelected) {
                 setEmployee(employeeSelected);
+                
+                setIsLoading(false)
                 return;
+            // } else {
+            //     const match = employees.find(({ id }) => id === eId);
+            //     setEmployee(match);
+            //     if (employee) {
+            //         setIsLoading(false)
+            //     }
             }
         }
         checkEmployee();
-    }, [employeeSelected, employees, id]);
-
-    useEffect(() => {
-        if (employee.avatar === null) {
-            employee.avatar = faker.image.avatar();
-        }
-    }, [employee])
+    }, [employeeSelected, employees, employee]);
 
     console.log(employee)
     return (
-            <div key={employee.employeeId}>
-                <div key={employee.employeeId} style={{ position: "sticky", top: "20px", size: "medium" }}>
-                    <div><Title level={3}>{`${employee.firstName} ${employee.lastName}`}</Title></div>
-                    <div><Avatar shape="square" size={64} src={employee.avatar} /></div>
-                    <div>
-                        <Descriptions title="Employee Information" bordered>
-                            <Descriptions.Item label="Work ID">{employee.employeeId}</Descriptions.Item>
-                            <Descriptions.Item label="Email">{employee.email}</Descriptions.Item>
-                            <Descriptions.Item label="Telephone">{employee.phoneNumber}</Descriptions.Item>
-                            <Descriptions.Item label="Job">{employee.jobTitle}</Descriptions.Item>
-                            <Descriptions.Item label="Address">{employee.address}</Descriptions.Item>
-                        </Descriptions>
-                    </div>
-                </div>
-            </div>
-    );
+        <Skeleton loading={isLoading} active>
+            <EmployeeDetailsCard employee={employee} />
+        </Skeleton>
+    )
 };
 
 export default EmployeeDetails;

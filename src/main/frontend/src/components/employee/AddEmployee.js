@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import 'antd/dist/antd.css';
-import { Form, Input, Button, Card, Upload, message } from 'antd';
-import axios from 'axios';
+import { Form, Input, Button, Card, message } from 'antd';
 import allActions from '../../redux/actions/index';
-import NewEmployeeAvatar from './NewEmployeeAvatar';
 import api from '../../api';
 
 const AddEmployee = () => {
@@ -14,10 +12,7 @@ const AddEmployee = () => {
     const [jobTitle, setJobTitle] = useState(null);
     const [phoneNumber, setPhoneNumber] = useState(null);
     const [address, setAddress] = useState(null);
-    const [avatar, setAvatar] = useState(null);
-    const [imageUrl, setImageUrl] = useState(false);
-
-    
+    // const [imageUrl, setImageUrl] = useState(false);
     const dispatch = useDispatch();
 
     const data = JSON.stringify({
@@ -27,20 +22,19 @@ const AddEmployee = () => {
         'jobTitle': jobTitle,
         'phoneNumber': phoneNumber,
         'address': address,
-        'avatar': avatar
+        'avatar': null
     });
 
     const onFinish = async () => {
         await api.post('api/v1/employees', data 
         ).then(res => {
             dispatch(allActions.employees.employeeAdded(res.data));
-        }).catch(function (error) {
+            message.success(`${firstName} ${lastName} added`);
+        }).catch(error => {
+            message.error(`Problem adding ${firstName} ${lastName} to the list`)
             console.log(error);
         });
     }
-    const onFinishFailed = (errorInfo) => {
-        console.log('Failed:', errorInfo);
-    };
 
     return (
         <div style={{ display: 'flex', justifyContent: 'space-around' }} >
@@ -48,7 +42,7 @@ const AddEmployee = () => {
                 <Form
                     layout="vertical"
                     requiredMark={true}
-                // onFinish={onFinish}
+                onFinish={onFinish}
                 // onFinishFailed={onFinishFailed}
                 >
                         {/* <NewEmployeeAvatar 
@@ -85,8 +79,7 @@ const AddEmployee = () => {
                             onChange={(event) => setAddress(event.target.value)} />
                     </Form.Item>
                     <Form.Item>
-                        <Button type="primary" htmlType="submit"
-                            onClick={onFinish}>
+                        <Button type="primary" htmlType="submit">
                             Submit
                     </Button>
                     </Form.Item>

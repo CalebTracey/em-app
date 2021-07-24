@@ -19,31 +19,34 @@ const MainHeader = ({
             className="site-layout-background"
             style={{
                 padding: 0,
-                background: '#f0f0f0'
+                lineHeight: 0,
+                background: '#f0f0f0',
+                height: '64px',                
+                // display: 'flex',
+                // alignSelf: 'center'
             }}>
             <div style={{
-                display: 'flex',
-                alignSelf: 'center'
+                paddingLeft: '10px',
+                paddingTop: '10px',
+               
             }}>
-                <div style={{
-                    paddingLeft: '10px'
-                }}>
-                    {createElement(
-                        collapsed ?
-                            MenuUnfoldOutlined :
-                            MenuFoldOutlined, {
-                        className: 'trigger',
-                        onClick: (event) => toggle(event),
-                    })}
-                </div>
-                <div style={{
-                    flex: '7 3',
-                    textAlign: 'center',
-                    lineHeight: '0'
-                }}>
-                    <Title>{`${company.companyName} ${company.companySuffix}`}</Title>
-                    <i>{`"${company.catchPhrase}"`}</i>
-                </div>
+{/* 
+                {createElement(
+                    collapsed ?
+                        MenuUnfoldOutlined :
+                        MenuFoldOutlined, {
+                    className: 'trigger',
+                    onClick: (event) => toggle(event),
+                })} */}
+            <div style={{
+                // flex: '7 3',
+                textAlign: 'center',
+                marginTop:'-15px',
+                paddingTop: "10px"
+            }}>
+                <Title >{`${company.companyName} ${company.companySuffix}`}</Title>
+                <i>{`"${company.catchPhrase}"`}</i>
+            </div>
             </div>
         </Header >
     );
