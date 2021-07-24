@@ -5,5 +5,7 @@
         "createteam",
         "error",
         "use"
-    ]
+    ],
+    "editor.formatOnSave": true,
+    "javascript.format.insertSpaceAfterOpeningAndBeforeClosingTemplateStringBraces": true
 }

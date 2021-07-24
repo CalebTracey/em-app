@@ -10,10 +10,7 @@ import javax.persistence.*;
 import java.io.Serial;
 import java.time.LocalDate;
 import java.time.Period;
-import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
-import java.util.UUID;
+import java.util.*;
 
 @Entity
 @Configuration
@@ -51,34 +48,26 @@ public class Employee {
     @Transient
     private Integer age;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(
-            name = "team_id",
-            nullable = true,
-            referencedColumnName = "id")
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(
+//            name = "team_id",
+//            nullable = true,
+//            referencedColumnName = "team_id")
+//    @JsonBackReference
+//    private Team team;
+
+    @ManyToMany(cascade = CascadeType.ALL)
     @JsonBackReference
-    private Team team;
+    @JoinTable(name = "team_members",
+            joinColumns = @JoinColumn(
+                    name = "employee_id",
+                    referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(
+                    name = "team_id",
+                    referencedColumnName = "id"))
+    private final Set<Team> teams = new HashSet<>();
 
-    public Employee() { }
-
-    public Employee(
-            String firstName,
-            String lastName,
-            String email,
-            String jobTitle,
-            String phoneNumber,
-            String address,
-            String avatar,
-            LocalDate dob
-            ) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.jobTitle = jobTitle;
-        this.phoneNumber = phoneNumber;
-        this.address = address;
-        this.avatar = avatar;
-        this.dob = dob;
+    public Employee() {
     }
 
     public Employee(
@@ -89,8 +78,8 @@ public class Employee {
             String phoneNumber,
             String address,
             String avatar,
-            LocalDate dob,
-            Team team) {
+            LocalDate dob
+    ) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -99,7 +88,6 @@ public class Employee {
         this.address = address;
         this.avatar = avatar;
         this.dob = dob;
-        this.team = team;
     }
 
     public Long getId() {
@@ -158,6 +146,10 @@ public class Employee {
         return this.firstName + " " + this.lastName;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public Optional<String> getAvatar() {
         return Optional.ofNullable(avatar);
     }
@@ -183,23 +175,18 @@ public class Employee {
         return Optional.ofNullable(age);
     }
 
-    public Team getTeam() { return team; }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public void setAge(Integer age) {
         this.age = age;
     }
-//
+
+    public Set<Team> getTeams() {
+        return teams;
+    }
+
+    //
 //    public UUID getUuid() {
 //        return uuid;
 //    }
-
-    public void setTeam(Team team) {
-        this.team = team;
-    }
 
     @Override
     public boolean equals(Object o) {
@@ -216,8 +203,7 @@ public class Employee {
                 avatar.equals(employee.avatar) &&
                 dob.equals(employee.dob) &&
                 name.equals(employee.name) &&
-                age.equals(employee.age) &&
-                team.equals(employee.team);
+                age.equals(employee.age);
     }
 
     @Override
@@ -233,8 +219,7 @@ public class Employee {
                 avatar,
                 dob,
                 name,
-                age,
-                team
+                age
         );
     }
 }

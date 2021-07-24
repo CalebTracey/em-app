@@ -46,9 +46,9 @@ public class EmployeeService {
                         new EmployeeNotFoundException(id));
     }
 
-    public List<Employee> findByTeam(Team team, Sort sort) {
-        return employeeRepository.findByTeam(team, sort);
-    }
+//    public List<Employee> findByTeam(Team team, Sort sort) {
+//        return employeeRepository.findByTeam(team, sort);
+//    }
 
     public Employee save(Employee newEmployee) {
         return employeeRepository.save(newEmployee);

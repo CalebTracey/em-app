@@ -1,12 +1,11 @@
-import React, { Suspense, lazy, useRef } from 'react';
-import { Menu, Spin } from 'antd';
+import React from 'react';
+import { Menu } from 'antd';
 import 'antd/dist/antd.css';
 import { Link } from 'react-router-dom';
 import { UserOutlined } from '@ant-design/icons';
 
 const EmployeeList = ({ employees, clickHandler }) => {
     console.log(employees)
-    const ref = useRef()
     const listNode = employees.map((employee) => {
         return (
             <Menu.Item
@@ -21,7 +20,7 @@ const EmployeeList = ({ employees, clickHandler }) => {
         );
     });
     return (
-        <Menu.ItemGroup ref={ref} children={listNode} />
+        <Menu.ItemGroup children={listNode} />
     )
 }
 

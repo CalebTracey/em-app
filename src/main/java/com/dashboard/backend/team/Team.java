@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Configuration;
 
 import javax.persistence.*;
 import java.io.Serial;
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
@@ -31,11 +32,21 @@ public class Team {
     @Column(unique = true)
     private String teamName;
 
-    @OneToMany(mappedBy = "team", cascade = CascadeType.ALL)
-    @JsonManagedReference
-    private Set<Employee> employees;
+    @ManyToMany
+    @JoinTable(name = "team_members",
+            joinColumns =
+            @JoinColumn(
+                    name = "team_id",
+                    referencedColumnName = "id"),
+            inverseJoinColumns =
+            @JoinColumn(
+                    name = "employee_id",
+                    referencedColumnName = "id")
+    )
+    private Set<Employee> employees = new HashSet<>();
 
-    public Team() { }
+    public Team() {
+    }
 
     public Team(String teamName) {
         this.teamName = teamName;
@@ -60,6 +71,10 @@ public class Team {
 
     public Set<Employee> getEmployees() {
         return employees;
+    }
+
+    public void setEmployees(Set<Employee> employees) {
+        this.employees = employees;
     }
 
     @Override

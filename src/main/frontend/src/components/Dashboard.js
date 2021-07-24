@@ -1,16 +1,16 @@
 import React from 'react';
-import { useSelector } from "react-redux";
+import { useSelector } from 'react-redux';
 
 const Dashboard = () => {
-    const company = useSelector(state => state.company);
+  const company = useSelector((state) => state.company);
 
-    return (
-        <div>
-            <div>Dashboard1234</div>
-            <div>{company.companyName}</div>
-            {/* <div><AddEmployee/></div> */}
-        </div>
-    );
+  return (
+    <div>
+      <div>Dashboard1234</div>
+      <div>{company.companyName}</div>
+      {/* <div><AddEmployee/></div> */}
+    </div>
+  );
 };
 
 export default Dashboard;

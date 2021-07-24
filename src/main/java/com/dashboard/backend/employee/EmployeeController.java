@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -49,25 +50,25 @@ public class EmployeeController {
                         .all()).withSelfRel());
     }
 
-    @GetMapping("employees/{employeeId}")
-    public EntityModel<Employee> one(@PathVariable(value = "employeeId") Long employeeId) {
-        Employee employee = employeeService.findById(employeeId);
+    @GetMapping("employees/{id}")
+    public EntityModel<Employee> one(@PathVariable(value = "id") Long id) {
+        Employee employee = employeeService.findById(id);
         return assembler.toModel(employee);
     }
 
-    @GetMapping("teams/{id}/employees")
-    public CollectionModel<EntityModel<Employee>> getByTeamId(
-            @PathVariable(value = "id") Team team, Sort sort) {
-
-        List<EntityModel<Employee>> employees =
-                employeeService.findByTeam(team, sort)
-                .stream().map(assembler::toModel)
-                .collect(Collectors.toList());
-
-        return CollectionModel.of(employees, linkTo(
-                methodOn(EmployeeController.class)
-                        .all()).withSelfRel());
-    }
+//    @GetMapping("teams/{id}/employees")
+//    public CollectionModel<EntityModel<Employee>> getByTeamId(
+//            @PathVariable(value = "id") Team team, Sort sort) {
+//
+//        List<EntityModel<Employee>> employees =
+//                employeeService.findByTeam(team, sort)
+//                .stream().map(assembler::toModel)
+//                .collect(Collectors.toList());
+//
+//        return CollectionModel.of(employees, linkTo(
+//                methodOn(EmployeeController.class)
+//                        .all()).withSelfRel());
+//    }
 
     @PostMapping("employees")
     ResponseEntity<?> newEmployee(@RequestBody Employee newEmployee) {
@@ -80,22 +81,30 @@ public class EmployeeController {
                         .toUri()).body(entityModel);
     }
 
-    @DeleteMapping("employees/{employeeId}")
-    ResponseEntity<?> deleteEmployee(@PathVariable Long employeeId) {
+    @DeleteMapping("employees/{id}")
+    ResponseEntity<?> deleteEmployee(@PathVariable Long id) {
 
-        repository.deleteById(employeeId);
+        repository.deleteById(id);
         return ResponseEntity.noContent().build();
     }
+    
+//    @PutMapping("employees/add/team/{id}")
+//    ResponseEntity<?> addEmployeeTeam(@RequestBody Employee newEmployee, @PathVariable Long id) {
+//        Employee updatedEmployee = repository.findById(id)
+//                .map(employee -> {
+//    }
 
     @PutMapping("employees/{id}")
     ResponseEntity<?> replaceEmployee(@RequestBody Employee newEmployee, @PathVariable Long id) {
         Employee updatedEmployee = repository.findById(id)
                 .map(employee -> {
-                    employee.setName(newEmployee.getName());
+                    employee.setFirstName(newEmployee.getFirstName());
+                    employee.setLastName(newEmployee.getLastName());
                     employee.setJobTitle(newEmployee.getJobTitle());
                     employee.setEmail(newEmployee.getEmail());
                     employee.setAddress(newEmployee.getAddress());
-                    employee.setAvatar(String.valueOf(newEmployee.getAvatar()));
+                    employee.setPhoneNumber(newEmployee.getPhoneNumber());
+//                    employee.setDob(newEmployee.getDob());
                     return employeeService.save(newEmployee);
                     //return repository.save(employee);
                 })

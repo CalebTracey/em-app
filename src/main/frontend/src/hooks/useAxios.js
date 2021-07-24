@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector, useDispatch } from 'react-redux';
 import allActions from '../redux/actions/index';
-import axios from 'axios'
+import axios from 'axios';
 import api from '../api';
 
 axios.defaults.baseURL = 'http://localhost:8080/';
@@ -14,17 +14,19 @@ export const useAxios = (axiosParams) => {
   // useEffect(() => {
   const getTeams = async () => {
     if (data === null) {
-      await axios.request(axiosParams)
-        .then(res => {
+      await axios
+        .request(axiosParams)
+        .then((res) => {
           setData(res.data._embedded);
-        }).catch(function (error) {
+        })
+        .catch(function (error) {
           console.log(error);
         });
     }
-    console.log(data)
+    console.log(data);
 
     // }
-  }
+  };
   useEffect(() => {
     getTeams(axiosParams);
   }, []);
