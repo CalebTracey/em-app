@@ -21,14 +21,6 @@ public class TeamService {
         return teamRepository.findAll();
     }
 
-//    public Optional<Team> findByName(String teamName) {
-//        try {
-//            return teamRepository.findByName(teamName);
-//        } catch (IllegalStateException e) {
-//            throw new TeamNotFoundException(teamName);
-//        }
-//    }
-
     public Team findById(Long id) {
         return teamRepository.findById(id)
                 .orElseThrow(() -> new TeamNotFoundException(id));
@@ -38,4 +30,11 @@ public class TeamService {
         return teamRepository.save(team);
     }
 
+    public void deleteById(Long id) {
+        boolean exists = teamRepository.existsById(id);
+        if (!exists) {
+            throw new TeamNotFoundException("No Team found with provided id :" + id);
+        }
+        teamRepository.deleteById(id);
+    }
 }

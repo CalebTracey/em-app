@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 
 const useTeam = (teamKey) => {
-  const [team, setTeam] = useState({});
+  const [team, setTeam] = useState([]);
   const teams = useSelector((state) => state.teams.teamData);
 
   useEffect(() => {

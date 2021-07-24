@@ -77,6 +77,10 @@ public class Team {
         this.employees = employees;
     }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     @Override
     public int hashCode() {
         return Objects.hash(id);

@@ -25,9 +25,6 @@ const CreateTeam = () => {
   useEmployees();
 
   useEffect(() => {
-    // if (employees.length === 0) {
-    //     FetchEmployees();
-    // }
     if (children === undefined || children.length === 0) {
       employees.forEach((e) => {
         setChildren((children) => [

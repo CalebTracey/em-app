@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import { Typography, Modal } from 'antd';
+import React, { useState, useEffect } from 'react';
+import { Modal } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams, Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import { ExclamationCircleOutlined } from '@ant-design/icons';
 import 'antd/dist/antd.css';
 
@@ -9,6 +9,7 @@ import allActions from '../../redux/actions/index';
 import TeamDetails from './TeamDetails';
 import TeamDeletedPage from './TeamDeletedPage';
 import useTeams from '../../hooks/useTeams';
+import api from '../../api';
 
 // const { Title } = Typography;
 const { confirm } = Modal;
@@ -16,22 +17,31 @@ const { confirm } = Modal;
 const TeamPage = () => {
   const team = useSelector((state) => state.teams.teamSelected);
   const teams = useSelector((state) => state.teams.teamData);
-  const { teamId } = useParams();
   const [, setShowModal] = useState(0);
-  const [, setVisible] = useState(false);
   const [loading, setLoading] = useState(false);
   const [hasMore, setHasMore] = useState(true);
-  const [teamDeletedName, setTeamDeletedName] = useState('');
-  const [teamDeleted, setTeamDeleted] = useState(false);
+  const [deletedTeam, setDeletedTeam] = useState(null);
   const [data, setData] = useState([]);
-  const [confirmLoading, setConfirmLoading] = useState(false);
-  const [modalText, setModalText] = useState('Content of the modal');
   const dispatch = useDispatch();
 
   useTeams();
 
-  // const index = teams.findIndex(({ id }) => id === teamId);
-  // const team = teams[index];
+  useEffect(() => {
+    if (deletedTeam) {
+      const sendUpdate = async () => {
+        await api
+          .delete(`api/v1/teams/${deletedTeam.id}`)
+          .then(() => dispatch(allActions.teams.teamDeleted(team.id)))
+          .catch((error) => {
+            console.log(error);
+          });
+      };
+      sendUpdate();
+    }
+    return () => {
+      setDeletedTeam(null);
+    };
+  }, [deletedTeam]);
 
   const showDeleteTeamConfirm = () => {
     confirm({
@@ -39,28 +49,26 @@ const TeamPage = () => {
       icon: <ExclamationCircleOutlined />,
       content: 'This is permanent!',
       onOk() {
-        setTeamDeletedName(team.teamName);
-        dispatch(allActions.teams.teamDeleted(team.id));
-        setTeamDeleted(true);
+        setDeletedTeam(team);
       },
       onCancel() {
         console.log('Cancel');
       },
     });
   };
-  const handleCreateTask = () => {
-    console.log('row clicked');
-  };
+  // const handleCreateTask = () => {
+  //   console.log('row clicked');
+  // };
 
-  const handleTaskOk = () => {
-    setModalText('The modal will be closed after two seconds');
-    setConfirmLoading(true);
-  };
+  // const handleTaskOk = () => {
+  //   setModalText('The modal will be closed after two seconds');
+  //   setConfirmLoading(true);
+  // };
 
-  const handleTaskCancel = () => {
-    console.log('Clicked cancel button');
-    setVisible(false);
-  };
+  // const handleTaskCancel = () => {
+  //   console.log('Clicked cancel button');
+  //   setVisible(false);
+  // };
 
   const handleInfiniteOnLoad = () => {
     setData(team.team);
@@ -74,8 +82,8 @@ const TeamPage = () => {
   return (
     <div>
       {team ? null : <Redirect to="/" />}
-      {teamDeleted ? (
-        <TeamDeletedPage teamName={teamDeletedName} />
+      {deletedTeam ? (
+        <TeamDeletedPage teamName={deletedTeam.teamName} />
       ) : (
         <TeamDetails
           team={team}
@@ -84,9 +92,7 @@ const TeamPage = () => {
           loading={loading}
           hasMore={hasMore}
           setShowModal={setShowModal}
-          //handleRemoveTeamMember={handleRemoveTeamMember}
           handlePopCancel={() => setShowModal(0)}
-          confirmLoading={confirmLoading}
         />
       )}
     </div>

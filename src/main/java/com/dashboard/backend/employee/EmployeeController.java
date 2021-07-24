@@ -56,20 +56,6 @@ public class EmployeeController {
         return assembler.toModel(employee);
     }
 
-//    @GetMapping("teams/{id}/employees")
-//    public CollectionModel<EntityModel<Employee>> getByTeamId(
-//            @PathVariable(value = "id") Team team, Sort sort) {
-//
-//        List<EntityModel<Employee>> employees =
-//                employeeService.findByTeam(team, sort)
-//                .stream().map(assembler::toModel)
-//                .collect(Collectors.toList());
-//
-//        return CollectionModel.of(employees, linkTo(
-//                methodOn(EmployeeController.class)
-//                        .all()).withSelfRel());
-//    }
-
     @PostMapping("employees")
     ResponseEntity<?> newEmployee(@RequestBody Employee newEmployee) {
         EntityModel<Employee> entityModel =
@@ -83,8 +69,8 @@ public class EmployeeController {
 
     @DeleteMapping("employees/{id}")
     ResponseEntity<?> deleteEmployee(@PathVariable Long id) {
-
-        repository.deleteById(id);
+        employeeService.deleteEmployee(id);
+//        repository.deleteById(id);
         return ResponseEntity.noContent().build();
     }
     

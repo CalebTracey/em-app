@@ -21,10 +21,11 @@ const Employees = lazy(() => import('./containers/Employees'));
 const Dashboard = lazy(() => import('./components/Dashboard'));
 const Preferences = lazy(() => import('./components/Preferences'));
 const CreateTeam = lazy(() => import('./components/team/CreateTeam'));
+const TeamPage = lazy(() => import('./components/team/TeamPage'));
 const AddEmployee = lazy(() =>
   import('./components/employee/AddEmployee'),
 );
-const TeamPage = lazy(() => import('./components/team/TeamPage'));
+const Teams = lazy(() => import('./containers/Teams'));
 const EmployeeDetails = lazy(() =>
   import('./components/employee/EmployeeDetails'),
 );
@@ -87,6 +88,7 @@ const App = () => {
                 component={CreateTeam}
               />
               <Route exact path="/employees" component={Employees} />
+              <Route exact path="/teams" component={Teams} />
               <Route
                 path="/employee/:employeeId"
                 component={EmployeeDetails}

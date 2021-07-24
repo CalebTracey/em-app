@@ -24,7 +24,6 @@ const TeamDeletedPage = ({ teamName }) => {
         >
           Home
         </Button>,
-        // <Button key="buy">Buy Again</Button>,
       ]}
     />
   );

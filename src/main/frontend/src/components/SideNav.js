@@ -17,7 +17,6 @@ const { SubMenu } = Menu;
 const SideNav = ({ collapsed }) => {
   const [employeeState, setEmployeeState] = useState(null);
   const [teamState, setTeamState] = useState(null);
-  const [position, setPosition] = useState('unset');
 
   const employees = () => {
     return (

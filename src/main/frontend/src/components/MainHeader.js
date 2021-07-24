@@ -9,12 +9,7 @@ import {
 const { Header } = Layout;
 const { Title, Text } = Typography;
 
-const MainHeader = ({
-  createElement,
-  collapsed,
-  company,
-  toggle,
-}) => {
+const MainHeader = ({ company }) => {
   return (
     <Header
       className="site-layout-background"

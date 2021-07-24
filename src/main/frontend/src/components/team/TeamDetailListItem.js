@@ -18,13 +18,13 @@ const TeamDetailListItem = ({
   return (
     // <div>
     <List.Item
-      key={employee.key}
-      actions={<Link to={`/employee/${employee.key}`} />}
+      key={employee.id}
+      actions={<Link to={`/employee/${employee.id}`} />}
     >
       <List.Item.Meta
-        avatar={<Avatar src={employee.photo} />}
+        avatar={<Avatar src={employee.avatar} />}
         title={
-          <Link innerRef={ref} to={`/employee/${employee.key}`}>
+          <Link innerRef={ref} to={`/employee/${employee.id}`}>
             {`${employee.firstName} 
                     ${employee.lastName}`}
           </Link>
@@ -35,7 +35,6 @@ const TeamDetailListItem = ({
         title={`Are you sure?`}
         okText="Yes"
         onConfirm={() => handleRemoveTeamMember(employee, team)}
-        //onConfirm={() => onRemove}
         okButtonProps={{ loading: confirmLoading }}
         onCancel={handlePopCancel}
       >
@@ -44,7 +43,7 @@ const TeamDetailListItem = ({
           danger={danger}
           value={employee}
           type="default"
-          onClick={() => setShowModal(employee.key)}
+          onClick={() => setShowModal(employee.id)}
           onMouseEnter={() => setDanger(true)}
           onMouseLeave={() => setDanger(false)}
         >
