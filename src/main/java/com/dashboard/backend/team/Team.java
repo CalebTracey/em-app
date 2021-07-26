@@ -1,6 +1,7 @@
 package com.dashboard.backend.team;
 
 import com.dashboard.backend.employee.Employee;
+import com.dashboard.backend.task.TeamTask;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
@@ -17,7 +18,6 @@ import java.util.Set;
 public class Team {
 
     @Id
-    @Serial
     @GeneratedValue(
             strategy = GenerationType.SEQUENCE,
             generator = "team_sequence"
@@ -31,6 +31,9 @@ public class Team {
 
     @Column(unique = true)
     private String teamName;
+
+    @OneToMany(mappedBy = "team")
+    private Set<TeamTask> teamTasks;
 
     @ManyToMany
     @JoinTable(name = "team_members",
@@ -55,6 +58,14 @@ public class Team {
     public Team(String teamName, Set<Employee> employees) {
         this.teamName = teamName;
         this.employees = employees;
+    }
+
+    public Set<TeamTask> getTeamTasks() {
+        return teamTasks;
+    }
+
+    public void setTeamTasks(Set<TeamTask> teamTasks) {
+        this.teamTasks = teamTasks;
     }
 
     public Long getId() {

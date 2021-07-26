@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import faker from 'faker';
-import allActions from '../redux/actions/index';
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import faker from "faker";
+import allActions from "../redux/actions/index";
 
 const useTasks = () => {
   faker.seed(12345);
@@ -22,29 +22,27 @@ const useTasks = () => {
         Date.UTC(
           myDate.getUTCFullYear(),
           myDate.getUTCMonth(),
-          myDate.getUTCDate(),
-        ),
+          myDate.getUTCDate()
+        )
       );
       // const tn = faker.fake("{{company.bsBuzz}} {{company.bsAdjective}} {{company.bsNoun}}");
       // const taskName = tn.charAt(0).toUpperCase() + tn.slice(1);
 
       const generatedList = arr.map(() => ({
-        taskName: faker.fake(
-          '{{company.bsBuzz}} {{company.bsAdjective}} {{company.bsNoun}}',
+        name: faker.fake(
+          "{{company.bsBuzz}} {{company.bsAdjective}} {{company.bsNoun}}"
         ),
-        taskDescription: faker.name.jobTitle(),
+        description: faker.name.jobTitle(),
         client: faker.company.companyName(),
         clientPhone: faker.phone.phoneNumberFormat(),
-        startDate: faker.date
-          .recent(getRandomInt(5, 60), date)
-          .toDateString(),
-        endDate: faker.date
-          .soon(getRandomInt(5, 60), date)
-          .toDateString(),
-        key: Math.floor(Math.random() * 1234567890000),
+        startDate: faker.date.recent(getRandomInt(5, 60), date).toDateString(),
+        endDate: faker.date.soon(getRandomInt(5, 60), date).toDateString(),
+
+        // key: Math.floor(Math.random() * 1234567890000),
         //address: faker.company.streetAddress(),
       }));
       setTasks(generatedList);
+      console.log(JSON.stringify(generatedList));
       setTasksLoaded(true);
     } else return;
   }, [tasks, tasksLoaded]);

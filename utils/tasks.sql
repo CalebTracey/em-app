@@ -1,0 +1,50 @@
+insert into team_tasks ( name, description, client, client_phone, task_start, task_end) values
+  (  nextval('team_task_sequence'),
+    'Cultivate visionary e-services',
+    'Direct Directives Supervisor',
+    'Shanahan LLC',
+    '659-946-9736',
+    'Sat Jul 24 2021',
+    'Mon Aug 23 2021'
+  ),
+  ( nextval('team_task_sequence'),
+    'E-enable compelling web-readiness',
+    'Lead Response Executive',
+    'Gusikowski - Schoen',
+    '768-985-9870',
+    'Tue Jul 20 2021',
+    'Sat Aug 28 2021'
+  ),
+  ( nextval('team_task_sequence'),
+    'Innovate plug-and-play supply-chains',
+    'Regional Tactics Developer',
+    'Christiansen - Renner',
+    '893-777-5130',
+    'Fri Jun 18 2021',
+    'Wed Sep 08 2021'
+  ),
+  ( nextval('team_task_sequence'),
+    'Visualize customized networks',
+    'Lead Interactions Analyst',
+    'Leffler, Vandervort and Metz',
+    '906-987-1825',
+     'Sun Jul 11 2021',
+    'Tue Aug 10 2021'
+  ),
+  ( nextval('team_task_sequence'),
+    'Visualize scalable supply-chains',
+    'Dynamic Group Engineer',
+    'Koss - Rowe',
+    '557-719-5018',
+    'Mon Jun 28 2021',
+    'Mon Aug 09 2021'
+  ),
+  ( nextval('team_task_sequence'),
+    'Cultivate B2C e-commerce',
+    'Lead Marketing Administrator',
+    'Ritchie - Hodkiewicz',
+    '584-903-2335',
+    'Sat Jul 17 2021',
+    'Tue Jul 27 2021'
+  )
+

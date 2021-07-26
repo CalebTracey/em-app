@@ -18,7 +18,6 @@ import java.util.*;
 public class Employee {
 
     @Id
-    @Serial
     @GeneratedValue(
             strategy = GenerationType.SEQUENCE,
             generator = "employee_sequence"

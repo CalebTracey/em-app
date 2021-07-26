@@ -2,7 +2,7 @@ import {
   EMPLOYEES_FETCHED,
   EMPLOYEE_ADDED,
   EMPLOYEE_SELECTED,
-} from '../actions/types';
+} from "../actions/types";
 
 const initialState = {
   employeeData: [],

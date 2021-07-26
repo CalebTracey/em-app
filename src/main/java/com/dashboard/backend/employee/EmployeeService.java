@@ -28,15 +28,7 @@ public class EmployeeService {
     }
 
     public List<Employee> findAll() {
-//        List<Employee> allEmployees =
                 return employeeRepository.findAll();
-//        allEmployees.stream().map(employee -> {
-//            if (employee.getTeam() != null) {
-//                EntityModel<Team> teamModel =
-//                        teamAssembler.toModel(employee.getTeam());
-//                employee.setTeam();
-//            }
-//        })
 
     }
 
@@ -45,10 +37,6 @@ public class EmployeeService {
                 .orElseThrow(() ->
                         new EmployeeNotFoundException(id));
     }
-
-//    public List<Employee> findByTeam(Team team, Sort sort) {
-//        return employeeRepository.findByTeam(team, sort);
-//    }
 
     public Employee save(Employee newEmployee) {
         return employeeRepository.save(newEmployee);
