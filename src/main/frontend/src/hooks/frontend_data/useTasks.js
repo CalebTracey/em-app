@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import faker from "faker";
-import allActions from "../redux/actions/index";
 
 const useTasks = () => {
   faker.seed(12345);

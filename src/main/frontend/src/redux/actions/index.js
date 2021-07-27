@@ -1,13 +1,11 @@
-import { employees } from './employees';
-import { company } from './company';
-import { teams } from './teams';
-import { dataLoad } from './dataLoad';
+import { employees } from "./employees";
+import { company } from "./company";
+import { teams } from "./teams";
 
 const allActions = {
   employees,
   company,
   teams,
-  dataLoad,
 };
 
 export default allActions;

@@ -1,21 +1,24 @@
-import React, { useState, useEffect, lazy, Suspense } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import "antd/dist/antd.css";
 import allActions from "../redux/actions/index";
-import useEmployees from "../hooks/useEmployees";
-import { Spin } from "antd";
+import { EmployeeList } from "../components/employee/EmployeeList";
+import { apiGet } from "../apis/apiGet";
 
-const EmployeeList = lazy(() => import("../components/employee/EmployeeList"));
-
-const Employees = () => {
+export const Employees = () => {
   const employees = useSelector((state) => state.employees.employeeData);
-  const selected = useSelector((state) => state.employees.employeeSelected);
   const dispatch = useDispatch();
-
-  useEmployees();
-
   useEffect(() => {
-    if (employees) {
+    if (employees.length === 0) {
+      apiGet({
+        url: "employees",
+        headers: null,
+        data: null,
+      }).then((res) => {
+        const sort = res.data._embedded.employeeList.sort((a, b) =>
+          a.lastName > b.lastName ? 1 : b.lastName > a.lastName ? -1 : 0
+        );
+        dispatch(allActions.employees.employeeData(sort));
+      });
     }
   }, [employees]);
 
@@ -24,21 +27,7 @@ const Employees = () => {
       dispatch(allActions.employees.employeeSelected(employee));
     }
   };
-  return (
-    <Suspense
-      fallback={
-        <div>
-          <Spin />
-        </div>
-      }
-    >
-      <EmployeeList
-        key="employee-list"
-        clickHandler={clickHandler}
-        employees={employees}
-      />
-    </Suspense>
-  );
+  return <EmployeeList clickHandler={clickHandler} employees={employees} />;
 };
 
 export default Employees;

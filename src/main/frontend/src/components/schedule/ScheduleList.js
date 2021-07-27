@@ -3,7 +3,7 @@ import { Menu } from "antd";
 import { Link } from "react-router-dom";
 import { UserOutlined } from "@ant-design/icons";
 
-export const EmployeeList = ({ employees, clickHandler }) => {
+export default ScheduleList = ({ employees, clickHandler }) => {
   const listNode = employees.map((employee) => {
     return (
       <Menu.Item

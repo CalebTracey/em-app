@@ -73,12 +73,6 @@ public class EmployeeController {
 //        repository.deleteById(id);
         return ResponseEntity.noContent().build();
     }
-    
-//    @PutMapping("employees/add/team/{id}")
-//    ResponseEntity<?> addEmployeeTeam(@RequestBody Employee newEmployee, @PathVariable Long id) {
-//        Employee updatedEmployee = repository.findById(id)
-//                .map(employee -> {
-//    }
 
     @PutMapping("employees/{id}")
     ResponseEntity<?> replaceEmployee(@RequestBody Employee newEmployee, @PathVariable Long id) {

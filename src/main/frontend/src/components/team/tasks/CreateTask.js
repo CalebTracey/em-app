@@ -1,44 +1,43 @@
-import React, { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { Input, Card, Form, Button, DatePicker, Space } from 'antd';
-import allActions from '../../redux/actions/index';
-import 'antd/dist/antd.css';
-import './Create.css';
+import React, { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { Input, Card, Form, Button, DatePicker, Space } from "antd";
+import allActions from "../../../redux/actions/index";
+import "./Create.css";
 
 const { RangePicker } = DatePicker;
 
 const CreateTask = () => {
   const teams = useSelector((state) => state.teams.teamData);
-  const [taskTitle, setTaskTitle] = useState('');
+  const [taskTitle, setTaskTitle] = useState("");
   // const [children, setChildren] = useState([]);
   // const [selected, setSelected] = useState([]);
   const dispatch = useDispatch();
 
   const onChange = (value, dateString) => {
-    console.log('Selected Time: ', value);
-    console.log('Formatted Selected Time: ', dateString);
+    console.log("Selected Time: ", value);
+    console.log("Formatted Selected Time: ", dateString);
   };
 
   const onOk = (value) => {
-    console.log('onOk: ', value);
+    console.log("onOk: ", value);
   };
 
   const handleSubmit = () => {
-    // var newTeam = ({
-    //     taskName: title,
-    //     taskDescription: newId,
-    //     client: newKey,
-    //     clientPhone: employeeMatch,
-    //     startDate: [],
-    //     endDate: ,
-    //     key: ,
-    // });
+    var newTeam = {
+      // taskName: title,
+      // taskDescription: newId,
+      // client: newKey,
+      // clientPhone: employeeMatch,
+      // startDate: [],
+      // endDate: ,
+      // key: ,
+    };
     dispatch(allActions.teams.teamData());
   };
 
   return (
-    <div style={{ display: 'flex', justifyContent: 'space-around' }}>
-      <Card style={{ width: 500, alignSelf: 'center' }}>
+    <div style={{ display: "flex", justifyContent: "space-around" }}>
+      <Card style={{ width: 500, alignSelf: "center" }}>
         <Form layout="vertical" requiredMark={true}>
           <Form.Item
             label="Team Name"
@@ -83,7 +82,7 @@ const CreateTask = () => {
           <Space direction="vertical" size={12}>
             <DatePicker showTime onChange={onChange} onOk={onOk} />
             <RangePicker
-              showTime={{ format: 'HH:mm' }}
+              showTime={{ format: "HH:mm" }}
               format="YYYY-MM-DD HH:mm"
               onChange={onChange}
               onOk={onOk}

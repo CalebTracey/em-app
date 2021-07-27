@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react';
-import QueueAnim from 'rc-queue-anim';
-import { useDispatch, useSelector } from 'react-redux';
-import { Result, Button, message } from 'antd';
-import api from '../../api';
-import './TeamDetails.css';
-import TeamDetailListItem from './TeamDetailListItem';
-import allActions from '../../redux/actions/index';
+import React, { useEffect, useState } from "react";
+import QueueAnim from "rc-queue-anim";
+import { useDispatch } from "react-redux";
+import { Result, Button, message } from "antd";
+import api from "../../apis/api";
+import "./TeamDetails.css";
+import TeamDetailListItem from "./TeamDetailListItem";
+import allActions from "../../redux/actions/index";
 
 const TeamDetailList = ({
   team,
@@ -14,9 +14,7 @@ const TeamDetailList = ({
   hidePopConfirm,
   confirmLoading,
 }) => {
-  const teams = useSelector((state) => state.teams.teamData);
   const [mapState, setMapState] = useState(team.employees);
-  const [show, setShow] = useState(true);
   const dispatch = useDispatch();
   const [updatedTeam, setUpdatedTeam] = useState(null);
   const success = (text) => {
@@ -27,13 +25,8 @@ const TeamDetailList = ({
     if (updatedTeam) {
       const sendUpdate = async () => {
         await api
-          .put(
-            `api/v1/teams/${updatedTeam.id}`,
-            JSON.stringify(updatedTeam),
-          )
-          .then(() =>
-            dispatch(allActions.teams.updatedTeam(updatedTeam)),
-          )
+          .put(`api/v1/teams/${updatedTeam.id}`, JSON.stringify(updatedTeam))
+          .then(() => dispatch(allActions.teams.updatedTeam(updatedTeam)))
           .catch((error) => {
             console.log(error);
           });
@@ -46,9 +39,7 @@ const TeamDetailList = ({
   }, [updatedTeam]);
 
   const handleRemoveTeamMember = (employee, teamFrom) => {
-    const filter = teamFrom.employees.filter(
-      (e) => e.id !== employee.id,
-    );
+    const filter = teamFrom.employees.filter((e) => e.id !== employee.id);
     const updatedTeam = {
       teamName: teamFrom.teamName,
       id: teamFrom.id,
@@ -57,9 +48,8 @@ const TeamDetailList = ({
     };
     setMapState(updatedTeam.employees);
     setUpdatedTeam(updatedTeam);
-    setShow(true);
     success(
-      `${employee.firstName} ${employee.lastName} removed from ${teamFrom.teamName}`,
+      `${employee.firstName} ${employee.lastName} removed from ${teamFrom.teamName}`
     );
   };
 
@@ -85,11 +75,12 @@ const TeamDetailList = ({
   const nodeMap =
     mapState.length === 0 ? (
       <Result
+        key={team.teamName}
         title={`${team.teamName} has no members.`}
         extra={
           <Button type="primary" key="console">
-            {' '}
-            Add Members{' '}
+            {" "}
+            Add Members{" "}
           </Button>
         }
       />
@@ -98,7 +89,7 @@ const TeamDetailList = ({
     );
 
   return (
-    <QueueAnim key="nodeMap" type={['right', 'left']} leaveReverse>
+    <QueueAnim key="nodeMap" type={["right", "left"]} leaveReverse>
       {nodeMap}
     </QueueAnim>
   );

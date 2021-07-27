@@ -1,12 +1,11 @@
-import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
-import { Menu } from 'antd';
-import { TeamOutlined } from '@ant-design/icons';
+import React from "react";
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import { Menu } from "antd";
+import { TeamOutlined } from "@ant-design/icons";
 
-const TeamList = ({ teams, clickHandler }) => {
-  // const teams = useSelector(state => state.teams.teamData);
-
+const TeamList = ({ clickHandler }) => {
+  const teams = useSelector((state) => state.teams.teamData);
   const listNode = teams.map((team) => {
     return (
       <Menu.Item

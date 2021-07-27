@@ -1,7 +1,6 @@
-import React, { useRef, useState } from 'react';
-import { List, Avatar, Button, Popconfirm } from 'antd';
-
-import { Link } from 'react-router-dom';
+import React, { useRef, useState } from "react";
+import { List, Avatar, Button, Popconfirm } from "antd";
+import { Link } from "react-router-dom";
 
 const TeamDetailListItem = ({
   team,
@@ -10,8 +9,6 @@ const TeamDetailListItem = ({
   handleRemoveTeamMember,
   handlePopCancel,
   confirmLoading,
-  innerRef,
-  nodeMap,
 }) => {
   const [danger, setDanger] = useState(false);
   const ref = useRef();

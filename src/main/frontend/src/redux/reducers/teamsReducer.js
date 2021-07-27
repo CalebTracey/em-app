@@ -4,10 +4,12 @@ import {
   TEAM_SELECTED,
   TEAM_DELETED,
   TEAM_ADDED,
-} from '../actions/types';
+  TEAM_TASKS_FETCHED,
+} from "../actions/types";
 
 const initialState = {
   teamData: [],
+  teamTaskData: [],
   teamSelected: null,
 };
 
@@ -18,6 +20,11 @@ const teamsReducer = (state = initialState, action) => {
         ...state,
         teamData: action.payload,
       };
+    case TEAM_TASKS_FETCHED:
+      return {
+        ...state,
+        teamTaskData: action.payload,
+      };
     case TEAM_ADDED:
       return {
         ...state,
@@ -25,9 +32,7 @@ const teamsReducer = (state = initialState, action) => {
       };
     case TEAM_UPDATED:
       const teamId = action.payload.id;
-      const index = state.teamData.findIndex(
-        ({ id }) => id === teamId,
-      );
+      const index = state.teamData.findIndex(({ id }) => id === teamId);
       return {
         ...state,
         teamData: [
@@ -40,9 +45,7 @@ const teamsReducer = (state = initialState, action) => {
       return {
         ...state,
         teamData: [
-          ...state.teamData.filter(
-            (team) => team.id !== action.payload,
-          ),
+          ...state.teamData.filter((team) => team.id !== action.payload),
         ],
       };
     case TEAM_SELECTED:

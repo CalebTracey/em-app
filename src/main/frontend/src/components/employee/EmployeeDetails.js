@@ -1,11 +1,7 @@
 import React from "react";
 import { Redirect } from "react-router-dom";
 import { useSelector } from "react-redux";
-
-import "antd/dist/antd.css";
-import useEmployees from "../../hooks/useEmployees";
-import EmployeeDetailsCard from "./EmployeeDetailsCard";
-import useTeams from "../../hooks/useTeams";
+import { EmployeeDetailsCard } from "./EmployeeDetailsCard";
 
 const EmployeeDetails = () => {
   const employee = useSelector((state) => state.employees.employeeSelected);

@@ -15,9 +15,9 @@ public class TeamModelAssembler implements RepresentationModelAssembler<Team, En
         @Override
         public EntityModel<Team> toModel(Team team) {
 
-            return EntityModel.of(team, //
-                    linkTo(methodOn(EmployeeController.class).one(team.getId())).withSelfRel(),
-                    linkTo(methodOn(EmployeeController.class).all()).withRel("employees"));
+            return EntityModel.of(team,
+                    linkTo(methodOn(TeamController.class).one(team.getId())).withSelfRel(),
+                    linkTo(methodOn(TeamController.class).all()).withRel("teams"));
         }
     }
 

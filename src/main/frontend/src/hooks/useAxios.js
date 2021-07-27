@@ -1,10 +1,8 @@
-import { useState, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import allActions from '../redux/actions/index';
-import axios from 'axios';
-import api from '../api';
+import { useState, useEffect } from "react";
 
-axios.defaults.baseURL = 'http://localhost:8080/';
+import axios from "axios";
+
+axios.defaults.baseURL = "http://localhost:8080/";
 
 export const useAxios = (axiosParams) => {
   // const teams = useSelector(state => state.teams.teamData);

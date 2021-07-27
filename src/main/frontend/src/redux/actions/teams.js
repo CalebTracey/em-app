@@ -1,10 +1,12 @@
+import TeamTasks from "../../components/team/tasks/TeamTasks";
 import {
   TEAMS_FETCHED,
   TEAM_ADDED,
   TEAM_DELETED,
   TEAM_SELECTED,
   TEAM_UPDATED,
-} from './types';
+  TEAM_TASKS_FETCHED,
+} from "./types";
 
 const teamData = (teams) => {
   return {
@@ -13,10 +15,17 @@ const teamData = (teams) => {
   };
 };
 
-const teamAdded = (employee) => {
+const teamTaskData = (teamTasks) => {
+  return {
+    type: TEAM_TASKS_FETCHED,
+    payload: teamTasks,
+  };
+};
+
+const teamAdded = (team) => {
   return {
     type: TEAM_ADDED,
-    payload: employee,
+    payload: team,
   };
 };
 
@@ -46,4 +55,5 @@ export const teams = {
   teamDeleted,
   teamSelected,
   teamUpdated,
+  teamTaskData,
 };

@@ -10,9 +10,29 @@
   will-change: opacity;
 }
 
-.container {
+.container .card {
   display: flex;
   align-items: center;
   height: 100%;
   justify-content: center;
+}
+.fade-enter .card {
+  opacity: 0;
+  transform: translateX(-100%);
+}
+.fade-enter-active .card {
+  opacity: 1;
+  transform: translateX(0%);
+}
+.fade-exit .card {
+  opacity: 1;
+  transform: translateX(0%);
+}
+.fade-exit-active .card {
+  opacity: 0;
+  transform: translateX(100%);
+}
+.fade-enter-active,
+.fade-exit-active .card {
+  transition: opacity 500ms, transform 500ms;
 }

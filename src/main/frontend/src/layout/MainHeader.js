@@ -1,24 +1,19 @@
-import React from 'react';
-import 'antd/dist/antd.css';
-import { Layout, Typography } from 'antd';
-import {
-  MenuUnfoldOutlined,
-  MenuFoldOutlined,
-} from '@ant-design/icons';
+import React from "react";
+import { Layout, Typography } from "antd";
 
 const { Header } = Layout;
 const { Title, Text } = Typography;
 
-const MainHeader = ({ company }) => {
+export const mainHeader = ({ company }) => {
   return (
     <Header
       className="site-layout-background"
       style={{
-        textAlign: 'center',
+        textAlign: "center",
         padding: 0,
         lineHeight: 0,
-        background: '#f0f0f0',
-        height: '64px',
+        background: "#f0f0f0",
+        height: "64px",
       }}
     >
       <Title>{`${company.companyName} ${company.companySuffix}`}</Title>
@@ -29,5 +24,3 @@ const MainHeader = ({ company }) => {
     </Header>
   );
 };
-
-export default MainHeader;

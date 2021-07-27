@@ -1,21 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Descriptions, Avatar, Card, Typography } from "antd";
-import "antd/dist/antd.css";
-import { useSelector } from "react-redux";
-import useEmployees from "../../hooks/useEmployees";
-import useTeams from "../../hooks/useTeams";
 import AddTeamDropdown from "./AddTeamDropdown";
 
 const { Title } = Typography;
 
-const EmployeeDetailsCard = ({ employee }) => {
-  useTeams();
-  const teams = useSelector((state) => state.teams.teamData);
-
+export const EmployeeDetailsCard = ({ employee, teams }) => {
   return (
     <Card key={employee.id}>
       <div key={employee.id}>
-        {/* <div key={employee.id} style={{ position: "sticky", top: "20px", size: "medium" }}> */}
         <div>
           <Title
             level={3}
@@ -46,9 +38,5 @@ const EmployeeDetailsCard = ({ employee }) => {
         </div>
       </div>
     </Card>
-    //{" "}
-    // </animated.div>
   );
 };
-
-export default EmployeeDetailsCard;

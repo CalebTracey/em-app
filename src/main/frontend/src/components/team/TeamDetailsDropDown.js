@@ -8,13 +8,13 @@ const TeamDetailsDropDown = ({
 }) => {
   const menu = (
     <Menu>
-      <Menu.Item key="1" onClick={handleCreateTask}>
+      <Menu.Item key="add" onClick={handleCreateTask}>
         Add Task
       </Menu.Item>
-      <Menu.Item key="2" onClick={showDeleteTeamConfirm}>
+      <Menu.Item key="delete" onClick={showDeleteTeamConfirm}>
         Delete Team
       </Menu.Item>
-      <Menu.Item key="3">3rd menu item</Menu.Item>
+      <Menu.Item key="three">3rd menu item</Menu.Item>
     </Menu>
   );
   return (

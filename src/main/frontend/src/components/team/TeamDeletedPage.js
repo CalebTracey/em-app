@@ -1,7 +1,6 @@
-import React from 'react';
-import 'antd/dist/antd.css';
-import { Result, Button } from 'antd';
-import { useHistory } from 'react-router-dom';
+import React from "react";
+import { Result, Button } from "antd";
+import { useHistory } from "react-router-dom";
 
 const TeamDeletedPage = ({ teamName }) => {
   const history = useHistory();
@@ -20,7 +19,7 @@ const TeamDeletedPage = ({ teamName }) => {
         <Button
           type="primary"
           key="console"
-          onClick={() => handleClick('/dashboard')}
+          onClick={() => handleClick("/dashboard")}
         >
           Home
         </Button>,

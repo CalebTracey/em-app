@@ -1,95 +1,89 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { Input, Card, Form, Button, Select } from 'antd';
-import allActions from '../../redux/actions/index';
-import 'antd/dist/antd.css';
-import './Create.css';
-import useEmployees from '../../hooks/useEmployees';
+import React, { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { Select, message } from "antd";
+import allActions from "../../redux/actions/index";
+import { apiGet } from "../../apis/apiGet";
+import { createTeamForm } from "./CreateTeamForm";
+import { apiPost } from "../../apis/apiPost";
 
 const { Option } = Select;
 
-// export const FetchEmployees = () => {
-//    return  useEmployees();
-// }
-
 const CreateTeam = () => {
-  const employees = useSelector(
-    (state) => state.employees.employeeData,
-  );
-  const teams = useSelector((state) => state.teams.teamData);
-  const [title, setTitle] = useState('');
+  const employees = useSelector((state) => state.employees.employeeData);
+  const [title, setTitle] = useState("");
   const [children, setChildren] = useState([]);
   const [selected, setSelected] = useState([]);
   const dispatch = useDispatch();
 
-  useEmployees();
+  useEffect(() => {
+    if (employees.length === 0) {
+      apiGet({
+        url: "employees",
+        headers: null,
+        data: null,
+      }).then((res) => {
+        const sort = res.data._embedded.employeeList.sort((a, b) =>
+          a.lastName > b.lastName ? 1 : b.lastName > a.lastName ? -1 : 0
+        );
+        dispatch(allActions.employees.employeeData(sort));
+      });
+    }
+  }, [employees]);
 
   useEffect(() => {
     if (children === undefined || children.length === 0) {
       employees.forEach((e) => {
         setChildren((children) => [
           ...children,
-          <Option key={e.id}>
-            {`${e.firstName} ${e.lastName}`}
-          </Option>,
+          <Option key={e.id}>{`${e.firstName} ${e.lastName}`}</Option>,
         ]);
       });
     }
   }, [employees, children]);
 
-  const handleChange = (event) => {
+  const handleSelection = (event) => {
     setSelected(event);
   };
 
-  const handleSubmit = () => {
-    const employeeMatch = selected.map((s) => {
-      return employees.find(({ id }) => id === parseInt(s));
-    });
-    let arr = [];
-    teams.map((t) => arr.push(t));
-    // const newId = (teams.length);
-    // const newKey = (teams.length + 1);
-    var newTeam = {
-      teamName: title,
-      team: employeeMatch,
-      // tasks: []
-    };
-    arr.push(newTeam);
-    dispatch(allActions.teams.teamData(arr));
+  const postNewTeam = async ({ newTeam, title }) => {
+    // console.log(JSON.parse(newTeamsList));
+    await apiPost({
+      url: "teams",
+      data: JSON.stringify(newTeam),
+    })
+      .then((res) => {
+        console.log(res.data);
+
+        message.success(`${title} $added`);
+      })
+      .catch((error) => {
+        message.error(`Problem adding ${title} to the list`);
+        console.log(error);
+      });
   };
 
-  return (
-    <div style={{ display: 'flex', justifyContent: 'space-around' }}>
-      <Card style={{ width: 500, alignSelf: 'center' }}>
-        <Form layout="vertical" requiredMark={true}>
-          <Form.Item
-            label="Team Name"
-            required
-            tooltip="This is a required field"
-          >
-            <Input
-              placeholder="Team Name"
-              onChange={(event) => setTitle(event.target.value)}
-            />
-          </Form.Item>
-          <Select
-            mode="multiple"
-            allowClear
-            style={{ width: '100%' }}
-            placeholder="Select Team Members"
-            onChange={handleChange}
-          >
-            {children}
-          </Select>
-          <Form.Item>
-            <Button type="primary" onClick={handleSubmit}>
-              Submit
-            </Button>
-          </Form.Item>
-        </Form>
-      </Card>
-    </div>
-  );
+  const handleCreateSubmit = () => {
+    const newMembers = selected.map((s) => {
+      return employees.find(({ id }) => id === parseInt(s));
+    });
+    const newTeam = {
+      teamName: title,
+      employees: newMembers,
+      tasks: [],
+    };
+    postNewTeam({ newTeam, title });
+    dispatch(allActions.teams.teamData(newTeam));
+    // console.log(newTeam);
+    //arr.push(newTeam);
+    // const newTeamsList = [...teams, newTeam];
+  };
+
+  return createTeamForm({
+    handleCreateSubmit,
+    handleSelection,
+    setTitle,
+    children,
+  });
 };
 
 export default CreateTeam;

@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
-import { PageHeader, Badge, Space } from 'antd';
-import InfiniteScroll from 'react-infinite-scroller';
-import { Header } from 'antd/lib/layout/layout';
-import TeamDetailList from './TeamDetailList';
-import TeamTasks from './TeamTasks';
-import './TeamDetails.css';
-import TeamDetailsDropDown from './TeamDetailsDropDown';
+import React, { useState } from "react";
+import { PageHeader, Badge, Space } from "antd";
+import InfiniteScroll from "react-infinite-scroller";
+import { Header } from "antd/lib/layout/layout";
+import TeamDetailList from "./TeamDetailList";
+import TeamTasks from "./tasks/TeamTasks";
+import "./TeamDetails.css";
+import TeamDetailsDropDown from "./TeamDetailsDropDown";
 
 const TeamDetails = ({
   team,
@@ -37,13 +37,10 @@ const TeamDetails = ({
           />,
         ]}
       ></PageHeader>
-      <Space
-        direction="vertical"
-        style={{ width: '-webkit-fill-available' }}
-      >
+      <Space direction="vertical" style={{ width: "-webkit-fill-available" }}>
         <div
           className="demo-infinite-container"
-          style={{ height: 'fit-content' }}
+          style={{ height: "fit-content" }}
         >
           <InfiniteScroll
             initialLoad={false}
@@ -65,12 +62,12 @@ const TeamDetails = ({
           >
             <Header
               style={{
-                background: 'rgb(250, 250, 250)',
-                padding: '0px',
+                background: "rgb(250, 250, 250)",
+                padding: "0px",
               }}
             >
-              <div style={{ fontWeight: 'bold' }}>
-                {'Team Members '}{' '}
+              <div style={{ fontWeight: "bold" }}>
+                {"Team Members "}{" "}
                 <Badge className="team-badge" count={nodeMapLength} />
               </div>
             </Header>

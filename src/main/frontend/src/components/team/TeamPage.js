@@ -1,22 +1,18 @@
-import React, { useState, useEffect } from 'react';
-import { Modal } from 'antd';
-import { useDispatch, useSelector } from 'react-redux';
-import { Redirect } from 'react-router-dom';
-import { ExclamationCircleOutlined } from '@ant-design/icons';
-import 'antd/dist/antd.css';
+import React, { useState, useEffect } from "react";
+import { Modal } from "antd";
+import { useDispatch, useSelector } from "react-redux";
+import { Redirect } from "react-router-dom";
+import { ExclamationCircleOutlined } from "@ant-design/icons";
+import allActions from "../../redux/actions/index";
+import TeamDetails from "./TeamDetails";
+import TeamDeletedPage from "./TeamDeletedPage";
+import useTeams from "../../hooks/useTeams";
+import api from "../../apis/api";
 
-import allActions from '../../redux/actions/index';
-import TeamDetails from './TeamDetails';
-import TeamDeletedPage from './TeamDeletedPage';
-import useTeams from '../../hooks/useTeams';
-import api from '../../api';
-
-// const { Title } = Typography;
 const { confirm } = Modal;
 
 const TeamPage = () => {
   const team = useSelector((state) => state.teams.teamSelected);
-  const teams = useSelector((state) => state.teams.teamData);
   const [, setShowModal] = useState(0);
   const [loading, setLoading] = useState(false);
   const [hasMore, setHasMore] = useState(true);
@@ -30,7 +26,7 @@ const TeamPage = () => {
     if (deletedTeam) {
       const sendUpdate = async () => {
         await api
-          .delete(`api/v1/teams/${deletedTeam.id}`)
+          .delete(`teams/${deletedTeam.id}`)
           .then(() => dispatch(allActions.teams.teamDeleted(team.id)))
           .catch((error) => {
             console.log(error);
@@ -47,12 +43,12 @@ const TeamPage = () => {
     confirm({
       title: `Delete ${team.teamName} ?`,
       icon: <ExclamationCircleOutlined />,
-      content: 'This is permanent!',
+      content: "This is permanent!",
       onOk() {
         setDeletedTeam(team);
       },
       onCancel() {
-        console.log('Cancel');
+        console.log("Cancel");
       },
     });
   };
@@ -71,9 +67,9 @@ const TeamPage = () => {
   // };
 
   const handleInfiniteOnLoad = () => {
-    setData(team.team);
+    setData(team.employees);
     setLoading(true);
-    if (data.length > 14) {
+    if (team.employees.length > 14) {
       setHasMore(false);
       setLoading(false);
       return;
@@ -93,6 +89,7 @@ const TeamPage = () => {
           hasMore={hasMore}
           setShowModal={setShowModal}
           handlePopCancel={() => setShowModal(0)}
+          data-testid="team-page"
         />
       )}
     </div>

@@ -10,6 +10,7 @@ import javax.persistence.*;
 import java.io.Serial;
 import java.util.HashSet;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
 
 @Configuration
@@ -32,8 +33,9 @@ public class Team {
     @Column(unique = true)
     private String teamName;
 
-    @OneToMany(mappedBy = "team")
-    private Set<TeamTask> teamTasks;
+//    @JsonManagedReference
+//    @OneToMany(mappedBy = "team")
+//    private Set<TeamTask> teamTasks;
 
     @ManyToMany
     @JoinTable(name = "team_members",
@@ -60,13 +62,13 @@ public class Team {
         this.employees = employees;
     }
 
-    public Set<TeamTask> getTeamTasks() {
-        return teamTasks;
-    }
-
-    public void setTeamTasks(Set<TeamTask> teamTasks) {
-        this.teamTasks = teamTasks;
-    }
+//    public Optional<Set<TeamTask>> getTeamTasks() {
+//        return Optional.ofNullable(teamTasks);
+//    }
+//
+//    public void setTeamTasks(Set<TeamTask> teamTasks) {
+//        this.teamTasks = teamTasks;
+//    }
 
     public Long getId() {
         return id;
@@ -88,20 +90,17 @@ public class Team {
         this.employees = employees;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Team team = (Team) o;
+        return id.equals(team.id) && teamName.equals(team.teamName)  && employees.equals(team.employees);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id);
-    }
-
-    @Override
-    public String toString() {
-        return "Team{" +
-                "id=" + id +
-                ", members=" +
-                '}';
+        return Objects.hash(id, teamName, employees);
     }
 }
+

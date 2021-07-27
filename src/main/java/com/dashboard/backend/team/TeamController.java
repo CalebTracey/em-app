@@ -60,7 +60,6 @@ public class TeamController {
     @PutMapping("teams/{id}")
     public ResponseEntity<?> updateTeam(@PathVariable Long id, @Valid @RequestBody Team newTeam) {
         Team updatedTeam = teamRepository.findById(id).map(team -> {
-            team.setId(newTeam.getId());
             team.setTeamName(newTeam.getTeamName());
             team.setEmployees(newTeam.getEmployees());
             return teamService.save(newTeam);
