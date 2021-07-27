@@ -1,6 +1,4 @@
 # dashboard-full
-Full stack employee management application. 
+Full stack employee management application that utilizes a React js frontend to accesses data through a RESTful API. 
 
-This application utilizes a React js frontend and accesses data through a RESTful API. 
-
-The API was developed using Java and Spring Boot. It incorperates Spring AOP, Spring HATEOS, and Hibernate through Spring JPA to provide a true RESTful service.
+The API was developed using Java and Spring Boot. It incorperates Spring AOP, Spring HATEOS, and Hibernate through Spring JPA to access a database and provide a true RESTful service.
