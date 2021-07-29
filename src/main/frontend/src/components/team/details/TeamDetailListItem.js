@@ -1,6 +1,6 @@
-import React, { useRef, useState } from "react";
-import { List, Avatar, Button, Popconfirm } from "antd";
-import { Link } from "react-router-dom";
+import React, { useState } from 'react';
+import { List, Avatar, Button, Popconfirm } from 'antd';
+import { Link } from 'react-router-dom';
 
 const TeamDetailListItem = ({
   team,
@@ -11,17 +11,12 @@ const TeamDetailListItem = ({
   confirmLoading,
 }) => {
   const [danger, setDanger] = useState(false);
-  const ref = useRef();
   return (
-    // <div>
-    <List.Item
-      key={employee.id}
-      actions={<Link to={`/employee/${employee.id}`} />}
-    >
+    <List.Item key={employee.id}>
       <List.Item.Meta
         avatar={<Avatar src={employee.avatar} />}
         title={
-          <Link innerRef={ref} to={`/employee/${employee.id}`}>
+          <Link to={`/employee/${employee.id}`}>
             {`${employee.firstName} 
                     ${employee.lastName}`}
           </Link>
@@ -48,8 +43,6 @@ const TeamDetailListItem = ({
         </Button>
       </Popconfirm>
     </List.Item>
-
-    // </div>
   );
 };
 

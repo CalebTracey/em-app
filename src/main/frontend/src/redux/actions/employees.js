@@ -1,8 +1,4 @@
-import {
-  EMPLOYEES_FETCHED,
-  EMPLOYEE_ADDED,
-  EMPLOYEE_SELECTED,
-} from './types';
+import { EMPLOYEES_FETCHED, EMPLOYEE_ADDED, EMPLOYEE_SELECTED, EMPLOYEE_DELETED } from './types';
 
 const employeeData = (employees) => {
   return {
@@ -25,8 +21,16 @@ const employeeSelected = (employee) => {
   };
 };
 
+const employeeDeleted = (employeeId) => {
+  return {
+    type: EMPLOYEE_DELETED,
+    payload: employeeId,
+  };
+};
+
 export const employees = {
   employeeData,
   employeeAdded,
   employeeSelected,
+  employeeDeleted,
 };

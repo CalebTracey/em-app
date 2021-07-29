@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@ant-design/icons": "^4.6.2",
+    "@babel/helper-module-imports": "^7.14.5",
     "@craco/craco": "^6.2.0",
     "@react-spring/web": "^9.2.4",
     "@reduxjs/toolkit": "^1.6.1",
@@ -11,8 +13,14 @@
     "@testing-library/user-event": "^12.1.10",
     "antd": "^4.16.6",
     "axios": "^0.21.1",
+    "cors": "^2.8.5",
     "craco-less": "^1.18.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^3.4.0",
+    "eslint-plugin-react": "^7.24.0",
+    "express": "^4.17.1",
     "faker": "^5.5.3",
+    "prop-types": "^15.7.2",
     "rc-queue-anim": "^1.8.5",
     "rc-texty": "^0.2.0",
     "rc-tween-one": "^2.7.3",
@@ -36,11 +44,33 @@
     "build": "craco build",
     "test": "craco test"
   },
+  "prettier": {
+    "printWidth": 100,
+    "singleQuote": true
+  },
   "eslintConfig": {
     "extends": [
       "react-app",
-      "react-app/jest"
-    ]
+      "react-app/jest",
+      "prettier",
+      "plugin:prettier/recommended"
+    ],
+    "plugins": [
+      "react",
+      "prettier"
+    ],
+    "rules": {
+      "prettier/prettier": [
+        "warn"
+      ]
+    },
+    "parser": "babel-eslint",
+    "parserOptions": {
+      "ecmaVersion": 2016,
+      "ecmaFeatures": {
+        "jsx": true
+      }
+    }
   },
   "browserslist": {
     "production": [
@@ -52,16 +82,6 @@
       "last 1 chrome version",
       "last 1 firefox version",
       "last 1 safari version"
-    ]
-  },
-  "devDependencies": {
-    "@babel/helper-module-imports": "^7.14.5",
-    "cors": "^2.8.5",
-    "express": "^4.17.1"
-  },
-  "jest": {
-    "transformIgnorePatterns": [
-      "/node_modules/(?!antd|@ant-design|rc-.+?|@babel/runtime).+(js|jsx)$"
     ]
   }
 }

@@ -5,7 +5,7 @@ import {
   TEAM_DELETED,
   TEAM_ADDED,
   TEAM_TASKS_FETCHED,
-} from "../actions/types";
+} from '../actions/types';
 
 const initialState = {
   teamData: [],
@@ -44,9 +44,7 @@ const teamsReducer = (state = initialState, action) => {
     case TEAM_DELETED:
       return {
         ...state,
-        teamData: [
-          ...state.teamData.filter((team) => team.id !== action.payload),
-        ],
+        teamData: [...state.teamData.filter((team) => team.id !== action.payload)],
       };
     case TEAM_SELECTED:
       return {

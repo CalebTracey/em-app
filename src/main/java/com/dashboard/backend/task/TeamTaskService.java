@@ -9,7 +9,7 @@ import java.util.List;
 public class TeamTaskService {
 
     private TeamTaskRepository teamTaskRepository;
-    
+
     @Autowired
     public TeamTaskService(TeamTaskRepository teamTaskRepository) {
         this.teamTaskRepository = teamTaskRepository;

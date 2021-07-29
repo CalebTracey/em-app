@@ -2,22 +2,79 @@ package com.dashboard.backend.team;
 
 import com.dashboard.backend.employee.Employee;
 import com.dashboard.backend.employee.EmployeeController;
+import com.dashboard.backend.employee.EmployeeModel;
+import com.dashboard.backend.employee.EmployeeService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.server.RepresentationModelAssembler;
+import org.springframework.hateoas.server.mvc.RepresentationModelAssemblerSupport;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.PathVariable;
+
+import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 @Component
-public class TeamModelAssembler implements RepresentationModelAssembler<Team, EntityModel<Team>> {
+public class TeamModelAssembler extends RepresentationModelAssemblerSupport<Team, TeamModel> {
 
-        @Override
-        public EntityModel<Team> toModel(Team team) {
-
-            return EntityModel.of(team,
-                    linkTo(methodOn(TeamController.class).one(team.getId())).withSelfRel(),
-                    linkTo(methodOn(TeamController.class).all()).withRel("teams"));
-        }
+    public TeamModelAssembler() {
+        super(TeamService.class, TeamModel.class);
     }
+
+    @Override
+    public TeamModel toModel(Team team) {
+
+        TeamModel teamModel = instantiateModel(team);
+
+        teamModel.add(linkTo(
+                methodOn(TeamController.class)
+                        .getTeamById(team.getId()))
+                            .withSelfRel());
+        if (team.getEmployees() == null ) {
+            teamModel.setEmployees(Collections.emptyList());
+        } else {
+            teamModel.setEmployees(toEmployeeModel(team.getEmployees()));
+        }
+
+        teamModel.setId(team.getId());
+        teamModel.setTeamName(team.getTeamName());
+        teamModel.setEmployees(toEmployeeModel(team.getEmployees()));
+//        teamModel.setEmployees(toEmployeeModel(team.getEmployees()));
+
+        return teamModel;
+    }
+
+    @Override
+    public CollectionModel<TeamModel> toCollectionModel(Iterable<? extends Team> entities){
+        CollectionModel<TeamModel> teamModels = super.toCollectionModel(entities);
+
+        teamModels.add(linkTo(methodOn(TeamController.class).getAllTeams()).withSelfRel());
+
+        return teamModels;
+    }
+
+    private List<EmployeeModel> toEmployeeModel(List<Employee> employees) {
+        if (employees.isEmpty())
+            return Collections.emptyList();
+
+        return employees.stream()
+                .map(employee -> EmployeeModel.builder()
+                        .id(employee.getId())
+                        .firstName(employee.getFirstName())
+                        .lastName(employee.getLastName())
+                        .avatar(employee.getAvatar())
+                        .build()
+                        .add(linkTo(
+                                methodOn(EmployeeController.class)
+                                        .getEmployeeById(employee.getId()))
+                                .withSelfRel()))
+                .collect(Collectors.toList());
+    }
+
+}
 

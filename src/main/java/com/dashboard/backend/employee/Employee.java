@@ -2,20 +2,29 @@ package com.dashboard.backend.employee;
 
 import com.dashboard.backend.team.Team;
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import org.springframework.boot.context.properties.ConfigurationProperties;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.context.annotation.Configuration;
 
 import javax.persistence.*;
-import java.io.Serial;
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.*;
 
+
+@Data
+@Builder
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
 @Configuration
 @Table(name = "EMPLOYEES")
-public class Employee {
+public class Employee{
+
+//    private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(
@@ -48,10 +57,7 @@ public class Employee {
     private Integer age;
 
 //    @ManyToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(
-//            name = "team_id",
-//            nullable = true,
-//            referencedColumnName = "team_id")
+//    @JoinColumn(name = "team_id")
 //    @JsonBackReference
 //    private Team team;
 
@@ -59,15 +65,10 @@ public class Employee {
     @JsonBackReference
     @JoinTable(name = "team_members",
             joinColumns = @JoinColumn(
-                    name = "employee_id",
-                    referencedColumnName = "id"),
+                    name = "employee_id"),
             inverseJoinColumns = @JoinColumn(
-                    name = "team_id",
-                    referencedColumnName = "id"))
-    private final Set<Team> teams = new HashSet<>();
-
-    public Employee() {
-    }
+                    name = "team_id"))
+    private List<Team> teams;
 
     public Employee(
             String firstName,
@@ -77,7 +78,8 @@ public class Employee {
             String phoneNumber,
             String address,
             String avatar,
-            LocalDate dob
+            LocalDate dob,
+            List<Team> teams
     ) {
         this.firstName = firstName;
         this.lastName = lastName;
@@ -87,7 +89,13 @@ public class Employee {
         this.address = address;
         this.avatar = avatar;
         this.dob = dob;
+        this.teams = teams;
     }
+
+    public void setTeams(List<Team> teams) {
+        this.teams = teams;
+    }
+
 
     public Long getId() {
         return id;
@@ -178,7 +186,7 @@ public class Employee {
         this.age = age;
     }
 
-    public Set<Team> getTeams() {
+    public List<Team> getTeams() {
         return teams;
     }
 

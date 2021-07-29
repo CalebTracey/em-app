@@ -1,13 +1,11 @@
-import React, { useState, useEffect } from "react";
-import { Modal } from "antd";
-import { useDispatch, useSelector } from "react-redux";
-import { Redirect } from "react-router-dom";
-import { ExclamationCircleOutlined } from "@ant-design/icons";
-import allActions from "../../redux/actions/index";
-import TeamDetails from "./TeamDetails";
-import TeamDeletedPage from "./TeamDeletedPage";
-import useTeams from "../../hooks/useTeams";
-import api from "../../apis/api";
+import React, { useState } from 'react';
+import { Modal } from 'antd';
+import { useDispatch, useSelector } from 'react-redux';
+import { Redirect, useHistory } from 'react-router-dom';
+import { ExclamationCircleOutlined } from '@ant-design/icons';
+import allActions from '../../redux/actions/index';
+import TeamDetails from './details/TeamDetails';
+import api from '../../apis/api';
 
 const { confirm } = Modal;
 
@@ -16,39 +14,30 @@ const TeamPage = () => {
   const [, setShowModal] = useState(0);
   const [loading, setLoading] = useState(false);
   const [hasMore, setHasMore] = useState(true);
-  const [deletedTeam, setDeletedTeam] = useState(null);
-  const [data, setData] = useState([]);
   const dispatch = useDispatch();
+  const history = useHistory();
 
-  useTeams();
-
-  useEffect(() => {
-    if (deletedTeam) {
-      const sendUpdate = async () => {
-        await api
-          .delete(`teams/${deletedTeam.id}`)
-          .then(() => dispatch(allActions.teams.teamDeleted(team.id)))
-          .catch((error) => {
-            console.log(error);
-          });
-      };
-      sendUpdate();
-    }
-    return () => {
-      setDeletedTeam(null);
-    };
-  }, [deletedTeam]);
+  const deleteTeam = async (team) => {
+    await api
+      .delete(`teams/${team.id}`)
+      .then(() => dispatch(allActions.teams.teamDeleted(team.id)))
+      .catch((error) => {
+        console.log(error);
+      });
+    history.push(`team-deleted/${team.id}`);
+    // <Redirect to={`team-deleted/${deletedTeam.id}`} />;
+  };
 
   const showDeleteTeamConfirm = () => {
     confirm({
       title: `Delete ${team.teamName} ?`,
       icon: <ExclamationCircleOutlined />,
-      content: "This is permanent!",
+      content: 'This is permanent!',
       onOk() {
-        setDeletedTeam(team);
+        deleteTeam(team);
       },
       onCancel() {
-        console.log("Cancel");
+        console.log('Cancel');
       },
     });
   };
@@ -67,7 +56,6 @@ const TeamPage = () => {
   // };
 
   const handleInfiniteOnLoad = () => {
-    setData(team.employees);
     setLoading(true);
     if (team.employees.length > 14) {
       setHasMore(false);
@@ -75,11 +63,11 @@ const TeamPage = () => {
       return;
     }
   };
+
   return (
     <div>
-      {team ? null : <Redirect to="/" />}
-      {deletedTeam ? (
-        <TeamDeletedPage teamName={deletedTeam.teamName} />
+      {!team ? (
+        null(<Redirect to="/" />)
       ) : (
         <TeamDetails
           team={team}

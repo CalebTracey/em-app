@@ -1,4 +1,3 @@
-import TeamTasks from "../../components/team/tasks/TeamTasks";
 import {
   TEAMS_FETCHED,
   TEAM_ADDED,
@@ -6,49 +5,37 @@ import {
   TEAM_SELECTED,
   TEAM_UPDATED,
   TEAM_TASKS_FETCHED,
-} from "./types";
+} from './types';
 
-const teamData = (teams) => {
-  return {
-    type: TEAMS_FETCHED,
-    payload: teams,
-  };
-};
+const teamData = (teams) => ({
+  type: TEAMS_FETCHED,
+  payload: teams,
+});
 
-const teamTaskData = (teamTasks) => {
-  return {
-    type: TEAM_TASKS_FETCHED,
-    payload: teamTasks,
-  };
-};
+const teamTaskData = (teamTasks) => ({
+  type: TEAM_TASKS_FETCHED,
+  payload: teamTasks,
+});
 
-const teamAdded = (team) => {
-  return {
-    type: TEAM_ADDED,
-    payload: team,
-  };
-};
+const teamAdded = (team) => ({
+  type: TEAM_ADDED,
+  payload: team,
+});
 
-const teamUpdated = (updatedTeam) => {
-  return {
-    type: TEAM_UPDATED,
-    payload: updatedTeam,
-  };
-};
+const teamUpdated = (updatedTeam) => ({
+  type: TEAM_UPDATED,
+  payload: updatedTeam,
+});
 
-const teamSelected = (team) => {
-  return {
-    type: TEAM_SELECTED,
-    payload: team,
-  };
-};
+const teamSelected = (team) => ({
+  type: TEAM_SELECTED,
+  payload: team,
+});
 
-const teamDeleted = (teamId) => {
-  return {
-    type: TEAM_DELETED,
-    payload: teamId,
-  };
-};
+const teamDeleted = (teamId) => ({
+  type: TEAM_DELETED,
+  payload: teamId,
+});
 export const teams = {
   teamData,
   teamAdded,

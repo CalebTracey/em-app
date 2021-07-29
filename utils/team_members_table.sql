@@ -1,4 +1,4 @@
-insert into team_members (employee_id, team_id) values
+insert into team_members (team_id, employee_id) values
 --(	1	,	1	),
 (	1	,	2	),
 (	1	,	3	),

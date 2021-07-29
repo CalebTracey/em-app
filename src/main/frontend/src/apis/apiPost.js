@@ -1,9 +1,6 @@
-import api from "./api";
+import api from './api';
 
-export const apiPost = async ({ url, data }) => {
-  console.log(data);
-  const response = await api.post(url, data).catch((error) => {
-    console.log(error);
-  });
-  return response;
+const apiPost = async ({ url, data }) => {
+  await api.post(url, data);
 };
+export default apiPost;

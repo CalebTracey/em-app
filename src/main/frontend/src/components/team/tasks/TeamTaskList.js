@@ -1,6 +1,6 @@
-import React from "react";
-import { Table, Dropdown, Menu, Empty, Tag } from "antd";
-import { DownCircleOutlined } from "@ant-design/icons";
+import React from 'react';
+import { Table, Dropdown, Menu, Empty } from 'antd';
+import { DownCircleOutlined } from '@ant-design/icons';
 
 const menu = (
   <Menu>
@@ -11,32 +11,32 @@ const menu = (
 
 const columns = [
   {
-    title: "Task",
-    key: "name",
-    dataIndex: "name",
+    title: 'Task',
+    key: 'name',
+    dataIndex: 'name',
   },
   {
-    title: "Client",
-    key: "client",
-    dataIndex: "client",
+    title: 'Client',
+    key: 'client',
+    dataIndex: 'client',
   },
   {
-    title: "Start Date",
-    key: "taskStart",
-    dataIndex: "taskStart",
+    title: 'Start Date',
+    key: 'taskStart',
+    dataIndex: 'taskStart',
     // sorter: (a, b) => a.start - b.start,
   },
   {
-    title: "Deadline",
-    key: "remaining",
-    dataIndex: "remaining",
+    title: 'Deadline',
+    key: 'remaining',
+    dataIndex: 'remaining',
     sorter: (a, b) => a.remaining - b.remaining,
   },
 
   {
     title: false,
-    dataIndex: "dropdown",
-    key: "dropdown",
+    dataIndex: 'dropdown',
+    key: 'dropdown',
     render: () => (
       <Dropdown overlay={menu}>
         <span>

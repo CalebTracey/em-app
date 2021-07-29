@@ -1,8 +1,8 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect } from 'react';
 
-import axios from "axios";
+import axios from 'axios';
 
-axios.defaults.baseURL = "http://localhost:8080/";
+axios.defaults.baseURL = 'http://localhost:8080/';
 
 export const useAxios = (axiosParams) => {
   // const teams = useSelector(state => state.teams.teamData);

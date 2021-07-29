@@ -1,26 +1,21 @@
-import React from "react";
-import { Result, Button } from "antd";
-import { useHistory } from "react-router-dom";
+import React from 'react';
+import { Result, Button } from 'antd';
+import { useHistory } from 'react-router-dom';
 
-const TeamDeletedPage = ({ teamName }) => {
+const TeamDeletedPage = (teamName) => {
   const history = useHistory();
 
   const handleClick = (path) => {
     history.push(path);
   };
-
   return (
     <Result
       status="success"
       title={`Successfully deleted ${teamName}`}
       size="large"
-      //subTitle=""
+      // subTitle=""
       extra={[
-        <Button
-          type="primary"
-          key="console"
-          onClick={() => handleClick("/dashboard")}
-        >
+        <Button type="primary" key="console" onClick={() => handleClick('/')}>
           Home
         </Button>,
       ]}

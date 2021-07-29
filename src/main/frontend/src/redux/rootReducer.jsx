@@ -1,7 +1,7 @@
-import { combineReducers } from "redux";
-import employees from "./reducers/employeesReducer";
-import company from "./reducers/companyReducer";
-import teams from "./reducers/teamsReducer";
+import { combineReducers } from 'redux';
+import employees from './reducers/employeesReducer';
+import company from './reducers/companyReducer';
+import teams from './reducers/teamsReducer';
 
 const rootReducer = combineReducers({
   employees,

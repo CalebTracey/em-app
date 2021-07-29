@@ -1,8 +1,7 @@
-import api from "./api";
+import api from './api';
 
-export const apiGet = async ({ url, data }) => {
-  const response = await api.get(url, data).catch((error) => {
-    console.log(error);
-  });
-  return response;
+const apiGet = async ({ url }) => {
+  return await api.get(url);
 };
+
+export default apiGet;

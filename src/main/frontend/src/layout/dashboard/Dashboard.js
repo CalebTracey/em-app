@@ -1,7 +1,7 @@
-import { Button } from "antd";
-import Layout from "antd/lib/layout/layout";
-import React from "react";
-import { useSelector } from "react-redux";
+import { Button } from 'antd';
+import Layout from 'antd/lib/layout/layout';
+import React from 'react';
+import { useSelector } from 'react-redux';
 
 const Dashboard = () => {
   const company = useSelector((state) => state.company);

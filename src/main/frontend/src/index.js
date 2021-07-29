@@ -16,5 +16,5 @@ ReactDOM.render(
       <Route component={App} />
     </Router>
   </Provider>,
-  document.querySelector('#root'),
+  document.querySelector('#root')
 );

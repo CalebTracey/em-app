@@ -30,11 +30,13 @@ public class TeamService {
         return teamRepository.save(team);
     }
 
-    public void deleteById(Long id) {
+    public void deleteTeam(Long id) {
         boolean exists = teamRepository.existsById(id);
         if (!exists) {
             throw new TeamNotFoundException("No Team found with provided id :" + id);
         }
         teamRepository.deleteById(id);
     }
+
+
 }

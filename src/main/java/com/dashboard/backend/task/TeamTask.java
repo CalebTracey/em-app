@@ -40,9 +40,7 @@ public class TeamTask {
 
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(
-            name = "team_id",
-            referencedColumnName = "id")
+    @JoinColumn(name = "team_id")
     @JsonBackReference
     private Team team;
 

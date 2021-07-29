@@ -1,6 +1,6 @@
-import { employees } from "./employees";
-import { company } from "./company";
-import { teams } from "./teams";
+import { employees } from './employees';
+import { company } from './company';
+import { teams } from './teams';
 
 const allActions = {
   employees,

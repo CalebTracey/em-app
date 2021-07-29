@@ -1,102 +1,82 @@
 package com.dashboard.backend.employee;
 
 
-import com.dashboard.backend.team.Team;
-import com.dashboard.backend.team.TeamService;
+import com.dashboard.backend.team.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Sort;
 import org.springframework.hateoas.CollectionModel;
-import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.IanaLinkRelations;
+import org.springframework.hateoas.server.ExposesResourceFor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
-import java.util.Set;
-import java.util.stream.Collectors;
-
-import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
 
 @CrossOrigin("*")
 @RestController
+@ExposesResourceFor(TeamModelAssembler.class)
 @RequestMapping(path = "api/v1/")
 public class EmployeeController {
 
     private final EmployeeService employeeService;
     private final EmployeeModelAssembler assembler;
     private final EmployeeRepository repository;
+    private final TeamRepository teamRepository;
 
     @Autowired
     public EmployeeController(
             EmployeeService employeeService,
             EmployeeModelAssembler assembler,
-            EmployeeRepository repository) {
-
+            EmployeeRepository repository,
+            TeamRepository teamRepository) {
         this.employeeService = employeeService;
         this.assembler = assembler;
         this.repository = repository;
+        this.teamRepository = teamRepository;
     }
 
     @GetMapping("employees")
-    public CollectionModel<EntityModel<Employee>> all() {
-        List<EntityModel<Employee>> employees =
-                employeeService.findAll().stream()
-                        .map(assembler::toModel)
-                        .collect(Collectors.toList());
-
-        return CollectionModel.of(employees, linkTo(
-                methodOn(EmployeeController.class)
-                        .all()).withSelfRel());
+    public ResponseEntity<CollectionModel<EmployeeModel>> getAllEmployees() {
+        List<Employee> employees = employeeService.findAll();
+        return new ResponseEntity<>(
+                assembler.toCollectionModel(employees),
+                HttpStatus.OK);
     }
 
     @GetMapping("employees/{id}")
-    public EntityModel<Employee> one(@PathVariable(value = "id") Long id) {
-        Employee employee = employeeService.findById(id);
-        return assembler.toModel(employee);
+    public ResponseEntity<EmployeeModel> getEmployeeById(@PathVariable(value = "id") Long id) {
+        return repository.findById(id).map(assembler::toModel)
+                .map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
     }
 
     @PostMapping("employees")
-    ResponseEntity<?> newEmployee(@RequestBody Employee newEmployee) {
-        EntityModel<Employee> entityModel =
-                assembler.toModel(employeeService.save(newEmployee));
-        //(repository.save(newEmployee));
-        return ResponseEntity
-                .created(entityModel.
-                        getRequiredLink(IanaLinkRelations.SELF)
-                        .toUri()).body(entityModel);
+    ResponseEntity<?> newEmployee(@RequestBody Employee employee) {
+        EmployeeModel employeeModel = assembler.toModel(employeeService.save(employee));
+
+        return ResponseEntity.created(employeeModel.
+                getRequiredLink(IanaLinkRelations.SELF).toUri()).body(employeeModel);
     }
 
-    @DeleteMapping("employees/{id}")
+        @DeleteMapping("employees/{id}")
     ResponseEntity<?> deleteEmployee(@PathVariable Long id) {
         employeeService.deleteEmployee(id);
-//        repository.deleteById(id);
         return ResponseEntity.noContent().build();
     }
-
-    @PutMapping("employees/{id}")
-    ResponseEntity<?> replaceEmployee(@RequestBody Employee newEmployee, @PathVariable Long id) {
-        Employee updatedEmployee = repository.findById(id)
-                .map(employee -> {
-                    employee.setFirstName(newEmployee.getFirstName());
-                    employee.setLastName(newEmployee.getLastName());
-                    employee.setJobTitle(newEmployee.getJobTitle());
-                    employee.setEmail(newEmployee.getEmail());
-                    employee.setAddress(newEmployee.getAddress());
-                    employee.setPhoneNumber(newEmployee.getPhoneNumber());
-//                    employee.setDob(newEmployee.getDob());
-                    return employeeService.save(newEmployee);
-                    //return repository.save(employee);
-                })
-                .orElseGet(() -> {
-                    return employeeService.save(newEmployee);
-                    //return repository.save(newEmployee);
-                });
-
-        EntityModel<Employee> entityModel = assembler.toModel(updatedEmployee);
-
-        return ResponseEntity //
-                .created(entityModel.getRequiredLink(IanaLinkRelations.SELF).toUri()) //
-                .body(entityModel);
-    }
+//    @PutMapping("employees/{id}")
+//    ResponseEntity<?> replaceEmployee(@RequestBody Employee newEmployee, @PathVariable Long id) {
+//        Employee updatedEmployee = repository.findById(id)
+//                .map(employee -> {
+//                    employee.setFirstName(newEmployee.getFirstName());
+//                    employee.setLastName(newEmployee.getLastName());
+//                    employee.setJobTitle(newEmployee.getJobTitle());
+//                    employee.setEmail(newEmployee.getEmail());
+//                    employee.setAddress(newEmployee.getAddress());
+//                    employee.setPhoneNumber(newEmployee.getPhoneNumber());
+//                    return employeeService.save(newEmployee);
+//                })
+//                .orElseGet(() -> {
+//                    return employeeService.save(newEmployee);
+//                });
 }

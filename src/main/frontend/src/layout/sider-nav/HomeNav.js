@@ -1,7 +1,7 @@
-import React from "react";
-import { Menu } from "antd";
-import { NavLink } from "react-router-dom";
-import { HomeOutlined } from "@ant-design/icons";
+import React from 'react';
+import { Menu } from 'antd';
+import { NavLink } from 'react-router-dom';
+import { HomeOutlined } from '@ant-design/icons';
 
 export const homeNav = () => {
   return (

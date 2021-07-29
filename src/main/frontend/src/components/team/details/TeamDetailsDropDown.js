@@ -2,10 +2,7 @@ import React from 'react';
 import { Dropdown, Menu } from 'antd';
 import { MenuOutlined } from '@ant-design/icons';
 
-const TeamDetailsDropDown = ({
-  handleCreateTask,
-  showDeleteTeamConfirm,
-}) => {
+const TeamDetailsDropDown = ({ handleCreateTask, showDeleteTeamConfirm }) => {
   const menu = (
     <Menu>
       <Menu.Item key="add" onClick={handleCreateTask}>

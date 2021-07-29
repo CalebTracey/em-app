@@ -1,11 +1,6 @@
 import unsplash from '../../apis/unsplash';
 import { API } from '../actions/types';
-import {
-  accessDenied,
-  apiError,
-  apiStart,
-  apiEnd,
-} from '../actions/api';
+import { accessDenied, apiError, apiStart, apiEnd } from '../actions/api';
 
 const apiMiddleware =
   ({ dispatch }) =>
@@ -26,9 +21,7 @@ const apiMiddleware =
       label,
       headers,
     } = action.payload;
-    const dataOrParams = ['GET', 'DELETE'].includes(method)
-      ? 'params'
-      : 'data';
+    const dataOrParams = ['GET', 'DELETE'].includes(method) ? 'params' : 'data';
 
     // axios default configs
     //axios.defaults.baseURL = process.env.REACT_APP_BASE_URL || "";

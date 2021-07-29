@@ -47,7 +47,7 @@ public class TeamTaskController {
     @PostMapping("team_tasks")
     public ResponseEntity<?> newTeamTask(@RequestBody TeamTask newTeamTask) {
         EntityModel<TeamTask> entityModel =
-        assembler.toModel(teamTaskService.save(newTeamTask));
+                assembler.toModel(teamTaskService.save(newTeamTask));
         return ResponseEntity
                 .created(entityModel.
                         getRequiredLink(IanaLinkRelations.SELF)

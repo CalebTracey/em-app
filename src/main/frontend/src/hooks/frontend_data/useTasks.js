@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
-import faker from "faker";
+import { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import faker from 'faker';
 
 const useTasks = () => {
   faker.seed(12345);
@@ -18,19 +18,13 @@ const useTasks = () => {
       };
       const myDate = new Date();
       const date = new Date(
-        Date.UTC(
-          myDate.getUTCFullYear(),
-          myDate.getUTCMonth(),
-          myDate.getUTCDate()
-        )
+        Date.UTC(myDate.getUTCFullYear(), myDate.getUTCMonth(), myDate.getUTCDate())
       );
       // const tn = faker.fake("{{company.bsBuzz}} {{company.bsAdjective}} {{company.bsNoun}}");
       // const taskName = tn.charAt(0).toUpperCase() + tn.slice(1);
 
       const generatedList = arr.map(() => ({
-        name: faker.fake(
-          "{{company.bsBuzz}} {{company.bsAdjective}} {{company.bsNoun}}"
-        ),
+        name: faker.fake('{{company.bsBuzz}} {{company.bsAdjective}} {{company.bsNoun}}'),
         description: faker.name.jobTitle(),
         client: faker.company.companyName(),
         clientPhone: faker.phone.phoneNumberFormat(),

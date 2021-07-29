@@ -1,80 +1,83 @@
 package com.dashboard.backend.team;
 
+import com.dashboard.backend.employee.Employee;
+import com.dashboard.backend.employee.EmployeeModel;
+import com.dashboard.backend.employee.EmployeeModelAssembler;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.IanaLinkRelations;
+import org.springframework.hateoas.server.ExposesResourceFor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 import java.util.List;
-import java.util.stream.Collectors;
-
-import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
 
 @CrossOrigin("*")
 @RestController
+@ExposesResourceFor(EmployeeModelAssembler.class)
 @RequestMapping(path = "api/v1/")
 public class TeamController {
 
-    private TeamService teamService;
     private TeamRepository teamRepository;
+    private TeamService teamService;
     private TeamModelAssembler assembler;
 
     @Autowired
     public TeamController(
-            TeamService teamService,
             TeamRepository teamRepository,
-            TeamModelAssembler assembler) {
-        this.teamService = teamService;
+            TeamService teamService, TeamModelAssembler assembler) {
         this.teamRepository = teamRepository;
+        this.teamService = teamService;
         this.assembler = assembler;
     }
 
     @GetMapping({"teams"})
-    public CollectionModel<EntityModel<Team>> all(){
-        List<EntityModel<Team>> teams = teamService.getTeams().stream().
-                map(assembler::toModel)
-                .collect(Collectors.toList());
-        return CollectionModel.of(teams, linkTo(
-                        methodOn(TeamController.class).all()).withSelfRel());
+    public ResponseEntity<CollectionModel<TeamModel>> getAllTeams(){
+        List<Team> teams = teamRepository.findAll();
+        return new ResponseEntity<>(
+                assembler.toCollectionModel(teams),
+                HttpStatus.OK);
+
     }
 
-    @GetMapping({"teams/{id}"})
-    public EntityModel<Team> one(@PathVariable Long id){
-        Team team = teamService.findById(id);
-        return assembler.toModel(team);
+    @GetMapping("teams/{id}")
+    public ResponseEntity<TeamModel> getTeamById(@PathVariable("id") Long id)
+    {
+        return teamRepository.findById(id)
+                .map(assembler::toModel)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
     }
 
     @PostMapping("teams")
-    ResponseEntity<?> newTeam(@RequestBody Team newTeam) {
-        EntityModel<Team> entityModel =
-                assembler.toModel(teamService.save(newTeam));
-        return ResponseEntity
-                .created(entityModel.
-                        getRequiredLink(IanaLinkRelations.SELF)
-                        .toUri()).body(entityModel);
-    }
+    ResponseEntity<?> newEmployee(@RequestBody Team team) {
+        TeamModel teamModel = assembler.toModel(teamService.save(team));
 
-    @PutMapping("teams/{id}")
-    public ResponseEntity<?> updateTeam(@PathVariable Long id, @Valid @RequestBody Team newTeam) {
-        Team updatedTeam = teamRepository.findById(id).map(team -> {
-            team.setTeamName(newTeam.getTeamName());
-            team.setEmployees(newTeam.getEmployees());
-            return teamService.save(newTeam);
-        }).orElseGet(() -> {
-            return teamService.save(newTeam);
-        });
-            EntityModel<Team> entityModel = assembler.toModel(updatedTeam);
-            return ResponseEntity.created(entityModel.getRequiredLink(IanaLinkRelations.SELF).toUri())
-                    .body(entityModel);
-
+        return ResponseEntity.created(teamModel.
+                getRequiredLink(IanaLinkRelations.SELF).toUri()).body(teamModel);
     }
 
     @DeleteMapping("teams/{id}")
-    ResponseEntity<?> deleteTeam(@PathVariable Long id){
-        teamService.deleteById(id);
+    ResponseEntity<?> deleteEmployee(@PathVariable Long id) {
+        teamService.deleteTeam(id);
         return ResponseEntity.noContent().build();
     }
+
+//
+//    @PutMapping("teams/{id}")
+//    public ResponseEntity<?> updateTeam(@PathVariable Long id, @Valid @RequestBody Team newTeam) {
+//        Team updatedTeam = teamRepository.findById(id).map(team -> {
+//            team.setTeamName(newTeam.getTeamName());
+//            team.setEmployees(newTeam.getEmployees());
+//            return teamService.save(newTeam);
+//        }).orElseGet(() -> {
+//            return teamService.save(newTeam);
+//        });
+//        EntityModel<Team> entityModel = assembler.toModel(updatedTeam);
+//        return ResponseEntity.created(entityModel.getRequiredLink(IanaLinkRelations.SELF).toUri())
+//                .body(entityModel);
+//
+//    }
+
 }
