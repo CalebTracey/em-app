@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import { Form, Input, Button, Card, message } from 'antd';
 import allActions from '../../redux/actions/index';
 import api from '../../apis/api';
@@ -13,6 +14,7 @@ const AddEmployee = () => {
   const [phoneNumber, setPhoneNumber] = useState(null);
   const [address, setAddress] = useState(null);
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const data = JSON.stringify({
     firstName,
@@ -30,7 +32,9 @@ const AddEmployee = () => {
       .post('employees', data)
       .then((res) => {
         dispatch(allActions.employees.employeeAdded(res.data));
+        dispatch(allActions.employees.employeeSelected(res.data));
         message.success(`${firstName} ${lastName} added`);
+        history.push('/');
       })
       .catch((error) => {
         message.error(`Problem adding ${firstName} ${lastName} to the list`);

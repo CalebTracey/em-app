@@ -4,6 +4,10 @@ import com.dashboard.backend.employee.Employee;
 import com.dashboard.backend.employee.EmployeeController;
 import com.dashboard.backend.employee.EmployeeModel;
 import com.dashboard.backend.employee.EmployeeService;
+import com.dashboard.backend.task.TeamTask;
+
+import com.dashboard.backend.task.TeamTaskController;
+import com.dashboard.backend.task.TeamTaskModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
@@ -13,7 +17,9 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
@@ -31,10 +37,11 @@ public class TeamModelAssembler extends RepresentationModelAssemblerSupport<Team
 
         TeamModel teamModel = instantiateModel(team);
 
-        teamModel.add(linkTo(
-                methodOn(TeamController.class)
+        teamModel.add(
+                linkTo(methodOn(TeamController.class)
                         .getTeamById(team.getId()))
                             .withSelfRel());
+
         if (team.getEmployees() == null ) {
             teamModel.setEmployees(Collections.emptyList());
         } else {
@@ -44,7 +51,7 @@ public class TeamModelAssembler extends RepresentationModelAssemblerSupport<Team
         teamModel.setId(team.getId());
         teamModel.setTeamName(team.getTeamName());
         teamModel.setEmployees(toEmployeeModel(team.getEmployees()));
-//        teamModel.setEmployees(toEmployeeModel(team.getEmployees()));
+        teamModel.setTeamTasks(toTeamTaskModel(team.getTeamTasks()));
 
         return teamModel;
     }
@@ -56,6 +63,29 @@ public class TeamModelAssembler extends RepresentationModelAssemblerSupport<Team
         teamModels.add(linkTo(methodOn(TeamController.class).getAllTeams()).withSelfRel());
 
         return teamModels;
+    }
+
+    private List<TeamTaskModel> toTeamTaskModel(List<TeamTask> teamTasks) {
+        if (teamTasks.isEmpty())
+            return Collections.emptyList();
+
+        return teamTasks.stream()
+                .map(teamTask -> TeamTaskModel.builder()
+                        .id(teamTask.getId())
+                        .name(teamTask.getName())
+                        .clientPhone(teamTask.getClientPhone())
+                        .client(teamTask.getClient())
+                        .remaining(teamTask.getRemaining())
+                        .duration(teamTask.getDuration())
+                        .description(teamTask.getDescription())
+                        .taskEnd(teamTask.getTaskEnd())
+                        .taskStart(teamTask.getTaskStart())
+//                .team(toModel(teamTask.getTeam()))
+                        .build().add(
+                                linkTo(methodOn(TeamTaskController.class)
+                                        .getTeamTaskById(teamTask.getId()))
+                                        .withSelfRel()
+                        )).collect(Collectors.toList());
     }
 
     private List<EmployeeModel> toEmployeeModel(List<Employee> employees) {

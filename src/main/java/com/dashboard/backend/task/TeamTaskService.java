@@ -15,7 +15,7 @@ public class TeamTaskService {
         this.teamTaskRepository = teamTaskRepository;
     }
 
-    public List<TeamTask> getTeamTasks() {
+    public List<TeamTask> findAll() {
         return teamTaskRepository.findAll();
     }
 
@@ -28,4 +28,6 @@ public class TeamTaskService {
         return teamTaskRepository.save(newTeamTask);
 
     }
+
+
 }

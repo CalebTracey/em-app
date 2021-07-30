@@ -1,18 +1,9 @@
-import React, { useEffect } from 'react';
-import { Link, useHistory, Redirect } from 'react-router-dom';
+import React from 'react';
+import { Link, Redirect } from 'react-router-dom';
 import { Menu, Spin } from 'antd';
 import { TeamOutlined } from '@ant-design/icons';
 
 const TeamList = ({ clickHandler, teams }) => {
-  // const [isLoading, setIsLoading] = useState(true);
-  const history = useHistory();
-
-  useEffect(() => {
-    if (teams.length === 0 || undefined) {
-      history.push('/');
-    }
-  }, [history, teams]);
-
   const listNode =
     teams.length <= 1 ? (
       <Redirect to="/" />
@@ -31,7 +22,8 @@ const TeamList = ({ clickHandler, teams }) => {
         );
       })
     );
-  return !teams ? <Spin /> : <Menu.ItemGroup children={listNode} />;
+
+  return !teams ? <Spin /> : <Menu.ItemGroup>{listNode}</Menu.ItemGroup>;
 };
 
 export default TeamList;

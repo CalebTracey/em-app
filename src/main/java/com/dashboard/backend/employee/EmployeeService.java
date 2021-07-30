@@ -3,8 +3,6 @@ package com.dashboard.backend.employee;
 import com.dashboard.backend.team.Team;
 import com.dashboard.backend.team.TeamModelAssembler;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Sort;
-import org.springframework.hateoas.EntityModel;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -14,7 +12,6 @@ import java.util.Optional;
 
 @Service
 public class EmployeeService {
-
 
     private final EmployeeRepository employeeRepository;
     private final TeamModelAssembler teamAssembler;

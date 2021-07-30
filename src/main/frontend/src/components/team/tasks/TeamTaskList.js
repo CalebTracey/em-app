@@ -8,10 +8,9 @@ const menu = (
     <Menu.Item key="remove">Delete Task</Menu.Item>
   </Menu>
 );
-
 const columns = [
   {
-    title: 'Task',
+    title: `Tasks`,
     key: 'name',
     dataIndex: 'name',
   },
@@ -47,13 +46,12 @@ const columns = [
   },
 ];
 
-const TeamTaskList = ({ tasks }) => {
-  console.log({ tasks });
+const TeamTaskList = ({ tasks, setTitleBadge }) => {
   return !tasks ? (
     <Empty />
   ) : (
     <Table
-      pagination={{ hideOnSinglePage: true }}
+      pagination={{ hideOnSinglePage: true, pageSize: 4 }}
       columns={columns}
       dataSource={tasks}
       size="large"

@@ -39,9 +39,9 @@ const SideNav = ({ company }) => {
   };
 
   return (
-    <Sider style={{ overflow: 'auto', position: 'fixed', left: 0, height: '100vh' }}>
+    <Sider key="sider" style={{ overflow: 'auto', position: 'fixed', left: 0, height: '100vh' }}>
       <div className="logo" />
-      <Menu theme="dark" mode="inline">
+      <Menu key="sider-menu" theme="dark" mode="inline">
         {homeNav(company)}
         <SubMenu
           key="employees"

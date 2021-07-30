@@ -1,6 +1,8 @@
 import React from 'react';
 import { Layout, Card } from 'antd';
+import { DashboardTeamsList } from './DashboardTeamsList';
 
-export const DashboardTeams = () => {
-  return <Layout></Layout>;
+const DashboardTeams = ({ teams }) => {
+  return <DashboardTeamsList teams={teams} />;
 };
+export default DashboardTeams;

@@ -2,7 +2,10 @@ package com.dashboard.backend.team;
 
 import com.dashboard.backend.employee.Employee;
 import com.dashboard.backend.employee.EmployeeModel;
+import com.dashboard.backend.task.TeamTask;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -11,23 +14,22 @@ import lombok.NoArgsConstructor;
 import org.springframework.context.annotation.Configuration;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 
 
-
+//@DiscriminatorColumn(name="product_type",
+//        discriminatorType = DiscriminatorType.INTEGER)
 @Data
 @Builder
 @Entity
 @AllArgsConstructor
-@NoArgsConstructor
 @Configuration
-@Table(name = "TEAMS")
+@Table(name = "teams", schema="public")
 public class Team {
-
-
-//    private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(
@@ -41,15 +43,19 @@ public class Team {
     )
     protected Long id;
     private String teamName;
-    private Integer team_id;
-//    @JsonManagedReference
-//    @OneToMany(mappedBy = "team")
-//    private Set<TeamTask> teamTasks;
+
+
+    @OneToMany(mappedBy = "team", cascade = CascadeType.ALL)
+    private List<TeamTask> teamTasks;
 
     @ManyToMany(mappedBy = "teams")
     private List<Employee> employees;
 
+    public Team() { super();
+    }
+
     public Team(String teamName) {
+        super();
         this.teamName = teamName;
     }
 
@@ -58,21 +64,19 @@ public class Team {
         this.employees = employees;
     }
 
-    public Team(List<Employee> employees) {
+    public Team(String teamName, List<TeamTask> teamTasks, List<Employee> employees) {
+        this.teamName = teamName;
+        this.teamTasks = teamTasks;
         this.employees = employees;
     }
-
-    //    public Optional<Set<TeamTask>> getTeamTasks() {
-//        return Optional.ofNullable(teamTasks);
-//    }
-//
-//    public void setTeamTasks(Set<TeamTask> teamTasks) {
-//        this.teamTasks = teamTasks;
-//    }
 
 
     public Long getId() {
         return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getTeamName() {
@@ -81,6 +85,14 @@ public class Team {
 
     public void setTeamName(String teamName) {
         this.teamName = teamName;
+    }
+
+    public List<TeamTask> getTeamTasks() {
+        return teamTasks;
+    }
+
+    public void setTeamTasks(List<TeamTask> teamTasks) {
+        this.teamTasks = teamTasks;
     }
 
     public List<Employee> getEmployees() {
@@ -96,11 +108,23 @@ public class Team {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Team team = (Team) o;
-        return id.equals(team.id) && teamName.equals(team.teamName)  && employees.equals(team.employees);
+        return id.equals(team.id) && teamName.equals(team.teamName) && teamTasks.equals(team.teamTasks) && employees.equals(team.employees);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, teamName, employees);
+        return Objects.hash(id, teamName, teamTasks, employees);
     }
+
+    @Override
+    public String toString() {
+        return "Team{" +
+                "id=" + id +
+                ", teamName='" + teamName + '\'' +
+                ", teamTasks=" + teamTasks +
+                ", employees=" + employees +
+                '}';
+    }
+
+
 }

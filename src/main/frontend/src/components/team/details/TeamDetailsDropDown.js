@@ -5,13 +5,15 @@ import { MenuOutlined } from '@ant-design/icons';
 const TeamDetailsDropDown = ({ handleCreateTask, showDeleteTeamConfirm }) => {
   const menu = (
     <Menu>
-      <Menu.Item key="add" onClick={handleCreateTask}>
+      <Menu.Item key="add-dd" onClick={handleCreateTask}>
         Add Task
       </Menu.Item>
-      <Menu.Item key="delete" onClick={showDeleteTeamConfirm}>
+
+      <Menu.Item key="delete-dd" onClick={showDeleteTeamConfirm}>
         Delete Team
       </Menu.Item>
-      <Menu.Item key="three">3rd menu item</Menu.Item>
+
+      <Menu.Item key="three-dd">3rd menu item</Menu.Item>
     </Menu>
   );
   return (

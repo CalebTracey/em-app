@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Modal } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
-import { Redirect, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { ExclamationCircleOutlined } from '@ant-design/icons';
 import allActions from '../../redux/actions/index';
 import TeamDetails from './details/TeamDetails';
@@ -11,7 +11,6 @@ const { confirm } = Modal;
 
 const TeamPage = () => {
   const team = useSelector((state) => state.teams.teamSelected);
-  const [, setShowModal] = useState(0);
   const [loading, setLoading] = useState(false);
   const [hasMore, setHasMore] = useState(true);
   const dispatch = useDispatch();
@@ -55,33 +54,7 @@ const TeamPage = () => {
   //   setVisible(false);
   // };
 
-  const handleInfiniteOnLoad = () => {
-    setLoading(true);
-    if (team.employees.length > 14) {
-      setHasMore(false);
-      setLoading(false);
-      return;
-    }
-  };
-
-  return (
-    <div>
-      {!team ? (
-        null(<Redirect to="/" />)
-      ) : (
-        <TeamDetails
-          team={team}
-          showDeleteTeamConfirm={showDeleteTeamConfirm}
-          handleInfiniteOnLoad={handleInfiniteOnLoad}
-          loading={loading}
-          hasMore={hasMore}
-          setShowModal={setShowModal}
-          handlePopCancel={() => setShowModal(0)}
-          data-testid="team-page"
-        />
-      )}
-    </div>
-  );
+  return <TeamDetails showDeleteTeamConfirm={showDeleteTeamConfirm} data-testid="team-page" />;
 };
 
 export default TeamPage;

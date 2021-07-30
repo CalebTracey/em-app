@@ -6,9 +6,9 @@ import { PlusOutlined } from '@ant-design/icons';
 
 const createTeam = () => {
   return (
-    <Menu.Item key="crtteam1" icon={<PlusOutlined />}>
-      Create Team
-      <NavLink to={'/create-team'} />
+    <Menu.Item key="create-team" icon={<PlusOutlined />}>
+      <>Create Team</>
+      <NavLink key="create-team-nav" to={'/create-team'} />
     </Menu.Item>
   );
 };

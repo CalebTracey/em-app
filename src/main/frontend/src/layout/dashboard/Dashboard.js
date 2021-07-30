@@ -1,7 +1,8 @@
-import { Button } from 'antd';
+import { Button, Spin } from 'antd';
 import Layout from 'antd/lib/layout/layout';
-import React from 'react';
+import React, { lazy, Suspense } from 'react';
 import { useSelector } from 'react-redux';
+import DashboardTeams from './DashboardTeams';
 
 const Dashboard = () => {
   const company = useSelector((state) => state.company);
@@ -10,11 +11,7 @@ const Dashboard = () => {
 
   return (
     <Layout>
-      <div>Dashboard1234</div>
-      <div>{company.companyName}</div>
-      <div>
-        <Button type="primary"></Button>
-      </div>
+      <DashboardTeams teams={teams} />
     </Layout>
   );
 };

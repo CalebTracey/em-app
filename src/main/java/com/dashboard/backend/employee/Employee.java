@@ -21,7 +21,7 @@ import java.util.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Configuration
-@Table(name = "EMPLOYEES")
+@Table(name = "employees")
 public class Employee{
 
 //    private static final long serialVersionUID = 1L;
@@ -47,19 +47,10 @@ public class Employee{
     private String avatar;
     private LocalDate dob;
 
-//    @Column(unique = true)
-//    @GeneratedValue(strategy = GenerationType.AUTO)
-//    private UUID uuid;
-
     @Transient
     private String name;
     @Transient
     private Integer age;
-
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "team_id")
-//    @JsonBackReference
-//    private Team team;
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JsonBackReference
@@ -95,7 +86,6 @@ public class Employee{
     public void setTeams(List<Team> teams) {
         this.teams = teams;
     }
-
 
     public Long getId() {
         return id;
@@ -189,11 +179,6 @@ public class Employee{
     public List<Team> getTeams() {
         return teams;
     }
-
-    //
-//    public UUID getUuid() {
-//        return uuid;
-//    }
 
     @Override
     public boolean equals(Object o) {

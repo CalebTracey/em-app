@@ -2,7 +2,7 @@ import React, { lazy, Suspense, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Spin } from 'antd';
 import allActions from '../redux/actions/index';
-import apiGet from '../apis/apiGet';
+
 const TeamList = lazy(() => import('../components/team/TeamList'));
 
 const Teams = () => {
@@ -20,7 +20,7 @@ const Teams = () => {
   };
   return (
     <Suspense fallback={<Spin />}>
-      <TeamList key="newTeam-list" clickHandler={clickHandler} teams={teams} />;
+      <TeamList key="newTeam-list" clickHandler={clickHandler} teams={teams} />
     </Suspense>
   );
 };

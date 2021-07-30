@@ -6,12 +6,10 @@ import { PlusOutlined } from '@ant-design/icons';
 
 const addEmployee = () => {
   return (
-    <div key="empadd-main">
-      <Menu.Item key="empadd1" icon={<PlusOutlined />}>
-        Add Employee
-        <NavLink key="empadd2" to={'/addemployee'} />
-      </Menu.Item>
-    </div>
+    <Menu.Item key="empadd" icon={<PlusOutlined />}>
+      <>Add Employee</>
+      <NavLink key="empadd-nav" to={'/addemployee'} />
+    </Menu.Item>
   );
 };
 

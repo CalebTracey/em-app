@@ -4,6 +4,7 @@
         "boundry",
         "createteam",
         "error",
+        "popconfirm",
         "use"
     ],
     "editor.formatOnSave": true,

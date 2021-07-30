@@ -4,15 +4,15 @@ import { NavLink } from 'react-router-dom';
 import { PlusOutlined, CalendarOutlined } from '@ant-design/icons';
 
 const createSchedule = () => (
-  <Menu.Item key="crtsch1" icon={<PlusOutlined />}>
-    Create Task
-    <NavLink to="/create-schedule" />
+  <Menu.Item key="create-sch" icon={<PlusOutlined />}>
+    <>Create Task</>
+    <NavLink key="create-sch-nav" to="/create-schedule" />
   </Menu.Item>
 );
 const fullSchedule = () => (
-  <Menu.Item key="fullsch1" icon={<CalendarOutlined />}>
-    Full Schedule
-    <NavLink to="/full-schedule" />
+  <Menu.Item key="full-sch" icon={<CalendarOutlined />}>
+    <>Full Schedule</>
+    <NavLink key="full-sch-nav" to="/full-schedule" />
   </Menu.Item>
 );
 

@@ -9,9 +9,6 @@ import org.springframework.hateoas.server.ExposesResourceFor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 
 @CrossOrigin("*")
@@ -23,18 +20,15 @@ public class EmployeeController {
     private final EmployeeService employeeService;
     private final EmployeeModelAssembler assembler;
     private final EmployeeRepository repository;
-    private final TeamRepository teamRepository;
 
     @Autowired
     public EmployeeController(
             EmployeeService employeeService,
             EmployeeModelAssembler assembler,
-            EmployeeRepository repository,
-            TeamRepository teamRepository) {
+            EmployeeRepository repository) {
         this.employeeService = employeeService;
         this.assembler = assembler;
         this.repository = repository;
-        this.teamRepository = teamRepository;
     }
 
     @GetMapping("employees")

@@ -1,6 +1,8 @@
 package com.dashboard.backend.team;
 
 import com.dashboard.backend.employee.EmployeeModel;
+import com.dashboard.backend.task.TeamTask;
+import com.dashboard.backend.task.TeamTaskModel;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -10,6 +12,7 @@ import org.springframework.hateoas.RepresentationModel;
 import org.springframework.hateoas.server.core.Relation;
 
 import java.util.List;
+import java.util.Set;
 
 @Data
 @Builder
@@ -21,8 +24,10 @@ import java.util.List;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class TeamModel extends RepresentationModel<TeamModel> {
 
+
     protected Long id;
     private String teamName;
+    private List<TeamTaskModel> teamTasks;
     private List<EmployeeModel> employees;
 
 }

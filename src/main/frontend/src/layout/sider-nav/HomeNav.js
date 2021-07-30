@@ -6,8 +6,8 @@ import { HomeOutlined } from '@ant-design/icons';
 export const homeNav = () => {
   return (
     <Menu.Item key="home" icon={<HomeOutlined />}>
-      <div>Home</div>
-      <NavLink key="homenav" to="/" />
+      <>Home</>
+      <NavLink key="home-nav" to="/" />
     </Menu.Item>
   );
 };

@@ -2,6 +2,10 @@ package com.dashboard.backend.task;
 
 import com.dashboard.backend.team.Team;
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
 import org.springframework.context.annotation.Configuration;
 
 import javax.persistence.*;
@@ -9,8 +13,12 @@ import java.time.LocalDate;
 import java.time.Period;
 import java.util.Objects;
 
+@Data
+@Builder
 @Entity
+@AllArgsConstructor
 @Configuration
+@Embeddable
 @Table(name = "TEAM_TASKS")
 public class TeamTask {
 
@@ -39,8 +47,7 @@ public class TeamTask {
     private Integer remaining;
 
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "team_id")
+    @ManyToOne
     @JsonBackReference
     private Team team;
 
@@ -86,29 +93,6 @@ public class TeamTask {
         this.clientPhone = clientPhone;
         this.taskStart = taskStart;
         this.taskEnd = taskEnd;
-    }
-
-    public TeamTask(
-            Long id,
-            String name,
-            String description,
-            String client,
-            String clientPhone,
-            LocalDate taskStart,
-            LocalDate taskEnd,
-            Integer duration,
-            Integer remaining,
-            Team team) {
-        this.id = id;
-        this.name = name;
-        this.description = description;
-        this.client = client;
-        this.clientPhone = clientPhone;
-        this.taskStart = taskStart;
-        this.taskEnd = taskEnd;
-        this.duration = duration;
-        this.remaining = remaining;
-        this.team = team;
     }
 
     public Team getTeam() {

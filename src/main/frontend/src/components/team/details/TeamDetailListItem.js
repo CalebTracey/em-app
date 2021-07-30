@@ -1,34 +1,36 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { List, Avatar, Button, Popconfirm } from 'antd';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
+import allActions from '../../../redux/actions';
 
 const TeamDetailListItem = ({
   team,
   employee,
   setShowModal,
   handleRemoveTeamMember,
-  handlePopCancel,
   confirmLoading,
 }) => {
   const [danger, setDanger] = useState(false);
+  const dispatch = useDispatch();
   return (
     <List.Item key={employee.id}>
       <List.Item.Meta
         avatar={<Avatar src={employee.avatar} />}
         title={
-          <Link to={`/employee/${employee.id}`}>
+          <NavLink to={`/employee/${employee.id}`}>
             {`${employee.firstName} 
                     ${employee.lastName}`}
-          </Link>
+          </NavLink>
         }
         description={employee.email}
+        onClick={() => dispatch(allActions.employees.employeeSelected(employee))}
       />
       <Popconfirm
         title={`Are you sure?`}
         okText="Yes"
         onConfirm={() => handleRemoveTeamMember(employee, team)}
         okButtonProps={{ loading: confirmLoading }}
-        onCancel={handlePopCancel}
       >
         <Button
           size="small"

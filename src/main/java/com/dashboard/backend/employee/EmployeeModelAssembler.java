@@ -1,21 +1,16 @@
 package com.dashboard.backend.employee;
-import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
 
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
 import com.dashboard.backend.team.*;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.server.mvc.RepresentationModelAssemblerSupport;
 import org.springframework.stereotype.Component;
-
 import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Component
 public class EmployeeModelAssembler extends RepresentationModelAssemblerSupport<Employee, EmployeeModel> {
-
-
 
     public EmployeeModelAssembler() {
         super(EmployeeService.class, EmployeeModel.class);
@@ -29,9 +24,9 @@ public class EmployeeModelAssembler extends RepresentationModelAssemblerSupport<
         employeeModel.add(linkTo(
                 methodOn(EmployeeController.class)
                         .getEmployeeById(employee.getId()))
-                            .withSelfRel());
+                .withSelfRel());
 
-        if (employee.getTeams() == null ) {
+        if (employee.getTeams() == null) {
             employeeModel.setTeams(Collections.emptyList());
         } else {
             employeeModel.setTeams(toTeamModel(employee.getTeams()));
@@ -54,9 +49,12 @@ public class EmployeeModelAssembler extends RepresentationModelAssemblerSupport<
     @Override
     public CollectionModel<EmployeeModel> toCollectionModel(Iterable<? extends Employee> entities) {
 
-        CollectionModel<EmployeeModel> employeeModels = super.toCollectionModel(entities);
+        CollectionModel<EmployeeModel> employeeModels =
+                super.toCollectionModel(entities);
 
-        employeeModels.add(linkTo(methodOn(EmployeeController.class).getAllEmployees()).withSelfRel());
+        employeeModels.add(linkTo(methodOn(EmployeeController.class)
+                .getAllEmployees()).withSelfRel(),
+                linkTo(methodOn(TeamController.class).getAllTeams()).withRel("employee"));
 
         return employeeModels;
     }
@@ -66,7 +64,7 @@ public class EmployeeModelAssembler extends RepresentationModelAssemblerSupport<
             return Collections.emptyList();
         }
         return teams.stream().map(team ->
-                TeamModel.builder()
+                        TeamModel.builder()
                         .id(team.getId())
                         .teamName(team.getTeamName())
                         .build().add(

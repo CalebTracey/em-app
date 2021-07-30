@@ -2,7 +2,7 @@ import './App.css';
 import React, { Suspense, lazy } from 'react';
 import { useSelector } from 'react-redux';
 import { Route, Switch } from 'react-router-dom';
-import { Layout, Spin } from 'antd';
+import { Layout, Spin, Space } from 'antd';
 import useCompany from './hooks/frontend_data/useCompany';
 import SideNav from './layout/SideNav';
 import { mainHeader } from './layout/MainHeader';
@@ -29,6 +29,7 @@ const App = () => {
     <Layout style={{ minHeight: '100vh' }}>
       <SideNav />
       <Layout className="site-layout" style={{ paddingLeft: '200px' }}>
+        {/* <Space direction="vertical" style={{ width: '-webkit-fill-available' }}> */}
         {mainHeader({ company })}
         <Content
           style={{
@@ -41,9 +42,9 @@ const App = () => {
         >
           <Suspense
             fallback={
-              <div>
+              <>
                 <Spin />
-              </div>
+              </>
             }
           >
             <Switch>
@@ -62,6 +63,7 @@ const App = () => {
             </Switch>
           </Suspense>
         </Content>
+        {/* </Space> */}
       </Layout>
     </Layout>
     // </div>

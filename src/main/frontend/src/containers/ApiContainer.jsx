@@ -1,4 +1,5 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import { Spin } from 'antd';
+import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import useGetEmployees from '../hooks/useGetEmployees';
 import useGetTeams from '../hooks/useGetTeams';
@@ -26,7 +27,7 @@ const ApiContainer = () => {
     }
   }, [employeeState, getEmployees, teamState, getTeams]);
 
-  return <Dashboard />;
+  return employeeRes.isLoading || teamRes.isLoading ? <Spin /> : <Dashboard />;
 };
 
 export default ApiContainer;

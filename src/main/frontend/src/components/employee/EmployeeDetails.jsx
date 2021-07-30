@@ -12,12 +12,9 @@ const EmployeeDetails = () => {
   return !employee ? (
     <Redirect to="/" />
   ) : (
-    // )
-    // : isLoading ? (
-    //   <Spin />
-    // )
-    <EmployeeDetailsCard employee={employee} teams={teams} />
-    // <EmployeeCardContainer employee={employee} teams={teams} />
+    <div style={{ marginRight: '10%', marginLeft: '10%' }}>
+      <EmployeeDetailsCard employee={employee} teams={teams} />
+    </div>
   );
 };
 

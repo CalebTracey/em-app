@@ -1,5 +1,5 @@
 .demo-infinite-container {
-  height: 300px;
+  height: 25vh;
   padding: 8px 24px;
   overflow: auto;
   border: 1px solid #e8e8e8;
@@ -23,4 +23,9 @@
 [data-theme='dark'] .team-badge .ant-badge-count {
   background-color: #141414;
   box-shadow: 0 0 0 1px #434343 inset;
+}
+
+.container {
+  margin-right: '10%';
+  margin-left: '10%';
 }

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import { Select, message } from 'antd';
 import allActions from '../../../redux/actions/index';
 import apiGet from '../../../apis/apiGet';
@@ -14,6 +15,7 @@ const CreateTeam = () => {
   const [children, setChildren] = useState([]);
   const [selected, setSelected] = useState([]);
   const dispatch = useDispatch();
+  const history = useHistory();
 
   useEffect(() => {
     if (employees.length === 0) {
@@ -57,9 +59,13 @@ const CreateTeam = () => {
     })
       .then((res) => {
         message.success(`${title} $added`);
+        console.log(res.data);
+        dispatch(allActions.teams.teamAdded(res.data));
+        history.push('/');
       })
       .catch((error) => {
         message.error(`Problem adding ${title} to the list`);
+        console.log(error);
       });
   };
 
@@ -71,7 +77,6 @@ const CreateTeam = () => {
       tasks: [],
     };
     postNewTeam({ newTeam, title });
-    dispatch(allActions.teams.teamData(newTeam));
     // console.log(newTeam);
     // arr.push(newTeam);
     // const newTeamsList = [...teams, newTeam];

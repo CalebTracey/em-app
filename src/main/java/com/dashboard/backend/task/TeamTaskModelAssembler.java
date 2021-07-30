@@ -1,21 +1,73 @@
 package com.dashboard.backend.task;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
 
-import com.dashboard.backend.employee.EmployeeController;
-import org.springframework.hateoas.EntityModel;
-import org.springframework.hateoas.server.RepresentationModelAssembler;
+import com.dashboard.backend.team.Team;
+import com.dashboard.backend.team.TeamController;
+import com.dashboard.backend.team.TeamModel;
+import org.springframework.hateoas.CollectionModel;
+import org.springframework.hateoas.server.mvc.RepresentationModelAssemblerSupport;
 import org.springframework.stereotype.Component;
+import java.util.Collections;
+import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
-import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
-import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 @Component
-public class TeamTaskModelAssembler implements RepresentationModelAssembler<TeamTask, EntityModel<TeamTask>> {
+public class TeamTaskModelAssembler extends RepresentationModelAssemblerSupport<TeamTask, TeamTaskModel> {
+
+    public TeamTaskModelAssembler() {
+        super(TeamTaskService.class, TeamTaskModel.class);
+    }
 
     @Override
-    public EntityModel<TeamTask> toModel(TeamTask teamTask) {
+    public TeamTaskModel toModel(TeamTask teamTask) {
 
-    return EntityModel.of(teamTask,
-    linkTo(methodOn(TeamTaskController.class).one(teamTask.getId())).withSelfRel(),
-    linkTo(methodOn(TeamTaskController.class).all()).withRel("team_tasks"));
+        TeamTaskModel teamTaskModel = instantiateModel(teamTask);
+
+        teamTaskModel.add(
+                linkTo(methodOn(TeamTaskController.class)
+                        .getTeamTaskById(teamTask.getId()))
+                .withSelfRel());
+
+//        if(teamTask.getTeam() == null) {
+//            teamTaskModel.setTeam(Objects);
+//        }
+
+
+        teamTaskModel.setId(teamTask.getId());
+        teamTaskModel.setName(teamTaskModel.getName());
+        teamTaskModel.setDescription(teamTask.getDescription());
+        teamTaskModel.setClient(teamTask.getClient());
+        teamTaskModel.setClientPhone(teamTask.getClientPhone());
+        teamTaskModel.setTaskStart(teamTask.getTaskStart());
+        teamTaskModel.setTaskEnd(teamTask.getTaskEnd());
+        teamTaskModel.setDuration(teamTask.getDuration());
+        teamTaskModel.setRemaining(teamTask.getRemaining());
+        teamTaskModel.setTeam(toTeamModel(teamTask.getTeam()));
+        return teamTaskModel;
+    }
+
+    @Override
+    public CollectionModel<TeamTaskModel> toCollectionModel(Iterable<? extends TeamTask> entities) {
+
+        CollectionModel<TeamTaskModel> teamTaskModels =
+                super.toCollectionModel(entities);
+
+        return teamTaskModels;
+    }
+
+    private TeamModel toTeamModel(Team team) {
+        if (team == null) {
+            TeamModel empty = new TeamModel();
+            return empty;
+        }
+        return TeamModel.builder()
+                        .id(team.getId())
+                        .teamName(team.getTeamName())
+                        .build().add(
+                                linkTo(methodOn(TeamController.class)
+                                        .getTeamById(team.getId()))
+                                        .withSelfRel());
     }
 }
