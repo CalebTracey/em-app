@@ -1,7 +1,5 @@
 package com.dashboard.backend.team;
 
-import com.dashboard.backend.employee.Employee;
-import com.dashboard.backend.employee.EmployeeModel;
 import com.dashboard.backend.employee.EmployeeModelAssembler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.CollectionModel;

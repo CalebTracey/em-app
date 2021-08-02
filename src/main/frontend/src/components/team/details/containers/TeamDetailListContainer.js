@@ -1,6 +1,5 @@
 import React, { useState, lazy } from 'react';
-import { Badge, Spin } from 'antd';
-import { Header } from 'antd/lib/layout/layout';
+import { Spin, Result, Button } from 'antd';
 import InfiniteScroll from 'react-infinite-scroller';
 import '../TeamDetails.css';
 import { Suspense } from 'react';
@@ -11,7 +10,6 @@ const TeamDetailListContainer = ({ team }) => {
   const [, setShowModal] = useState(0);
   const [loading, setLoading] = useState(false);
   const [hasMore, setHasMore] = useState(true);
-  const [titleBadge, setTitleBadge] = useState(0);
 
   const handleInfiniteOnLoad = () => {
     setLoading(true);
@@ -22,37 +20,34 @@ const TeamDetailListContainer = ({ team }) => {
     }
   };
 
-  return (
-    <>
-      <div style={{ marginRight: '10%', marginLeft: '10%' }}>
-        <Header
-          style={{
-            height: '32px',
-            margin: '10px',
-            lineHeight: '32px',
-            background: 'rgb(250, 250, 250)',
-            padding: '0px',
-          }}
+  return team.employees.length === 0 ? (
+    <Result
+      style={{ height: '-webkit-fit-content' }}
+      key={team.teamName}
+      title={`${team.teamName} has no members.`}
+      extra={
+        <Button type="primary" key="console">
+          Add Members
+        </Button>
+      }
+    />
+  ) : (
+    <div
+      className="demo-infinite-container"
+      style={{ marginRight: '10%', marginLeft: '10%', boxShadow: '0 0 2.25em -2em' }}
+    >
+      <Suspense fallback={<Spin />}>
+        <InfiniteScroll
+          initialLoad={false}
+          pageStart={0}
+          loadMore={handleInfiniteOnLoad}
+          hasMore={!loading && hasMore}
+          useWindow={false}
         >
-          <div style={{ fontWeight: 'bold' }}>
-            {'Team Members '} <Badge className="team-badge" count={team.employees.length} />
-          </div>
-        </Header>
-        <div className="demo-infinite-container">
-          <Suspense fallback={<Spin />}>
-            <InfiniteScroll
-              initialLoad={false}
-              pageStart={0}
-              loadMore={handleInfiniteOnLoad}
-              hasMore={!loading && hasMore}
-              useWindow={false}
-            >
-              <TeamDetailList key={team.id} team={team} setShowModal={setShowModal} />
-            </InfiniteScroll>
-          </Suspense>
-        </div>
-      </div>
-    </>
+          <TeamDetailList key={team.id} team={team} setShowModal={setShowModal} />
+        </InfiniteScroll>
+      </Suspense>
+    </div>
   );
 };
 

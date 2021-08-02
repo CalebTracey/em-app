@@ -10,29 +10,34 @@ const menu = (
 );
 const columns = [
   {
+    ellipsis: 'true',
     title: `Tasks`,
     key: 'name',
     dataIndex: 'name',
   },
   {
+    ellipsis: 'true',
     title: 'Client',
     key: 'client',
     dataIndex: 'client',
   },
   {
+    ellipsis: 'true',
     title: 'Start Date',
     key: 'taskStart',
     dataIndex: 'taskStart',
     // sorter: (a, b) => a.start - b.start,
   },
   {
-    title: 'Deadline',
+    ellipsis: 'true',
+    title: 'Deadline (days)',
     key: 'remaining',
     dataIndex: 'remaining',
     sorter: (a, b) => a.remaining - b.remaining,
   },
 
   {
+    ellipsis: 'true',
     title: false,
     dataIndex: 'dropdown',
     key: 'dropdown',
@@ -45,8 +50,8 @@ const columns = [
     ),
   },
 ];
-
-const TeamTaskList = ({ tasks, setTitleBadge }) => {
+// style={{ boxShadow: '0 0 2.25em -2em' }}
+const TeamTaskList = ({ tasks }) => {
   return !tasks ? (
     <Empty />
   ) : (
@@ -54,7 +59,7 @@ const TeamTaskList = ({ tasks, setTitleBadge }) => {
       pagination={{ hideOnSinglePage: true, pageSize: 4 }}
       columns={columns}
       dataSource={tasks}
-      size="large"
+      size="default"
     />
   );
 };

@@ -1,26 +1,14 @@
 package com.dashboard.backend.team;
 
 import com.dashboard.backend.employee.Employee;
-import com.dashboard.backend.employee.EmployeeModel;
 import com.dashboard.backend.task.TeamTask;
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 import org.springframework.context.annotation.Configuration;
-
 import javax.persistence.*;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
-import java.util.Set;
-
-
-
 //@DiscriminatorColumn(name="product_type",
 //        discriminatorType = DiscriminatorType.INTEGER)
 @Data

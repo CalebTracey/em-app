@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import TeamDetailListItem from '../TeamDetailListItem';
+import { Skeleton } from 'antd';
 
 const TeamDetailItemContainer = ({
   team,
@@ -9,14 +10,16 @@ const TeamDetailItemContainer = ({
   confirmLoading,
 }) => {
   return (
-    <TeamDetailListItem
-      key={employee.id}
-      team={team}
-      employee={employee}
-      setShowModal={setShowModal}
-      handleRemoveTeamMember={handleRemoveTeamMember}
-      confirmLoading={confirmLoading}
-    />
+    <Suspense fallback={<Skeleton />}>
+      <TeamDetailListItem
+        key={employee.id}
+        team={team}
+        employee={employee}
+        setShowModal={setShowModal}
+        handleRemoveTeamMember={handleRemoveTeamMember}
+        confirmLoading={confirmLoading}
+      />
+    </Suspense>
   );
 };
 

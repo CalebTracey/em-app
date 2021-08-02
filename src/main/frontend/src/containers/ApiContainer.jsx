@@ -1,9 +1,9 @@
-import { Spin } from 'antd';
+import { Skeleton } from 'antd';
 import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import useGetEmployees from '../hooks/useGetEmployees';
 import useGetTeams from '../hooks/useGetTeams';
-import Dashboard from '../layout/dashboard/Dashboard';
+import Dashboard from './Dashboard';
 
 const ApiContainer = () => {
   const employeeState = useSelector((state) => state.employees.employeeData);
@@ -27,7 +27,7 @@ const ApiContainer = () => {
     }
   }, [employeeState, getEmployees, teamState, getTeams]);
 
-  return employeeRes.isLoading || teamRes.isLoading ? <Spin /> : <Dashboard />;
+  return employeeRes.isLoading || teamRes.isLoading ? <Skeleton active rows={4} /> : <Dashboard />;
 };
 
 export default ApiContainer;

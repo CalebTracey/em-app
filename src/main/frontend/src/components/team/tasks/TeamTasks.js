@@ -3,11 +3,7 @@ import TeamTaskList from './TeamTaskList';
 
 const TeamTasks = ({ team }) => {
   console.log(team);
-  return (
-    <div style={{ paddingBottom: '16px' }}>
-      <TeamTaskList tasks={team.teamTasks} />
-    </div>
-  );
+  return <TeamTaskList tasks={team.teamTasks} />;
 };
 
 export default TeamTasks;

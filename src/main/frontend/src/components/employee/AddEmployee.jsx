@@ -44,7 +44,16 @@ const AddEmployee = () => {
 
   return (
     <div style={{ display: 'flex', justifyContent: 'space-around' }}>
-      <Card style={{ width: 500, alignSelf: 'center' }}>
+      <Card
+        title="Add Employee"
+        style={{
+          width: '25rem',
+          margin: '5rem',
+          alignSelf: 'center',
+          boxShadow: '1rem 1.25rem 1.25rem -1.75rem',
+          overflow: 'hidden',
+        }}
+      >
         <Form
           layout="vertical"
           requiredMark

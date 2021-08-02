@@ -37,9 +37,24 @@ const SideNav = ({ company }) => {
         break;
     }
   };
-
+  // flex: 'auto',
+  // margin: '2.5rem 1.5rem',
+  // padding: '2.5rem',
+  // // minHeight: 280,
+  // background: '#fafafa',
   return (
-    <Sider key="sider" style={{ overflow: 'auto', position: 'fixed', left: 0, height: '100vh' }}>
+    <Sider
+      key="sider"
+      style={{
+        boxShadow: '0 0 0.5em 0',
+        overflow: 'auto',
+        position: 'fixed',
+        left: 0,
+        height: '100vh',
+        maxWidth: '15%',
+        width: '15%',
+      }}
+    >
       <div className="logo" />
       <Menu key="sider-menu" theme="dark" mode="inline">
         {homeNav(company)}

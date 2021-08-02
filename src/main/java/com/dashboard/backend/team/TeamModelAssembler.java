@@ -3,23 +3,14 @@ package com.dashboard.backend.team;
 import com.dashboard.backend.employee.Employee;
 import com.dashboard.backend.employee.EmployeeController;
 import com.dashboard.backend.employee.EmployeeModel;
-import com.dashboard.backend.employee.EmployeeService;
 import com.dashboard.backend.task.TeamTask;
-
 import com.dashboard.backend.task.TeamTaskController;
 import com.dashboard.backend.task.TeamTaskModel;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.CollectionModel;
-import org.springframework.hateoas.EntityModel;
-import org.springframework.hateoas.server.RepresentationModelAssembler;
 import org.springframework.hateoas.server.mvc.RepresentationModelAssemblerSupport;
 import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.PathVariable;
-
 import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
@@ -48,10 +39,16 @@ public class TeamModelAssembler extends RepresentationModelAssemblerSupport<Team
             teamModel.setEmployees(toEmployeeModel(team.getEmployees()));
         }
 
+        if (team.getTeamTasks() == null ) {
+            teamModel.setTeamTasks(Collections.emptyList());
+        } else {
+            teamModel.setTeamTasks(toTeamTaskModel(team.getTeamTasks()));
+        }
+
         teamModel.setId(team.getId());
         teamModel.setTeamName(team.getTeamName());
-        teamModel.setEmployees(toEmployeeModel(team.getEmployees()));
-        teamModel.setTeamTasks(toTeamTaskModel(team.getTeamTasks()));
+//        teamModel.setEmployees(toEmployeeModel(team.getEmployees()));
+//        teamModel.setTeamTasks(toTeamTaskModel(team.getTeamTasks()));
 
         return teamModel;
     }

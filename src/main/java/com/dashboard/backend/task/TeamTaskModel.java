@@ -1,15 +1,11 @@
 package com.dashboard.backend.task;
 
-
-import com.dashboard.backend.employee.EmployeeModel;
-import com.dashboard.backend.team.Team;
 import com.dashboard.backend.team.TeamModel;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonRootName;
 import lombok.*;
 import org.springframework.hateoas.RepresentationModel;
 import org.springframework.hateoas.server.core.Relation;
-
 import javax.persistence.Transient;
 import java.time.LocalDate;
 

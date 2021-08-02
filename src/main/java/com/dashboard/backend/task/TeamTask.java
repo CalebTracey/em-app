@@ -2,12 +2,10 @@ package com.dashboard.backend.task;
 
 import com.dashboard.backend.team.Team;
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import org.springframework.context.annotation.Configuration;
-
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.Period;
@@ -42,10 +40,8 @@ public class TeamTask {
     private LocalDate taskEnd;
     @Transient
     private Integer duration;
-
     @Transient
     private Integer remaining;
-
 
     @ManyToOne
     @JsonBackReference

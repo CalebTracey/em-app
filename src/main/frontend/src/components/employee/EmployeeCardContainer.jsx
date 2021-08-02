@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Spin } from 'antd';
+import { Skeleton } from 'antd';
 import PropTypes from 'prop-types';
 import { EmployeeTeamCard } from './EmployeeTeamCard';
 import EmployeeDetailsCard from './EmployeeDetailsCard';
@@ -24,12 +24,12 @@ const EmployeeCardContainer = ({ employee, teams }) => {
   }, [teams, employee]);
 
   return isLoading ? (
-    <Spin />
+    <Skeleton />
   ) : (
-    <div>
+    <>
       <EmployeeTeamCard employee={employee} teams={relevantTeams} />
       <EmployeeDetailsCard employee={employee} teams={teams} />
-    </div>
+    </>
   );
 };
 export default EmployeeCardContainer;

@@ -1,17 +1,12 @@
 package com.dashboard.backend.task;
-import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
 
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
 import com.dashboard.backend.team.Team;
 import com.dashboard.backend.team.TeamController;
 import com.dashboard.backend.team.TeamModel;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.server.mvc.RepresentationModelAssemblerSupport;
 import org.springframework.stereotype.Component;
-import java.util.Collections;
-import java.util.List;
-import java.util.Objects;
-import java.util.stream.Collectors;
-
 
 @Component
 public class TeamTaskModelAssembler extends RepresentationModelAssemblerSupport<TeamTask, TeamTaskModel> {
@@ -29,11 +24,6 @@ public class TeamTaskModelAssembler extends RepresentationModelAssemblerSupport<
                 linkTo(methodOn(TeamTaskController.class)
                         .getTeamTaskById(teamTask.getId()))
                 .withSelfRel());
-
-//        if(teamTask.getTeam() == null) {
-//            teamTaskModel.setTeam(Objects);
-//        }
-
 
         teamTaskModel.setId(teamTask.getId());
         teamTaskModel.setName(teamTaskModel.getName());

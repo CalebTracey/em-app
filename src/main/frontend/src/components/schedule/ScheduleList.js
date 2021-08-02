@@ -1,16 +1,12 @@
-import React from "react";
-import { Menu } from "antd";
-import { Link } from "react-router-dom";
-import { UserOutlined } from "@ant-design/icons";
+import React from 'react';
+import { Menu } from 'antd';
+import { Link } from 'react-router-dom';
+import { UserOutlined } from '@ant-design/icons';
 
-export default ScheduleList = ({ employees, clickHandler }) => {
-  const listNode = employees.map((employee) => {
+const ScheduleList = ({ schedule, clickHandler }) => {
+  const listNode = schedule.map((employee) => {
     return (
-      <Menu.Item
-        key={employee.id}
-        icon={<UserOutlined />}
-        style={{ cursor: "pointer" }}
-      >
+      <Menu.Item key={employee.id} icon={<UserOutlined />} style={{ cursor: 'pointer' }}>
         {`${employee.lastName}, ${employee.firstName}`}
         <Link
           key={employee.id}
@@ -22,3 +18,5 @@ export default ScheduleList = ({ employees, clickHandler }) => {
   });
   return <Menu.ItemGroup children={listNode} />;
 };
+
+export default ScheduleList;

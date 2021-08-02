@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Modal } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
@@ -11,8 +11,6 @@ const { confirm } = Modal;
 
 const TeamPage = () => {
   const team = useSelector((state) => state.teams.teamSelected);
-  const [loading, setLoading] = useState(false);
-  const [hasMore, setHasMore] = useState(true);
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -54,7 +52,13 @@ const TeamPage = () => {
   //   setVisible(false);
   // };
 
-  return <TeamDetails showDeleteTeamConfirm={showDeleteTeamConfirm} data-testid="team-page" />;
+  return (
+    <TeamDetails
+      showDeleteTeamConfirm={showDeleteTeamConfirm}
+      team={team}
+      data-testid="team-page"
+    />
+  );
 };
 
 export default TeamPage;

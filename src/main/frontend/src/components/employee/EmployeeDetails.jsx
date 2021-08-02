@@ -7,12 +7,16 @@ const EmployeeDetails = () => {
   const employee = useSelector((state) => state.employees.employeeSelected);
   const teams = useSelector((state) => state.teams.teamsData);
 
-  console.log(employee);
-
   return !employee ? (
     <Redirect to="/" />
   ) : (
-    <div style={{ marginRight: '10%', marginLeft: '10%' }}>
+    <div
+      style={{
+        margin: '5em',
+        display: 'flex',
+        justifyContent: 'center',
+      }}
+    >
       <EmployeeDetailsCard employee={employee} teams={teams} />
     </div>
   );

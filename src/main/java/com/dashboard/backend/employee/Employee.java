@@ -7,9 +7,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.context.annotation.Configuration;
-
 import javax.persistence.*;
-import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.*;
@@ -23,8 +21,6 @@ import java.util.*;
 @Configuration
 @Table(name = "employees")
 public class Employee{
-
-//    private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(

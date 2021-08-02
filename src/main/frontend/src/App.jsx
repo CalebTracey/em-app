@@ -6,6 +6,7 @@ import { Layout, Spin, Space } from 'antd';
 import useCompany from './hooks/frontend_data/useCompany';
 import SideNav from './layout/SideNav';
 import { mainHeader } from './layout/MainHeader';
+import { ConnectedRouter } from 'connected-react-router';
 
 const Employees = lazy(() => import('./containers/Employees'));
 const TeamDeletedPage = lazy(() => import('./components/team/TeamDeletedPage'));
@@ -21,51 +22,55 @@ const ApiContainer = lazy(() => import('./containers/ApiContainer'));
 
 const { Content } = Layout;
 
-const App = () => {
+const App = ({ history }) => {
   const company = useSelector((state) => state.company);
   useCompany();
 
   return (
-    <Layout style={{ minHeight: '100vh' }}>
-      <SideNav />
-      <Layout className="site-layout" style={{ paddingLeft: '200px' }}>
-        {/* <Space direction="vertical" style={{ width: '-webkit-fill-available' }}> */}
-        {mainHeader({ company })}
-        <Content
-          style={{
-            flex: 'auto',
-            margin: '24px 16px',
-            padding: 24,
-            minHeight: 280,
-            background: '#fafafa',
-          }}
-        >
-          <Suspense
-            fallback={
-              <>
-                <Spin />
-              </>
-            }
+    <ConnectedRouter history={history}>
+      <Layout style={{ minHeight: '100vh' }}>
+        <SideNav />
+        <Layout className="site-layout" style={{ paddingLeft: '12.5rem' }}>
+          {/* <Space direction="vertical" style={{ width: '-webkit-fill-available' }}> */}
+          {mainHeader({ company })}
+          <Content
+            style={{
+              flex: 'auto',
+              margin: '1.5rem 1.5rem',
+              // padding: '2.5rem',
+              // minHeight: 280,
+              boxShadow: '0 0 1.5em -1em',
+
+              background: '#fafafa',
+            }}
           >
-            <Switch>
-              <Route exact path="/" component={ApiContainer} />
-              <Route exact path="/dashboard" component={ApiContainer} />
-              <Route exact path="/preferences" component={Preferences} />
-              <Route exact path="/addemployee" component={AddEmployee} />
-              <Route exact path="/create-team" component={CreateTeam} />
-              <Route exact path="/employees" component={Employees} />
-              <Route exact path="/schedule" component={Schedule} />
-              <Route exact path="/full-schedule" component={FullSchedule} />
-              <Route exact path="/teams" component={Teams} />
-              <Route path="/employees/:id" component={EmployeeDetails} />
-              <Route path="/team/:teamId" component={TeamPage} />
-              <Route exact path="/team-deleted" component={TeamDeletedPage} />
-            </Switch>
-          </Suspense>
-        </Content>
-        {/* </Space> */}
+            <Suspense
+              fallback={
+                <>
+                  <Spin />
+                </>
+              }
+            >
+              <Switch>
+                <Route exact path="/" component={ApiContainer} />
+                <Route exact path="/dashboard" component={ApiContainer} />
+                <Route exact path="/preferences" component={Preferences} />
+                <Route exact path="/addemployee" component={AddEmployee} />
+                <Route exact path="/create-team" component={CreateTeam} />
+                <Route exact path="/employees" component={Employees} />
+                <Route exact path="/schedule" component={Schedule} />
+                <Route exact path="/full-schedule" component={FullSchedule} />
+                <Route exact path="/teams" component={Teams} />
+                <Route path="/employees/:id" component={EmployeeDetails} />
+                <Route path="/team/:teamId" component={TeamPage} />
+                <Route exact path="/team-deleted" component={TeamDeletedPage} />
+              </Switch>
+            </Suspense>
+          </Content>
+          {/* </Space> */}
+        </Layout>
       </Layout>
-    </Layout>
+    </ConnectedRouter>
     // </div>
   );
 };
