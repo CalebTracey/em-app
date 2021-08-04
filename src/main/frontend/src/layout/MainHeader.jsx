@@ -4,7 +4,7 @@ import { Layout, Typography } from 'antd';
 const { Header } = Layout;
 const { Title, Text } = Typography;
 
-export const mainHeader = ({ company }) => {
+const MainHeader = ({ company }) => {
   return (
     <Header
       className="site-layout-background"
@@ -26,3 +26,5 @@ export const mainHeader = ({ company }) => {
     </Header>
   );
 };
+
+export default MainHeader;

@@ -1,9 +1,10 @@
 import { Skeleton } from 'antd';
-import React, { useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import React, { useEffect, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import useGetEmployees from '../hooks/useGetEmployees';
 import useGetTeams from '../hooks/useGetTeams';
 import Dashboard from './Dashboard';
+import allActions from '../redux/actions/index';
 
 const ApiContainer = () => {
   const employeeState = useSelector((state) => state.employees.employeeData);

@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
 import { List, Avatar, Button, Popconfirm } from 'antd';
 import { Link } from 'react-router-dom';
-import allActions from '../../../redux/actions';
 
-const TeamDetailListItem = ({ team, employee, setShowModal, handleRemoveTeamMember }) => {
+const TeamDetailListItem = ({
+  team,
+  employee,
+  setShowModal,
+  handleRemoveTeamMember,
+  fetchFullEmployeeInfo,
+}) => {
   const [danger, setDanger] = useState(false);
-  const dispatch = useDispatch();
 
   return (
     <List.Item key={employee.id}>
@@ -14,8 +17,8 @@ const TeamDetailListItem = ({ team, employee, setShowModal, handleRemoveTeamMemb
         avatar={<Avatar src={employee.avatar} />}
         title={
           <Link
-            onClick={() => dispatch(allActions.employees.employeeSelected(employee))}
-            to={`/employees/${employee.id}`}
+            onClick={() => fetchFullEmployeeInfo(employee._links.self.href)}
+            to={`/EMapp/employees/${employee.id}`}
           >
             {`${employee.firstName} 
                     ${employee.lastName}`}

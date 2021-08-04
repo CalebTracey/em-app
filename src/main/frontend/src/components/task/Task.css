@@ -1,12 +1,7 @@
-.form-group {
-  align-content: center;
-  flex-wrap: wrap;
-  position: absolute;
-}
-
-.create-team-card {
+.add-employee-card {
   width: 30%;
   margin-top: 2rem;
+  margin-bottom: 2rem;
   height: auto;
   align-self: center;
   box-shadow: 0 0 2.5em -2em;

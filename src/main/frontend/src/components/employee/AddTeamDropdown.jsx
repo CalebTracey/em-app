@@ -1,29 +1,51 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useState } from 'react';
 import { Dropdown, Button, Menu, message } from 'antd';
 import PropTypes from 'prop-types';
 import { DownOutlined, TeamOutlined } from '@ant-design/icons';
 import { useDispatch, useSelector } from 'react-redux';
 import allActions from '../../redux/actions';
+import usePutTeam from '../../hooks/usePutTeam';
 
 function AddTeamDropdown({ employee }) {
   const teams = useSelector((state) => state.teams.teamData);
+  const [updatedTeamId, setUpdatedTeamId] = useState(null);
+  const [updatedTeamData, setUpdatedTeamData] = useState({});
   const dispatch = useDispatch();
+
+  const [result, putTeam] = usePutTeam({
+    url: `teams/${updatedTeamId}`,
+    data: updatedTeamData,
+  });
 
   const success = (text) => {
     message.success(text);
   };
 
   const addToTeam = (team) => {
-    const selectedTeam = teams[team.key];
+    const selectedTeam = teams.find(({ id }) => id === parseInt(team.key));
+    if (selectedTeam.employees === undefined) {
+      selectedTeam.employees = [];
+    }
+    if (selectedTeam.teamTasks === undefined) {
+      selectedTeam.teamTasks = [];
+    }
+    setUpdatedTeamId(selectedTeam.id);
     const updatedEmployees = [...selectedTeam.employees, employee];
 
     const updatedTeam = {
       teamName: selectedTeam.teamName,
       id: selectedTeam.id,
       employees: updatedEmployees,
+      teamTasks: selectedTeam.teamTasks,
     };
-    dispatch(allActions.teams.teamUpdated(updatedTeam));
-    success(`${employee.firstName} ${updatedEmployees.lastName} added to ${updatedTeam.teamName}`);
+    setUpdatedTeamData(updatedTeam);
+    if (updatedTeamData !== null) {
+      putTeam();
+      dispatch(allActions.teams.teamUpdated(updatedTeam));
+      success(
+        `${employee.firstName} ${updatedEmployees.lastName} added to ${updatedTeam.teamName}`
+      );
+    }
   };
 
   const menuItems = teams.map((team) => (
@@ -39,9 +61,7 @@ function AddTeamDropdown({ employee }) {
   return (
     <Dropdown overlay={menu}>
       <Button>
-        <>
-          Add to Team <DownOutlined />
-        </>
+        Add to Team <DownOutlined />
       </Button>
     </Dropdown>
   );

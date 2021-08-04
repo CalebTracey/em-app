@@ -1,12 +1,11 @@
 import React, { useState, Suspense, lazy } from 'react';
 import { Spin } from 'antd';
-import '../team/details/TeamDetails.css';
+import '../details/TeamDetails.css';
 import InfiniteScroll from 'react-infinite-scroller';
 
 // import DashboardTeamsList from './DashboardTeamsList';
 const DashboardTeamsList = lazy(() => import('./DashboardTeamsList'));
-const DashboardTeams = ({ teams, company, employees, clickHandler }) => {
-  const [, setShowModal] = useState(0);
+const DashboardTeams = ({ teams, employees, clickHandler }) => {
   const [loading, setLoading] = useState(false);
   const [hasMore, setHasMore] = useState(true);
 
@@ -23,12 +22,12 @@ const DashboardTeams = ({ teams, company, employees, clickHandler }) => {
     <div
       style={{
         boxShadow: '0 0 2.5em -2em',
-        position: 'fixed',
+        // position: 'fixed',
         right: '1em',
         width: '15%',
-        minWidth: '15em',
+        minWidth: '10rem',
         padding: 0,
-        height: '52em',
+        height: '90%',
         margin: '3em',
       }}
       className="demo-infinite-container"

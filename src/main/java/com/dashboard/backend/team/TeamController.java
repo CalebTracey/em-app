@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @CrossOrigin("*")
@@ -49,7 +50,7 @@ public class TeamController {
     }
 
     @PostMapping("teams")
-    ResponseEntity<?> newEmployee(@RequestBody Team team) {
+    ResponseEntity<?> newTeam(@RequestBody Team team) {
         TeamModel teamModel = assembler.toModel(teamService.save(team));
 
         return ResponseEntity.created(teamModel.
@@ -57,12 +58,18 @@ public class TeamController {
     }
 
     @DeleteMapping("teams/{id}")
-    ResponseEntity<?> deleteEmployee(@PathVariable Long id) {
+    ResponseEntity<?> deleteTeam(@PathVariable Long id) {
         teamService.deleteTeam(id);
         return ResponseEntity.noContent().build();
     }
 
-//
+    @PutMapping("teams/{id}")
+    ResponseEntity<?> updateTeam(@PathVariable Long id, @Valid @RequestBody Team newTeam) {
+        TeamModel teamModel = assembler.toModel(newTeam);
+        return ResponseEntity.created(teamModel.getRequiredLink(IanaLinkRelations.SELF).toUri())
+                .body(teamModel);
+    }
+
 //    @PutMapping("teams/{id}")
 //    public ResponseEntity<?> updateTeam(@PathVariable Long id, @Valid @RequestBody Team newTeam) {
 //        Team updatedTeam = teamRepository.findById(id).map(team -> {
@@ -77,5 +84,5 @@ public class TeamController {
 //                .body(entityModel);
 //
 //    }
-
+//
 }

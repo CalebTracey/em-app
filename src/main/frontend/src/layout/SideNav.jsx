@@ -1,3 +1,4 @@
+import './Layout.css';
 import React, { useState, lazy } from 'react';
 import { Layout, Menu, Spin } from 'antd';
 import { Suspense } from 'react';
@@ -16,9 +17,6 @@ const { Sider } = Layout;
 const { SubMenu } = Menu;
 
 const SideNav = ({ company }) => {
-  const employeeState = useSelector((state) => state.teams.employeeData);
-  const teamState = useSelector((state) => state.teams.employeeData);
-
   const [employees, toggleEmployees] = useState(false);
   const [schedule, toggleSchedule] = useState(false);
   const [teams, toggleTeams] = useState(false);
@@ -33,28 +31,17 @@ const SideNav = ({ company }) => {
         toggleTeams(!teams);
         break;
       }
+      case 'schedule': {
+        toggleSchedule(!schedule);
+        break;
+      }
       default:
         break;
     }
   };
-  // flex: 'auto',
-  // margin: '2.5rem 1.5rem',
-  // padding: '2.5rem',
-  // // minHeight: 280,
-  // background: '#fafafa',
+
   return (
-    <Sider
-      key="sider"
-      style={{
-        boxShadow: '0 0 0.5em 0',
-        overflow: 'auto',
-        position: 'fixed',
-        left: 0,
-        height: '100vh',
-        maxWidth: '15%',
-        width: '15%',
-      }}
-    >
+    <Sider className="sider" key="sider">
       <div className="logo" />
       <Menu key="sider-menu" theme="dark" mode="inline">
         {homeNav(company)}
@@ -65,13 +52,11 @@ const SideNav = ({ company }) => {
           onTitleClick={onClickHandler}
         >
           {employeesNav.addEmployee()}
-          <Suspense fallback={<Spin />}>
-            {employees ? <Employees employees={employeeState} /> : null}
-          </Suspense>
+          <Suspense fallback={<Spin />}>{employees ? <Employees /> : null}</Suspense>
         </SubMenu>
         <SubMenu key="teams" icon={<TeamOutlined />} title="Teams" onTitleClick={onClickHandler}>
           {teamsNav.createTeam()}
-          <Suspense fallback={<Spin />}>{teams ? <Teams teams={teamState} /> : null}</Suspense>
+          <Suspense fallback={<Spin />}>{teams ? <Teams /> : null}</Suspense>
         </SubMenu>
         <SubMenu
           key="schedule"

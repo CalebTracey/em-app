@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Descriptions, Avatar, Card, Typography } from 'antd';
+import React from 'react';
+import { Card } from 'antd';
 
 export const EmployeeTeamCard = ({ employee, relevantTeams }) => {
   return (

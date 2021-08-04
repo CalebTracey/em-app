@@ -6,7 +6,7 @@ import { TeamOutlined } from '@ant-design/icons';
 const TeamList = ({ clickHandler, teams }) => {
   const listNode =
     teams.length <= 1 ? (
-      <Redirect to="/" />
+      <Redirect to="/EMapp" />
     ) : (
       teams.map((team) => {
         return (
@@ -17,7 +17,7 @@ const TeamList = ({ clickHandler, teams }) => {
             onClick={() => clickHandler(team)}
           >
             {team.teamName}
-            <Link to={`/team/${team.id}`} />
+            <Link to={`/EMapp/team/${team.id}`} />
           </Menu.Item>
         );
       })

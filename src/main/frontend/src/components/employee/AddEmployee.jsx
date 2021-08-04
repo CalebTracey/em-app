@@ -1,12 +1,13 @@
+import './Employees.css';
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { Form, Input, Button, Card, message } from 'antd';
+import { message } from 'antd';
 import allActions from '../../redux/actions/index';
+import AddEmployeeCardContainer from './containers/AddEmployeeCardContainer';
 import api from '../../apis/api';
 
 const AddEmployee = () => {
-  const teams = useSelector((state) => state.teams.teamData);
   const [firstName, setFirstName] = useState(null);
   const [lastName, setLastName] = useState(null);
   const [email, setEmail] = useState(null);
@@ -24,8 +25,10 @@ const AddEmployee = () => {
     phoneNumber,
     address,
     avatar: null,
-    // teams: [teams[0].id],
+    teams: [],
   });
+
+  const putEmployee = () => {};
 
   const onFinish = async () => {
     await api
@@ -34,7 +37,7 @@ const AddEmployee = () => {
         dispatch(allActions.employees.employeeAdded(res.data));
         dispatch(allActions.employees.employeeSelected(res.data));
         message.success(`${firstName} ${lastName} added`);
-        history.push('/');
+        history.push('/EMapp');
       })
       .catch((error) => {
         message.error(`Problem adding ${firstName} ${lastName} to the list`);
@@ -43,58 +46,15 @@ const AddEmployee = () => {
   };
 
   return (
-    <div style={{ display: 'flex', justifyContent: 'space-around' }}>
-      <Card
-        title="Add Employee"
-        style={{
-          width: '25rem',
-          margin: '5rem',
-          alignSelf: 'center',
-          boxShadow: '1rem 1.25rem 1.25rem -1.75rem',
-          overflow: 'hidden',
-        }}
-      >
-        <Form
-          layout="vertical"
-          requiredMark
-          onFinish={onFinish}
-          // onFinishFailed={onFinishFailed}
-        >
-          {/* <NewEmployeeAvatar 
-                        /> */}
-
-          <Form.Item label="First name" required tooltip="This is a required field">
-            <Input
-              placeholder="First name"
-              onChange={(event) => setFirstName(event.target.value)}
-            />
-          </Form.Item>
-          <Form.Item label="Last name" required tooltip="This is a required field">
-            <Input placeholder="Last name" onChange={(event) => setLastName(event.target.value)} />
-          </Form.Item>
-          <Form.Item label="Email" required tooltip="This is a required field">
-            <Input placeholder="Email" onChange={(event) => setEmail(event.target.value)} />
-          </Form.Item>
-          <Form.Item label="Job title" required tooltip="This is a required field">
-            <Input placeholder="Job title" onChange={(event) => setJobTitle(event.target.value)} />
-          </Form.Item>
-          <Form.Item label="Phone number" required tooltip="This is a required field">
-            <Input
-              placeholder="Phone number"
-              onChange={(event) => setPhoneNumber(event.target.value)}
-            />
-          </Form.Item>
-          <Form.Item label="Address" required tooltip="This is a required field">
-            <Input placeholder="Address" onChange={(event) => setAddress(event.target.value)} />
-          </Form.Item>
-          <Form.Item>
-            <Button type="primary" htmlType="submit">
-              Submit
-            </Button>
-          </Form.Item>
-        </Form>
-      </Card>
-    </div>
+    <AddEmployeeCardContainer
+      setFirstName={setFirstName}
+      setLastName={setLastName}
+      setEmail={setEmail}
+      setJobTitle={setJobTitle}
+      setPhoneNumber={setPhoneNumber}
+      setAddress={setAddress}
+      onFinish={onFinish}
+    />
   );
 };
 

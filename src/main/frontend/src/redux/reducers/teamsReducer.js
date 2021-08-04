@@ -5,12 +5,14 @@ import {
   TEAM_DELETED,
   TEAM_ADDED,
   TEAM_TASKS_FETCHED,
+  TEAM_TASK_SELECTED,
 } from '../actions/types';
 
 const initialState = {
   teamData: [],
   teamTaskData: [],
   teamSelected: null,
+  teamTaskSelected: null,
 };
 
 const teamsReducer = (state = initialState, action) => {
@@ -50,6 +52,11 @@ const teamsReducer = (state = initialState, action) => {
       return {
         ...state,
         teamSelected: action.payload,
+      };
+    case TEAM_TASK_SELECTED:
+      return {
+        ...state,
+        teamTaskSelected: action.payload,
       };
     default:
       return state;

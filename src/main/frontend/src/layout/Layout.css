@@ -1,0 +1,10 @@
+.sider {
+  box-shadow: 0 0 0.5em 0;
+  overflow: auto;
+  /* position: fixed; */
+  left: 0;
+  /* height: -webkit-fill-available; */
+  min-width: 5%;
+  max-width: 15%;
+  width: 15%;
+}

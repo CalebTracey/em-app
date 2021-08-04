@@ -1,18 +1,17 @@
 import React, { useState, lazy } from 'react';
-import QueueAnim from 'rc-queue-anim';
 import { useDispatch } from 'react-redux';
-import { Result, Skeleton, message, List } from 'antd';
+import { Skeleton, message } from 'antd';
 import api from '../../../apis/api';
 import './TeamDetails.css';
-import TeamDetailListItem from './TeamDetailListItem';
 import allActions from '../../../redux/actions/index';
 import { Suspense } from 'react';
 
-// const TeamDetailListItem = lazy(() => import('./containers/TeamDetailListItem'));
+const TeamDetailItemContainer = lazy(() => import('./containers/TeamDetailItemContainer'));
 
 const TeamDetailList = ({ team, setShowModal }) => {
   const [employeeState, setEmployeeState] = useState(team.employees);
   const dispatch = useDispatch();
+
   const success = (text) => {
     message.success(text);
   };
@@ -30,42 +29,15 @@ const TeamDetailList = ({ team, setShowModal }) => {
     success(`${employee.firstName} ${employee.lastName} removed from ${teamFrom.teamName}`);
   };
 
-  const teamList = team.employees.map((e) => {
-    return (
-      <TeamDetailListItem
+  return (
+    <Suspense fallback={<Skeleton />}>
+      <TeamDetailItemContainer
         team={team}
-        key={e.id}
-        employee={e}
+        employees={employeeState}
         setShowModal={setShowModal}
         handleRemoveTeamMember={handleRemoveTeamMember}
       />
-    );
-  });
-
-  // const teamListContainer =
-  //   employeeState.length === 0 ? (
-  //     <Result
-  //       style={{ height: '-webkit-fit-content' }}
-  //       key={team.teamName}
-  //       title={`${team.teamName} has no members.`}
-  //       extra={
-  //         <Button type="primary" key="console">
-  //           Add Members
-  //         </Button>
-  //       }
-  //     />
-  //   ) : (
-  //     teamList()
-  //   );
-
-  return (
-    <List>
-      <Suspense fallback={<Skeleton />}>
-        <QueueAnim key="nodeMap" type={['right', 'left']} leaveReverse>
-          {teamList}
-        </QueueAnim>
-      </Suspense>
-    </List>
+    </Suspense>
   );
 };
 

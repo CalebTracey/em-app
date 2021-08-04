@@ -6,12 +6,14 @@
   background: rgba(255, 255, 255, 0.3);
 }
 
-.side-nav {
-  overflow: 'auto';
-  position: 'fixed';
-  height: '100vh';
-  flex: '0 0 12.5rem';
-  max-width: '12.5rem';
-  min-width: '12.5rem';
-  width: '12.5rem';
+.content {
+  /* flex: 'auto'; */
+  /* display: inline */
+  /* padding: 2%; */
+  /* left: 200px; */
+  /* height: auto; */
+  margin: 1rem;
+  /* margin-left: 13.5rem; */
+  box-shadow: 0 0 1.5em -1em;
+  background: #fafafa;
 }

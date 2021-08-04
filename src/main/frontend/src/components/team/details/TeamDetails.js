@@ -1,4 +1,4 @@
-import React, { lazy, useState } from 'react';
+import React, { lazy } from 'react';
 import { PageHeader, Spin, Badge } from 'antd';
 import { Redirect } from 'react-router-dom';
 import './TeamDetails.css';
@@ -10,7 +10,7 @@ const TeamTaskListContainer = lazy(() => import('./containers/TeamTaskListContai
 
 const TeamDetails = ({ showDeleteTeamConfirm, team }) => {
   return !team ? (
-    <Redirect to={'/'} />
+    <Redirect to={'/EMapp'} />
   ) : (
     <>
       <PageHeader
@@ -20,30 +20,15 @@ const TeamDetails = ({ showDeleteTeamConfirm, team }) => {
         title={team.teamName}
         extra={[<TeamDetailsDropDown showDeleteTeamConfirm={showDeleteTeamConfirm} />]}
       />
-      <div
-        style={{
-          fontWeight: 'bold',
-          alignContent: 'center',
-          marginLeft: '11%',
-          marginBottom: '1rem',
-        }}
-      >
+      <div className="current-tasks">
         {'Current Tasks '} <Badge className="team-badge" count={team.teamTasks.length} />
       </div>
 
       <Suspense fallback={<Spin />}>
-        <div className="team-detail-wrapper container">
+        <div className="team-task-wrapper ">
           <TeamTaskListContainer team={team} />
         </div>
-        <div
-          style={{
-            fontWeight: 'bold',
-            alignContent: 'center',
-            marginLeft: '11%',
-            marginTop: '-.75rem',
-            marginBottom: '1rem',
-          }}
-        >
+        <div className="team-members">
           {'Team Members '} <Badge className="team-badge" count={team.employees.length} />
         </div>
         <TeamDetailListContainer key={team.id} team={team} />

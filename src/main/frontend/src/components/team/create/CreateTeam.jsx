@@ -4,18 +4,25 @@ import { useHistory } from 'react-router-dom';
 import { Select, message } from 'antd';
 import allActions from '../../../redux/actions/index';
 import apiGet from '../../../apis/apiGet';
-import createTeamForm from './CreateTeamForm';
+import CreateTeamForm from './CreateTeamForm';
 import apiPost from '../../../apis/apiPost';
+// import useGetTeams from '../../../hooks/useGetTeams';
 
 const { Option } = Select;
 
 const CreateTeam = () => {
   const employees = useSelector((state) => state.employees.employeeData);
+  // const teams = useSelector((state) => state.teams.teamData);
   const [title, setTitle] = useState('');
   const [children, setChildren] = useState([]);
   const [selected, setSelected] = useState([]);
   const dispatch = useDispatch();
   const history = useHistory();
+
+  // const [teamRes, getTeams] = useGetTeams({
+  //   url: 'teams',
+  //   data: null,
+  // });
 
   useEffect(() => {
     if (employees.length === 0) {
@@ -51,43 +58,55 @@ const CreateTeam = () => {
     }
   };
 
-  const postNewTeam = async ({ newTeam, title }) => {
-    // console.log(JSON.parse(newTeamsList));
+  const postNewTeam = async ({ newTeam }) => {
     await apiPost({
       url: 'teams',
       data: JSON.stringify(newTeam),
     })
-      .then((res) => {
-        message.success(`${title} $added`);
-        console.log(res.data);
-        dispatch(allActions.teams.teamAdded(res.data));
+      .then(() => {
+        message.success(`${newTeam.teamName} added`);
+        // console.log(res.data);
+        dispatch(allActions.teams.teamAdded(newTeam));
+        // history.push(`/team/${newTeam.id}`);
         history.push('/');
       })
       .catch((error) => {
-        message.error(`Problem adding ${title} to the list`);
+        message.error(`Problem adding ${newTeam.teamName}`);
         console.log(error);
       });
   };
+
+  // const teamUpdate = async () => {
+  //   await getTeams();
+  // };
+
+  // const navToNewTeam = ({ newTeam }) => {
+  //   teamUpdate().then(() => {
+  //     // const newTeamId = teams.find(({ teamName }) => teamName === newTeam.teamName);
+  //     // history.push(`/team/${newTeamId.id}`);
+  //     history.push('/');
+  //   });
+  // };
 
   const handleCreateSubmit = () => {
     const newMembers = selected.map((s) => employees.find(({ id }) => id === parseInt(s, 10)));
     const newTeam = {
       teamName: title,
       employees: newMembers,
-      tasks: [],
+      teamTasks: [],
     };
     postNewTeam({ newTeam, title });
-    // console.log(newTeam);
-    // arr.push(newTeam);
-    // const newTeamsList = [...teams, newTeam];
+    // .then(() => navToNewTeam({ newTeam }));
   };
 
-  return createTeamForm({
-    handleCreateSubmit,
-    handleSelection,
-    setTitle,
-    children,
-  });
+  return (
+    <CreateTeamForm
+      handleCreateSubmit={handleCreateSubmit}
+      handleSelection={handleSelection}
+      setTitle={setTitle}
+      children={children}
+    />
+  );
 };
 
 export default CreateTeam;

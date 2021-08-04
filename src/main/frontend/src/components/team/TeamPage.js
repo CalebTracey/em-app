@@ -6,6 +6,7 @@ import { ExclamationCircleOutlined } from '@ant-design/icons';
 import allActions from '../../redux/actions/index';
 import TeamDetails from './details/TeamDetails';
 import api from '../../apis/api';
+import TeamDeletedPage from './TeamDeletedPage';
 
 const { confirm } = Modal;
 
@@ -21,8 +22,11 @@ const TeamPage = () => {
       .catch((error) => {
         console.log(error);
       });
-    history.push(`team-deleted/${team.id}`);
-    // <Redirect to={`team-deleted/${deletedTeam.id}`} />;
+    return <TeamDeletedPage team={team.teamName} />;
+  };
+
+  const showDeletedPage = () => {
+    history.push(`/team/team-deleted/${team.id}`);
   };
 
   const showDeleteTeamConfirm = () => {
@@ -31,7 +35,8 @@ const TeamPage = () => {
       icon: <ExclamationCircleOutlined />,
       content: 'This is permanent!',
       onOk() {
-        deleteTeam(team);
+        deleteTeam(team).then(() => showDeletedPage());
+        dispatch(allActions.teams.teamDeleted(team.id));
       },
       onCancel() {
         console.log('Cancel');

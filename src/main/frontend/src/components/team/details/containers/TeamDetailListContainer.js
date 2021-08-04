@@ -33,7 +33,7 @@ const TeamDetailListContainer = ({ team }) => {
     />
   ) : (
     <div
-      className="demo-infinite-container"
+      className="team-detail-wrapper"
       style={{ marginRight: '10%', marginLeft: '10%', boxShadow: '0 0 2.25em -2em' }}
     >
       <Suspense fallback={<Spin />}>

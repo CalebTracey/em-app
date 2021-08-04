@@ -3,14 +3,14 @@ import { useDispatch } from 'react-redux';
 import allActions from '../redux/actions/index';
 import apiGet from '../apis/apiGet';
 
-const useGetTeamTasks = ({ url, data }) => {
+const useGetEmployees = ({ url, data }) => {
   const dispatch = useDispatch();
   const [result, setResult] = useState({
     data: null,
     error: null,
     isLoading: false,
   });
-  const getTeamTasks = useCallback(() => {
+  const getEmployees = useCallback(() => {
     setResult((prevState) => ({ ...prevState, isLoading: true }));
     apiGet(
       {
@@ -19,17 +19,17 @@ const useGetTeamTasks = ({ url, data }) => {
       data
     )
       .then((res) => {
-        const sort = res.data._embedded.team_tasks.sort((a, b) =>
-          a.taskEnd > b.taskEnd ? 1 : b.taskEnd > a.taskEnd ? -1 : 0
+        const sort = res.data._embedded.employees.sort((a, b) =>
+          a.lastName > b.lastName ? 1 : b.lastName > a.lastName ? -1 : 0
         );
         setResult({ data: sort, isLoading: false, error: null });
-        dispatch(allActions.teams.teamTaskData(sort));
+        dispatch(allActions.employees.employeeData(sort));
       })
       .catch((error) => {
         setResult({ data: null, isLoading: false, error });
       });
   }, [url, data, dispatch]);
 
-  return [result, getTeamTasks];
+  return [result, getEmployees];
 };
-export default useGetTeamTasks;
+export default useGetEmployees;

@@ -1,35 +1,35 @@
 import { useState, useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 import allActions from '../redux/actions/index';
-import apiGet from '../apis/apiGet';
+import apiPut from '../apis/apiPut';
 
-const useGetTeamTasks = ({ url, data }) => {
+const useGetTeams = ({ url, data }) => {
   const dispatch = useDispatch();
   const [result, setResult] = useState({
     data: null,
     error: null,
     isLoading: false,
   });
-  const getTeamTasks = useCallback(() => {
+  const putTeam = useCallback(() => {
     setResult((prevState) => ({ ...prevState, isLoading: true }));
-    apiGet(
+    apiPut(
       {
         url,
       },
       data
     )
       .then((res) => {
-        const sort = res.data._embedded.team_tasks.sort((a, b) =>
-          a.taskEnd > b.taskEnd ? 1 : b.taskEnd > a.taskEnd ? -1 : 0
+        const sort = res.data._embedded.teams.sort((a, b) =>
+          a.id > b.id ? 1 : b.id > a.id ? -1 : 0
         );
         setResult({ data: sort, isLoading: false, error: null });
-        dispatch(allActions.teams.teamTaskData(sort));
+        dispatch(allActions.teams.teamData(sort));
       })
       .catch((error) => {
         setResult({ data: null, isLoading: false, error });
       });
   }, [url, data, dispatch]);
 
-  return [result, getTeamTasks];
+  return [result, putTeam];
 };
-export default useGetTeamTasks;
+export default useGetTeams;

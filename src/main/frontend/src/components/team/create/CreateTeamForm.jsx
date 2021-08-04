@@ -3,9 +3,9 @@ import { Input, Card, Form, Button, Select } from 'antd';
 
 import './Create.css';
 
-const createTeamForm = ({ handleCreateSubmit, handleSelection, children, setTitle }) => (
+const CreateTeamForm = ({ handleCreateSubmit, handleSelection, children, setTitle }) => (
   <div style={{ display: 'flex', justifyContent: 'space-around' }}>
-    <Card style={{ width: 500, alignSelf: 'center' }}>
+    <Card className="create-team-card">
       <Form layout="vertical" requiredMark>
         <Form.Item label="Team Name" required tooltip="This is a required field">
           <Input placeholder="Team Name" onChange={(event) => setTitle(event.target.value)} />
@@ -28,4 +28,4 @@ const createTeamForm = ({ handleCreateSubmit, handleSelection, children, setTitl
     </Card>
   </div>
 );
-export default createTeamForm;
+export default CreateTeamForm;

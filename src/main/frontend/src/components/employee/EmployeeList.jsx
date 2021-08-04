@@ -10,7 +10,7 @@ const EmployeeList = ({ employees, clickHandler }) => {
       {`${employee.lastName}, ${employee.firstName}`}
       <Link
         key={employee.id}
-        to={`/employees/${employee.id}`}
+        to={`/EMapp/employees/${employee.id}`}
         onClick={() => clickHandler(employee)}
       />
     </Menu.Item>

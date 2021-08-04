@@ -2,30 +2,55 @@ import React, { useEffect, Suspense, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Spin } from 'antd';
 import allActions from '../redux/actions/index';
-import apiGet from '../apis/apiGet';
-import ScheduleList from '../components/schedule/ScheduleList';
+import TaskList from '../components/task/TaskList';
+import useGetTeamTasks from '../hooks/useGetTeamTasks';
 
 const Schedule = () => {
-  const teams = useSelector((state) => state.teams.teamData);
-  const [tasks, setTasks] = useState([]);
+  // const teams = useSelector((state) => state.teams.teamData);
+  const taskState = useSelector((state) => state.teams.teamTaskData);
   const dispatch = useDispatch();
+  const [isLoading, setIsLoading] = useState(true);
+
+  const [result, getTeamTasks] = useGetTeamTasks({
+    url: 'team_tasks',
+    data: null,
+  });
 
   useEffect(() => {
-    if (teams) {
-      teams.map((team) => {
-        return setTasks([...tasks, team.teamTasks]);
-      });
+    if (taskState.length === 0) {
+      getTeamTasks();
     }
-  }, [teams, setTasks, tasks]);
+    if (taskState.length !== 0) {
+      setIsLoading(false);
+    }
+  }, [getTeamTasks, taskState]);
+
+  // useEffect(() => {
+  //   if (teams) {
+  //     const totalTasks = teams.map((team) => {
+  //       return team.teamTasks;
+  //     });
+  //     // console.log(taskArray);
+  //     const tasksReduced = totalTasks.reduce((total, amount) => {
+  //       return total.concat(amount);
+  //     });
+  //     setTasks(tasksReduced);
+  //     dispatch(allActions.teams.teamTaskData(tasks));
+  //   }
+
+  //   return () => setIsLoading(false);
+  // }, [teams, tasks, dispatch]);
 
   const clickHandler = (task) => {
     if (task !== null) {
       dispatch(allActions.teams.teamTaskSelected(task));
     }
   };
-  return (
+  return isLoading ? (
+    <Spin />
+  ) : (
     <Suspense fallback={<Spin />}>
-      <ScheduleList clickHandler={clickHandler} />
+      <TaskList clickHandler={clickHandler} tasks={taskState} />
     </Suspense>
   );
 };

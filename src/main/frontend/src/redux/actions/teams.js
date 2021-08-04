@@ -18,6 +18,11 @@ const teamTaskData = (teamTasks) => ({
   payload: teamTasks,
 });
 
+const teamTaskSelected = (task) => ({
+  type: TEAM_TASK_SELECTED,
+  payload: task,
+});
+
 const teamAdded = (team) => ({
   type: TEAM_ADDED,
   payload: team,
@@ -45,4 +50,5 @@ export const teams = {
   teamSelected,
   teamUpdated,
   teamTaskData,
+  teamTaskSelected,
 };
