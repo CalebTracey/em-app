@@ -30,7 +30,8 @@ public class TeamTaskModel extends RepresentationModel<TeamTaskModel> {
     private TeamModel team;
     @Transient
     private Integer duration;
-
+    @Transient
+    private Integer endDate;
     @Transient
     private Integer remaining;
 }

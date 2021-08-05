@@ -6,6 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @CrossOrigin("*")
 @RestController
@@ -37,7 +38,17 @@ public class TeamTaskController {
         return new ResponseEntity<>(
                 assembler.toCollectionModel(teamTasks),
                 HttpStatus.OK);
+    }
 
+    @GetMapping("team_tasks/month/{month}")
+    public ResponseEntity<CollectionModel<TeamTaskModel>>
+        getTeamTasksByMonth(@PathVariable(value = "month") Integer month) {
+            List<TeamTask> teamTasks =
+                    teamTaskService.findAll().stream().filter(
+                            teamTask -> teamTask.getEndMonth().equals(month)).collect(Collectors.toList());
+        return new ResponseEntity<>(
+                assembler.toCollectionModel(teamTasks),
+                HttpStatus.OK);
 
     }
 

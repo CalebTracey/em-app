@@ -28,6 +28,8 @@ const TeamDetails = ({ showDeleteTeamConfirm, team }) => {
         <div className="team-task-wrapper ">
           <TeamTaskListContainer team={team} />
         </div>
+      </Suspense>
+      <Suspense fallback={<Spin />}>
         <div className="team-members">
           {'Team Members '} <Badge className="team-badge" count={team.employees.length} />
         </div>

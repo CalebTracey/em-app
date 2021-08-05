@@ -7,7 +7,7 @@ import { homeNav } from './sider-nav/HomeNav';
 import { teamsNav } from './sider-nav/TeamsNav';
 import { scheduleNav } from './sider-nav/ScheduleNav.jsx';
 import { employeesNav } from './sider-nav/EmployeesNav';
-import { TeamOutlined, UserOutlined, CalendarOutlined } from '@ant-design/icons';
+import { TeamOutlined, UserOutlined, ScheduleOutlined } from '@ant-design/icons';
 
 const Employees = lazy(() => import('../containers/Employees'));
 const Teams = lazy(() => import('../containers/Teams'));
@@ -60,7 +60,7 @@ const SideNav = ({ company }) => {
         </SubMenu>
         <SubMenu
           key="schedule"
-          icon={<CalendarOutlined />}
+          icon={<ScheduleOutlined />}
           title="Schedule"
           onTitleClick={onClickHandler}
         >

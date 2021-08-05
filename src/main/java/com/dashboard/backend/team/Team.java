@@ -36,7 +36,7 @@ public class Team {
     @OneToMany(mappedBy = "team", cascade = CascadeType.ALL)
     private List<TeamTask> teamTasks;
 
-    @ManyToMany(mappedBy = "teams")
+    @ManyToMany
     private List<Employee> employees;
 
     public Team() { super();

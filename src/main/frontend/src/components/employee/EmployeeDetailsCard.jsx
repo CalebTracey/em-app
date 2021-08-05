@@ -18,7 +18,7 @@ const EmployeeDetailsCard = ({ employee, teams }) => {
   return (
     <Card
       key={employee.id}
-      style={{ boxShadow: '0 0 2.5em -2em', overflow: 'hidden' }}
+      style={{ boxShadow: '0 0 2.5em -2em', overflow: 'hidden'}}
       bodyStyle={{ padding: '2.5ch' }}
     >
       <PageHeader

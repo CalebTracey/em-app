@@ -50,7 +50,7 @@ public class Employee{
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JsonBackReference
-    @JoinTable(name = "team_members",
+    @JoinTable(
             joinColumns = @JoinColumn(
                     name = "employee_id"),
             inverseJoinColumns = @JoinColumn(

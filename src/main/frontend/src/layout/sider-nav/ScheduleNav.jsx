@@ -1,7 +1,7 @@
 import React from 'react';
 import { Menu } from 'antd';
 import { NavLink } from 'react-router-dom';
-import { PlusOutlined, CalendarOutlined } from '@ant-design/icons';
+import { PlusOutlined, ScheduleOutlined } from '@ant-design/icons';
 
 const createSchedule = () => (
   <Menu.Item key="create-sch" icon={<PlusOutlined />}>
@@ -10,7 +10,7 @@ const createSchedule = () => (
   </Menu.Item>
 );
 const fullSchedule = () => (
-  <Menu.Item key="full-sch" icon={<CalendarOutlined />}>
+  <Menu.Item key="full-sch" icon={<ScheduleOutlined />}>
     <>Full Schedule</>
     <NavLink key="full-sch-nav" to="/full-schedule" />
   </Menu.Item>

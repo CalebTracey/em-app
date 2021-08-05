@@ -32,6 +32,7 @@ const TeamDetailList = ({ team, setShowModal }) => {
   return (
     <Suspense fallback={<Skeleton />}>
       <TeamDetailItemContainer
+        style={{ width: '100%' }}
         team={team}
         employees={employeeState}
         setShowModal={setShowModal}

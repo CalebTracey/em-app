@@ -1,5 +1,6 @@
 import { List } from 'antd';
 import React from 'react';
+
 import DashboardTeamsListItem from './DashboardTeamsListItem';
 
 const DashboardTeamsList = ({ teams, clickHandler }) => {

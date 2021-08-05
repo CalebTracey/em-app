@@ -3,10 +3,12 @@ import { PageHeader } from 'antd';
 import { Redirect } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import EmployeeDetailsCard from './EmployeeDetailsCard';
+import { useHistory } from 'react-router-dom';
 
 const EmployeeDetails = () => {
   const employee = useSelector((state) => state.employees.employeeSelected);
   const teams = useSelector((state) => state.teams.teamsData);
+  const history = useHistory();
 
   return !employee ? (
     <Redirect to="/EMapp" />
@@ -15,7 +17,7 @@ const EmployeeDetails = () => {
       <PageHeader
         fontWeight="bold"
         className="site-page-header"
-        onBack={() => window.history.back()}
+        onBack={() => history.goBack()}
         title={employee.name}
       />
       <div

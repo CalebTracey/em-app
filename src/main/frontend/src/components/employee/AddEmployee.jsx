@@ -28,8 +28,6 @@ const AddEmployee = () => {
     teams: [],
   });
 
-  const putEmployee = () => {};
-
   const onFinish = async () => {
     await api
       .post('employees', data)

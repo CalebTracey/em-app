@@ -34,7 +34,13 @@ const TeamDetailListContainer = ({ team }) => {
   ) : (
     <div
       className="team-detail-wrapper"
-      style={{ marginRight: '10%', marginLeft: '10%', boxShadow: '0 0 2.25em -2em' }}
+      style={{
+        // padding: '1rem',
+        // marginRight: '10%',
+        // marginLeft: '10%',
+        // display: 'flex',
+        boxShadow: '0 0 2.25em -2em',
+      }}
     >
       <Suspense fallback={<Spin />}>
         <InfiniteScroll

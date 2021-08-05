@@ -3,25 +3,27 @@
   flex-direction: column;
   height: 100%;
   width: 100%;
-  transition: all;
-  /* animation: landing 10s ease 1s infinite; */
-  background: linear-gradient(-45deg, #f0f5ff, #adc6ff, #597ef7, #1d39c4, #10239e);
-  /* background: linear-gradient(-45deg, #f0f5ff, #10239e, #adc6ff, #030852, #597ef7); */
-
-  background-size: 400% 400%;
-  animation: landing 20s ease infinite;
+  background-color: #f0f2f5;
+  /* transition: all; */
+  /* background: linear-gradient(-45deg, #f0f5ff, #adc6ff, #597ef7, #1d39c4); */
+  /* background-size: 400% 400%; */
+  /* animation: landing 15s ease infinite; */
 }
 
 .wrapper {
   text-align: center;
   justify-content: center;
+  /* text-shadow: 4px 3px 0px #f5f5f5; */
+
   flex: 1;
 }
 
 .title {
-  font-size: 10ch;
-  color: #030852;
-  font-weight: 200;
+  font-size: 5vw;
+  color: #262626;
+
+  font-weight: 300;
+  position: relative;
   text-transform: uppercase;
   animation: all cubic-bezier(0.175, 0.885, 0.32, 1.275) 4s;
   -webkit-animation: fadeIn cubic-bezier(0.175, 0.885, 0.32, 1.275) 4s;
@@ -31,12 +33,9 @@
 }
 
 .text {
-  color: grey;
+  color: #434343;
   font-weight: 500;
   margin: 1ch;
-}
-
-.button-container {
 }
 
 .button-wrap {
@@ -46,24 +45,49 @@
 }
 
 .button {
-  border: 1px solid #e8e8e8;
+  border: 1px solid #bfbfbf;
+  position: relative;
   width: 8rem;
   height: 3rem;
-  background-color: #f0f2f5;
+  background-color: #f0f0f0;
   text-align: center;
   align-content: center;
-  border-radius: 5%;
+  border-radius: 3px;
   box-shadow: 0 0 2.25em -1.25em black;
+  /* box-shadow: 4px 3px 0px #434343; */
   transition: all;
   transition-duration: 150ms;
   transition-timing-function: ease-in-out;
+  z-index: 1;
+}
+
+.button::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: #d6e4ff;
+  opacity: 0.5;
+  left: 0;
+  top: 0;
+  transform-origin: middle;
+  z-index: -1;
+  transform: scaleX(0);
+
+  transition: transform 200ms ease-in-out;
+  transform-origin: right;
 }
 
 .button:hover {
-  transform: scaleX(115%) scaleY(115%);
-  background-color: #f0f5ff;
+  transform: scale(115%);
   box-shadow: 0 0 1.75em -1.25em black;
+  /* box-shadow: 2px 0 0px #434343; */
   cursor: pointer;
+}
+
+.button:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
 }
 
 @keyframes landing {

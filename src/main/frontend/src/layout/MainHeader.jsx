@@ -17,10 +17,10 @@ const MainHeader = ({ company }) => {
       }}
     >
       <Title
-        style={{ lineHeight: 1.5, fontSize: '2rem' }}
+        style={{ lineHeight: 1.5, fontSize: '2rem', color: '#434343' }}
       >{`${company.companyName} ${company.companySuffix}`}</Title>
       <Text
-        style={{ lineHeight: 0, fontSize: '1.25em' }}
+        style={{ lineHeight: 0, fontSize: '1.25em', color: '#bfbfbf' }}
         italic={true}
       >{`"${company.catchPhrase}"`}</Text>
     </Header>

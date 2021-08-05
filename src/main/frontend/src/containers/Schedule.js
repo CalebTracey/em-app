@@ -9,21 +9,20 @@ const Schedule = () => {
   // const teams = useSelector((state) => state.teams.teamData);
   const taskState = useSelector((state) => state.teams.teamTaskData);
   const dispatch = useDispatch();
-  const [isLoading, setIsLoading] = useState(true);
 
-  const [result, getTeamTasks] = useGetTeamTasks({
-    url: 'team_tasks',
-    data: null,
-  });
+  // const [result, getTeamTasks] = useGetTeamTasks({
+  //   url: 'team_tasks',
+  //   data: null,
+  // });
 
-  useEffect(() => {
-    if (taskState.length === 0) {
-      getTeamTasks();
-    }
-    if (taskState.length !== 0) {
-      setIsLoading(false);
-    }
-  }, [getTeamTasks, taskState]);
+  // useEffect(() => {
+  //   if (taskState.length === 0) {
+  //     getTeamTasks();
+  //   }
+  //   if (taskState.length !== 0) {
+  //     setIsLoading(false);
+  //   }
+  // }, [getTeamTasks, taskState]);
 
   // useEffect(() => {
   //   if (teams) {
@@ -46,9 +45,7 @@ const Schedule = () => {
       dispatch(allActions.teams.teamTaskSelected(task));
     }
   };
-  return isLoading ? (
-    <Spin />
-  ) : (
+  return (
     <Suspense fallback={<Spin />}>
       <TaskList clickHandler={clickHandler} tasks={taskState} />
     </Suspense>

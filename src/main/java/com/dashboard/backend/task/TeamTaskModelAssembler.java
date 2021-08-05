@@ -34,6 +34,7 @@ public class TeamTaskModelAssembler extends RepresentationModelAssemblerSupport<
         teamTaskModel.setTaskEnd(teamTask.getTaskEnd());
         teamTaskModel.setDuration(teamTask.getDuration());
         teamTaskModel.setRemaining(teamTask.getRemaining());
+        teamTaskModel.setEndDate(teamTask.getEndDate());
         teamTaskModel.setTeam(toTeamModel(teamTask.getTeam()));
         return teamTaskModel;
     }

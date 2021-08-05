@@ -10,7 +10,7 @@ const useTasks = () => {
 
   useEffect(() => {
     if (!tasksLoaded) {
-      const arr = new Array(25).fill();
+      const arr = new Array(10).fill();
       const getRandomInt = (min, max) => {
         min = Math.ceil(min);
         max = Math.floor(max);
@@ -29,7 +29,7 @@ const useTasks = () => {
         client: faker.company.companyName(),
         clientPhone: faker.phone.phoneNumberFormat(),
         startDate: faker.date.recent(getRandomInt(30, 90), date).toDateString(),
-        endDate: faker.date.soon(getRandomInt(30, 90), date).toDateString(),
+        endDate: faker.date.soon(getRandomInt(60, 25), date).toDateString(),
         teamId: getRandomInt(1, 5),
         // key: Math.floor(Math.random() * 1234567890000),
         //address: faker.company.streetAddress(),

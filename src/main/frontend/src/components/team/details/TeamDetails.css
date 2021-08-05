@@ -6,14 +6,23 @@
   border: 1px solid #e8e8e8;
   border-radius: 4px;
 }
+
+.demo-infinite-container::-webkit-scrollbar {
+  display: none;
+}
+
 .demo-loading-container {
-  position: absolute;
+  /* position: absolute; */
   bottom: 40px;
-  width: 100%;
+  width: auto;
   text-align: center;
 }
 [data-theme='dark'] .demo-infinite-container {
   border: 1px solid #303030;
+}
+
+.demo-loading-container::-webkit-scrollbar {
+  display: none;
 }
 
 .team-badge .ant-badge-count {
@@ -60,6 +69,10 @@
   margin-bottom: 2rem;
   box-shadow: 0 0 2.25em -2em;
 }
+/* 
+.team-detail-wrapper::-webkit-scrollbar {
+  display: none;
+} */
 
 .current-tasks {
   font-weight: bold;

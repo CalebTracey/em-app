@@ -42,8 +42,10 @@ public class TeamTask {
     private Integer duration;
     @Transient
     private Integer remaining;
+    @Transient
+    private Integer endDate;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.REMOVE)
     @JsonBackReference
     private Team team;
 
@@ -63,7 +65,8 @@ public class TeamTask {
             LocalDate taskEnd,
             Integer duration,
             Integer remaining,
-            Team team) {
+            Team team,
+            Integer endDate) {
         this.name = name;
         this.description = description;
         this.client = client;
@@ -73,22 +76,7 @@ public class TeamTask {
         this.duration = duration;
         this.remaining = remaining;
         this.team = team;
-    }
-
-    public TeamTask(
-            String name,
-            String description,
-            String client,
-            String clientPhone,
-            LocalDate taskStart,
-            LocalDate taskEnd
-    ) {
-        this.name = name;
-        this.description = description;
-        this.client = client;
-        this.clientPhone = clientPhone;
-        this.taskStart = taskStart;
-        this.taskEnd = taskEnd;
+        this.endDate = endDate;
     }
 
     public Team getTeam() {
@@ -156,11 +144,13 @@ public class TeamTask {
         return Period.between(this.taskStart, LocalDate.now()).getDays();
     }
 
-    @Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.TIME)
     public Integer getRemaining() {
         return Period.between(LocalDate.now(), this.taskEnd).getDays();
     }
 
+    @Temporal(TemporalType.DATE)
+    public Integer getEndMonth() { return this.getTaskEnd().getMonth().getValue();}
 
     @Override
     public boolean equals(Object o) {

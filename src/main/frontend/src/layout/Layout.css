@@ -8,3 +8,7 @@
   max-width: 15%;
   width: 15%;
 }
+
+.sider::-webkit-scrollbar {
+  display: none;
+}
