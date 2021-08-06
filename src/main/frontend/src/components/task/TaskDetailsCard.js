@@ -15,7 +15,7 @@ const TaskDetailsCard = ({ task }) => {
       bodyStyle={{ padding: '2.5ch' }}
     >
       <PageHeader
-        style={{ textOverflow: 'ellipsis', overflow: 'hidden' }}
+        style={{ textOverflow: 'ellipsis', overflow: 'hidden', textTransform: 'capitalize' }}
         title={task.description}
         subTitle={`${task.taskStart} - ${task.taskEnd}`}
         className="site-page-header"

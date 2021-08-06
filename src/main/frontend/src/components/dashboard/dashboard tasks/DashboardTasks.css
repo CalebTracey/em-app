@@ -17,7 +17,7 @@
   border-radius: 4px;
   box-shadow: 0 0 2.5em -2em;
   min-width: 10rem;
-  height: 65%;
+  max-height: 65%;
   padding: 0;
   /* flex-basis: auto; */
   /* height: fit-content; */
@@ -58,6 +58,7 @@
 }
 
 .task-container {
+  text-transform: capitalize;
   height: 100%;
   margin-left: 4em;
   display: flex;

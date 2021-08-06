@@ -1,9 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.dashboard.backend.BackendApplicationTests
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 3.049 s <<< FAILURE! - in com.dashboard.backend.BackendApplicationTests
-contextLoads  Time elapsed: 0.002 s  <<< ERROR!
-java.lang.IllegalStateException: Failed to load ApplicationContext
-Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'teamTask' defined in file [/Users/calebtracey/Desktop/Code/Java/dashboard-front-back/backend/target/classes/com/dashboard/backend/task/TeamTask.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'java.lang.String' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
-Caused by: org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'java.lang.String' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
-
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 3.452 s - in com.dashboard.backend.BackendApplicationTests

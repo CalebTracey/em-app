@@ -1,5 +1,6 @@
 package com.dashboard.backend.employee;
 
+import com.dashboard.backend.team.Team;
 import com.dashboard.backend.team.TeamModel;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonRootName;
@@ -35,7 +36,7 @@ public class EmployeeModel extends RepresentationModel<EmployeeModel> {
     @Transient
     private Optional<Integer> age;
 
-    private List <TeamModel> teams;
+    private TeamModel team;
 
 
 }

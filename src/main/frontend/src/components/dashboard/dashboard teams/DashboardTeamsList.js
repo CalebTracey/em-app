@@ -3,9 +3,9 @@ import React from 'react';
 
 import DashboardTeamsListItem from './DashboardTeamsListItem';
 
-const DashboardTeamsList = ({ teams, clickHandler }) => {
+const DashboardTeamsList = ({ teams }) => {
   const teamLists = teams.map((team, teamIdx) => {
-    return <DashboardTeamsListItem key={teamIdx} team={team} clickHandler={clickHandler} />;
+    return <DashboardTeamsListItem key={teamIdx} team={team} />;
   });
 
   return (

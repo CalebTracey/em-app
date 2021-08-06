@@ -7,7 +7,7 @@ export const homeNav = () => {
   return (
     <Menu.Item key="home" icon={<HomeOutlined />}>
       <>Home</>
-      <NavLink key="home-nav" to="/" />
+      <NavLink key="home-nav" to="/EMapp" />
     </Menu.Item>
   );
 };

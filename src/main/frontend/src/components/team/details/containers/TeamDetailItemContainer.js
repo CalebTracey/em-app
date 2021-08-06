@@ -34,12 +34,12 @@ const TeamDetailItemContainer = ({ team, setShowModal, handleRemoveTeamMember })
   });
 
   return (
-    <List style={{ width: ' 100%' }}>
-      <Suspense fallback={<Skeleton />}>
-        <QueueAnim key="nodeMap" type={['right', 'left']} leaveReverse>
-          {teamList}
-        </QueueAnim>
-      </Suspense>
+    <List>
+      {/* <Suspense fallback={<Skeleton />}> */}
+      <QueueAnim key="nodeMap" type={['right', 'left']} leaveReverse>
+        {teamList}
+      </QueueAnim>
+      {/* </Suspense> */}
     </List>
   );
 };

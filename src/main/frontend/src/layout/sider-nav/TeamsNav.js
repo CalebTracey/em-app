@@ -8,7 +8,7 @@ const createTeam = () => {
   return (
     <Menu.Item key="create-team" icon={<PlusOutlined />}>
       <>Create Team</>
-      <NavLink key="create-team-nav" to={'/create-team'} />
+      <NavLink key="create-team-nav" to={'/EMapp/create-team'} />
     </Menu.Item>
   );
 };

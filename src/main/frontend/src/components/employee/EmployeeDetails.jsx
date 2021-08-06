@@ -7,7 +7,7 @@ import { useHistory } from 'react-router-dom';
 
 const EmployeeDetails = () => {
   const employee = useSelector((state) => state.employees.employeeSelected);
-  const teams = useSelector((state) => state.teams.teamsData);
+  const teams = useSelector((state) => state.teams.teamData);
   const history = useHistory();
 
   return !employee ? (

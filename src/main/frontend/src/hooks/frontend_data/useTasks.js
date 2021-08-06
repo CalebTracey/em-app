@@ -10,7 +10,7 @@ const useTasks = () => {
 
   useEffect(() => {
     if (!tasksLoaded) {
-      const arr = new Array(10).fill();
+      const arr = new Array(60).fill();
       const getRandomInt = (min, max) => {
         min = Math.ceil(min);
         max = Math.floor(max);

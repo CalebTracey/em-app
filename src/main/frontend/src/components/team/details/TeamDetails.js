@@ -1,5 +1,5 @@
 import React, { lazy } from 'react';
-import { PageHeader, Spin, Badge } from 'antd';
+import { PageHeader, Spin, Badge, Skeleton } from 'antd';
 import { Redirect } from 'react-router-dom';
 import './TeamDetails.css';
 import TeamDetailsDropDown from './TeamDetailsDropDown';
@@ -12,6 +12,7 @@ const TeamDetails = ({ showDeleteTeamConfirm, team }) => {
   return !team ? (
     <Redirect to={'/EMapp'} />
   ) : (
+    // <Skeleton />
     <>
       <PageHeader
         fontWeight="bold"

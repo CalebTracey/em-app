@@ -7,6 +7,7 @@ import org.springframework.hateoas.server.mvc.RepresentationModelAssemblerSuppor
 import org.springframework.stereotype.Component;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Component
@@ -20,16 +21,19 @@ public class EmployeeModelAssembler extends RepresentationModelAssemblerSupport<
     public EmployeeModel toModel(Employee employee) {
 
         EmployeeModel employeeModel = instantiateModel(employee);
-
+        createModelWithId(employee.getId(), employee);
         employeeModel.add(linkTo(
                 methodOn(EmployeeController.class)
                         .getEmployeeById(employee.getId()))
                 .withSelfRel());
 
-        if (employee.getTeams() == null) {
-            employeeModel.setTeams(Collections.emptyList());
-        } else {
-            employeeModel.setTeams(toTeamModel(employee.getTeams()));
+        if (employee.getTeam() == null) {
+            TeamModel team = new TeamModel();
+            employeeModel.setTeam(team);
+        } else{
+            employeeModel.setTeam(toTeamModel(employee.getTeam()));
+//            employeeModel.add(linkTo(methodOn(TeamController.class).getTeamById(employee.getTeam().getId())).withSelfRel());
+//            employeeModel.setTeam(employee.getTeam());
         }
         employeeModel.setId(employee.getId());
         employeeModel.setFirstName(employee.getFirstName());
@@ -59,18 +63,17 @@ public class EmployeeModelAssembler extends RepresentationModelAssemblerSupport<
         return employeeModels;
     }
 
-    private List<TeamModel> toTeamModel(List<Team> teams) {
-        if (teams.isEmpty()) {
-            return Collections.emptyList();
-        }
-        return teams.stream().map(team ->
-                        TeamModel.builder()
+    private TeamModel toTeamModel(Team team) {
+//        if (teams.isEmpty()) {
+//            return Collections.emptyList();
+//        }
+        return TeamModel.builder()
                         .id(team.getId())
                         .teamName(team.getTeamName())
                         .build().add(
                         linkTo(methodOn(TeamController.class)
-                                .getTeamById(team.getId())).withSelfRel()))
-                .collect(Collectors.toList());
+                                .getTeamById(team.getId())).withSelfRel());
+//                .collect(Collectors.toList());
 
 
     }

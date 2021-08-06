@@ -45,7 +45,8 @@ public class TeamTask {
     @Transient
     private Integer endDate;
 
-    @ManyToOne(cascade = CascadeType.REMOVE)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "team_id", referencedColumnName = "id")
     @JsonBackReference
     private Team team;
 

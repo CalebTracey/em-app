@@ -8,7 +8,8 @@ insert into employees ( id ,first_name, last_name, job_title, address, phone_num
     '475-467-9503',
     'https://cdn.fakercloud.com/avatars/iqonicd_128.jpg',
     'Ladarius_Tremblay17@example.com',
-    '1989-01-01T08:03:52.449Z'
+    '1989-01-01T08:03:52.449Z',
+    1
   ),
   ( nextval('employee_sequence'),
     'Kyleigh',
@@ -18,7 +19,8 @@ insert into employees ( id ,first_name, last_name, job_title, address, phone_num
     '914-216-3880',
     'https://cdn.fakercloud.com/avatars/danmartin70_128.jpg',
     'Riley_Frami@example.net',
-    '1981-12-24T09:58:31.644Z'
+    '1981-12-24T09:58:31.644Z',
+    1
   ),
   ( nextval('employee_sequence'),
     'Kaylah',
@@ -29,7 +31,8 @@ insert into employees ( id ,first_name, last_name, job_title, address, phone_num
     'https://cdn.fakercloud.com/avatars/lonesomelemon_128.jpg',
     'Humberto_Rath76@example.net',
 
-    '1997-03-08T14:24:44.433Z'
+    '1997-03-08T14:24:44.433Z',
+    1
   ),
   ( nextval('employee_sequence'),
     'Wellington',
@@ -40,7 +43,8 @@ insert into employees ( id ,first_name, last_name, job_title, address, phone_num
     'https://cdn.fakercloud.com/avatars/leonfedotov_128.jpg',
     'Matt_Daugherty2@example.net',
 
-    '1983-06-10T13:34:03.654Z'
+    '1983-06-10T13:34:03.654Z',
+    1
   ),
   ( nextval('employee_sequence'),
     'Sean',
@@ -51,7 +55,8 @@ insert into employees ( id ,first_name, last_name, job_title, address, phone_num
     'https://cdn.fakercloud.com/avatars/smalonso_128.jpg',
     'Cristopher.Parisian@example.net',
 
-    '1980-11-15T06:51:03.939Z'
+    '1980-11-15T06:51:03.939Z',
+    1
   ),
   ( nextval('employee_sequence'),
     'Wava',
@@ -62,7 +67,8 @@ insert into employees ( id ,first_name, last_name, job_title, address, phone_num
     'https://cdn.fakercloud.com/avatars/joetruesdell_128.jpg',
     'Favian_Collins@example.org',
 
-    '1997-08-31T04:05:55.159Z'
+    '1997-08-31T04:05:55.159Z',
+    1
   ),
   ( nextval('employee_sequence'),
     'Korey',
@@ -73,7 +79,8 @@ insert into employees ( id ,first_name, last_name, job_title, address, phone_num
     'https://cdn.fakercloud.com/avatars/bowbrick_128.jpg',
     'Elyse_Block@example.org',
 
-    '1987-05-17T19:26:14.741Z'
+    '1987-05-17T19:26:14.741Z',
+    1
   ),
   ( nextval('employee_sequence'),
     'Robin',
@@ -84,7 +91,8 @@ insert into employees ( id ,first_name, last_name, job_title, address, phone_num
     'https://cdn.fakercloud.com/avatars/isaacfifth_128.jpg',
     'Edwin5@example.com',
 
-    '1985-08-16T02:25:41.798Z'
+    '1985-08-16T02:25:41.798Z',
+    1
   ),
   ( nextval('employee_sequence'),
     'Alia',

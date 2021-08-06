@@ -11,6 +11,7 @@ import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.*;
+import java.util.stream.Collectors;
 
 
 @Data
@@ -48,14 +49,10 @@ public class Employee{
     @Transient
     private Integer age;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JsonBackReference
-    @JoinTable(
-            joinColumns = @JoinColumn(
-                    name = "employee_id"),
-            inverseJoinColumns = @JoinColumn(
-                    name = "team_id"))
-    private List<Team> teams;
+    @JoinColumn(name = "team_id", referencedColumnName = "id")
+    private Team team;
 
     public Employee(
             String firstName,
@@ -66,7 +63,7 @@ public class Employee{
             String address,
             String avatar,
             LocalDate dob,
-            List<Team> teams
+            Team Team
     ) {
         this.firstName = firstName;
         this.lastName = lastName;
@@ -76,11 +73,11 @@ public class Employee{
         this.address = address;
         this.avatar = avatar;
         this.dob = dob;
-        this.teams = teams;
+        this.team = team;
     }
 
-    public void setTeams(List<Team> teams) {
-        this.teams = teams;
+    public void setTeam(Team Team) {
+        this.team = team;
     }
 
     public Long getId() {
@@ -172,8 +169,8 @@ public class Employee{
         this.age = age;
     }
 
-    public List<Team> getTeams() {
-        return teams;
+    public Team getTeam() {
+        return team;
     }
 
     @Override

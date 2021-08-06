@@ -12,12 +12,10 @@ const useGetTeams = ({ url, data }) => {
   });
   const putTeam = useCallback(() => {
     setResult((prevState) => ({ ...prevState, isLoading: true }));
-    apiPut(
-      {
-        url,
-      },
-      data
-    )
+    apiPut({
+      url,
+      data,
+    })
       .then((res) => {
         const sort = res.data._embedded.teams.sort((a, b) =>
           a.id > b.id ? 1 : b.id > a.id ? -1 : 0

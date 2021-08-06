@@ -3,9 +3,13 @@ package com.dashboard.backend.employee;
 
 import com.dashboard.backend.team.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.web.PagedResourcesAssembler;
+import org.springframework.data.web.config.EnableSpringDataWebSupport;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.IanaLinkRelations;
+import org.springframework.hateoas.PagedModel;
 import org.springframework.hateoas.server.ExposesResourceFor;
+import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,7 +17,8 @@ import java.util.List;
 
 @CrossOrigin("*")
 @RestController
-@ExposesResourceFor(TeamModelAssembler.class)
+//@ExposesResourceFor(TeamModelAssembler.class)
+@EnableSpringDataWebSupport
 @RequestMapping(path = "api/v1/")
 public class EmployeeController {
 
@@ -33,7 +38,9 @@ public class EmployeeController {
 
     @GetMapping("employees")
     public ResponseEntity<CollectionModel<EmployeeModel>> getAllEmployees() {
+//        HttpEntity<PagedModel<Employee>> employees(Pageable pageable, PagedRepresentationModelAssembler assembler)
         List<Employee> employees = employeeService.findAll();
+
         return new ResponseEntity<>(
                 assembler.toCollectionModel(employees),
                 HttpStatus.OK);
@@ -58,6 +65,8 @@ public class EmployeeController {
         employeeService.deleteEmployee(id);
         return ResponseEntity.noContent().build();
     }
+
+
 //    @PutMapping("employees/{id}")
 //    ResponseEntity<?> replaceEmployee(@RequestBody Employee newEmployee, @PathVariable Long id) {
 //        Employee updatedEmployee = repository.findById(id)

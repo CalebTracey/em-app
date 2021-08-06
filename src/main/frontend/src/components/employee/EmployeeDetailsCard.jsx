@@ -1,24 +1,32 @@
 import React, { useState, useEffect } from 'react';
 import { Descriptions, Tag, Card, Typography, PageHeader, Button } from 'antd';
 import PropTypes from 'prop-types';
+import { useDispatch } from 'react-redux';
 import AddTeamDropdown from './AddTeamDropdown';
 import './Employees.css';
 import { Link } from 'react-router-dom';
+import allActions from '../../redux/actions';
 
 const { Text } = Typography;
 
 const EmployeeDetailsCard = ({ employee, teams }) => {
   const [teamName, setTeamName] = useState('No Team');
+  const dispatch = useDispatch();
+
+  const setTeamSelected = () => {
+    const team = teams.filter(({ id }) => id === employee.team.id);
+    dispatch(allActions.teams.teamSelected(team[0]));
+  };
 
   useEffect(() => {
-    if (employee.teams.length !== 0) {
-      setTeamName(employee.teams[0].teamName);
+    if (employee.team.teamName !== '') {
+      setTeamName(employee.team.teamName);
     }
   }, [employee]);
   return (
     <Card
       key={employee.id}
-      style={{ boxShadow: '0 0 2.5em -2em', overflow: 'hidden'}}
+      style={{ boxShadow: '0 0 2.5em -2em', overflow: 'hidden' }}
       bodyStyle={{ padding: '2.5ch' }}
     >
       <PageHeader
@@ -26,8 +34,8 @@ const EmployeeDetailsCard = ({ employee, teams }) => {
         title={`${employee.firstName} ${employee.lastName}`}
         className="site-page-header"
         tags={
-          employee.teams.length === 0 ? null : (
-            <Link to={`/EMapp/team/${employee.teams[0].id}`}>
+          employee.team === null ? null : (
+            <Link to={`/EMapp/team/${employee.team.id}`} onClick={() => setTeamSelected()}>
               <Tag color="blue">{teamName}</Tag>
             </Link>
           )
@@ -35,7 +43,7 @@ const EmployeeDetailsCard = ({ employee, teams }) => {
         extra={[
           <Button key="3">Operation</Button>,
           <Button key="2">Operation</Button>,
-          <AddTeamDropdown teams={teams} employee={employee} />,
+          employee.team ? null : <AddTeamDropdown teams={teams} employee={employee} />,
         ]}
         avatar={{ src: employee.avatar }}
       ></PageHeader>

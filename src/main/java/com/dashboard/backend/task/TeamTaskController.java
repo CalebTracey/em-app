@@ -1,6 +1,7 @@
 package com.dashboard.backend.task;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.web.config.EnableSpringDataWebSupport;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -10,6 +11,7 @@ import java.util.stream.Collectors;
 
 @CrossOrigin("*")
 @RestController
+@EnableSpringDataWebSupport
 @RequestMapping(path = "api/v1/")
 public class TeamTaskController {
 

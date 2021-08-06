@@ -9,7 +9,7 @@ import usePutTeam from '../../hooks/usePutTeam';
 function AddTeamDropdown({ employee }) {
   const teams = useSelector((state) => state.teams.teamData);
   const [updatedTeamId, setUpdatedTeamId] = useState(null);
-  const [updatedTeamData, setUpdatedTeamData] = useState({});
+  const [updatedTeamData, setUpdatedTeamData] = useState(null);
   const dispatch = useDispatch();
 
   const [result, putTeam] = usePutTeam({

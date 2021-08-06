@@ -6,13 +6,13 @@ import { PlusOutlined, ScheduleOutlined } from '@ant-design/icons';
 const createSchedule = () => (
   <Menu.Item key="create-sch" icon={<PlusOutlined />}>
     <>Create Task</>
-    <NavLink key="create-sch-nav" to="/create-schedule" />
+    <NavLink key="create-sch-nav" to="/EMapp/create-schedule" />
   </Menu.Item>
 );
 const fullSchedule = () => (
   <Menu.Item key="full-sch" icon={<ScheduleOutlined />}>
     <>Full Schedule</>
-    <NavLink key="full-sch-nav" to="/full-schedule" />
+    <NavLink key="full-sch-nav" to="/EMapp/full-schedule" />
   </Menu.Item>
 );
 

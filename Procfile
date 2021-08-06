@@ -1,1 +1,2 @@
-web: java -D server.port=$PORT $JAVA_OPTS -jar target/backend-0.0.1-SNAPSHOT.jar
+web: java $JAVA_OPTS -Dserver.port=$PORT -jar "target/backend-0.0.1-SNAPSHOT.jar"  -Dspring.profiles
+.active=test

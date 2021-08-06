@@ -1,3 +1,5 @@
+@import '../../index.css';
+
 .landing-page {
   display: flex;
   flex-direction: column;
@@ -21,7 +23,7 @@
 .title {
   font-size: 5vw;
   color: #262626;
-
+  /* font: 5vw Segoe UI; */
   font-weight: 300;
   position: relative;
   text-transform: uppercase;

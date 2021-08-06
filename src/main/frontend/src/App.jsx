@@ -15,7 +15,6 @@ const Routes = lazy(() => import('./Routes'));
 const App = () => {
   const company = useSelector((state) => state.company);
   useCompany();
-
   return (
     <Layout style={{ height: '100%' }}>
       <SideNav />

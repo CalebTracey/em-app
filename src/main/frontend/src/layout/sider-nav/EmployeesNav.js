@@ -8,7 +8,7 @@ const addEmployee = () => {
   return (
     <Menu.Item key="empadd" icon={<PlusOutlined />}>
       <>Add Employee</>
-      <NavLink key="empadd-nav" to={'/addemployee'} />
+      <NavLink key="empadd-nav" to={'/EMapp/addemployee'} />
     </Menu.Item>
   );
 };

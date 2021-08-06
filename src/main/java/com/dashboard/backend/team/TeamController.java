@@ -2,19 +2,25 @@ package com.dashboard.backend.team;
 
 import com.dashboard.backend.employee.EmployeeModelAssembler;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.web.config.EnableSpringDataWebSupport;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.IanaLinkRelations;
+import org.springframework.hateoas.Link;
 import org.springframework.hateoas.server.ExposesResourceFor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
+import javax.annotation.Resource;
+
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 import java.util.List;
 
 @CrossOrigin("*")
 @RestController
-@ExposesResourceFor(EmployeeModelAssembler.class)
+//@ExposesResourceFor(EmployeeModelAssembler.class)
+@EnableSpringDataWebSupport
 @RequestMapping(path = "api/v1/")
 public class TeamController {
 
@@ -43,6 +49,8 @@ public class TeamController {
     @GetMapping("teams/{id}")
     public ResponseEntity<TeamModel> getTeamById(@PathVariable("id") Long id)
     {
+        Link findOneLink = linkTo(methodOn(TeamController.class).getTeamById(id)).withSelfRel();
+
         return teamRepository.findById(id)
                 .map(assembler::toModel)
                 .map(ResponseEntity::ok)
@@ -64,8 +72,16 @@ public class TeamController {
     }
 
     @PutMapping("teams/{id}")
-    ResponseEntity<?> updateTeam(@PathVariable Long id, @Valid @RequestBody Team newTeam) {
-        TeamModel teamModel = assembler.toModel(newTeam);
+    ResponseEntity<?> updateTeam(@PathVariable Long id, @RequestBody Team newTeam) {
+        Team updatedTeam = teamRepository.findById(id).map(team -> {
+            team.setTeamName(newTeam.getTeamName());
+            team.setTeamTasks(newTeam.getTeamTasks());
+            team.setEmployees(newTeam.getEmployees());
+            return teamService.save(newTeam);
+        }).orElseGet(() -> {
+            return teamService.save(newTeam);
+        });
+        TeamModel teamModel = assembler.toModel(updatedTeam);
         return ResponseEntity.created(teamModel.getRequiredLink(IanaLinkRelations.SELF).toUri())
                 .body(teamModel);
     }

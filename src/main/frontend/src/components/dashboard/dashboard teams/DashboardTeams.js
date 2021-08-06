@@ -5,7 +5,7 @@ import InfiniteScroll from 'react-infinite-scroller';
 
 // import DashboardTeamsList from './DashboardTeamsList';
 const DashboardTeamsList = lazy(() => import('./DashboardTeamsList'));
-const DashboardTeams = ({ teams, employees, clickHandler }) => {
+const DashboardTeams = ({ teams, employees }) => {
   const [loading, setLoading] = useState(false);
   const [hasMore, setHasMore] = useState(true);
 
@@ -31,7 +31,7 @@ const DashboardTeams = ({ teams, employees, clickHandler }) => {
           useWindow={false}
         >
           <Suspense fallback={<Spin />}>
-            <DashboardTeamsList teams={teams} employees={employees} clickHandler={clickHandler} />
+            <DashboardTeamsList teams={teams} employees={employees} />
           </Suspense>
         </InfiniteScroll>
       </div>
