@@ -1,5 +1,5 @@
 
-package com.zerotoproduction.bucketlist;
+package com.dashboard.backend;
 
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
