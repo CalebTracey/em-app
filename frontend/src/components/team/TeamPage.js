@@ -1,12 +1,13 @@
 import React from 'react';
 import { Modal } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import { ExclamationCircleOutlined } from '@ant-design/icons';
+import api from '../../apis/api';
 import allActions from '../../redux/actions/index';
 import TeamDetails from './details/TeamDetails';
-import api from '../../apis/api';
 import TeamDeletedPage from './TeamDeletedPage';
+import TeamPageRedirect from './TeamPageRedirect';
 
 const { confirm } = Modal;
 
@@ -14,6 +15,7 @@ const TeamPage = () => {
   const team = useSelector((state) => state.teams.teamSelected);
   const dispatch = useDispatch();
   const history = useHistory();
+  const { id } = useParams();
 
   const deleteTeam = async (team) => {
     await api
@@ -43,21 +45,10 @@ const TeamPage = () => {
       },
     });
   };
-  // const handleCreateTask = () => {
-  //   console.log('row clicked');
-  // };
 
-  // const handleTaskOk = () => {
-  //   setModalText('The modal will be closed after two seconds');
-  //   setConfirmLoading(true);
-  // };
-
-  // const handleTaskCancel = () => {
-  //   console.log('Clicked cancel button');
-  //   setVisible(false);
-  // };
-
-  return (
+  return !team ? (
+    <TeamPageRedirect id={id} />
+  ) : (
     <TeamDetails
       showDeleteTeamConfirm={showDeleteTeamConfirm}
       team={team}

@@ -33,9 +33,14 @@
   transition-duration: 300ms;
   transition-timing-function: ease-in-out;
 }
+
+.badge-wrapper {
+  margin-left: auto;
+}
+
 .inner-card-text {
+  margin-right: auto;
   text-align: left;
-  margin: auto;
   font-weight: 600;
   padding: 0.5ch;
   color: #bfbfbf;

@@ -16,19 +16,19 @@ const App = () => {
   const company = useSelector((state) => state.company);
   useCompany();
   return (
-    <Layout style={{ height: '100%' }}>
-      <SideNav />
-      <Layout>
-        <MainHeader company={company} />
-        <Content className="content">
-          <Suspense fallback={<Spin />}>
-            <ConnectedRouter history={history}>
+    <ConnectedRouter history={history}>
+      <Layout style={{ height: '100%' }}>
+        <SideNav />
+        <Layout>
+          <MainHeader company={company} />
+          <Content className="content">
+            <Suspense fallback={<Spin />}>
               <Routes />
-            </ConnectedRouter>
-          </Suspense>
-        </Content>
+            </Suspense>
+          </Content>
+        </Layout>
       </Layout>
-    </Layout>
+    </ConnectedRouter>
   );
 };
 

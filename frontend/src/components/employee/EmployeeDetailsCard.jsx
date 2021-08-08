@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { Descriptions, Tag, Card, Typography, PageHeader, Button } from 'antd';
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
 import AddTeamDropdown from './add/AddTeamDropdown';
 import './Employees.css';
-import { Link } from 'react-router-dom';
 import allActions from '../../redux/actions';
 
 const { Text } = Typography;
@@ -12,7 +12,6 @@ const { Text } = Typography;
 const EmployeeDetailsCard = ({ employee, teams }) => {
   const [teamName, setTeamName] = useState('No Team');
   const dispatch = useDispatch();
-
   const setTeamSelected = () => {
     const team = teams.filter(({ id }) => id === employee.team.id);
     dispatch(allActions.teams.teamSelected(team[0]));

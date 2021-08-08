@@ -1,14 +1,16 @@
 import { Skeleton, PageHeader } from 'antd';
 import React, { Suspense } from 'react';
 import { useSelector } from 'react-redux';
-import { Redirect, useHistory } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import TaskDetailsCard from './TaskDetailsCard';
+import TaskDetailsRedirect from './TaskDetailsRedirect';
 
 const TaskDetails = () => {
   const task = useSelector((state) => state.teams.teamTaskSelected);
   const history = useHistory();
+  const { id } = useParams();
   return !task ? (
-    <Redirect to="/EMapp" />
+    <TaskDetailsRedirect id={id} />
   ) : (
     <>
       <PageHeader

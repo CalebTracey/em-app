@@ -1,41 +1,49 @@
 import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import './Calendar.css';
+import CalendarWeeks from './CalendarWeeks';
+import useGetTeamTasks from '../../../hooks/useGetTeamTasks';
 import { Skeleton } from 'antd';
-import CalendarTile from './CalendarTile';
+import { useDispatch } from 'react-redux';
+import allActions from '../../../redux/actions/index';
 
-const Calendar = ({ tasks }) => {
-  const [weeks, setWeeks] = useState([]);
-  const weekCount = 7;
+const Calendar = () => {
+  const tasks = useSelector((state) => state.teams.teamTaskData);
+  const [monthTasks, setMonthTasks] = useState([]);
+  const dispatch = useDispatch();
+  const date = new Date();
+
+  const [result, getTeamTasks] = useGetTeamTasks({
+    url: `team_tasks/month/${date.getMonth()}`,
+    data: null,
+  });
+
+  const clickHandler = (task) => {
+    if (task !== null) {
+      dispatch(allActions.teams.teamTaskSelected(task));
+    }
+  };
 
   useEffect(() => {
-    if (weeks.length === 0 && tasks !== undefined) {
-      const date = new Date();
-      const daysMonth = new Date(date.getMonth(), date.getYear(), 0).getDate();
-      const days = new Array(daysMonth).fill();
-      const retList = days.map((day, dayIdx) => {
-        // const current = new Date(date.getMonth(), date.getYear(), dayIdx + 1);
-        const taskMatches = tasks.filter(
-          ({ taskEnd }) => new Date(taskEnd).getDate() === dayIdx + 1
-        );
-        return <CalendarTile day={dayIdx + 1} tasks={taskMatches} />;
-      });
-      const weekArray = (retList, weekCount) => {
-        let chunks = [];
-        while (retList.length) {
-          chunks.push(retList.splice(0, weekCount));
-        }
-        return chunks;
-      };
-      const weeks = weekArray(retList, weekCount);
-      setWeeks(weeks);
+    if (monthTasks.length === 0) {
+      getTeamTasks();
+
+      if (result.data !== null) {
+        setMonthTasks(result.data);
+      }
     }
-  }, [weeks, setWeeks, tasks]);
-  console.log(weeks);
-  return !weeks ? (
+  }, [monthTasks, getTeamTasks, result, setMonthTasks, tasks]);
+
+  return monthTasks.length === 0 ? (
     <Skeleton />
   ) : (
-    weeks.map((week) => {
-      return <div className="week">{week}</div>;
-    })
+    <div className="full-schedule-container">
+      <div className="calendar-container">
+        <div className="calendar">
+          <CalendarWeeks className="week" tasks={monthTasks} clickHandler={clickHandler} />
+        </div>
+      </div>
+    </div>
   );
 };
 

@@ -2,7 +2,6 @@ import './Layout.css';
 import React, { useState, lazy } from 'react';
 import { Layout, Menu, Spin } from 'antd';
 import { Suspense } from 'react';
-import { useHistory } from 'react-router-dom';
 import { homeNav } from './sider-nav/HomeNav';
 import { teamsNav } from './sider-nav/TeamsNav';
 import { scheduleNav } from './sider-nav/ScheduleNav.jsx';
@@ -20,7 +19,6 @@ const SideNav = ({ company }) => {
   const [employees, toggleEmployees] = useState(false);
   const [schedule, toggleSchedule] = useState(false);
   const [teams, toggleTeams] = useState(false);
-  const history = useHistory();
 
   const onClickHandler = (event) => {
     switch (event.key) {
@@ -67,7 +65,7 @@ const SideNav = ({ company }) => {
           onTitleClick={onClickHandler}
         >
           {scheduleNav.createSchedule()}
-          {scheduleNav.fullSchedule()}
+          {/* {scheduleNav.fullSchedule()} */}
           <Suspense fallback={<Spin />}>{schedule ? <Schedule /> : null}</Suspense>
         </SubMenu>
       </Menu>

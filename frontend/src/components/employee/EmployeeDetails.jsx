@@ -1,17 +1,19 @@
 import React from 'react';
 import { PageHeader } from 'antd';
-import { Redirect } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import { useHistory, useParams } from 'react-router-dom';
 import EmployeeDetailsCard from './EmployeeDetailsCard';
-import { useHistory } from 'react-router-dom';
+import EmployeeDetailsRedirect from './EmployeeDetailsRedirect';
 
 const EmployeeDetails = () => {
   const employee = useSelector((state) => state.employees.employeeSelected);
   const teams = useSelector((state) => state.teams.teamData);
+  const { id } = useParams();
   const history = useHistory();
 
   return !employee ? (
-    <Redirect to="/EMapp" />
+    // <Redirect to="/EMapp/employees/redirect" />
+    <EmployeeDetailsRedirect id={id} />
   ) : (
     <>
       <PageHeader

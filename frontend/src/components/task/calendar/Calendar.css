@@ -12,6 +12,23 @@
   flex-direction: column;
 }
 
+.task-link {
+  text-transform: capitalize;
+}
+
+.weekdays {
+  display: flex;
+  text-align: center;
+}
+
+.day {
+  color: #bfbfbf;
+  margin-left: auto;
+  margin-right: auto;
+  width: 6rem;
+  margin: 0.5rem;
+}
+
 .date {
   padding: 1ch;
 }
@@ -51,6 +68,16 @@
   font-weight: 600;
 }
 
+.calendar-tile-disabled {
+  text-align: initial;
+  margin: 0.5rem;
+  height: 6rem;
+  width: 6rem;
+  flex-basis: auto;
+  background: #f0f2f5;
+  border-radius: 10px;
+}
+
 .calendar-tile-tasks {
   box-shadow: 0px 0px 2.2em -2em black;
   text-align: initial;
@@ -66,6 +93,17 @@
   z-index: 1;
 }
 
+.calendar-tile-today-no-tasks {
+  box-shadow: 0px 0px 2.2em -2em black;
+  text-align: initial;
+  margin: 0.5rem;
+  height: 6rem;
+  width: 6rem;
+  flex-basis: auto;
+  background: #f7f591;
+  border-radius: 10px;
+}
+
 .calendar-tile-no-tasks {
   box-shadow: 0px 0px 2.2em -2em black;
   text-align: initial;
@@ -77,36 +115,48 @@
   border-radius: 10px;
 }
 
-/* .calendar-tile-no-tasks::after {
+.calendar-tile-today-tasks {
+  box-shadow: 0px 0px 2.2em -2em black;
+  text-align: initial;
+  margin: 0.5rem;
+  height: 6rem;
+  width: 6rem;
+  flex-basis: auto;
+  background: #f7f588;
+  border-radius: 10px;
+  transition: all;
+  transition-duration: 300ms;
+  transition-timing-function: ease;
+  z-index: 1;
+}
+
+.calendar-tile-today-tasks::after {
   content: '';
   position: absolute;
   width: 100%;
   height: 100%;
-  background-color: #d6e4ff;
+  background-color: #f3f046;
   opacity: 0.5;
   left: 0;
   top: 0;
   transform-origin: middle;
   border-radius: 10px;
-
   z-index: -1;
   transform: scaleX(0);
-
   transition: transform 200ms ease-in-out;
   transform-origin: right;
-} */
-/* 
-.calendar-tile-no-tasks:hover {
+}
+
+.calendar-tile-today-tasks:hover {
   transform: scale(115%);
   box-shadow: 0 0 0.55em -0.2em black;
   cursor: pointer;
-} */
-/* 
-.calendar-tile-no-tasks:hover::after {
+}
+
+.calendar-tile-today-tasks:hover::after {
   transform: scaleX(1);
   transform-origin: left;
-} */
-
+}
 .calendar-tile-tasks::after {
   content: '';
   position: absolute;
@@ -118,11 +168,9 @@
   top: 0;
   transform-origin: middle;
   border-radius: 10px;
-
   z-index: -1;
   transform: scaleX(0);
   box-shadow: 0 0 0.55em -0.2em black;
-
   transition: transform 200ms ease-in-out;
   transform-origin: right;
 }
@@ -133,6 +181,49 @@
 }
 
 .calendar-tile-tasks:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.calendar-tile-tasks-overdue {
+  box-shadow: 0px 0px 2.2em -2em black;
+  text-align: initial;
+  margin: 0.5rem;
+  height: 6rem;
+  width: 6rem;
+  flex-basis: auto;
+  background: #f5c7a9;
+  border-radius: 10px;
+  transition: all;
+  transition-duration: 300ms;
+  transition-timing-function: ease;
+  z-index: 1;
+}
+
+.calendar-tile-tasks-overdue::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: #f7a067;
+  opacity: 0.5;
+  left: 0;
+  top: 0;
+  transform-origin: middle;
+  border-radius: 10px;
+  z-index: -1;
+  transform: scaleX(0);
+  box-shadow: 0 0 0.55em -0.2em black;
+  transition: transform 200ms ease-in-out;
+  transform-origin: right;
+}
+
+.calendar-tile-tasks-overdue:hover {
+  transform: scale(115%);
+  cursor: pointer;
+}
+
+.calendar-tile-tasks-overdue:hover::after {
   transform: scaleX(1);
   transform-origin: left;
 }

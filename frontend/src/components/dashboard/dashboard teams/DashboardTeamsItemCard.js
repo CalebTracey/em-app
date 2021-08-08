@@ -1,7 +1,7 @@
 import React from 'react';
 import './DashboardTeams.css';
 
-import { List, Card, Badge, Space } from 'antd';
+import { List, Card, Badge } from 'antd';
 
 const DashboardTeamsItemCard = ({ team }) => {
   return (
@@ -11,16 +11,16 @@ const DashboardTeamsItemCard = ({ team }) => {
         <Card bodyStyle={{ padding: 0 }}>
           <List>
             <List.Item style={{ padding: '.5ch' }}>
-              <Space>
-                <p className="inner-card-text">Members: </p>
+              <p className="inner-card-text">Members: </p>
+              <div className="badge-wrapper">
                 <Badge className="team-badge" count={team.employees.length} />
-              </Space>
+              </div>
             </List.Item>
-            <List.Item style={{ padding: '.5ch' }}>
-              <Space>
-                <p className="inner-card-text">Tasks: </p>
+            <List.Item style={{ padding: '.5ch', textAlign: 'initial' }}>
+              <p className="inner-card-text">Tasks: </p>
+              <div className="badge-wrapper">
                 <Badge className="team-badge" count={team.teamTasks.length} />
-              </Space>
+              </div>
             </List.Item>
           </List>
         </Card>

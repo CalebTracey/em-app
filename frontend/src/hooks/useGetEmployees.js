@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import allActions from '../redux/actions/index';
 import apiGet from '../apis/apiGet';
 
-const useGetEmployees = ({ url, data }) => {
+const useGetEmployees = ({ data }) => {
   const dispatch = useDispatch();
   const [result, setResult] = useState({
     data: null,
@@ -14,7 +14,7 @@ const useGetEmployees = ({ url, data }) => {
     setResult((prevState) => ({ ...prevState, isLoading: true }));
     apiGet(
       {
-        url,
+        url: 'employees/',
       },
       data
     )
@@ -28,7 +28,7 @@ const useGetEmployees = ({ url, data }) => {
       .catch((error) => {
         setResult({ data: null, isLoading: false, error });
       });
-  }, [url, data, dispatch]);
+  }, [data, dispatch]);
 
   return [result, getEmployees];
 };

@@ -1,11 +1,9 @@
 import { Skeleton } from 'antd';
 import React, { useEffect, useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
+import Dashboard from './Dashboard';
 import useGetEmployees from '../hooks/useGetEmployees';
 import useGetTeams from '../hooks/useGetTeams';
-import Dashboard from './Dashboard';
-import allActions from '../redux/actions/index';
-import TaskList from '../components/task/TaskList';
 import useGetTeamTasks from '../hooks/useGetTeamTasks';
 
 const ApiContainer = () => {
@@ -13,20 +11,9 @@ const ApiContainer = () => {
   const teamState = useSelector((state) => state.teams.teamData);
   const taskState = useSelector((state) => state.teams.teamTaskData);
   const [isLoading, setIsLoading] = useState(true);
-
-  const [employeeRes, getEmployees] = useGetEmployees({
-    url: 'employees',
-    data: null,
-  });
-  const [teamRes, getTeams] = useGetTeams({
-    url: 'teams',
-    data: null,
-  });
-
-  const [result, getTeamTasks] = useGetTeamTasks({
-    url: 'team_tasks',
-    data: null,
-  });
+  const [, getEmployees] = useGetEmployees({ data: null });
+  const [, getTeams] = useGetTeams({ data: null });
+  const [, getTeamTasks] = useGetTeamTasks({ data: null });
 
   useEffect(() => {
     if (employeeState.length === 0) {

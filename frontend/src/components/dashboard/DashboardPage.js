@@ -2,7 +2,7 @@ import React from 'react';
 import DashboardTasksContainer from './dashboard tasks/DashboardTasksContainer';
 import './Dashboard.css';
 import DashboardTeams from './dashboard teams/DashboardTeams';
-import FullSchedule from '../task/calendar/FullSchedule';
+import CalendarContainer from '../task/calendar/CalendarContainer';
 
 const DashboardPage = ({ teams, company, employees, tasks }) => {
   const date = new Date();
@@ -13,7 +13,7 @@ const DashboardPage = ({ teams, company, employees, tasks }) => {
       <div className="dashboard">
         <DashboardTasksContainer tasks={tasks} currentDate={date} />
         <div className="calendar-container">
-          <FullSchedule />
+          <CalendarContainer />
         </div>
         <DashboardTeams teams={teams} employees={employees} />
       </div>

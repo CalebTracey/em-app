@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import allActions from '../redux/actions/index';
 import apiGet from '../apis/apiGet';
 
-const useGetTeamTasks = ({ url, data }) => {
+const useGetTeamTasks = ({ data }) => {
   const dispatch = useDispatch();
   const [result, setResult] = useState({
     data: null,
@@ -14,7 +14,7 @@ const useGetTeamTasks = ({ url, data }) => {
     setResult((prevState) => ({ ...prevState, isLoading: true }));
     apiGet(
       {
-        url,
+        url: 'team_tasks/',
       },
       data
     )
@@ -28,7 +28,7 @@ const useGetTeamTasks = ({ url, data }) => {
       .catch((error) => {
         setResult({ data: null, isLoading: false, error });
       });
-  }, [url, data, dispatch]);
+  }, [data, dispatch]);
 
   return [result, getTeamTasks];
 };

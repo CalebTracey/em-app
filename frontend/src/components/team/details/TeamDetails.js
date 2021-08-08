@@ -1,18 +1,15 @@
-import React, { lazy } from 'react';
-import { PageHeader, Spin, Badge, Skeleton } from 'antd';
-import { Redirect } from 'react-router-dom';
+import React, { lazy, Suspense } from 'react';
+import { PageHeader, Spin, Badge } from 'antd';
+import { useSelector } from 'react-redux';
 import './TeamDetails.css';
 import TeamDetailsDropDown from './TeamDetailsDropDown';
-import { Suspense } from 'react';
 
 const TeamDetailListContainer = lazy(() => import('./containers/TeamDetailListContainer'));
 const TeamTaskListContainer = lazy(() => import('./containers/TeamTaskListContainer'));
 
-const TeamDetails = ({ showDeleteTeamConfirm, team }) => {
-  return !team ? (
-    <Redirect to={'/EMapp'} />
-  ) : (
-    // <Skeleton />
+const TeamDetails = ({ showDeleteTeamConfirm }) => {
+  const team = useSelector((state) => state.teams.teamSelected);
+  return (
     <>
       <PageHeader
         fontWeight="bold"
