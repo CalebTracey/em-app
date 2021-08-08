@@ -3,8 +3,8 @@ import { Dropdown, Button, Menu, message } from 'antd';
 import PropTypes from 'prop-types';
 import { DownOutlined, TeamOutlined } from '@ant-design/icons';
 import { useDispatch, useSelector } from 'react-redux';
-import allActions from '../../redux/actions';
-import usePutTeam from '../../hooks/usePutTeam';
+import allActions from '../../../redux/actions';
+import usePutTeam from '../../../hooks/usePutTeam';
 
 function AddTeamDropdown({ employee }) {
   const teams = useSelector((state) => state.teams.teamData);

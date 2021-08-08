@@ -2,7 +2,7 @@ import './Layout.css';
 import React, { useState, lazy } from 'react';
 import { Layout, Menu, Spin } from 'antd';
 import { Suspense } from 'react';
-import { useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import { homeNav } from './sider-nav/HomeNav';
 import { teamsNav } from './sider-nav/TeamsNav';
 import { scheduleNav } from './sider-nav/ScheduleNav.jsx';
@@ -20,11 +20,13 @@ const SideNav = ({ company }) => {
   const [employees, toggleEmployees] = useState(false);
   const [schedule, toggleSchedule] = useState(false);
   const [teams, toggleTeams] = useState(false);
+  const history = useHistory();
 
   const onClickHandler = (event) => {
     switch (event.key) {
       case 'employees': {
         toggleEmployees(!employees);
+        // history.push('/EMapp/employees');
         break;
       }
       case 'teams': {

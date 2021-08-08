@@ -1,11 +1,11 @@
-import './Employees.css';
+import '../Employees.css';
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { message } from 'antd';
-import allActions from '../../redux/actions/index';
-import AddEmployeeCardContainer from './containers/AddEmployeeCardContainer';
-import api from '../../apis/api';
+import allActions from '../../../redux/actions/index';
+import AddEmployeeCardContainer from '../containers/AddEmployeeCardContainer';
+import api from '../../../apis/api';
 
 const AddEmployee = () => {
   const [firstName, setFirstName] = useState(null);

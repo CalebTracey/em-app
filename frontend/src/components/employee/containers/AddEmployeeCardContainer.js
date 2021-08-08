@@ -1,5 +1,5 @@
 import React from 'react';
-import AddEmployeeCard from '../AddEmployeeCard';
+import AddEmployeeCard from '../add/AddEmployeeCard';
 const AddEmployeeCardContainer = ({
   setFirstName,
   setLastName,

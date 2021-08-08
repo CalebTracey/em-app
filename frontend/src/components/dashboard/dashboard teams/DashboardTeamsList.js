@@ -1,4 +1,3 @@
-import { List } from 'antd';
 import React from 'react';
 
 import DashboardTeamsListItem from './DashboardTeamsListItem';
@@ -8,11 +7,7 @@ const DashboardTeamsList = ({ teams }) => {
     return <DashboardTeamsListItem key={teamIdx} team={team} />;
   });
 
-  return (
-    <List size="small" grid={{ gutter: 16, column: 4 }}>
-      {teamLists}
-    </List>
-  );
+  return <div className="team-card-container">{teamLists}</div>;
 };
 
 export default DashboardTeamsList;

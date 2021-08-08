@@ -1,4 +1,5 @@
 .dashboard {
+  border-bottom: 1px solid #e8e8e8;
   height: 85%;
   flex-direction: row;
   display: flex;
@@ -7,11 +8,11 @@
 .wrapper {
   height: 100%;
   display: flex;
-  /* height: inherit; */
   flex-direction: column;
 }
 
 .page-header {
+  border-bottom: 1px solid #e8e8e8;
   text-align: left;
   font-size: 2rem;
   padding: 1rem;
@@ -22,15 +23,4 @@
 
 .teams-list {
   flex-basis: 25%;
-}
-
-.calendar {
-  border: 1px solid #e8e8e8;
-  border-radius: 4px;
-  padding: 1em;
-  height: fit-content;
-  box-shadow: 0 0 2.5em -2em;
-  margin-left: 2em;
-  /* overflow: auto; */
-  flex-basis: 50%;
 }

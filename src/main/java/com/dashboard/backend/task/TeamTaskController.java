@@ -6,6 +6,10 @@ import org.springframework.hateoas.CollectionModel;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.time.ZoneId;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -45,14 +49,16 @@ public class TeamTaskController {
     @GetMapping("team_tasks/month/{month}")
     public ResponseEntity<CollectionModel<TeamTaskModel>>
         getTeamTasksByMonth(@PathVariable(value = "month") Integer month) {
-            List<TeamTask> teamTasks =
-                    teamTaskService.findAll().stream().filter(
-                            teamTask -> teamTask.getEndMonth().equals(month)).collect(Collectors.toList());
+            List<TeamTask> teamTasks = teamTaskService.findAll();
+            List<TeamTask> monthTasks = teamTasks.stream().filter(teamTask ->
+                    teamTask.getEndMonth() == month).collect(Collectors.toList());
         return new ResponseEntity<>(
-                assembler.toCollectionModel(teamTasks),
+                assembler.toCollectionModel(monthTasks),
                 HttpStatus.OK);
 
     }
+
+
 
 //    @GetMapping("team_tasks")
 //    public CollectionModel<EntityModel<TeamTask>> all(){

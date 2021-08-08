@@ -9,6 +9,9 @@ import org.springframework.context.annotation.Configuration;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.Period;
+import java.time.ZoneId;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Objects;
 
 @Data
@@ -45,7 +48,7 @@ public class TeamTask {
     @Transient
     private Integer endDate;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "team_id", referencedColumnName = "id")
     @JsonBackReference
     private Team team;
@@ -150,8 +153,12 @@ public class TeamTask {
         return Period.between(LocalDate.now(), this.taskEnd).getDays();
     }
 
-    @Temporal(TemporalType.DATE)
-    public Integer getEndMonth() { return this.getTaskEnd().getMonth().getValue();}
+    public Integer getEndMonth() {
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(Date.from(this.getTaskEnd()
+                .atStartOfDay(ZoneId.systemDefault()).toInstant()));
+        return cal.get(Calendar.MONTH);
+    }
 
     @Override
     public boolean equals(Object o) {

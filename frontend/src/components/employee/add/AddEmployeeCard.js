@@ -1,5 +1,5 @@
 import React from 'react';
-import './Employees.css';
+import '../Employees.css';
 import { Form, Input, Button, Card } from 'antd';
 
 const AddEmployeeCard = ({

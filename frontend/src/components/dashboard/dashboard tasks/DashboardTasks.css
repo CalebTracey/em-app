@@ -1,6 +1,4 @@
 .dash-infinite-container {
-  /* height: 65%; */
-  /* padding-bottom: 10rem; */
   padding: 1.5rem 1.5rem;
   overflow: auto;
   border: 1px solid #e8e8e8;
@@ -8,19 +6,15 @@
 }
 
 .dash-task-list-container {
-  /* margin-left: 4em; */
   display: flex;
   flex-direction: column;
   padding: 1.5rem 1.5rem;
   overflow: auto;
   border: 1px solid #e8e8e8;
-  border-radius: 4px;
-  box-shadow: 0 0 2.5em -2em;
+  box-shadow: 0 0 2em -1.75em;
   min-width: 10rem;
   max-height: 65%;
   padding: 0;
-  /* flex-basis: auto; */
-  /* height: fit-content; */
 }
 
 .team-badge .ant-badge-count {
@@ -34,13 +28,12 @@
 }
 
 .item {
-  /* padding: 1em; */
   box-shadow: 0 0 1.5em -1em black;
   margin-left: 1rem;
   margin-right: 1rem;
   margin-top: 0.25rem;
   margin-bottom: 0.25rem;
-  flex: 1 1;
+  border-radius: 4px;
   font-size: 1em;
   font-weight: 600;
   padding: 1ch;
@@ -50,27 +43,36 @@
   transition-timing-function: ease;
 }
 
-.title-text {
+.task-title-text {
+  border: 1px solid #e8e8e8;
+  border-radius: 10px;
+  padding: 0.25ch;
   color: #595959;
+  margin-bottom: 0.75rem;
   margin-top: auto;
-  font-size: 2vw;
+  margin: 0.5em;
+  font-size: 1.5vw;
   font-weight: 500;
+}
+
+.task-margin-container {
+  border-right: 1px solid #e8e8e8;
+  box-shadow: 0 0 2.5em -2em;
 }
 
 .task-container {
   text-transform: capitalize;
   height: 100%;
-  margin-left: 4em;
-  display: flex;
-  /* align-items: center; */
-  flex-direction: column;
-  text-align: center;
+  margin-left: 1rem;
+  margin-right: 1rem;
+  max-width: 12rem;
   margin-top: auto;
+  text-align: center;
+  margin-bottom: auto;
 }
 
 .container {
   border: 1px solid #e8e8e8;
-  border-radius: 4px;
   padding: 1em;
 }
 
@@ -93,7 +95,6 @@
 
 .item:hover {
   transform: scale(105%);
-  /* box-shadow: 2px 0 0px #434343; */
   cursor: pointer;
 }
 

@@ -49,7 +49,7 @@ public class Employee{
     @Transient
     private Integer age;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JsonBackReference
     @JoinColumn(name = "team_id", referencedColumnName = "id")
     private Team team;

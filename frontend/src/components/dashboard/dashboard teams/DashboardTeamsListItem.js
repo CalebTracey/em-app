@@ -1,7 +1,5 @@
-import { List } from 'antd';
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-
 import { Link } from 'react-router-dom';
 import allActions from '../../../redux/actions/index';
 import DashboardTeamsItemCard from './DashboardTeamsItemCard';
@@ -18,10 +16,11 @@ const DashboardTeamsListItem = ({ team }) => {
 
   const dispatch = useDispatch();
   return (
-    <Link to={`/EMapp/team/${team.id}`}>
-      <List.Item key={team.id} onClick={() => dispatch(allActions.teams.teamSelected(team))}>
-        <DashboardTeamsItemCard team={team} tasks={taskArr} />
-      </List.Item>
+    <Link
+      to={`/EMapp/team/${team.id}`}
+      onClick={() => dispatch(allActions.teams.teamSelected(team))}
+    >
+      <DashboardTeamsItemCard team={team} tasks={taskArr} />
     </Link>
   );
 };

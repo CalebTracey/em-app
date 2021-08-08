@@ -1,8 +1,7 @@
-import React, { Suspense } from 'react';
+import React from 'react';
 import TeamDetailListItem from '../TeamDetailListItem';
-import QueueAnim from 'rc-queue-anim';
 import { useDispatch } from 'react-redux';
-import { Skeleton, List } from 'antd';
+import { List } from 'antd';
 import axios from 'axios';
 import allActions from '../../../../redux/actions';
 
@@ -33,15 +32,7 @@ const TeamDetailItemContainer = ({ team, setShowModal, handleRemoveTeamMember })
     );
   });
 
-  return (
-    <List>
-      {/* <Suspense fallback={<Skeleton />}> */}
-      {/* <QueueAnim key="nodeMap" type={['right', 'left']} leaveReverse> */}
-      {teamList}
-      {/* </QueueAnim> */}
-      {/* </Suspense> */}
-    </List>
-  );
+  return <List>{teamList}</List>;
 };
 
 export default TeamDetailItemContainer;

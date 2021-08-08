@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Descriptions, Tag, Card, Typography, PageHeader, Button } from 'antd';
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
-import AddTeamDropdown from './AddTeamDropdown';
+import AddTeamDropdown from './add/AddTeamDropdown';
 import './Employees.css';
 import { Link } from 'react-router-dom';
 import allActions from '../../redux/actions';
