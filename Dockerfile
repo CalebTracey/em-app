@@ -32,7 +32,7 @@ COPY --from=build ${DEPENDENCY}/BOOT-INF/lib /app/lib
 COPY --from=build ${DEPENDENCY}/META-INF /app/META-INF
 COPY --from=build ${DEPENDENCY}/BOOT-INF/classes /app
 
-ENTRYPOINT ["java","-classpath","app:app/lib/*","com.dashboard.backend.BackendApplication"]
+ENTRYPOINT ["java", "-Dserver.port=$PORT","-classpath","app:app/lib/*","com.dashboard.backend.BackendApplication"]
 
 # docker-compose pull
 # docker-compose up --force-recreate --build -d

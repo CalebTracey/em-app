@@ -15,9 +15,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
-@CrossOrigin("*")
+@CrossOrigin("https://employee-mngmt-dash.herokuapp.com/")
 @RestController
-//@ExposesResourceFor(TeamModelAssembler.class)
 @EnableSpringDataWebSupport
 @RequestMapping(path = "api/v1/")
 public class EmployeeController {

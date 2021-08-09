@@ -14,7 +14,7 @@ const useGetTeamTasks = ({ data }) => {
     setResult((prevState) => ({ ...prevState, isLoading: true }));
     apiGet(
       {
-        url: 'team_tasks/',
+        url: 'team_tasks',
       },
       data
     )

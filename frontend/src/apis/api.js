@@ -2,8 +2,10 @@ import axios from 'axios';
 
 export default axios.create({
   // baseURL: 'http://localhost:8080/api/v1/',
-  baseURL: 'https://employee-mngmt-dash.herokuapp.com/',
+  baseURL: 'https://employee-mngmt-dash.herokuapp.com/api/vi/',
   headers: {
-    'Content-Type': 'application/json',
+    'Access-Control-Allow-Origin': '*',
+    Authorization: '*',
+    'Content-Type': 'application/x-www-form-urlencoded',
   },
 });

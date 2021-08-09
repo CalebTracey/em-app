@@ -14,7 +14,7 @@ const useGetTeams = ({ data }) => {
     setResult((prevState) => ({ ...prevState, isLoading: true }));
     apiGet(
       {
-        url: 'teams/',
+        url: 'teams',
       },
       data
     )

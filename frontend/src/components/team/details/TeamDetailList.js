@@ -1,10 +1,9 @@
 import React, { useState, lazy } from 'react';
 import { useDispatch } from 'react-redux';
-import { Skeleton, message } from 'antd';
+import { message } from 'antd';
 import api from '../../../apis/api';
 import './TeamDetails.css';
 import allActions from '../../../redux/actions/index';
-import { Suspense } from 'react';
 
 const TeamDetailItemContainer = lazy(() => import('./containers/TeamDetailItemContainer'));
 

@@ -12,7 +12,7 @@ function AddTeamDropdown({ employee }) {
   const [updatedTeamData, setUpdatedTeamData] = useState(null);
   const dispatch = useDispatch();
 
-  const [result, putTeam] = usePutTeam({
+  const [, putTeam] = usePutTeam({
     url: `teams/${updatedTeamId}`,
     data: updatedTeamData,
   });

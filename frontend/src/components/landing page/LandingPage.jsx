@@ -1,11 +1,8 @@
 import './LandingPage.css';
 import React from 'react';
-import { Button, Typography } from 'antd';
-import { useHistory, NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 const LandingPage = () => {
-  const history = useHistory();
-
   return (
     <div className="landing-page">
       <div className="wrapper">

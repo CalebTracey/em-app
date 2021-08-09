@@ -17,9 +17,8 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 import java.util.List;
 
-@CrossOrigin("*")
+@CrossOrigin("https://employee-mngmt-dash.herokuapp.com/")
 @RestController
-//@ExposesResourceFor(EmployeeModelAssembler.class)
 @EnableSpringDataWebSupport
 @RequestMapping(path = "api/v1/")
 public class TeamController {

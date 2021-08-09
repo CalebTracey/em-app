@@ -14,7 +14,7 @@ const useGetEmployees = ({ data }) => {
     setResult((prevState) => ({ ...prevState, isLoading: true }));
     apiGet(
       {
-        url: 'employees/',
+        url: 'employees',
       },
       data
     )
