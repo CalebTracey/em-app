@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { Redirect } from 'react-router-dom';
-import { Skeleton } from 'antd';
+import SkeletonLoad from '../../utils/SkeletonLoad';
 import allActions from '../../redux/actions/index';
 import apiGet from '../../apis/apiGet';
 import useGetEmployees from '../../hooks/useGetEmployees';
@@ -26,7 +26,7 @@ const TeamPageRedirect = ({ id }) => {
     getTeamTasks();
   }, [id, getTeams, dispatch, getEmployees, getTeamTasks]);
 
-  return isLoading ? <Skeleton /> : <Redirect to={`/EMapp/teams/${id}`} />;
+  return isLoading ? <SkeletonLoad /> : <Redirect to={`/EMapp/teams/${id}`} />;
 };
 
 export default TeamPageRedirect;

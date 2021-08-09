@@ -1,4 +1,4 @@
-import { Skeleton } from 'antd';
+import SkeletonLoad from '../utils/SkeletonLoad';
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import Dashboard from './Dashboard';
@@ -30,7 +30,7 @@ const ApiContainer = () => {
     }
   }, [employeeState, getEmployees, teamState, getTeams, getTeamTasks, taskState]);
 
-  return isLoading ? <Skeleton active rows={4} /> : <Dashboard />;
+  return isLoading ? <SkeletonLoad /> : <Dashboard />;
 };
 
 export default ApiContainer;

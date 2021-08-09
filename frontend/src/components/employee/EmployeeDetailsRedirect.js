@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { Skeleton } from 'antd';
+import SkeletonLoad from '../../utils/SkeletonLoad';
 import allActions from '../../redux/actions/index';
 import apiGet from '../../apis/apiGet';
 import EmployeeDetails from './EmployeeDetails';
@@ -26,7 +26,7 @@ const EmployeeDetailsRedirect = ({ id }) => {
     getTeamTasks();
   }, [id, getTeams, dispatch, getEmployees, getTeamTasks]);
 
-  return isLoading ? <Skeleton /> : <EmployeeDetails />;
+  return isLoading ? <SkeletonLoad /> : <EmployeeDetails />;
 };
 
 export default EmployeeDetailsRedirect;
