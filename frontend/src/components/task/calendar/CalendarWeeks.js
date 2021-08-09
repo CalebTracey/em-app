@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import SkeletonLoad from '../../../utils/SkeletonLoad';
+import { Skeleton, Space } from 'antd';
 import CalendarTile from './CalendarTile';
 import CalendarTileDisabled from './CalendarTileDisabled';
 
@@ -42,7 +42,9 @@ const CalendarWeeks = ({ clickHandler }) => {
   }, [weeks, setWeeks, tasks, clickHandler]);
 
   return !weeks ? (
-    <SkeletonLoad />
+    <Space style={{ margin: '2rem' }}>
+      <Skeleton active paragraph={{ rows: 4 }} />
+    </Space>
   ) : (
     weeks.map((week) => {
       return <div className="week">{week}</div>;
