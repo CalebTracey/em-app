@@ -36,26 +36,26 @@ services:
     networks:
       - frontend
 
-  # Database Service (psql)
-#  db:
-#    image: postgres:13.3
-#    ports:
-#      - "5432:5432"
-#    restart: always
-#    environment:
-#      POSTGRES_DATABASE: db_database
-#      POSTGRES_USER: calebtracey
-#      POSTGRES_PASSWORD: caleb
-#      POSTGRES_HOST_AUTH_METHOD: trust
-#      POSTGRES_ROOT_PASSWORD: caleb
-#    volumes:
-#      - db-data:/var/lib/postgresql/data
-#    networks:
-#      - backend
-#
-## Volumes
-#volumes:
-#  db-data:
+   Database Service (psql)
+  db:
+    image: postgres:13.3
+    ports:
+      - "5432:5432"
+    restart: always
+    environment:
+      POSTGRES_DATABASE: db_database
+      POSTGRES_USER: calebtracey
+      POSTGRES_PASSWORD: caleb
+      POSTGRES_HOST_AUTH_METHOD: trust
+      POSTGRES_ROOT_PASSWORD: caleb
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    networks:
+      - backend
+
+# Volumes
+volumes:
+  db-data:
 
 # Networks to be created to facilitate communication between containers
 networks:

@@ -13,7 +13,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@CrossOrigin("https://employee-mngmt-dash.herokuapp.com/")
+//@CrossOrigin("https://employee-mngmt-dash.herokuapp.com/")
+@CrossOrigin("*")
 @RestController
 @EnableSpringDataWebSupport
 @RequestMapping(path = "api/v1/")

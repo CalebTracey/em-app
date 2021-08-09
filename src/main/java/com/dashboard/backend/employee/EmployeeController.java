@@ -15,7 +15,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
-@CrossOrigin("https://employee-mngmt-dash.herokuapp.com/")
+//@CrossOrigin("https://employee-mngmt-dash.herokuapp.com/")
+@CrossOrigin("*")
 @RestController
 @EnableSpringDataWebSupport
 @RequestMapping(path = "api/v1/")

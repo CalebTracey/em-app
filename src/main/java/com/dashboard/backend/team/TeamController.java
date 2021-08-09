@@ -17,7 +17,8 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 import java.util.List;
 
-@CrossOrigin("https://employee-mngmt-dash.herokuapp.com/")
+//@CrossOrigin("https://employee-mngmt-dash.herokuapp.com/")
+@CrossOrigin("*")
 @RestController
 @EnableSpringDataWebSupport
 @RequestMapping(path = "api/v1/")
