@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+// import { useDispatch } from 'react-redux';
 import faker from 'faker';
 
 const useTasks = () => {
   faker.seed(12345);
   const [tasksLoaded, setTasksLoaded] = useState(false);
   const [tasks, setTasks] = useState([]);
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   useEffect(() => {
     if (!tasksLoaded) {

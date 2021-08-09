@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import { Skeleton } from 'antd';
 import CalendarTile from './CalendarTile';
 import CalendarTileDisabled from './CalendarTileDisabled';
 
-const CalendarWeeks = ({ tasks, clickHandler }) => {
+const CalendarWeeks = ({ clickHandler }) => {
+  const tasks = useSelector((state) => state.teams.teamTaskData);
   const [weeks, setWeeks] = useState([]);
   const weekCount = 7;
 

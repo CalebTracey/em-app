@@ -36,3 +36,4 @@ ENTRYPOINT ["java","-classpath","app:app/lib/*","com.dashboard.backend.BackendAp
 
 # docker-compose pull
 # docker-compose up --force-recreate --build -d
+# heroku container:push web --app employee-dashboard

@@ -11,12 +11,12 @@ services:
     ports:
       - "8080:8080" # Forward the exposed port 8080 on the container to port 8080 on the host machine
     restart: always
-    depends_on:
-      - db # This service depends on mysql. Start that first.
+#    depends_on:
+#      - db # This service depends on mysql. Start that first.
     environment: # Pass environment variables to the service
-      SPRING_DATASOURCE_URL: jdbc:postgresql://host.docker.internal:5432/db_database
-      SPRING_DATASOURCE_USERNAME: calebtracey
-      SPRING_DATASOURCE_PASSWORD: caleb
+      SPRING_DATASOURCE_URL: ${JDBC_DATABASE_URL}
+      SPRING_DATASOURCE_USERNAME: ${JDBC_DATABASE_USERNAME}
+      SPRING_DATASOURCE_PASSWORD: ${JDBC_DATABASE_PASSWORD}
     networks: # Networks to join (Services on the same network can communicate with each other using their name)
       - backend
       - frontend
@@ -25,7 +25,7 @@ services:
   app-client:
     build:
       context: frontend # Use an image built from the specified dockerfile
-      dockerfile: Dockerfile
+      dockerfile: frontend/Dockerfile
       args:
         REACT_APP_API_BASE_URL: http://localhost:8080/api/v1/
     ports:
@@ -37,25 +37,25 @@ services:
       - frontend
 
   # Database Service (psql)
-  db:
-    image: postgres:13.3
-    ports:
-      - "5432:5432"
-    restart: always
-    environment:
-      POSTGRES_DATABASE: db_database
-      POSTGRES_USER: calebtracey
-      POSTGRES_PASSWORD: caleb
-      POSTGRES_HOST_AUTH_METHOD: trust
-      POSTGRES_ROOT_PASSWORD: caleb
-    volumes:
-      - db-data:/var/lib/postgresql/data
-    networks:
-      - backend
-
-# Volumes
-volumes:
-  db-data:
+#  db:
+#    image: postgres:13.3
+#    ports:
+#      - "5432:5432"
+#    restart: always
+#    environment:
+#      POSTGRES_DATABASE: db_database
+#      POSTGRES_USER: calebtracey
+#      POSTGRES_PASSWORD: caleb
+#      POSTGRES_HOST_AUTH_METHOD: trust
+#      POSTGRES_ROOT_PASSWORD: caleb
+#    volumes:
+#      - db-data:/var/lib/postgresql/data
+#    networks:
+#      - backend
+#
+## Volumes
+#volumes:
+#  db-data:
 
 # Networks to be created to facilitate communication between containers
 networks:
