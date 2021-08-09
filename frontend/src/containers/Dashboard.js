@@ -1,6 +1,6 @@
 import React, { lazy, Suspense } from 'react';
 import { useSelector } from 'react-redux';
-import SkeletonLoad from '../utils/SkeletonLoad';
+import { Skeleton, Space } from 'antd';
 
 const DashboardPage = lazy(() => import('../components/dashboard/DashboardPage'));
 
@@ -10,7 +10,13 @@ const Dashboard = () => {
   const tasks = useSelector((state) => state.teams.teamTaskData);
 
   return (
-    <Suspense fallback={<SkeletonLoad />}>
+    <Suspense
+      fallback={
+        <Space style={{ margin: '2rem' }}>
+          <Skeleton active paragraph={{ rows: 4 }} />
+        </Space>
+      }
+    >
       <DashboardPage teams={teams} employees={employees} tasks={tasks} />
     </Suspense>
   );

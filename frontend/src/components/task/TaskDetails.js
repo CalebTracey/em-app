@@ -1,5 +1,5 @@
 import { PageHeader } from 'antd';
-import SkeletonLoad from '../../utils/SkeletonLoad';
+import { Skeleton, Space } from 'antd';
 import React, { Suspense } from 'react';
 import { useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
@@ -27,7 +27,13 @@ const TaskDetails = () => {
           justifyContent: 'center',
         }}
       >
-        <Suspense fallback={<SkeletonLoad />}>
+        <Suspense
+          fallback={
+            <Space style={{ margin: '2rem' }}>
+              <Skeleton active paragraph={{ rows: 4 }} />
+            </Space>
+          }
+        >
           <TaskDetailsCard task={task} />
         </Suspense>
       </div>

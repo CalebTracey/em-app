@@ -1,10 +1,11 @@
 import ReactDOM from 'react-dom';
+import 'antd/dist/antd.css';
 import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'connected-react-router';
 import store, { history } from './redux/store';
 import React, { Suspense, lazy } from 'react';
 import { Route, Switch } from 'react-router-dom';
-import SkeletonLoad from './utils/SkeletonLoad';
+import { Skeleton, Space } from 'antd';
 import './index.css';
 
 const App = lazy(() => import('./App'));
@@ -15,7 +16,13 @@ const connectedStore = store;
 ReactDOM.render(
   <Provider store={connectedStore}>
     <ConnectedRouter history={history}>
-      <Suspense fallback={<SkeletonLoad />}>
+      <Suspense
+        fallback={
+          <Space style={{ margin: '2rem' }}>
+            <Skeleton active paragraph={{ rows: 4 }} />
+          </Space>
+        }
+      >
         {/* <Redirect from="/"  exact to="/landing" /> */}
         <Switch>
           <Route exact path="/" component={LandingPage} />
