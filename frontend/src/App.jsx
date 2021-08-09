@@ -1,7 +1,8 @@
 import './App.css';
 import React, { Suspense, lazy } from 'react';
 import { useSelector } from 'react-redux';
-import { Layout, Spin } from 'antd';
+import { Layout } from 'antd';
+import SkeletonLoad from './utils/SkeletonLoad';
 import useCompany from './hooks/data/useCompany';
 import SideNav from './layout/SideNav';
 import MainHeader from './layout/MainHeader';
@@ -22,7 +23,7 @@ const App = () => {
         <Layout>
           <MainHeader company={company} />
           <Content className="content">
-            <Suspense fallback={<Spin />}>
+            <Suspense fallback={<SkeletonLoad />}>
               <Routes />
             </Suspense>
           </Content>

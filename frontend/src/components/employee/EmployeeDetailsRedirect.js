@@ -16,7 +16,7 @@ const EmployeeDetailsRedirect = ({ id }) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    apiGet({ url: `${parseInt(id)}` }).then((res) => {
+    apiGet({ url: `employees/${parseInt(id)}` }).then((res) => {
       const employeeData = res.data;
       dispatch(allActions.employees.employeeSelected(employeeData));
       setIsLoading(false);

@@ -1,6 +1,5 @@
 .skeleton-load {
-  display: flex;
-  justify-content: center;
-  align-content: center;
+  margin: auto;
+  padding: 1rem;
   margin: 3rem;
 }

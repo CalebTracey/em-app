@@ -12,8 +12,6 @@ const TeamDetailsDropDown = ({ handleCreateTask, showDeleteTeamConfirm }) => {
       <Menu.Item key="delete-dd" onClick={showDeleteTeamConfirm}>
         Delete Team
       </Menu.Item>
-
-      <Menu.Item key="three-dd">3rd menu item</Menu.Item>
     </Menu>
   );
   return (

@@ -52,6 +52,7 @@ const columns = [
 ];
 // style={{ boxShadow: '0 0 2.25em -2em' }}
 const TeamTaskList = ({ tasks }) => {
+  tasks.map((task, i) => (task['key'] = i));
   return !tasks ? (
     <Empty />
   ) : (

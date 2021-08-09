@@ -1,7 +1,6 @@
 import React from 'react';
 import { Menu } from 'antd';
 import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
 import { UserOutlined } from '@ant-design/icons';
 
 const EmployeeList = ({ employees, clickHandler }) => {
@@ -19,8 +18,3 @@ const EmployeeList = ({ employees, clickHandler }) => {
 };
 
 export default EmployeeList;
-
-EmployeeList.propTypes = {
-  employee: PropTypes.objectOf().isRequired,
-  clickHandler: PropTypes.func,
-};
