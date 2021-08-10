@@ -2,7 +2,7 @@ import './App.css';
 import React, { Suspense, lazy } from 'react';
 import { useSelector } from 'react-redux';
 import { Layout } from 'antd';
-import { Skeleton, Space } from 'antd';
+import { Skeleton } from 'antd';
 import useCompany from './hooks/data/useCompany';
 import SideNav from './layout/SideNav';
 import MainHeader from './layout/MainHeader';
@@ -23,13 +23,7 @@ const App = () => {
         <Layout>
           <MainHeader company={company} />
           <Content className="content">
-            <Suspense
-              fallback={
-                <Space style={{ margin: '2rem' }}>
-                  <Skeleton active paragraph={{ rows: 4 }} />
-                </Space>
-              }
-            >
+            <Suspense fallback={<Skeleton active paragraph={{ rows: 4 }} />}>
               <Routes />
             </Suspense>
           </Content>

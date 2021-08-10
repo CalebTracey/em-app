@@ -22,7 +22,7 @@ const useCompany = () => {
         companyName: faker.company.companyName(),
         companySuffix: faker.company.companySuffix(),
         catchPhrase: faker.company.catchPhrase(),
-        bs: faker.company.bs(),
+        bsBuzz: faker.image.abstract(),
         //address: faker.company.streetAddress(),
       };
       setCompanyLoaded(true);

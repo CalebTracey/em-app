@@ -3,17 +3,12 @@
 .logo {
   height: 32px;
   margin: 16px;
+  box-shadow: inset 0 0 0.5em black;
   background: rgba(255, 255, 255, 0.3);
 }
 
 .content {
-  /* flex: 'auto'; */
-  /* display: inline */
-  /* padding: 2%; */
-  /* left: 200px; */
-  /* height: auto; */
   margin: 1rem;
-  /* margin-left: 13.5rem; */
   box-shadow: 0 0 1.5em -1em;
   background: #fafafa;
 }

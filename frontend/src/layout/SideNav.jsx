@@ -2,6 +2,7 @@ import './Layout.css';
 import React, { useState, lazy } from 'react';
 import { Layout, Menu, Spin } from 'antd';
 import { Suspense } from 'react';
+import { useSelector } from 'react-redux';
 import { homeNav } from './sider-nav/HomeNav';
 import { teamsNav } from './sider-nav/TeamsNav';
 import { scheduleNav } from './sider-nav/ScheduleNav.jsx';
@@ -15,7 +16,8 @@ const Schedule = lazy(() => import('../containers/Schedule'));
 const { Sider } = Layout;
 const { SubMenu } = Menu;
 
-const SideNav = ({ company }) => {
+const SideNav = () => {
+  const company = useSelector((state) => state.company);
   const [employees, toggleEmployees] = useState(false);
   const [schedule, toggleSchedule] = useState(false);
   const [teams, toggleTeams] = useState(false);
@@ -39,7 +41,6 @@ const SideNav = ({ company }) => {
         break;
     }
   };
-
   return (
     <Sider className="sider" key="sider">
       <div className="logo" />

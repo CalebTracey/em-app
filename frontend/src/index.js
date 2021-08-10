@@ -5,7 +5,7 @@ import { ConnectedRouter } from 'connected-react-router';
 import store, { history } from './redux/store';
 import React, { Suspense, lazy } from 'react';
 import { Route, Switch } from 'react-router-dom';
-import { Skeleton, Space } from 'antd';
+import { Skeleton } from 'antd';
 import './index.css';
 
 const App = lazy(() => import('./App'));
@@ -16,13 +16,7 @@ const connectedStore = store;
 ReactDOM.render(
   <Provider store={connectedStore}>
     <ConnectedRouter history={history}>
-      <Suspense
-        fallback={
-          <Space style={{ margin: '2rem' }}>
-            <Skeleton active paragraph={{ rows: 4 }} />
-          </Space>
-        }
-      >
+      <Suspense fallback={<Skeleton active paragraph={{ rows: 4 }} />}>
         {/* <Redirect from="/"  exact to="/landing" /> */}
         <Switch>
           <Route exact path="/" component={LandingPage} />
