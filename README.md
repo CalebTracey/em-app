@@ -11,6 +11,7 @@ The Employee Management App is a full stack web application created for learning
 ### React JS
   * <i>Node / Express js</i>
   * <i>React Redux</i>
+  * <i>Axios</i>
   * <i>Antd Components (side nav)</i>
   * <i>Custom CSS (Main page)</i>
 ### Landing Page
