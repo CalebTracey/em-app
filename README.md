@@ -33,4 +33,4 @@ Converts entities to representation models when called. Adds hypertext links poi
 
 ## Database
 ### Postgres
-<img src=./emapp-db-image.png />
+<img src=./emappdb.png />
