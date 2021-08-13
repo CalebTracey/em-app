@@ -35,7 +35,8 @@ These cards display all the data relating to a specific entity.
   * JPA / Hibernate
   * HATEOS
 ### Rest API
-Converts entities to representation models when called. Adds hypertext links pointing to all other related entities.
+Hypertext links with Spring HATEOAS.
+
 <img src=./emappjson.png />
 
 ## Database
