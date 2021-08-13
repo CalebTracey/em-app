@@ -1,5 +1,6 @@
-![](emapp.gif)
+
 # Employee Management App [![Netlify Status](https://api.netlify.com/api/v1/badges/347e2170-956c-44ef-bbcf-e8089529b03b/deploy-status)](https://app.netlify.com/sites/emapp/deploys)
+![](emapp.gif)
 ## Demo
 Here is a working live demo: https://emapp.netlify.app/ 
  * The backend is running on a hobby tier Heroku server and database. It can take a minute to boot up.
