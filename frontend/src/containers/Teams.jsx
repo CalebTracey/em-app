@@ -1,6 +1,6 @@
 import React, { lazy, Suspense, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Spin } from 'antd';
+import { Skeleton } from 'antd';
 import allActions from '../redux/actions/index';
 
 const TeamList = lazy(() => import('../components/team/TeamList'));
@@ -19,7 +19,13 @@ const Teams = () => {
     }
   };
   return (
-    <Suspense fallback={<Spin />}>
+    <Suspense
+      fallback={
+        <div className="skeleton">
+          <Skeleton active paragraph={{ rows: 5 }} />
+        </div>
+      }
+    >
       <TeamList key="newTeam-list" clickHandler={clickHandler} teams={teams} />
     </Suspense>
   );

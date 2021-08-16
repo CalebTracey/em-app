@@ -1,7 +1,7 @@
 import React, { Suspense, lazy } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import allActions from '../redux/actions/index';
-import { Spin } from 'antd';
+import { Skeleton } from 'antd';
 
 const EmployeeList = lazy(() => import('../components/employee/EmployeeList'));
 
@@ -16,7 +16,13 @@ export const Employees = () => {
   };
 
   return (
-    <Suspense fallback={<Spin />}>
+    <Suspense
+      fallback={
+        <div className="skeleton">
+          <Skeleton active paragraph={{ rows: 5 }} />
+        </div>
+      }
+    >
       <EmployeeList employees={employees} clickHandler={clickHandler} />
     </Suspense>
   );

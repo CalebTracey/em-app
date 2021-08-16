@@ -1,5 +1,5 @@
 import React, { useState, lazy } from 'react';
-import { Spin, Result, Button } from 'antd';
+import { Skeleton, Result, Button } from 'antd';
 import InfiniteScroll from 'react-infinite-scroller';
 import '../TeamDetails.css';
 import { Suspense } from 'react';
@@ -42,7 +42,13 @@ const TeamDetailListContainer = ({ team }) => {
         boxShadow: '0 0 2.25em -2em',
       }}
     >
-      <Suspense fallback={<Spin />}>
+      <Suspense
+        fallback={
+          <div className="skeleton">
+            <Skeleton active paragraph={{ rows: 5 }} />
+          </div>
+        }
+      >
         <InfiniteScroll
           initialLoad={false}
           pageStart={0}

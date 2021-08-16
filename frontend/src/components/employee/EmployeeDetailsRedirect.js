@@ -28,7 +28,9 @@ const EmployeeDetailsRedirect = ({ id }) => {
 
   return isLoading ? (
     <Space style={{ margin: '2rem' }}>
-      <Skeleton active paragraph={{ rows: 4 }} />
+      <div className="skeleton">
+        <Skeleton active paragraph={{ rows: 5 }} />
+      </div>
     </Space>
   ) : (
     <EmployeeDetails />

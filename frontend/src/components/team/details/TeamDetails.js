@@ -1,5 +1,5 @@
 import React, { lazy, Suspense } from 'react';
-import { PageHeader, Spin, Badge } from 'antd';
+import { PageHeader, Skeleton, Badge } from 'antd';
 import { useSelector } from 'react-redux';
 import './TeamDetails.css';
 import TeamDetailsDropDown from './TeamDetailsDropDown';
@@ -22,12 +22,24 @@ const TeamDetails = ({ showDeleteTeamConfirm }) => {
         {'Current Tasks '} <Badge className="team-badge" count={team.teamTasks.length} />
       </div>
 
-      <Suspense fallback={<Spin />}>
+      <Suspense
+        fallback={
+          <div className="skeleton">
+            <Skeleton active paragraph={{ rows: 5 }} />
+          </div>
+        }
+      >
         <div className="team-task-wrapper ">
           <TeamTaskListContainer team={team} />
         </div>
       </Suspense>
-      <Suspense fallback={<Spin />}>
+      <Suspense
+        fallback={
+          <div className="skeleton">
+            <Skeleton active paragraph={{ rows: 5 }} />
+          </div>
+        }
+      >
         <div className="team-members">
           {'Team Members '} <Badge className="team-badge" count={team.employees.length} />
         </div>

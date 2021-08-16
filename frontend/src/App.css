@@ -12,3 +12,12 @@
   box-shadow: 0 0 1.5em -1em;
   background: #fafafa;
 }
+
+.skeleton {
+  margin-top: 5rem;
+  padding: 2rem;
+  /* display: flex; */
+  /* position: absolute; */
+  justify-content: center;
+  align-content: center;
+}

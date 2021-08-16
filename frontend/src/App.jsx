@@ -23,7 +23,13 @@ const App = () => {
         <Layout>
           <MainHeader company={company} />
           <Content className="content">
-            <Suspense fallback={<Skeleton active paragraph={{ rows: 4 }} />}>
+            <Suspense
+              fallback={
+                <div className="skeleton">
+                  <Skeleton active paragraph={{ rows: 10 }} />
+                </div>
+              }
+            >
               <Routes />
             </Suspense>
           </Content>

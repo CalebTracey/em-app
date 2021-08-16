@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, Redirect } from 'react-router-dom';
-import { Menu, Spin } from 'antd';
+import { Menu, Skeleton } from 'antd';
 import { TeamOutlined } from '@ant-design/icons';
 
 const TeamList = ({ clickHandler, teams }) => {
@@ -23,7 +23,13 @@ const TeamList = ({ clickHandler, teams }) => {
       })
     );
 
-  return !teams ? <Spin /> : <Menu.ItemGroup>{listNode}</Menu.ItemGroup>;
+  return !teams ? (
+    <div className="skeleton">
+      <Skeleton active paragraph={{ rows: 5 }} />
+    </div>
+  ) : (
+    <Menu.ItemGroup>{listNode}</Menu.ItemGroup>
+  );
 };
 
 export default TeamList;

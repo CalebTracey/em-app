@@ -1,6 +1,6 @@
 import React, { Suspense } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Spin } from 'antd';
+import { Skeleton } from 'antd';
 import allActions from '../redux/actions/index';
 import TaskList from '../components/task/TaskList';
 
@@ -14,7 +14,13 @@ const Schedule = () => {
     }
   };
   return (
-    <Suspense fallback={<Spin />}>
+    <Suspense
+      fallback={
+        <div className="skeleton">
+          <Skeleton active paragraph={{ rows: 5 }} />
+        </div>
+      }
+    >
       <TaskList clickHandler={clickHandler} tasks={taskState} />
     </Suspense>
   );

@@ -1,6 +1,6 @@
 import './Layout.css';
 import React, { useState, lazy } from 'react';
-import { Layout, Menu, Spin } from 'antd';
+import { Layout, Menu, Skeleton } from 'antd';
 import { Suspense } from 'react';
 import { useSelector } from 'react-redux';
 import { homeNav } from './sider-nav/HomeNav';
@@ -53,11 +53,11 @@ const SideNav = () => {
           onTitleClick={onClickHandler}
         >
           {employeesNav.addEmployee()}
-          <Suspense fallback={<Spin />}>{employees ? <Employees /> : null}</Suspense>
+          <Suspense fallback={<Skeleton />}>{employees ? <Employees /> : null}</Suspense>
         </SubMenu>
         <SubMenu key="teams" icon={<TeamOutlined />} title="Teams" onTitleClick={onClickHandler}>
           {teamsNav.createTeam()}
-          <Suspense fallback={<Spin />}>{teams ? <Teams /> : null}</Suspense>
+          <Suspense fallback={<Skeleton />}>{teams ? <Teams /> : null}</Suspense>
         </SubMenu>
         <SubMenu
           key="schedule"
@@ -67,7 +67,7 @@ const SideNav = () => {
         >
           {scheduleNav.createSchedule()}
           {/* {scheduleNav.fullSchedule()} */}
-          <Suspense fallback={<Spin />}>{schedule ? <Schedule /> : null}</Suspense>
+          <Suspense fallback={<Skeleton />}>{schedule ? <Schedule /> : null}</Suspense>
         </SubMenu>
       </Menu>
     </Sider>
