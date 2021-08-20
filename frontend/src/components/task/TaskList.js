@@ -16,7 +16,8 @@ const TaskList = ({ tasks, clickHandler }) => {
       </Menu.Item>
     );
   });
-  return <Menu.ItemGroup props={listNode} />;
+  // eslint-disable-next-line react/no-children-prop
+  return <Menu.ItemGroup children={listNode} />;
 };
 
 export default TaskList;
