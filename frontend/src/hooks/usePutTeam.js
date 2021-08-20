@@ -2,6 +2,10 @@ import { useState, useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 import allActions from '../redux/actions/index';
 import apiPut from '../apis/apiPut';
+/* eslint-disable no-nested-ternary */
+/* eslint-disable no-underscore-dangle */
+/* eslint-disable react/prop-types */
+/* eslint-disable react/no-array-index-key */
 
 const useGetTeams = ({ url, data }) => {
   const dispatch = useDispatch();

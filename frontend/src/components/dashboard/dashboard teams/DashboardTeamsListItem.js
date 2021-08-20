@@ -3,6 +3,8 @@ import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import allActions from '../../../redux/actions/index';
 import DashboardTeamsItemCard from './DashboardTeamsItemCard';
+/* eslint-disable react/prop-types */
+/* eslint-disable react/no-array-index-key */
 
 const DashboardTeamsListItem = ({ team }) => {
   const [taskArr, setTaskArr] = useState([]);

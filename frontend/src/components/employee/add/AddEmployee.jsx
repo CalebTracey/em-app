@@ -39,7 +39,7 @@ const AddEmployee = () => {
       })
       .catch((error) => {
         message.error(`Problem adding ${firstName} ${lastName} to the list`);
-        console.log(error);
+        console.error(error);
       });
   };
 

@@ -7,6 +7,8 @@ import {
   TEAM_TASKS_FETCHED,
   TEAM_TASK_SELECTED,
 } from '../actions/types';
+/* eslint-disable no-shadow */
+/* eslint-disable no-case-declarations */
 
 const initialState = {
   teamData: [],

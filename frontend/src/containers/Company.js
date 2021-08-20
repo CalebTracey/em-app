@@ -1,7 +1,5 @@
 import React from 'react';
 
-const Company = () => {
-  return <div></div>;
-};
+const Company = () => <div />;
 
 export default Company;

@@ -1,6 +1,8 @@
 import React from 'react';
 import { Table, Dropdown, Menu, Empty } from 'antd';
 import { DownCircleOutlined } from '@ant-design/icons';
+/* eslint-disable react/prop-types */
+/* eslint-disable react/no-array-index-key */
 
 const menu = (
   <Menu>
@@ -51,9 +53,9 @@ const columns = [
   },
 ];
 // style={{ boxShadow: '0 0 2.25em -2em' }}
-const TeamTaskList = ({ tasks }) => {
-  tasks.map((task, i) => (task['key'] = i));
-  return !tasks ? (
+const TeamTaskList = ({ tasks }) =>
+  // tasks.map((task, i) => (task.key = i));
+  !tasks ? (
     <Empty />
   ) : (
     <Table
@@ -63,5 +65,4 @@ const TeamTaskList = ({ tasks }) => {
       size="default"
     />
   );
-};
 export default TeamTaskList;

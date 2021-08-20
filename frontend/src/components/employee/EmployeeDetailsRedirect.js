@@ -7,6 +7,8 @@ import EmployeeDetails from './EmployeeDetails';
 import useGetEmployees from '../../hooks/useGetEmployees';
 import useGetTeams from '../../hooks/useGetTeams';
 import useGetTeamTasks from '../../hooks/useGetTeamTasks';
+/* eslint-disable react/prop-types */
+/* eslint-disable react/no-array-index-key */
 
 const EmployeeDetailsRedirect = ({ id }) => {
   const [isLoading, setIsLoading] = useState(true);
@@ -16,7 +18,7 @@ const EmployeeDetailsRedirect = ({ id }) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    apiGet({ url: `employees/${parseInt(id)}` }).then((res) => {
+    apiGet({ url: `employees/${parseInt(id, 10)}` }).then((res) => {
       const employeeData = res.data;
       dispatch(allActions.employees.employeeSelected(employeeData));
       setIsLoading(false);

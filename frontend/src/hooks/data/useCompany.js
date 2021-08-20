@@ -23,11 +23,11 @@ const useCompany = () => {
         companySuffix: faker.company.companySuffix(),
         catchPhrase: faker.company.catchPhrase(),
         bsBuzz: faker.image.abstract(),
-        //address: faker.company.streetAddress(),
+        // address: faker.company.streetAddress(),
       };
       setCompanyLoaded(true);
       dispatch(allActions.company(generatedCompany));
-    } else return;
+    }
   }, [companyState, dispatch, companyLoaded]);
 
   return [companyLoaded];

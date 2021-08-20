@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Popover } from 'antd';
 import { Link } from 'react-router-dom';
+/* eslint-disable react/prop-types */
+/* eslint-disable react/no-array-index-key */
 
 const CalendarTile = ({ day, tasks, clickHandler }) => {
   const [hasTasks, setHasTasks] = useState('calendar-tile-no-tasks');
@@ -24,13 +26,12 @@ const CalendarTile = ({ day, tasks, clickHandler }) => {
     }
   }, [tasks, setHasTasks, day]);
 
-  const taskLinks = () => {
-    return tasks.map((task) => (
+  const taskLinks = () =>
+    tasks.map((task) => (
       <Link to={`/EMapp/task/${task.id}`} onClick={() => clickHandler(task)}>
         <p className="task-link">{task.description}</p>
       </Link>
     ));
-  };
   return tasks.length !== 0 ? (
     <Popover title="Tasks" trigger="click" content={taskLinks}>
       <div className={hasTasks}>

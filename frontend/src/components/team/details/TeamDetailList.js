@@ -4,6 +4,8 @@ import { message } from 'antd';
 import api from '../../../apis/api';
 import './TeamDetails.css';
 import allActions from '../../../redux/actions/index';
+/* eslint-disable react/prop-types */
+/* eslint-disable react/no-array-index-key */
 
 const TeamDetailItemContainer = lazy(() => import('./containers/TeamDetailItemContainer'));
 

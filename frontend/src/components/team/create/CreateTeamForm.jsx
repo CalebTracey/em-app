@@ -1,6 +1,7 @@
 import React from 'react';
 import { Input, Card, Form, Button, Select } from 'antd';
-
+/* eslint-disable react/prop-types */
+/* eslint-disable react/no-array-index-key */
 import './Create.css';
 
 const CreateTeamForm = ({ handleCreateSubmit, handleSelection, children, setTitle }) => (

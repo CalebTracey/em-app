@@ -6,7 +6,7 @@ const useTeam = (teamKey) => {
   const teams = useSelector((state) => state.teams.teamData);
 
   useEffect(() => {
-    const k = parseInt(teamKey);
+    const k = parseInt(teamKey, 10);
     if (teams) {
       const teamMatch = teams.find(({ key }) => key === k / 8);
       setTeam(teamMatch);

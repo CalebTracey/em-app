@@ -3,7 +3,7 @@ import { Menu } from 'antd';
 import { NavLink } from 'react-router-dom';
 import { PlusOutlined } from '@ant-design/icons';
 
-const createSchedule = () => (
+const ScheduleNav = () => (
   <Menu.Item key="create-sch" icon={<PlusOutlined />}>
     <>Create Task</>
     <NavLink key="create-sch-nav" to="/EMapp/create-schedule" />
@@ -17,4 +17,4 @@ const createSchedule = () => (
 // );
 
 // eslint-disable-next-line import/prefer-default-export
-export const scheduleNav = { createSchedule };
+export default ScheduleNav;

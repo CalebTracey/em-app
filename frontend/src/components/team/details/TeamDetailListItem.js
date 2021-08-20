@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { List, Avatar, Button, Popconfirm } from 'antd';
 import { Link } from 'react-router-dom';
+/* eslint-disable react/prop-types */
+/* eslint-disable react/no-array-index-key */
 
 const TeamDetailListItem = ({
   team,
@@ -17,6 +19,7 @@ const TeamDetailListItem = ({
         avatar={<Avatar src={employee.avatar} />}
         title={
           <Link
+            // eslint-disable-next-line no-underscore-dangle
             onClick={() => fetchFullEmployeeInfo(employee._links.self.href)}
             to={`/EMapp/employees/${employee.id}`}
           >
@@ -27,7 +30,7 @@ const TeamDetailListItem = ({
         description={employee.email}
       />
       <Popconfirm
-        title={`Are you sure?`}
+        title="Are you sure?"
         okText="Yes"
         onConfirm={() => handleRemoveTeamMember(employee, team)}
       >

@@ -6,7 +6,8 @@ import { Link } from 'react-router-dom';
 import AddTeamDropdown from './add/AddTeamDropdown';
 import './Employees.css';
 import allActions from '../../redux/actions';
-
+/* eslint-disable react/prop-types */
+/* eslint-disable react/no-array-index-key */
 const { Text } = Typography;
 
 const EmployeeDetailsCard = ({ employee, teams }) => {
@@ -45,7 +46,7 @@ const EmployeeDetailsCard = ({ employee, teams }) => {
           employee.team ? null : <AddTeamDropdown teams={teams} employee={employee} />,
         ]}
         avatar={{ src: employee.avatar }}
-      ></PageHeader>
+      />
       <Card style={{ boxShadow: '0 0 2.25em -2em' }}>
         <Typography ellipsis>
           <Descriptions
@@ -60,19 +61,19 @@ const EmployeeDetailsCard = ({ employee, teams }) => {
             size="small"
             title={<Text style={{ margin: '.75em' }}>Employee Information</Text>}
           >
-            <Descriptions.Item label={'Work ID:'}>
+            <Descriptions.Item label="Work ID:">
               <Text>{employee.id}</Text>
             </Descriptions.Item>
-            <Descriptions.Item label={'Email:'}>
+            <Descriptions.Item label="Email:">
               <Text>{employee.email}</Text>
             </Descriptions.Item>
-            <Descriptions.Item label={'Telephone:'}>
+            <Descriptions.Item label="Telephone:">
               <Text>{employee.phoneNumber}</Text>
             </Descriptions.Item>
-            <Descriptions.Item label={'Job:'}>
+            <Descriptions.Item label="Job:">
               <Text>{employee.jobTitle}</Text>
             </Descriptions.Item>
-            <Descriptions.Item label={'Address:'}>
+            <Descriptions.Item label="Address:">
               <Text>{employee.address}</Text>
             </Descriptions.Item>
           </Descriptions>

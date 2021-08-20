@@ -5,6 +5,8 @@ import { DownOutlined, TeamOutlined } from '@ant-design/icons';
 import { useDispatch, useSelector } from 'react-redux';
 import allActions from '../../../redux/actions';
 import usePutTeam from '../../../hooks/usePutTeam';
+/* eslint-disable react/prop-types */
+/* eslint-disable react/no-array-index-key */
 
 function AddTeamDropdown({ employee }) {
   const teams = useSelector((state) => state.teams.teamData);
@@ -22,7 +24,7 @@ function AddTeamDropdown({ employee }) {
   };
 
   const addToTeam = (team) => {
-    const selectedTeam = teams.find(({ id }) => id === parseInt(team.key));
+    const selectedTeam = teams.find(({ id }) => id === parseInt(team.key, 10));
     if (selectedTeam.employees === undefined) {
       selectedTeam.employees = [];
     }

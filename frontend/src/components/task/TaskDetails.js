@@ -1,10 +1,11 @@
-import { PageHeader } from 'antd';
-import { Skeleton, Space } from 'antd';
+import { PageHeader, Skeleton, Space } from 'antd';
 import React, { Suspense } from 'react';
 import { useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
 import TaskDetailsCard from './TaskDetailsCard';
 import TaskDetailsRedirect from './TaskDetailsRedirect';
+/* eslint-disable react/prop-types */
+/* eslint-disable react/no-array-index-key */
 
 const TaskDetails = () => {
   const task = useSelector((state) => state.teams.teamTaskSelected);

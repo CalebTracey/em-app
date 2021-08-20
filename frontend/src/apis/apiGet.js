@@ -1,7 +1,5 @@
 import api from './api';
 
-const apiGet = async ({ url }) => {
-  return await api.get(url);
-};
+const apiGet = async ({ url }) => api.get(url);
 
 export default apiGet;

@@ -1,9 +1,11 @@
 import React, { useEffect } from 'react';
 import './Calendar.css';
+import { useDispatch } from 'react-redux';
 import CalendarWeeks from './CalendarWeeks';
 import useGetTeamTasks from '../../../hooks/useGetTeamTasks';
-import { useDispatch } from 'react-redux';
 import allActions from '../../../redux/actions/index';
+/* eslint-disable react/prop-types */
+/* eslint-disable react/no-array-index-key */
 
 const Calendar = () => {
   const dispatch = useDispatch();

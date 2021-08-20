@@ -6,7 +6,8 @@ import allActions from '../../../redux/actions/index';
 import apiGet from '../../../apis/apiGet';
 import CreateTeamForm from './CreateTeamForm';
 import apiPost from '../../../apis/apiPost';
-// import useGetTeams from '../../../hooks/useGetTeams';
+/* eslint-disable react/prop-types */
+/* eslint-disable react/no-array-index-key */
 
 const { Option } = Select;
 
@@ -31,7 +32,9 @@ const CreateTeam = () => {
         headers: null,
         data: null,
       }).then((res) => {
+        // eslint-disable-next-line no-underscore-dangle
         const sort = res.data._embedded.employees.sort((a, b) =>
+          // eslint-disable-next-line no-nested-ternary
           a.lastName > b.lastName ? 1 : b.lastName > a.lastName ? -1 : 0
         );
         dispatch(allActions.employees.employeeData(sort));
@@ -42,7 +45,7 @@ const CreateTeam = () => {
   useEffect(() => {
     if (children === undefined || children.length === 0) {
       employees.forEach((e) => {
-        setChildren((children) => [
+        setChildren(() => [
           ...children,
           <Option key={e.id}>{`${e.firstName} ${e.lastName}`}</Option>,
         ]);
@@ -104,7 +107,7 @@ const CreateTeam = () => {
       handleCreateSubmit={handleCreateSubmit}
       handleSelection={handleSelection}
       setTitle={setTitle}
-      children={children}
+      props={children}
     />
   );
 };

@@ -7,6 +7,8 @@ import {
   TEAM_TASKS_FETCHED,
   TEAM_TASK_SELECTED,
 } from './types';
+/* eslint-disable import/prefer-default-export */
+/* eslint-disable react/prop-types */
 
 const teamData = (teams) => ({
   type: TEAMS_FETCHED,

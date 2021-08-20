@@ -1,17 +1,18 @@
 import React, { Suspense, lazy } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import allActions from '../redux/actions/index';
 import { Skeleton } from 'antd';
-
+import allActions from '../redux/actions/index';
+/* eslint-disable react/prop-types */
+/* eslint-disable react/no-array-index-key */
 const EmployeeList = lazy(() => import('../components/employee/EmployeeList'));
 
 export const Employees = () => {
   const employees = useSelector((state) => state.employees.employeeData);
   const dispatch = useDispatch();
 
-  const clickHandler = (employees) => {
-    if (employees !== null) {
-      dispatch(allActions.employees.employeeSelected(employees));
+  const clickHandler = (e) => {
+    if (e !== null) {
+      dispatch(allActions.employees.employeeSelected(e));
     }
   };
 

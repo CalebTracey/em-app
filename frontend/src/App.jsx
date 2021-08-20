@@ -1,12 +1,11 @@
 import './App.css';
 import React, { Suspense, lazy } from 'react';
 import { useSelector } from 'react-redux';
-import { Layout } from 'antd';
-import { Skeleton } from 'antd';
+import { Layout, Skeleton } from 'antd';
+import { ConnectedRouter } from 'connected-react-router';
 import useCompany from './hooks/data/useCompany';
 import SideNav from './layout/SideNav';
 import MainHeader from './layout/MainHeader';
-import { ConnectedRouter } from 'connected-react-router';
 import { history } from './redux/store';
 
 const { Content } = Layout;

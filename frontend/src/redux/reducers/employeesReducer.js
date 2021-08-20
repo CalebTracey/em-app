@@ -4,6 +4,7 @@ import {
   EMPLOYEE_SELECTED,
   EMPLOYEE_DELETED,
 } from '../actions/types';
+/* eslint-disable no-shadow */
 
 const initialState = {
   employeeData: [],

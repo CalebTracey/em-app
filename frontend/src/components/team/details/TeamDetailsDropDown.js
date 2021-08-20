@@ -1,7 +1,8 @@
 import React from 'react';
 import { Dropdown, Menu } from 'antd';
 import { MenuOutlined } from '@ant-design/icons';
-
+/* eslint-disable react/prop-types */
+/* eslint-disable react/no-array-index-key */
 const TeamDetailsDropDown = ({ handleCreateTask, showDeleteTeamConfirm }) => {
   const menu = (
     <Menu>

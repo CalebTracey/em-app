@@ -3,6 +3,8 @@ import { Descriptions, Tag, Card, Typography, PageHeader, Button } from 'antd';
 import PropTypes from 'prop-types';
 import './Task.css';
 import { Link } from 'react-router-dom';
+/* eslint-disable react/prop-types */
+/* eslint-disable react/no-array-index-key */
 
 const { Text } = Typography;
 
@@ -31,7 +33,7 @@ const TaskDetailsCard = ({ task }) => {
           <Button key="2">Operation</Button>,
           // <AddTeamDropdown teams={teams} task={task} />,
         ]}
-      ></PageHeader>
+      />
       <Card style={{ boxShadow: '0 0 2.25em -2em' }}>
         <Typography>
           <Descriptions
@@ -46,19 +48,19 @@ const TaskDetailsCard = ({ task }) => {
             size="small"
             title={<Text style={{ margin: '.75em' }}>Task Details</Text>}
           >
-            <Descriptions.Item label={'Start Date:'}>
+            <Descriptions.Item label="Start Date:">
               <Text strong>{task.taskStart}</Text>
             </Descriptions.Item>
-            <Descriptions.Item label={'End Date:'}>
+            <Descriptions.Item label="End Date:">
               <Text strong>{task.taskEnd}</Text>
             </Descriptions.Item>
-            <Descriptions.Item label={'Deadline:'}>
+            <Descriptions.Item label="Deadline:">
               <Text strong>{`${task.remaining} days`}</Text>
             </Descriptions.Item>
-            <Descriptions.Item label={'Client:'}>
+            <Descriptions.Item label="Client:">
               <Text>{task.client}</Text>
             </Descriptions.Item>
-            <Descriptions.Item label={'Client Phone:'}>
+            <Descriptions.Item label="Client Phone:">
               <Text>{task.clientPhone}</Text>
             </Descriptions.Item>
           </Descriptions>

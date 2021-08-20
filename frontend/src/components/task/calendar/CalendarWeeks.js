@@ -3,6 +3,8 @@ import { useSelector } from 'react-redux';
 import { Skeleton, Space } from 'antd';
 import CalendarTile from './CalendarTile';
 import CalendarTileDisabled from './CalendarTileDisabled';
+/* eslint-disable react/prop-types */
+/* eslint-disable react/no-array-index-key */
 
 const CalendarWeeks = ({ clickHandler }) => {
   const tasks = useSelector((state) => state.teams.teamTaskData);
@@ -29,15 +31,15 @@ const CalendarWeeks = ({ clickHandler }) => {
 
       emptyMonthArray.splice(firstDay - 1, daysMonth, ...calendarTiles);
 
-      const weekArray = (emptyMonthArray, weekCount) => {
-        let chunks = [];
+      const weekArray = () => {
+        const chunks = [];
         while (emptyMonthArray.length) {
           chunks.push(emptyMonthArray.splice(0, weekCount));
         }
         return chunks;
       };
-      const weeks = weekArray(emptyMonthArray, weekCount);
-      setWeeks(weeks);
+      const weeksResult = weekArray(emptyMonthArray, weekCount);
+      setWeeks(weeksResult);
     }
   }, [weeks, setWeeks, tasks, clickHandler]);
 
@@ -48,9 +50,7 @@ const CalendarWeeks = ({ clickHandler }) => {
       </div>
     </Space>
   ) : (
-    weeks.map((week) => {
-      return <div className="week">{week}</div>;
-    })
+    weeks.map((week) => <div className="week">{week}</div>)
   );
 };
 

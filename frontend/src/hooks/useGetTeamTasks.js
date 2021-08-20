@@ -2,6 +2,10 @@ import { useState, useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 import allActions from '../redux/actions/index';
 import apiGet from '../apis/apiGet';
+/* eslint-disable no-nested-ternary */
+/* eslint-disable no-underscore-dangle */
+/* eslint-disable react/prop-types */
+/* eslint-disable react/no-array-index-key */
 
 const useGetTeamTasks = ({ data }) => {
   const dispatch = useDispatch();

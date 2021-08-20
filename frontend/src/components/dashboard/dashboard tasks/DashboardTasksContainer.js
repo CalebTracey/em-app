@@ -3,6 +3,7 @@ import './DashboardTasks.css';
 import DashboardOverdueTasks from './DashboardOverdueTasks';
 import DashboardUpcomingTasks from './DashboardUpcomingTasks';
 import DashboardTodayTasks from './DashboardTodayTasks';
+/* eslint-disable react/prop-types */
 
 const DashboardTasksContainer = ({ tasks, currentDate }) => {
   const urgentTasks = tasks.filter(({ remaining }) => remaining < 6 && remaining > 0);

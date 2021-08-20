@@ -17,10 +17,10 @@ const TeamPage = () => {
   const history = useHistory();
   const { id } = useParams();
 
-  const deleteTeam = async (team) => {
+  const deleteTeam = async (t) => {
     await api
-      .delete(`teams/${team.id}`)
-      .then(() => dispatch(allActions.teams.teamDeleted(team.id)))
+      .delete(`teams/${t.id}`)
+      .then(() => dispatch(allActions.teams.teamDeleted(t.id)))
       .catch((error) => {
         console.log(error);
       });

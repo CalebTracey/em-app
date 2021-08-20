@@ -4,7 +4,8 @@ import './Dashboard.css';
 import DashboardTeams from './dashboard teams/DashboardTeams';
 import CalendarContainer from '../task/calendar/CalendarContainer';
 
-const DashboardPage = ({ teams, company, employees, tasks }) => {
+// eslint-disable-next-line react/prop-types
+const DashboardPage = ({ teams, employees, tasks }) => {
   const date = new Date();
 
   return (

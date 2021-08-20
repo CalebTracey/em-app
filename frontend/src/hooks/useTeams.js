@@ -2,6 +2,10 @@ import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import allActions from '../redux/actions/index';
 import api from '../apis/api';
+/* eslint-disable no-nested-ternary */
+/* eslint-disable no-underscore-dangle */
+/* eslint-disable react/prop-types */
+/* eslint-disable react/no-array-index-key */
 
 const useTeams = () => {
   const teams = useSelector((state) => state.teams.teamData);
@@ -21,7 +25,7 @@ const useTeams = () => {
             dispatch(allActions.teams.teamData(res.data._embedded.teamList));
           })
           .catch((error) => {
-            console.log(error);
+            console.error(error);
           });
       }
     };

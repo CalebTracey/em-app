@@ -7,6 +7,8 @@ import apiGet from '../../apis/apiGet';
 import useGetEmployees from '../../hooks/useGetEmployees';
 import useGetTeams from '../../hooks/useGetTeams';
 import useGetTeamTasks from '../../hooks/useGetTeamTasks';
+/* eslint-disable react/prop-types */
+/* eslint-disable react/no-array-index-key */
 
 const TeamPageRedirect = ({ id }) => {
   const [isLoading, setIsLoading] = useState(true);

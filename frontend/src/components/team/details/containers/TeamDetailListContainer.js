@@ -1,9 +1,9 @@
-import React, { useState, lazy } from 'react';
+import React, { useState, lazy, Suspense } from 'react';
 import { Skeleton, Result, Button } from 'antd';
 import InfiniteScroll from 'react-infinite-scroller';
 import '../TeamDetails.css';
-import { Suspense } from 'react';
-
+/* eslint-disable react/prop-types */
+/* eslint-disable react/no-array-index-key */
 const TeamDetailList = lazy(() => import('../TeamDetailList'));
 
 const TeamDetailListContainer = ({ team }) => {
@@ -16,7 +16,6 @@ const TeamDetailListContainer = ({ team }) => {
     if (team.employees.length > 14) {
       setHasMore(false);
       setLoading(false);
-      return;
     }
   };
 
