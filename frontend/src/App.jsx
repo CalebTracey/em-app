@@ -19,7 +19,7 @@ const App = () => {
     <ConnectedRouter history={history}>
       <Layout style={{ height: '100%' }}>
         <SideNav />
-        <Layout>
+        <Layout style={{ display: 'flex', flexDirection: 'column', width: '100%', height: '100%' }}>
           <MainHeader company={company} />
           <Content className="content">
             <Suspense
