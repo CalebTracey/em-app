@@ -14,7 +14,7 @@ The Employee Management App is a full stack web application created for learning
   * <i>React Redux</i>
   * <i>Axios</i>
   * <i>Antd Components (side nav)</i>
-  * <i>Custom CSS (Main page)</i>
+  * <i>Custom CSS (main page)</i>
 ### Landing Page
 The main page dashboard gives real-time updates on upcoming and past due tasks. Access specific tasks through the calendar, or navigate to a certain team through the list on the right.
 
