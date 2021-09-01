@@ -22,7 +22,7 @@ const TeamPage = () => {
       .delete(`teams/${t.id}`)
       .then(() => dispatch(allActions.teams.teamDeleted(t.id)))
       .catch((error) => {
-        console.log(error);
+        throw new Error(error);
       });
     return <TeamDeletedPage team={team.teamName} />;
   };
@@ -40,9 +40,9 @@ const TeamPage = () => {
         deleteTeam(team).then(() => showDeletedPage());
         dispatch(allActions.teams.teamDeleted(team.id));
       },
-      onCancel() {
-        console.log('Cancel');
-      },
+      // onCancel() {
+      //   console.log('Cancel');
+      // },
     });
   };
 

@@ -75,7 +75,7 @@ const CreateTeam = () => {
       })
       .catch((error) => {
         message.error(`Problem adding ${newTeam.teamName}`);
-        console.log(error);
+        throw new Error(error);
       });
   };
 

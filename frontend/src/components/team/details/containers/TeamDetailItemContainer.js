@@ -16,8 +16,8 @@ const TeamDetailItemContainer = ({ team, setShowModal, handleRemoveTeamMember })
       .then((res) => {
         dispatch(allActions.employees.employeeSelected(res.data));
       })
-      .catch((err) => {
-        console.error(err);
+      .catch((error) => {
+        throw new Error(error);
       });
   };
 
