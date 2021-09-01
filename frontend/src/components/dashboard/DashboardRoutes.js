@@ -8,8 +8,6 @@ const CalendarContainer = lazy(() => import('../task/calendar/CalendarContainer'
 const TaskListOverdue = lazy(() => import('../task/TaskListOverdue'));
 
 const DashboardRoutes = ({ date }) => {
-  // TODO: import state for all 3 dashboard tasks and create routes
-  // dashboard tasks not appearing in redux state
   const overdueTasks = useSelector((state) => state.tasks.overdueTasks);
 
   return (
