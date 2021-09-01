@@ -1,22 +1,33 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable react/no-array-index-key */
-import React, { lazy, Suspense } from 'react';
+import React, { lazy, Suspense, useEffect } from 'react';
 import { PageHeader, Skeleton, Badge } from 'antd';
-import { useSelector } from 'react-redux';
-import './TeamDetails.css';
+import { useSelector, useDispatch } from 'react-redux';
+import { useHistory, useParams } from 'react-router-dom';
 import TeamDetailsDropDown from './TeamDetailsDropDown';
+import allActions from '../../../redux/actions/index';
+import apiGet from '../../../apis/apiGet';
 
 const TeamDetailListContainer = lazy(() => import('./containers/TeamDetailListContainer'));
 const TeamTaskListContainer = lazy(() => import('./containers/TeamTaskListContainer'));
 
 const TeamDetails = ({ showDeleteTeamConfirm }) => {
   const team = useSelector((state) => state.teams.teamSelected);
+  const dispatch = useDispatch();
+  const history = useHistory();
+  const { id } = useParams();
+
+  useEffect(() => {
+    apiGet({ url: `teams/${parseInt(id, 10)}` }).then((res) => {
+      dispatch(allActions.teams.teamSelected(res.data));
+    });
+  }, [id, dispatch]);
   return (
     <>
       <PageHeader
         fontWeight="bold"
         className="site-page-header"
-        onBack={() => window.history.back()}
+        onBack={() => history.goBack()}
         title={team.teamName}
         extra={[<TeamDetailsDropDown showDeleteTeamConfirm={showDeleteTeamConfirm} />]}
       />

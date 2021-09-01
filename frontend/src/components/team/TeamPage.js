@@ -40,9 +40,6 @@ const TeamPage = () => {
         deleteTeam(team).then(() => showDeletedPage());
         dispatch(allActions.teams.teamDeleted(team.id));
       },
-      // onCancel() {
-      //   console.log('Cancel');
-      // },
     });
   };
 

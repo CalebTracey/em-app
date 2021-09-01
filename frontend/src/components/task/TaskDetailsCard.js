@@ -1,10 +1,9 @@
-import React from 'react';
-import { Descriptions, Tag, Card, Typography, PageHeader, Button } from 'antd';
-import PropTypes from 'prop-types';
-import './Task.css';
-import { Link } from 'react-router-dom';
 /* eslint-disable react/prop-types */
 /* eslint-disable react/no-array-index-key */
+import React from 'react';
+import { Descriptions, Tag, Card, Typography, PageHeader, Button } from 'antd';
+import './Task.css';
+import { Link } from 'react-router-dom';
 
 const { Text } = Typography;
 
@@ -68,7 +67,3 @@ const TaskDetailsCard = ({ task }) => (
 );
 
 export default TaskDetailsCard;
-
-TaskDetailsCard.propTypes = {
-  task: PropTypes.objectOf().isRequired,
-};

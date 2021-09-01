@@ -20,9 +20,9 @@ import java.util.stream.Collectors;
 @RequestMapping(path = "api/v1/")
 public class TeamTaskController {
 
-    private TeamTaskService teamTaskService;
-    private TeamTaskModelAssembler assembler;
-    private TeamTaskRepository repository;
+    private final TeamTaskService teamTaskService;
+    private final TeamTaskModelAssembler assembler;
+    private final TeamTaskRepository repository;
 
     @Autowired
     public TeamTaskController(TeamTaskService teamTaskService,

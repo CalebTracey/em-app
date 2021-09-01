@@ -1,17 +1,26 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable react/no-array-index-key */
-import React, { lazy, Suspense } from 'react';
+import React, { lazy, Suspense, useEffect } from 'react';
 import { PageHeader, Space, Skeleton } from 'antd';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
 import EmployeeDetailsRedirect from './EmployeeDetailsRedirect';
+import allActions from '../../redux/actions/index';
+import apiGet from '../../apis/apiGet';
 
 const EmployeeDetailsCard = lazy(() => import('./EmployeeDetailsCard'));
 
 const EmployeeDetails = () => {
   const employee = useSelector((state) => state.employees.employeeSelected);
+  const dispatch = useDispatch();
   const history = useHistory();
   const { id } = useParams();
+
+  useEffect(() => {
+    apiGet({ url: `employees/${parseInt(id, 10)}` }).then((res) => {
+      dispatch(allActions.employees.employeeSelected(res.data));
+    });
+  }, [id, dispatch]);
 
   return !employee ? (
     <EmployeeDetailsRedirect id={id} />
