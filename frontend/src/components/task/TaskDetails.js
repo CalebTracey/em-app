@@ -1,16 +1,18 @@
-import { PageHeader, Skeleton, Space } from 'antd';
-import React, { Suspense } from 'react';
-import { useSelector } from 'react-redux';
-import { useHistory, useParams } from 'react-router-dom';
-import TaskDetailsCard from './TaskDetailsCard';
-import TaskDetailsRedirect from './TaskDetailsRedirect';
 /* eslint-disable react/prop-types */
 /* eslint-disable react/no-array-index-key */
+import { PageHeader, Skeleton, Space } from 'antd';
+import React, { lazy, Suspense } from 'react';
+import { useSelector } from 'react-redux';
+import { useHistory, useParams } from 'react-router-dom';
+import TaskDetailsRedirect from './TaskDetailsRedirect';
+
+const TaskDetailsCard = lazy(() => import('./TaskDetailsCard'));
 
 const TaskDetails = () => {
   const task = useSelector((state) => state.teams.teamTaskSelected);
   const history = useHistory();
   const { id } = useParams();
+
   return !task ? (
     <TaskDetailsRedirect id={id} />
   ) : (

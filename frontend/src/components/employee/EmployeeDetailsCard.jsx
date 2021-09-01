@@ -1,16 +1,16 @@
+/* eslint-disable react/prop-types */
 import React, { useState, useEffect } from 'react';
 import { Descriptions, Tag, Card, Typography, PageHeader, Button } from 'antd';
-import PropTypes from 'prop-types';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import AddTeamDropdown from './add/AddTeamDropdown';
 import './Employees.css';
 import allActions from '../../redux/actions';
-/* eslint-disable react/prop-types */
-/* eslint-disable react/no-array-index-key */
+
 const { Text } = Typography;
 
-const EmployeeDetailsCard = ({ employee, teams }) => {
+const EmployeeDetailsCard = ({ employee }) => {
+  const teams = useSelector((state) => state.teams.teamData);
   const [teamName, setTeamName] = useState('No Team');
   const dispatch = useDispatch();
   const setTeamSelected = () => {
@@ -48,7 +48,7 @@ const EmployeeDetailsCard = ({ employee, teams }) => {
         avatar={{ src: employee.avatar }}
       />
       <Card style={{ boxShadow: '0 0 2.25em -2em' }}>
-        <Typography ellipsis>
+        <Typography>
           <Descriptions
             contentStyle={{ wordBreak: 'break-all' }}
             labelStyle={{
@@ -84,8 +84,3 @@ const EmployeeDetailsCard = ({ employee, teams }) => {
 };
 
 export default EmployeeDetailsCard;
-
-EmployeeDetailsCard.propTypes = {
-  employee: PropTypes.objectOf().isRequired,
-  teams: PropTypes.objectOf().isRequired,
-};

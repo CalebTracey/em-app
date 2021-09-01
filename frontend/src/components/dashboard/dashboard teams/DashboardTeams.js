@@ -1,7 +1,7 @@
+/* eslint-disable react/prop-types */
 import './DashboardTeams.css';
 import React, { Suspense, lazy } from 'react';
 import { Skeleton } from 'antd';
-/* eslint-disable react/prop-types */
 
 const DashboardTeamsList = lazy(() => import('./DashboardTeamsList'));
 

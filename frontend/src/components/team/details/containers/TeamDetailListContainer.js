@@ -1,9 +1,10 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable react/no-array-index-key */
 import React, { useState, lazy, Suspense } from 'react';
 import { Skeleton, Result, Button } from 'antd';
 import InfiniteScroll from 'react-infinite-scroller';
 import '../TeamDetails.css';
-/* eslint-disable react/prop-types */
-/* eslint-disable react/no-array-index-key */
+
 const TeamDetailList = lazy(() => import('../TeamDetailList'));
 
 const TeamDetailListContainer = ({ team }) => {
@@ -34,10 +35,6 @@ const TeamDetailListContainer = ({ team }) => {
     <div
       className="team-detail-wrapper"
       style={{
-        // padding: '1rem',
-        // marginRight: '10%',
-        // marginLeft: '10%',
-        // display: 'flex',
         boxShadow: '0 0 2.25em -2em',
       }}
     >
@@ -55,7 +52,7 @@ const TeamDetailListContainer = ({ team }) => {
           hasMore={!loading && hasMore}
           useWindow={false}
         >
-          <TeamDetailList key={team.id} team={team} setShowModal={setShowModal} />
+          <TeamDetailList team={team} setShowModal={setShowModal} />
         </InfiniteScroll>
       </Suspense>
     </div>

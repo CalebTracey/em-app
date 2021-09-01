@@ -1,6 +1,7 @@
 import './Layout.css';
 import React, { useState, lazy, Suspense } from 'react';
-import { Layout, Menu, Skeleton } from 'antd';
+import { Layout, Menu, Spin } from 'antd';
+import { useSelector } from 'react-redux';
 import { TeamOutlined, UserOutlined, ScheduleOutlined } from '@ant-design/icons';
 import HomeNav from './sider-nav/HomeNav';
 import TeamsNav from './sider-nav/TeamsNav';
@@ -17,6 +18,9 @@ const { Sider } = Layout;
 const { SubMenu } = Menu;
 
 const SideNav = () => {
+  const employeeState = useSelector((state) => state.employees.employeeData);
+  const teamState = useSelector((state) => state.teams.teamData);
+  const taskState = useSelector((state) => state.employees.teamTaskData);
   const [employees, toggleEmployees] = useState(false);
   const [schedule, toggleSchedule] = useState(false);
   const [teams, toggleTeams] = useState(false);
@@ -51,11 +55,13 @@ const SideNav = () => {
           onTitleClick={onClickHandler}
         >
           <EmployeesNav />
-          <Suspense fallback={<Skeleton />}>{employees ? <Employees /> : null}</Suspense>
+          <Suspense fallback={<Spin />}>
+            {employees ? <Employees employees={employeeState} /> : null}
+          </Suspense>
         </SubMenu>
         <SubMenu key="teams" icon={<TeamOutlined />} title="Teams" onTitleClick={onClickHandler}>
           <TeamsNav />
-          <Suspense fallback={<Skeleton />}>{teams ? <Teams /> : null}</Suspense>
+          <Suspense fallback={<Spin />}>{teams ? <Teams teams={teamState} /> : null}</Suspense>
         </SubMenu>
         <SubMenu
           key="schedule"
@@ -64,8 +70,9 @@ const SideNav = () => {
           onTitleClick={onClickHandler}
         >
           <ScheduleNav />
-          {/* {scheduleNav.fullSchedule()} */}
-          <Suspense fallback={<Skeleton />}>{schedule ? <Schedule /> : null}</Suspense>
+          <Suspense fallback={<Spin />}>
+            {schedule ? <Schedule tasks={taskState} /> : null}
+          </Suspense>
         </SubMenu>
       </Menu>
     </Sider>

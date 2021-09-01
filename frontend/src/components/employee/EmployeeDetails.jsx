@@ -1,19 +1,20 @@
-import React from 'react';
-import { PageHeader } from 'antd';
-import { useSelector } from 'react-redux';
-import { useHistory, Redirect } from 'react-router-dom';
-import EmployeeDetailsCard from './EmployeeDetailsCard';
-// import EmployeeDetailsRedirect from './EmployeeDetailsRedirect';
 /* eslint-disable react/prop-types */
 /* eslint-disable react/no-array-index-key */
+import React, { lazy, Suspense } from 'react';
+import { PageHeader, Space, Skeleton } from 'antd';
+import { useSelector } from 'react-redux';
+import { useHistory, useParams } from 'react-router-dom';
+import EmployeeDetailsRedirect from './EmployeeDetailsRedirect';
+
+const EmployeeDetailsCard = lazy(() => import('./EmployeeDetailsCard'));
 
 const EmployeeDetails = () => {
   const employee = useSelector((state) => state.employees.employeeSelected);
-  const teams = useSelector((state) => state.teams.teamData);
   const history = useHistory();
+  const { id } = useParams();
 
   return !employee ? (
-    <Redirect to="/EMapp/employees/redirect" />
+    <EmployeeDetailsRedirect id={id} />
   ) : (
     <>
       <PageHeader
@@ -29,7 +30,17 @@ const EmployeeDetails = () => {
           justifyContent: 'center',
         }}
       >
-        <EmployeeDetailsCard employee={employee} teams={teams} />
+        <Suspense
+          fallback={
+            <Space style={{ margin: '2rem' }}>
+              <div className="skeleton">
+                <Skeleton active paragraph={{ rows: 5 }} />
+              </div>
+            </Space>
+          }
+        >
+          <EmployeeDetailsCard employee={employee} />
+        </Suspense>
       </div>
     </>
   );

@@ -1,13 +1,12 @@
-import React, { useState, lazy } from 'react';
+/* eslint-disable react/prop-types */
+/* eslint-disable react/no-array-index-key */
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { message } from 'antd';
 import api from '../../../apis/api';
 import './TeamDetails.css';
 import allActions from '../../../redux/actions/index';
-/* eslint-disable react/prop-types */
-/* eslint-disable react/no-array-index-key */
-
-const TeamDetailItemContainer = lazy(() => import('./containers/TeamDetailItemContainer'));
+import TeamDetailItemContainer from './containers/TeamDetailItemContainer';
 
 const TeamDetailList = ({ team, setShowModal }) => {
   const [employeeState, setEmployeeState] = useState(team.employees);
@@ -18,11 +17,16 @@ const TeamDetailList = ({ team, setShowModal }) => {
   };
 
   const handleRemoveTeamMember = (employee, teamFrom) => {
-    const filter = teamFrom.employees.filter((e) => e.id !== employee.id);
+    const employeeFilter = teamFrom.employees.filter((e) => e.id !== employee.id);
+    const filteredWithKey = employeeFilter.map((e) => {
+      const emp = e;
+      emp.key = e.id;
+      return emp;
+    });
     const updatedTeam = {
       teamName: teamFrom.teamName,
       id: teamFrom.id,
-      employees: filter,
+      employees: filteredWithKey,
     };
     setEmployeeState(updatedTeam.employees);
     dispatch(allActions.employees.employeeDeleted(employee.id));
@@ -31,15 +35,12 @@ const TeamDetailList = ({ team, setShowModal }) => {
   };
 
   return (
-    // <Suspense fallback={<Skeleton />}>
     <TeamDetailItemContainer
-      // style={{ width: '100%' }}
       team={team}
       employees={employeeState}
       setShowModal={setShowModal}
       handleRemoveTeamMember={handleRemoveTeamMember}
     />
-    // </Suspense>
   );
 };
 

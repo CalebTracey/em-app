@@ -48,8 +48,10 @@ public class EmployeeController {
 
     @GetMapping("employees/{id}")
     public ResponseEntity<EmployeeModel> getEmployeeById(@PathVariable(value = "id") Long id) {
-        return repository.findById(id).map(assembler::toModel)
-                .map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
+        return repository.findById(id)
+                .map(assembler::toModel)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
     }
 
     @PostMapping("employees")
@@ -57,7 +59,8 @@ public class EmployeeController {
         EmployeeModel employeeModel = assembler.toModel(employeeService.save(employee));
 
         return ResponseEntity.created(employeeModel.
-                getRequiredLink(IanaLinkRelations.SELF).toUri()).body(employeeModel);
+                getRequiredLink(IanaLinkRelations.SELF)
+                .toUri()).body(employeeModel);
     }
 
         @DeleteMapping("employees/{id}")

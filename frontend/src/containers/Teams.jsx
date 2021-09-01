@@ -1,12 +1,12 @@
+/* eslint-disable react/prop-types */
 import React, { lazy, Suspense, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { Skeleton } from 'antd';
 import allActions from '../redux/actions/index';
 
 const TeamList = lazy(() => import('../components/team/TeamList'));
 
-const Teams = () => {
-  const teams = useSelector((state) => state.teams.teamData);
+const Teams = ({ teams }) => {
   const dispatch = useDispatch();
 
   useEffect(() => {

@@ -1,8 +1,8 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable react/no-array-index-key */
 import React from 'react';
 import '../Employees.css';
 import { Form, Input, Button, Card } from 'antd';
-/* eslint-disable react/prop-types */
-/* eslint-disable react/no-array-index-key */
 
 const AddEmployeeCard = ({
   setFirstName,
@@ -15,12 +15,7 @@ const AddEmployeeCard = ({
 }) => (
   <div style={{ display: 'flex', justifyContent: 'space-around' }}>
     <Card className="add-employee-card" title="Add Employee">
-      <Form
-        layout="vertical"
-        requiredMark
-        onFinish={onFinish}
-        // onFinishFailed={onFinishFailed}
-      >
+      <Form layout="vertical" requiredMark onFinish={onFinish}>
         <Form.Item label="First name" required tooltip="This is a required field">
           <Input placeholder="First name" onChange={(event) => setFirstName(event.target.value)} />
         </Form.Item>

@@ -1,6 +1,6 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
 import './DashboardUpcomingTasks.css';
-/* eslint-disable react/prop-types */
 
 const DashboardUpcomingTasks = ({ tasks }) => (
   <div className="upcoming-tasks">

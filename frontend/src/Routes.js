@@ -4,7 +4,6 @@ import NotFound from './utils/NotFound';
 
 const Employees = lazy(() => import('./containers/Employees'));
 const EmployeeDetails = lazy(() => import('./components/employee/EmployeeDetails'));
-const EmployeeDetailsRedirect = lazy(() => import('./components/employee/EmployeeDetailsRedirect'));
 const AddEmployee = lazy(() => import('./components/employee/add/AddEmployee'));
 const Teams = lazy(() => import('./containers/Teams'));
 const TeamPage = lazy(() => import('./components/team/TeamPage'));
@@ -35,9 +34,7 @@ const Routes = () => (
     <Route path="/EMapp/tasks/overdue" component={TaskListOverdue} />
     <Route path="/EMapp/team/:id" component={TeamPage} />
     <Route path="/EMapp/team/team-deleted/:id" component={TeamDeletedPage} />
-    <Route path="/EMapp/employees/redirect" component={EmployeeDetailsRedirect} />
     <Route component={NotFound} />
   </Switch>
 );
-// "/EMapp/employees/redirect"
 export default Routes;

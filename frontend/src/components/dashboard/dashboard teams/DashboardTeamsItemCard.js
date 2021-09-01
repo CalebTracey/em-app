@@ -1,6 +1,6 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
 import './DashboardTeams.css';
-/* eslint-disable react/prop-types */
 import { List, Card, Badge } from 'antd';
 
 const DashboardTeamsItemCard = ({ team }) => (

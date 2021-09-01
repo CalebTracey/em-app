@@ -1,9 +1,7 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
 import TeamTaskList from './TeamTaskList';
 
-const TeamTasks = ({ team }) => {
-  console.log(team);
-  return <TeamTaskList tasks={team.teamTasks} />;
-};
+const TeamTasks = ({ team }) => <TeamTaskList tasks={team.teamTasks} />;
 
 export default TeamTasks;

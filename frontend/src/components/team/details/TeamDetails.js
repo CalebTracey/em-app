@@ -1,10 +1,11 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable react/no-array-index-key */
 import React, { lazy, Suspense } from 'react';
 import { PageHeader, Skeleton, Badge } from 'antd';
 import { useSelector } from 'react-redux';
 import './TeamDetails.css';
 import TeamDetailsDropDown from './TeamDetailsDropDown';
-/* eslint-disable react/prop-types */
-/* eslint-disable react/no-array-index-key */
+
 const TeamDetailListContainer = lazy(() => import('./containers/TeamDetailListContainer'));
 const TeamTaskListContainer = lazy(() => import('./containers/TeamTaskListContainer'));
 
@@ -44,7 +45,7 @@ const TeamDetails = ({ showDeleteTeamConfirm }) => {
         <div className="team-members">
           {'Team Members '} <Badge className="team-badge" count={team.employees.length} />
         </div>
-        <TeamDetailListContainer key={team.id} team={team} />
+        <TeamDetailListContainer team={team} />
       </Suspense>
     </>
   );

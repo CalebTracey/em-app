@@ -18,16 +18,16 @@ const DashboardTasksContainer = ({ tasks }) => {
   // const overdueFilter = overdueTasks.filter(
   //   ({ taskEnd }) => new Date(taskEnd).getMonth() === date.getMonth()
   // );
-  // const todayFilter = todayTasks.filter(
-  //   ({ taskEnd }) => new Date(taskEnd).getMonth() === date.getMonth()
-  // );
+  const todayFilter = todayTasks.filter(
+    ({ taskEnd }) => new Date(taskEnd).getMonth() === date.getMonth()
+  );
 
   return (
     <div className="task-margin-container">
       <div className="task-container">
         <div className="task-title-text">Tasks</div>
         <DashboardOverdueTasks tasks={overdueTasks} />
-        <DashboardTodayTasks tasks={todayTasks} />
+        <DashboardTodayTasks tasks={todayFilter} />
         <DashboardUpcomingTasks tasks={urgentTasks} />
       </div>
     </div>

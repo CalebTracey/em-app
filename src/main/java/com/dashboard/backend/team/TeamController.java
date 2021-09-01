@@ -24,14 +24,15 @@ import java.util.List;
 @RequestMapping(path = "api/v1/")
 public class TeamController {
 
-    private TeamRepository teamRepository;
-    private TeamService teamService;
-    private TeamModelAssembler assembler;
+    private final TeamRepository teamRepository;
+    private final TeamService teamService;
+    private final TeamModelAssembler assembler;
 
     @Autowired
     public TeamController(
             TeamRepository teamRepository,
-            TeamService teamService, TeamModelAssembler assembler) {
+            TeamService teamService,
+            TeamModelAssembler assembler) {
         this.teamRepository = teamRepository;
         this.teamService = teamService;
         this.assembler = assembler;
@@ -39,6 +40,7 @@ public class TeamController {
 
     @GetMapping({"teams"})
     public ResponseEntity<CollectionModel<TeamModel>> getAllTeams(){
+        System.out.println("Get Teams");
         List<Team> teams = teamRepository.findAll();
         return new ResponseEntity<>(
                 assembler.toCollectionModel(teams),
@@ -49,8 +51,6 @@ public class TeamController {
     @GetMapping("teams/{id}")
     public ResponseEntity<TeamModel> getTeamById(@PathVariable("id") Long id)
     {
-        Link findOneLink = linkTo(methodOn(TeamController.class).getTeamById(id)).withSelfRel();
-
         return teamRepository.findById(id)
                 .map(assembler::toModel)
                 .map(ResponseEntity::ok)
@@ -62,7 +62,8 @@ public class TeamController {
         TeamModel teamModel = assembler.toModel(teamService.save(team));
 
         return ResponseEntity.created(teamModel.
-                getRequiredLink(IanaLinkRelations.SELF).toUri()).body(teamModel);
+                getRequiredLink(IanaLinkRelations.SELF)
+                .toUri()).body(teamModel);
     }
 
     @DeleteMapping("teams/{id}")

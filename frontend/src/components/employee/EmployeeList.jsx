@@ -1,11 +1,12 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
-import { Menu } from 'antd';
+import { useSelector } from 'react-redux';
+import { Menu, Spin } from 'antd';
 import { Link } from 'react-router-dom';
 import { UserOutlined } from '@ant-design/icons';
-/* eslint-disable react/prop-types */
-/* eslint-disable react/no-array-index-key */
 
-const EmployeeList = ({ employees, clickHandler }) => {
+const EmployeeList = ({ clickHandler }) => {
+  const employees = useSelector((state) => state.employees.employeeData);
   const listNode = employees.map((employee) => (
     <Menu.Item
       key={parseInt(employee.id, 10)}
@@ -20,7 +21,7 @@ const EmployeeList = ({ employees, clickHandler }) => {
       />
     </Menu.Item>
   ));
-  return <Menu.ItemGroup>{listNode}</Menu.ItemGroup>;
+  return employees ? <Menu.ItemGroup>{listNode}</Menu.ItemGroup> : <Spin />;
 };
 
 export default EmployeeList;

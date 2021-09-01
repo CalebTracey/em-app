@@ -1,11 +1,11 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable react/no-array-index-key */
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Skeleton, Space } from 'antd';
 import CalendarTile from './CalendarTile';
 import CalendarTileDisabled from './CalendarTileDisabled';
 // import useGreenLog from '../../../hooks/useGreenLog';
-/* eslint-disable react/prop-types */
-/* eslint-disable react/no-array-index-key */
 
 const WeekCount = 7; // for 7 x 5 grid
 
@@ -13,7 +13,7 @@ const CalendarWeeks = ({ clickHandler, date }) => {
   const tasks = useSelector((state) => state.teams.teamTaskData);
   const [weeks, setWeeks] = useState([]);
   const [firstDay] = useState(new Date(date.getFullYear(), date.getMonth(), 1).getDay() + 1);
-  const [daysMonth] = useState(new Date(date.getYear(), date.getMonth(), 0).getDate());
+  const [daysMonth] = useState(new Date(date.getYear(), date.getMonth() + 1, 0).getDate());
 
   useEffect(() => {
     if (weeks.length === 0 && tasks !== undefined) {
@@ -28,7 +28,7 @@ const CalendarWeeks = ({ clickHandler, date }) => {
         );
         return (
           <CalendarTile
-            key={dayIdx}
+            key={dayIdx + 2 * 10}
             day={dayIdx + 1}
             date={date}
             tasks={taskMatches}

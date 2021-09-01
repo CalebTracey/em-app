@@ -1,13 +1,13 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import './DashboardTasks.css';
 import allActions from '../../../redux/actions/index';
-/* eslint-disable react/prop-types */
 
 const DashboardTaskItem = ({ task }) => {
   const dispatch = useDispatch();
-  console.log(task);
+  // console.log(task);
   return (
     <Link
       to={`/EMapp/task/${task.id}`}

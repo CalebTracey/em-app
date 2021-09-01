@@ -1,11 +1,11 @@
+/* eslint-disable react/prop-types */
 import React, { Suspense } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { Skeleton } from 'antd';
 import allActions from '../redux/actions/index';
 import TaskList from '../components/task/TaskList';
 
-const Schedule = () => {
-  const taskState = useSelector((state) => state.teams.teamTaskData);
+const Schedule = ({ tasks }) => {
   const dispatch = useDispatch();
 
   const clickHandler = (task) => {
@@ -21,7 +21,7 @@ const Schedule = () => {
         </div>
       }
     >
-      <TaskList clickHandler={clickHandler} tasks={taskState} />
+      <TaskList clickHandler={clickHandler} tasks={tasks} />
     </Suspense>
   );
 };

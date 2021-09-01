@@ -1,7 +1,7 @@
-import React from 'react';
-import AddEmployeeCard from '../add/AddEmployeeCard';
 /* eslint-disable react/prop-types */
 /* eslint-disable react/no-array-index-key */
+import React from 'react';
+import AddEmployeeCard from '../add/AddEmployeeCard';
 
 const AddEmployeeCardContainer = ({
   setFirstName,

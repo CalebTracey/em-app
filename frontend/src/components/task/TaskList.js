@@ -1,11 +1,14 @@
 import React from 'react';
 import { Menu } from 'antd';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import { CalendarOutlined } from '@ant-design/icons';
 /* eslint-disable react/prop-types */
 /* eslint-disable react/no-array-index-key */
 
-const TaskList = ({ tasks, clickHandler }) => {
+const TaskList = ({ clickHandler }) => {
+  const tasks = useSelector((state) => state.teams.teamTaskData);
+
   const listNode = tasks.map((task) => {
     const start = new Date(task.taskStart);
     const end = new Date(task.taskEnd);

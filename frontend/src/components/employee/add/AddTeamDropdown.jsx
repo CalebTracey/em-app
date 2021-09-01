@@ -1,3 +1,5 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable react/no-array-index-key */
 import React, { Fragment, useState } from 'react';
 import { Dropdown, Button, Menu, message } from 'antd';
 import PropTypes from 'prop-types';
@@ -5,8 +7,6 @@ import { DownOutlined, TeamOutlined } from '@ant-design/icons';
 import { useDispatch, useSelector } from 'react-redux';
 import allActions from '../../../redux/actions';
 import usePutTeam from '../../../hooks/usePutTeam';
-/* eslint-disable react/prop-types */
-/* eslint-disable react/no-array-index-key */
 
 function AddTeamDropdown({ employee }) {
   const teams = useSelector((state) => state.teams.teamData);

@@ -1,10 +1,10 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
 import DashboardTasksContainer from './dashboard tasks/DashboardTasksContainer';
 import './Dashboard.css';
 import DashboardTeams from './dashboard teams/DashboardTeams';
 import CalendarContainer from '../task/calendar/CalendarContainer';
 
-// eslint-disable-next-line react/prop-types
 const DashboardPage = ({ teams, employees, tasks }) => {
   // const date = new Date('2021/09/05');
   const date = new Date();
