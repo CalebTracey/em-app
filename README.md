@@ -8,7 +8,8 @@ Here is a working live demo: https://emapp.netlify.app/
 ## Overview
 The Employee Management App is a full stack web application created for learning purposes. It serves as an organizational system for managers or HR personel to keep track of Employee data and upcoming tasks within a company.
 
-## Client <br/>[Code](https://github.com/CalebTracey/EmployeeManagementApp/tree/main/frontend)
+## Client 
+<br/>####[Code](https://github.com/CalebTracey/EmployeeManagementApp/tree/main/frontend)
 ### React JS
   * <i>Node / Express js</i>
   * <i>React Redux</i>
@@ -30,7 +31,8 @@ Teams are the top level objects in the database. The team page displays every em
 ### Employee / Task Cards
 These cards display all the data relating to a specific entity.
 
-## Server <br/>[Code](https://github.com/CalebTracey/EmployeeManagementApp/tree/main/src/main/java/com/dashboard/backend)
+## Server 
+<br/>####[Code](https://github.com/CalebTracey/EmployeeManagementApp/tree/main/src/main/java/com/dashboard/backend)
 ### Spring Boot Java
   * JPA / Hibernate
   * HATEOS
