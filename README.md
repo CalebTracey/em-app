@@ -37,10 +37,11 @@ These cards display all the data relating to a specific entity.
   * JPA / Hibernate
   * HATEOS
 ### Rest API
-Hypertext links with Spring HATEOAS.
+#### Employee JSON object.
 
 <img src=./emappjson.png />
 
 ## Database
 ### Postgres
+#### Entity Relationship Diagram
 <img src=./emappdb.png />
