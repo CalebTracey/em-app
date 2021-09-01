@@ -1,7 +1,6 @@
 /* eslint-disable react/prop-types */
-import React, { Suspense } from 'react';
+import React from 'react';
 import { useDispatch } from 'react-redux';
-import { Skeleton } from 'antd';
 import allActions from '../redux/actions/index';
 import TaskList from '../components/task/TaskList';
 
@@ -13,17 +12,7 @@ const Schedule = ({ tasks }) => {
       dispatch(allActions.teams.teamTaskSelected(task));
     }
   };
-  return (
-    <Suspense
-      fallback={
-        <div className="skeleton">
-          <Skeleton active paragraph={{ rows: 5 }} />
-        </div>
-      }
-    >
-      <TaskList clickHandler={clickHandler} tasks={tasks} />
-    </Suspense>
-  );
+  return <TaskList clickHandler={clickHandler} tasks={tasks} />;
 };
 
 export default Schedule;

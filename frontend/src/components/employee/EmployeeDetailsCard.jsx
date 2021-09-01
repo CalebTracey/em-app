@@ -4,7 +4,6 @@ import { Descriptions, Tag, Card, Typography, PageHeader, Button } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import AddTeamDropdown from './add/AddTeamDropdown';
-import './Employees.css';
 import allActions from '../../redux/actions';
 
 const { Text } = Typography;

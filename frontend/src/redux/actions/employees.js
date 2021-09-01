@@ -1,5 +1,5 @@
-import { EMPLOYEES_FETCHED, EMPLOYEE_ADDED, EMPLOYEE_SELECTED, EMPLOYEE_DELETED } from './types';
 /* eslint-disable import/prefer-default-export */
+import { EMPLOYEES_FETCHED, EMPLOYEE_ADDED, EMPLOYEE_SELECTED, EMPLOYEE_DELETED } from './types';
 
 const employeeData = (employees) => ({
   type: EMPLOYEES_FETCHED,

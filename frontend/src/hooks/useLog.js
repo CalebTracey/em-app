@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 import { useEffect } from 'react';
 
-const useGreenLog = (description, value) => {
+const useLog = (description, value) => {
   useEffect(() => {
     console.log(
       `%c ${description}: %c${value}`,
@@ -11,4 +11,4 @@ const useGreenLog = (description, value) => {
   });
 };
 
-export default useGreenLog;
+export default useLog;

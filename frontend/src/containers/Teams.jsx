@@ -1,10 +1,8 @@
 /* eslint-disable react/prop-types */
-import React, { lazy, Suspense, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { Skeleton } from 'antd';
 import allActions from '../redux/actions/index';
-
-const TeamList = lazy(() => import('../components/team/TeamList'));
+import TeamList from '../components/team/TeamList';
 
 const Teams = ({ teams }) => {
   const dispatch = useDispatch();
@@ -18,17 +16,7 @@ const Teams = ({ teams }) => {
       dispatch(allActions.teams.teamSelected(newTeam));
     }
   };
-  return (
-    <Suspense
-      fallback={
-        <div className="skeleton">
-          <Skeleton active paragraph={{ rows: 5 }} />
-        </div>
-      }
-    >
-      <TeamList key="newTeam-list" clickHandler={clickHandler} teams={teams} />
-    </Suspense>
-  );
+  return <TeamList key="newTeam-list" clickHandler={clickHandler} teams={teams} />;
 };
 
 export default Teams;

@@ -1,15 +1,9 @@
 package com.dashboard.backend.employee;
 
-
-import com.dashboard.backend.team.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.web.PagedResourcesAssembler;
 import org.springframework.data.web.config.EnableSpringDataWebSupport;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.IanaLinkRelations;
-import org.springframework.hateoas.PagedModel;
-import org.springframework.hateoas.server.ExposesResourceFor;
-import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -38,7 +32,6 @@ public class EmployeeController {
 
     @GetMapping("employees")
     public ResponseEntity<CollectionModel<EmployeeModel>> getAllEmployees() {
-//        HttpEntity<PagedModel<Employee>> employees(Pageable pageable, PagedRepresentationModelAssembler assembler)
         List<Employee> employees = employeeService.findAll();
 
         return new ResponseEntity<>(

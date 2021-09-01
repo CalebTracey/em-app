@@ -33,6 +33,7 @@ const TeamPage = () => {
 
   const showDeleteTeamConfirm = () => {
     confirm({
+      key: 'delete-team',
       title: `Delete ${team.teamName} ?`,
       icon: <ExclamationCircleOutlined />,
       content: 'This is permanent!',

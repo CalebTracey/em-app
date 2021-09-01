@@ -1,7 +1,6 @@
 /* eslint-disable react/prop-types */
-/* eslint-disable react/no-array-index-key */
 import React, { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { Skeleton, Space } from 'antd';
 import allActions from '../../redux/actions/index';
@@ -11,42 +10,38 @@ import useGetTeams from '../../hooks/useGetTeams';
 import useGetTeamTasks from '../../hooks/useGetTeamTasks';
 
 const TeamPageRedirect = ({ id }) => {
-  const teams = useSelector((state) => state.teams.teamData);
   const [isLoading, setIsLoading] = useState(true);
-  const [completed, setCompleted] = useState(false);
   const [, getEmployees] = useGetEmployees({ data: null });
-  const [, getTeams] = useGetTeams({ data: null });
+  const [teamsRes, getTeams] = useGetTeams({ data: null });
   const [, getTeamTasks] = useGetTeamTasks({ data: null });
   const dispatch = useDispatch();
 
   useEffect(() => {
-    apiGet({ url: `teams/${id}` })
-      .then((res) => {
-        const teamData = res.data;
-        dispatch(allActions.teams.teamSelected(teamData));
-        setIsLoading(false);
-      })
-      .then(() => {
-        getTeams();
-        getEmployees();
-        getTeamTasks();
-      });
-  }, [id, getTeams, dispatch, getEmployees, getTeamTasks, isLoading]);
+    const getData = () => {
+      apiGet({ url: `teams/${id}` })
+        .then((res) => {
+          dispatch(allActions.teams.teamSelected(res.data));
+        })
+        .then(() => {
+          getTeams();
+          getEmployees();
+          getTeamTasks();
+        });
+    };
+    if (!teamsRes.isLoading) getData();
+    return () => {
+      setIsLoading(false);
+    };
+  }, [id, getTeams, dispatch, getEmployees, getTeamTasks, teamsRes]);
 
-  useEffect(() => {
-    const ac = new AbortController();
-    if (teams.length !== 0) setCompleted(true);
-    return () => ac.abort();
-  }, [setCompleted, teams]);
-
-  return completed ? (
+  return !isLoading ? (
+    <Redirect to={`/EMapp/team/${id}`} />
+  ) : (
     <Space style={{ margin: '2rem' }}>
       <div className="skeleton">
         <Skeleton active paragraph={{ rows: 5 }} />
       </div>
     </Space>
-  ) : (
-    <Redirect to={`/EMapp/team/${id}`} />
   );
 };
 

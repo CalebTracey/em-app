@@ -1,6 +1,6 @@
-import { OVERDUE_TASKS, UPCOMING_TASKS } from './types';
 /* eslint-disable import/prefer-default-export */
 /* eslint-disable react/prop-types */
+import { OVERDUE_TASKS, UPCOMING_TASKS } from './types';
 
 const overdueTasks = (tasks) => ({
   type: OVERDUE_TASKS,

@@ -1,26 +1,28 @@
-import { useState, useCallback } from 'react';
-import { useDispatch } from 'react-redux';
-import allActions from '../redux/actions/index';
-import apiGet from '../apis/apiGet';
 /* eslint-disable no-nested-ternary */
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable react/prop-types */
 /* eslint-disable react/no-array-index-key */
+import { useState, useCallback } from 'react';
+import { useDispatch } from 'react-redux';
+import allActions from '../redux/actions/index';
+import apiGet from '../apis/apiGet';
 
 const useGetTeams = ({ data }) => {
   const dispatch = useDispatch();
-  const [result, setResult] = useState({
+  const [teamsRes, setResult] = useState({
     data: null,
     error: null,
     isLoading: false,
   });
   const getTeams = useCallback(() => {
+    const ac = new AbortController();
     setResult((prevState) => ({ ...prevState, isLoading: true }));
     apiGet(
       {
         url: 'teams',
       },
-      data
+      data,
+      { ac }
     )
       .then((res) => {
         const sort = res.data._embedded.teams.sort((a, b) =>
@@ -32,8 +34,9 @@ const useGetTeams = ({ data }) => {
       .catch((error) => {
         setResult({ data: null, isLoading: false, error });
       });
+    return () => ac.abort();
   }, [data, dispatch]);
 
-  return [result, getTeams];
+  return [teamsRes, getTeams];
 };
 export default useGetTeams;
