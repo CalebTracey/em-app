@@ -43,4 +43,5 @@ Hypertext links with Spring HATEOAS.
 
 ## Database
 ### Postgres
+Visual representation of the database structure and the relationship between tables.
 <img src=./emappdb.png />
