@@ -10,7 +10,11 @@ const TaskList = ({ tasks, clickHandler }) => {
     const start = new Date(task.taskStart);
     const end = new Date(task.taskEnd);
     return (
-      <Menu.Item key={task.id} icon={<CalendarOutlined />} style={{ cursor: 'pointer' }}>
+      <Menu.Item
+        key={parseInt(task.id, 10)}
+        icon={<CalendarOutlined />}
+        style={{ cursor: 'pointer' }}
+      >
         {`${start.getMonth()}/${start.getDate()} - ${end.getMonth()}/${end.getDate()}`}
         <Link key={task.id} to={`/EMapp/task/${task.id}`} onClick={() => clickHandler(task)} />
       </Menu.Item>

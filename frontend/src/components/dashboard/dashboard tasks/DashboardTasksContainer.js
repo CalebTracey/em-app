@@ -5,29 +5,30 @@ import DashboardUpcomingTasks from './DashboardUpcomingTasks';
 import DashboardTodayTasks from './DashboardTodayTasks';
 /* eslint-disable react/prop-types */
 
-const DashboardTasksContainer = ({ tasks, currentDate }) => {
+const DashboardTasksContainer = ({ tasks }) => {
+  const date = new Date();
   const urgentTasks = tasks.filter(({ remaining }) => remaining < 6 && remaining > 0);
   const overdueTasks = tasks.filter(({ remaining }) => remaining < 0);
   const todayTasks = tasks.filter(
-    ({ taskEnd }) => new Date(taskEnd).toLocaleDateString() === currentDate.toLocaleDateString()
+    ({ taskEnd }) => new Date(taskEnd).toLocaleDateString() === date.toLocaleDateString()
   );
-  const urgentFilter = urgentTasks.filter(
-    ({ taskEnd }) => new Date(taskEnd).getMonth() === currentDate.getMonth()
-  );
-  const overdueFilter = overdueTasks.filter(
-    ({ taskEnd }) => new Date(taskEnd).getMonth() === currentDate.getMonth()
-  );
-  const todayFilter = todayTasks.filter(
-    ({ taskEnd }) => new Date(taskEnd).getMonth() === currentDate.getMonth()
-  );
+  // const urgentFilter = urgentTasks.filter(
+  //   ({ taskEnd }) => new Date(taskEnd).getMonth() === date.getMonth()
+  // );
+  // const overdueFilter = overdueTasks.filter(
+  //   ({ taskEnd }) => new Date(taskEnd).getMonth() === date.getMonth()
+  // );
+  // const todayFilter = todayTasks.filter(
+  //   ({ taskEnd }) => new Date(taskEnd).getMonth() === date.getMonth()
+  // );
 
   return (
     <div className="task-margin-container">
       <div className="task-container">
         <div className="task-title-text">Tasks</div>
-        <DashboardOverdueTasks tasks={overdueFilter} />
-        <DashboardTodayTasks tasks={todayFilter} />
-        <DashboardUpcomingTasks tasks={urgentFilter} />
+        <DashboardOverdueTasks tasks={overdueTasks} />
+        <DashboardTodayTasks tasks={todayTasks} />
+        <DashboardUpcomingTasks tasks={urgentTasks} />
       </div>
     </div>
   );

@@ -7,7 +7,11 @@ import { UserOutlined } from '@ant-design/icons';
 
 const EmployeeList = ({ employees, clickHandler }) => {
   const listNode = employees.map((employee) => (
-    <Menu.Item key={employee.id} icon={<UserOutlined />} style={{ cursor: 'pointer' }}>
+    <Menu.Item
+      key={parseInt(employee.id, 10)}
+      icon={<UserOutlined />}
+      style={{ cursor: 'pointer' }}
+    >
       {`${employee.lastName}, ${employee.firstName}`}
       <Link
         key={employee.id}

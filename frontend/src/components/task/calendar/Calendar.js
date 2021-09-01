@@ -7,9 +7,8 @@ import allActions from '../../../redux/actions/index';
 /* eslint-disable react/prop-types */
 /* eslint-disable react/no-array-index-key */
 
-const Calendar = () => {
+const Calendar = ({ date }) => {
   const dispatch = useDispatch();
-  const date = new Date();
 
   const [, getTeamTasks] = useGetTeamTasks({
     url: `team_tasks/month/${date.getMonth()}`,
@@ -30,7 +29,7 @@ const Calendar = () => {
     <div className="full-schedule-container">
       <div className="calendar-container">
         <div className="calendar">
-          <CalendarWeeks className="week" clickHandler={clickHandler} />
+          <CalendarWeeks className="week" date={date} clickHandler={clickHandler} />
         </div>
       </div>
     </div>

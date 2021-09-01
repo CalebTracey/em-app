@@ -10,13 +10,11 @@ import EmployeeDetailsCard from './EmployeeDetailsCard';
 const EmployeeDetails = () => {
   const employee = useSelector((state) => state.employees.employeeSelected);
   const teams = useSelector((state) => state.teams.teamData);
-  // const { id } = useParams();
   const history = useHistory();
 
   return !employee ? (
     <Redirect to="/EMapp/employees/redirect" />
   ) : (
-    // <EmployeeDetailsRedirect id={id} />
     <>
       <PageHeader
         fontWeight="bold"

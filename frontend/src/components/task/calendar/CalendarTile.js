@@ -4,11 +4,10 @@ import { Link } from 'react-router-dom';
 /* eslint-disable react/prop-types */
 /* eslint-disable react/no-array-index-key */
 
-const CalendarTile = ({ day, tasks, clickHandler }) => {
+const CalendarTile = ({ day, tasks, clickHandler, date }) => {
   const [hasTasks, setHasTasks] = useState('calendar-tile-no-tasks');
 
   useEffect(() => {
-    const date = new Date();
     const dayOfWeek = date.getDate();
 
     if (tasks.length !== 0) {
@@ -24,11 +23,11 @@ const CalendarTile = ({ day, tasks, clickHandler }) => {
     if (tasks.length === 0 && day === dayOfWeek) {
       setHasTasks('calendar-tile-today-no-tasks');
     }
-  }, [tasks, setHasTasks, day]);
+  }, [tasks, setHasTasks, day, date]);
 
   const taskLinks = () =>
     tasks.map((task) => (
-      <Link to={`/EMapp/task/${task.id}`} onClick={() => clickHandler(task)}>
+      <Link key={task.id} to={`/EMapp/task/${task.id}`} onClick={() => clickHandler(task)}>
         <p className="task-link">{task.description}</p>
       </Link>
     ));

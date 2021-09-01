@@ -1,7 +1,6 @@
 import './Layout.css';
 import React, { useState, lazy, Suspense } from 'react';
 import { Layout, Menu, Skeleton } from 'antd';
-// import { useSelector } from 'react-redux';
 import { TeamOutlined, UserOutlined, ScheduleOutlined } from '@ant-design/icons';
 import HomeNav from './sider-nav/HomeNav';
 import TeamsNav from './sider-nav/TeamsNav';
@@ -18,7 +17,6 @@ const { Sider } = Layout;
 const { SubMenu } = Menu;
 
 const SideNav = () => {
-  // const company = useSelector((state) => state.company);
   const [employees, toggleEmployees] = useState(false);
   const [schedule, toggleSchedule] = useState(false);
   const [teams, toggleTeams] = useState(false);
@@ -27,7 +25,6 @@ const SideNav = () => {
     switch (event.key) {
       case 'employees': {
         toggleEmployees(!employees);
-        // history.push('/EMapp/employees');
         break;
       }
       case 'teams': {
