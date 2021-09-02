@@ -48,27 +48,18 @@
   border-radius: 10px;
   padding: 0.25ch;
   color: #595959;
-  margin-bottom: 0.75rem;
-  margin-top: auto;
+  /* margin-bottom: 0.75rem; */
+  /* margin: auto; */
   margin: 0.5em;
   font-size: 1.5vw;
   font-weight: 500;
 }
 
 .task-margin-container {
+  height: 100%;
+  overflow: hidden;
   border-right: 1px solid #e8e8e8;
   box-shadow: 0 0 2.5em -2em;
-}
-
-.task-container {
-  text-transform: capitalize;
-  height: 100%;
-  margin-left: 1rem;
-  margin-right: 1rem;
-  max-width: 12rem;
-  margin-top: auto;
-  text-align: center;
-  margin-bottom: auto;
 }
 
 .container {

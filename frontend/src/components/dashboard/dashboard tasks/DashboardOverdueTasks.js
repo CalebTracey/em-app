@@ -8,7 +8,12 @@ import './DashboardUpcomingTasks.css';
 const DashboardOverdueTasks = ({ tasks }) => {
   const dispatch = useDispatch();
   return (
-    <Link to="EMapp/tasks/overdue" onClick={() => dispatch(allActions.tasks.overdueTasks(tasks))}>
+    <Link
+      to="EMapp/tasks/overdue"
+      onClick={() =>
+        dispatch(allActions.tasks.dashboardTasks({ title: 'Overdue Tasks', items: tasks }))
+      }
+    >
       <div className="upcoming-tasks">
         <div className="main-text-wrapper overdue">
           <p className="task-text-main">{tasks.length}</p>

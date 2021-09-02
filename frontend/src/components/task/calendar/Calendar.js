@@ -1,19 +1,19 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import './Calendar.css';
 import { useDispatch } from 'react-redux';
 import CalendarWeeks from './CalendarWeeks';
-import useGetTeamTasks from '../../../hooks/useGetTeamTasks';
+// import useGetTeamTasks from '../../../hooks/useGetTeamTasks';
 import allActions from '../../../redux/actions/index';
 /* eslint-disable react/prop-types */
 /* eslint-disable react/no-array-index-key */
 
-const Calendar = ({ date }) => {
+const Calendar = ({ date, tasks }) => {
   const dispatch = useDispatch();
 
-  const [, getTeamTasks] = useGetTeamTasks({
-    url: `team_tasks/month/${date.getMonth()}`,
-    data: null,
-  });
+  // const [, getTeamTasks] = useGetTeamTasks({
+  //   url: `team_tasks/month/${date.getMonth()}`,
+  //   data: null,
+  // });
 
   const clickHandler = (task) => {
     if (task !== null) {
@@ -21,18 +21,18 @@ const Calendar = ({ date }) => {
     }
   };
 
-  useEffect(() => {
-    getTeamTasks();
-  }, [getTeamTasks]);
+  // useEffect(() => {
+  //   if (tasks.length === 0 || !tasks) getTeamTasks();
+  // }, [getTeamTasks, tasks]);
 
   return (
-    <div className="full-schedule-container">
-      <div className="calendar-container">
-        <div className="calendar">
-          <CalendarWeeks className="week" date={date} clickHandler={clickHandler} />
-        </div>
-      </div>
+    // <div className="full-schedule-container">
+    // {/* <div className="calendar-container"> */}
+    <div className="calendar">
+      <CalendarWeeks className="week" date={date} tasks={tasks} clickHandler={clickHandler} />
     </div>
+    // {/* </div> */}
+    // </div>
   );
 };
 

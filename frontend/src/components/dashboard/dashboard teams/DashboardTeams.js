@@ -6,8 +6,8 @@ import { Skeleton } from 'antd';
 const DashboardTeamsList = lazy(() => import('./DashboardTeamsList'));
 
 const DashboardTeams = ({ teams, employees }) => (
-  <div className="teams-container">
-    <div className="dash-team-list-container">
+  <div className="margin-container">
+    <div className="scroll-container">
       <Suspense
         fallback={
           <div className="skeleton">

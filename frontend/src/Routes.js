@@ -9,7 +9,6 @@ const TeamPage = lazy(() => import('./components/team/TeamPage'));
 const TeamDeletedPage = lazy(() => import('./components/team/TeamDeletedPage'));
 const CreateTeam = lazy(() => import('./components/team/create/CreateTeam'));
 const TaskListContainer = lazy(() => import('./components/task/TaskListContainer'));
-const TaskListOverdue = lazy(() => import('./components/task/TaskListOverdue'));
 const Schedule = lazy(() => import('./containers/Schedule'));
 const Preferences = lazy(() => import('./containers/Preferences'));
 const ApiContainer = lazy(() => import('./containers/ApiContainer'));
@@ -17,7 +16,7 @@ const EmployeeDetailsContainer = lazy(() =>
   import('./components/employee/containers/EmployeeDetailsContainer')
 );
 const TaskDetailsContainer = lazy(() =>
-  import('./components/task/containers/TaskDetailsContainer')
+  import('./components/task/containers/EmployeeDetailsContainer')
 );
 
 const Routes = () => (
@@ -29,11 +28,10 @@ const Routes = () => (
     <Route exact path="/EMapp/employees" component={Employees} />
     <Route exact path="/EMapp/schedule" component={Schedule} />
     <Route exact path="/EMapp/teams" component={Teams} />
-    <Route path="/EMapp/employees/:id" render={() => <EmployeeDetailsContainer />} />
-    <Route path="/EMapp/task/:id" render={() => <TaskDetailsContainer />} />
-    <Route path="/EMapp/team/:id" render={() => <TeamPage />} />
+    <Route path="/EMapp/employees/:id" component={EmployeeDetailsContainer} />
+    <Route path="/EMapp/task/:id" component={TaskDetailsContainer} />
+    <Route path="/EMapp/team/:id" component={TeamPage} />
     <Route path="/EMapp/tasks" component={TaskListContainer} />
-    <Route path="/EMapp/tasks/overdue" component={TaskListOverdue} />
     <Route path="/EMapp/team/team-deleted/:id" component={TeamDeletedPage} />
     <Route component={NotFound} />
   </Switch>

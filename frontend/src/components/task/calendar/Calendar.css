@@ -1,15 +1,14 @@
-.full-schedule-container {
+/* .full-schedule-container {
   height: 100%;
   display: flex;
   justify-content: center;
   width: 100%;
-}
+} */
 
 .calendar-container {
+  margin: auto;
+  margin-top: 1rem;
   text-align: center;
-  margin-bottom: auto;
-  margin-left: auto;
-  flex-direction: column;
 }
 
 .task-link {
@@ -31,6 +30,8 @@
 
 .date {
   padding: 1ch;
+  width: 6rem;
+  height: 6rem;
 }
 
 .task-title-text {
@@ -49,14 +50,9 @@
   border: 1px solid #e8e8e8;
   box-shadow: 0 0 2.5em -2em;
   border-radius: 4px;
-  flex-wrap: wrap;
-  margin-bottom: auto;
-  justify-content: center;
-  margin-left: auto;
-  margin-right: auto;
-  max-width: 80em;
-  height: auto;
   background-color: #f0f2f5;
+  display: flex;
+  flex-direction: column;
 }
 
 .calendar-month-header {
@@ -71,8 +67,7 @@
 .calendar-tile-disabled {
   text-align: initial;
   margin: 0.5rem;
-  height: 6rem;
-  width: 6rem;
+
   flex-basis: auto;
   background: #f0f2f5;
   border-radius: 10px;
@@ -82,8 +77,7 @@
   box-shadow: 0px 0px 2.2em -2em black;
   text-align: initial;
   margin: 0.5rem;
-  height: 6rem;
-  width: 6rem;
+
   flex-basis: auto;
   background: #cef5a9;
   border-radius: 10px;
@@ -97,8 +91,7 @@
   box-shadow: 0px 0px 2.2em -2em black;
   text-align: initial;
   margin: 0.5rem;
-  height: 6rem;
-  width: 6rem;
+
   flex-basis: auto;
   background: #f7f591;
   border-radius: 10px;
@@ -108,8 +101,7 @@
   box-shadow: 0px 0px 2.2em -2em black;
   text-align: initial;
   margin: 0.5rem;
-  height: 6rem;
-  width: 6rem;
+
   flex-basis: auto;
   background: #fafafa;
   border-radius: 10px;
@@ -119,8 +111,6 @@
   box-shadow: 0px 0px 2.2em -2em black;
   text-align: initial;
   margin: 0.5rem;
-  height: 6rem;
-  width: 6rem;
   flex-basis: auto;
   background: #f7f588;
   border-radius: 10px;
@@ -189,8 +179,6 @@
   box-shadow: 0px 0px 2.2em -2em black;
   text-align: initial;
   margin: 0.5rem;
-  height: 6rem;
-  width: 6rem;
   flex-basis: auto;
   background: #f5c7a9;
   border-radius: 10px;

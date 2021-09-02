@@ -1,18 +1,13 @@
 /* eslint-disable import/prefer-default-export */
 /* eslint-disable react/prop-types */
-import { OVERDUE_TASKS, UPCOMING_TASKS } from './types';
+import { DASHBOARD_TASKS } from './types';
 
-const overdueTasks = (tasks) => ({
-  type: OVERDUE_TASKS,
-  payload: tasks,
-});
-
-const upcomingTasks = (tasks) => ({
-  type: UPCOMING_TASKS,
-  payload: tasks,
+const dashboardTasks = (tasks) => ({
+  type: DASHBOARD_TASKS,
+  title: tasks.title,
+  payload: tasks.items,
 });
 
 export const tasks = {
-  overdueTasks,
-  upcomingTasks,
+  dashboardTasks,
 };

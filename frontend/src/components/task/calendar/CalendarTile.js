@@ -34,12 +34,16 @@ const CalendarTile = ({ day, tasks, clickHandler, date }) => {
   return tasks.length !== 0 ? (
     <Popover title="Tasks" trigger="click" content={taskLinks}>
       <div className={hasTasks}>
-        <div className="date">{day}</div>
+        <div className="date">
+          <>{day}</>
+        </div>
       </div>
     </Popover>
   ) : (
     <div className={hasTasks}>
-      <div className="date">{day}</div>
+      <div className="date">
+        <>{day}</>
+      </div>
     </div>
   );
 };

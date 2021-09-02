@@ -21,3 +21,20 @@
   justify-content: center;
   align-content: center;
 }
+
+.margin-container {
+  height: 100%;
+  text-align: center;
+  margin-top: auto;
+  overflow-y: scroll;
+}
+
+.scroll-container {
+  box-shadow: 0 0 2.5em -2em;
+  overflow: auto;
+  border: 1px solid #e8e8e8;
+  border-radius: 4px;
+  width: 100%;
+  min-width: 10rem;
+  padding: 0;
+}

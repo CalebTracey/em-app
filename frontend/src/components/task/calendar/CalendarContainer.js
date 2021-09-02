@@ -2,7 +2,7 @@
 import React from 'react';
 import Calendar from './Calendar';
 
-const CalendarContainer = ({ date }) => (
+const CalendarContainer = ({ date, tasks }) => (
   <div className="calendar-container">
     <div className="task-title-text">{date.toLocaleString('default', { month: 'long' })}</div>
     <div className="weekdays">
@@ -14,7 +14,7 @@ const CalendarContainer = ({ date }) => (
       <p className="day">Friday</p>
       <p className="day">Saturday</p>
     </div>
-    <Calendar date={date} />
+    <Calendar date={date} tasks={tasks} />
   </div>
 );
 

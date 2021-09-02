@@ -7,7 +7,7 @@ import useGetTeams from '../hooks/useGetTeams';
 import useGetTeamTasks from '../hooks/useGetTeamTasks';
 
 const ApiContainer = () => {
-  const employeeState = useSelector((state) => state.employees.employeeData);
+  const teams = useSelector((state) => state.teams.teamData);
   const [fetched, setFetched] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [, getEmployees] = useGetEmployees({ data: null });
@@ -16,18 +16,18 @@ const ApiContainer = () => {
 
   useEffect(() => {
     const getData = () => {
-      setFetched(true);
       getEmployees();
       getTeams();
       getTeamTasks();
+      setFetched(true);
     };
-    if (employeeState.length === 0 && !fetched) {
+    if (teams.length === 0 && !fetched) {
       getData();
     }
-    if (employeeState.length !== 0) {
+    if (teams.length !== 0) {
       setIsLoading(false);
     }
-  }, [employeeState, getEmployees, getTeams, getTeamTasks, fetched]);
+  }, [teams, getEmployees, getTeams, getTeamTasks, fetched]);
 
   return isLoading ? (
     <Space style={{ margin: '2rem' }}>

@@ -1,22 +1,17 @@
-import { OVERDUE_TASKS, UPCOMING_TASKS } from '../actions/types';
+import { DASHBOARD_TASKS } from '../actions/types';
 /* eslint-disable no-shadow */
 
 const initialState = {
-  overdueTasks: [],
-  upcomingTasks: [],
+  dashboardTasks: { title: '', items: [] },
 };
 
 const tasksReducer = (state = initialState, action) => {
+  console.log(action);
   switch (action.type) {
-    case OVERDUE_TASKS:
+    case DASHBOARD_TASKS:
       return {
         ...state,
-        overdueTasks: action.payload,
-      };
-    case UPCOMING_TASKS:
-      return {
-        ...state,
-        upcomingTasks: action.payload,
+        dashboardTasks: { title: action.title, items: action.payload },
       };
     default:
       return state;

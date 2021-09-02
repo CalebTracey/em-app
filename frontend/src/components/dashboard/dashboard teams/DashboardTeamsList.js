@@ -7,7 +7,7 @@ const DashboardTeamsList = ({ teams }) => {
   const teamLists = teams.map((team, teamIdx) => (
     <DashboardTeamsListItem key={teamIdx} team={team} />
   ));
-  return <div className="team-card-container">{teamLists}</div>;
+  return <div className="task-container">{teamLists}</div>;
 };
 
 export default DashboardTeamsList;
