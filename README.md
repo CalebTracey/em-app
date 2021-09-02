@@ -2,7 +2,8 @@
 # Employee Management App [![Netlify Status](https://api.netlify.com/api/v1/badges/347e2170-956c-44ef-bbcf-e8089529b03b/deploy-status)](https://app.netlify.com/sites/emapp/deploys)
 ![](emapp.gif)
 ## Demo
-Here is a working live demo: https://emapp.netlify.app/ <i>not intended for mobile</i> 
+Here is a working live demo: https://emapp.netlify.app/ 
+<i>not intended for mobile</i> 
 ## Overview
 The Employee Management App is a full stack web application created for learning purposes. It serves as an organizational system for managers or HR personel to keep track of Employee data and upcoming tasks within a company.
 
