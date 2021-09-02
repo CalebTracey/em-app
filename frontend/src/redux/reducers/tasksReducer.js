@@ -6,7 +6,6 @@ const initialState = {
 };
 
 const tasksReducer = (state = initialState, action) => {
-  console.log(action);
   switch (action.type) {
     case DASHBOARD_TASKS:
       return {
