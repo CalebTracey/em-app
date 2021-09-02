@@ -7,7 +7,6 @@ import allActions from '../../../redux/actions/index';
 
 const DashboardTaskItem = ({ task }) => {
   const dispatch = useDispatch();
-  // console.log(task);
   return (
     <Link
       to={`/EMapp/task/${task.id}`}

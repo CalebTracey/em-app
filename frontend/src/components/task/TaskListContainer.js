@@ -2,7 +2,7 @@
 import React from 'react';
 import { PageHeader } from 'antd';
 import { useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Redirect } from 'react-router-dom';
 import TaskDetailsCard from './TaskDetailsCard';
 
 // eslint-disable-next-line react/prop-types
@@ -14,7 +14,7 @@ const TaskListContainer = () => {
       <TaskDetailsCard task={task} />
     </div>
   ));
-  return (
+  return tasks.title !== '' ? (
     <div style={{ display: 'flex', height: '100%' }}>
       <PageHeader
         fontWeight="bold"
@@ -36,6 +36,8 @@ const TaskListContainer = () => {
         </div>
       </div>
     </div>
+  ) : (
+    <Redirect to="/EMapp" />
   );
 };
 
