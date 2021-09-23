@@ -7,6 +7,8 @@ Here is a working live demo: https://emapp.netlify.app/
 ## Overview
 The Employee Management App is a full stack web application developed using React JS + Spring Boot + PostgreSQL. It serves as an organizational system for managers or HR personel to keep track of Employee data and upcoming tasks within a company.
 
+The live demo operates using randomly generated data stored on a Heroku PostgreSQL server. I update the data once a month, so please keep that in mind if due dates or upcoming tasks seem imbalanced. 
+
 ## Client 
 [Code](https://github.com/CalebTracey/EmployeeManagementApp/tree/main/frontend)
 ### React JS
