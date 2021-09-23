@@ -44,3 +44,5 @@ These cards display all the data relating to a specific entity.
 ### Postgres
 #### Entity Relationship Diagram
 <img src=./emappdb.png />
+#### CREATE TABLE SQL for employee table
+<img src=./Screen Shot 2021-09-23 at 3.31.43 PM.png />
