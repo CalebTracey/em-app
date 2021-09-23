@@ -5,7 +5,7 @@
 Here is a working live demo: https://emapp.netlify.app/ 
 * <i>not intended for mobile</i> 
 ## Overview
-The Employee Management App is a full stack web application created for learning purposes. It serves as an organizational system for managers or HR personel to keep track of Employee data and upcoming tasks within a company.
+The Employee Management App is a full stack web application developed using React JS + Spring Boot + PostgreSQL. It serves as an organizational system for managers or HR personel to keep track of Employee data and upcoming tasks within a company.
 
 ## Client 
 [Code](https://github.com/CalebTracey/EmployeeManagementApp/tree/main/frontend)
